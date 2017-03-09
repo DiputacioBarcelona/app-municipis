@@ -1,0 +1,34 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<ion-title class="bar">
+			Diba+Municipis
+		</ion-title>
+	</ion-navbar>
+	<ion-searchbar
+	placeholder="Nom del municipi o comarca..."
+	[showCancelButton]="true"
+	cancelButtonText="X"
+	(ionInput)="cercaMunicipis($event)">
+	</ion-searchbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item text-wrap class="item-avatar" *ngFor="let municipi of doProvider.municipisInfo |
+		filtraMunicipis: { nbElements: paginacio, filtre: filtreAplicat } | filtraPreferits">
+			<ion-thumbnail item-left (click)="entraPaginaMunicipi(municipi.ine)">
+				<img src="{{municipi.municipi_escut}}">
+			</ion-thumbnail>
+			<div (click)="entraPaginaMunicipi(municipi.ine)">
+				{{municipi.municipi_nom}} <br>
+				{{municipi.comarca_nom}}
+			</div>
+			<ion-icon  clear  color="primary" item-right (click)="canviaPreferit(municipi.ine)" *ngIf="municipi.preferit==true" name="star" class="fav"></ion-icon>
+			<ion-icon  clear color="primary" item-right (click)="canviaPreferit(municipi.ine)" *ngIf="municipi.preferit!=true" name="star-outline" class="fav"></ion-icon>
+		</ion-item>
+	</ion-list>
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>
