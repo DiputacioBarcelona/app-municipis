@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "DibaMunicipis",
+  "author": "Diputació de Barcelona",
+  "homepage": "http://www.diba.cat",
   "private": true,
   "scripts": {
     "build": "ionic-app-scripts build",
@@ -33,7 +33,7 @@
     "@ionic/app-scripts": "0.0.46",
     "typescript": "2.0.6"
   },
-  "description": "Municipis_v2: An Ionic project",
+  "description": "Diba+Municipis: An example of use of Diputació de Barcelona's Open Data API",
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
