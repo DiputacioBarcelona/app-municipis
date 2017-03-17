@@ -1,4 +1,4 @@
-# Diba+Muinicipis Application
+# Diba+Municipis Application
 
 This is purely a example of use of Diputació de Barcelona's Open Data API.
 
