@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { DibaMunicipis } from './app.component';
 import { RepositoriDadesObertes } from '../providers/dades-obertes';
 import { HomePage } from '../pages/home/home';
 import { MunicipiPage } from '../pages/municipi/municipi';
@@ -13,7 +13,7 @@ import { FiltraUnicMunicipi} from '../pipes/filtra-unic-municipi';
 
 @NgModule({
   declarations: [
-    MyApp,
+    DibaMunicipis,
     HomePage,
     MunicipiPage,
     PuntsPage,
@@ -23,11 +23,11 @@ import { FiltraUnicMunicipi} from '../pipes/filtra-unic-municipi';
     FiltraUnicMunicipi
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(DibaMunicipis)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    DibaMunicipis,
     HomePage,
     MunicipiPage,
     PuntsPage,
