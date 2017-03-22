@@ -1,19 +1,26 @@
-import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
-import { DibaMunicipis } from './app.component';
-import { RepositoriDadesObertes } from '../providers/dades-obertes';
+import { NgModule, ErrorHandler } from '@angular/core';
+
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular'
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { DibaMunicipisApp } from './app.component';
+
 import { HomePage } from '../pages/home/home';
 import { MunicipiPage } from '../pages/municipi/municipi';
 import { PuntsPage } from '../pages/punts/punts';
 import { ActivitatsPage } from '../pages/activitats/activitats';
+
 import { FiltraMunicipis } from '../pipes/filtra-municipis';
 import { FiltraPreferits } from '../pipes/filtra-preferits';
 import { FiltraUnicMunicipi} from '../pipes/filtra-unic-municipi';
 
+import { RepositoriDadesObertes } from '../providers/dades-obertes';
 
 @NgModule({
   declarations: [
-    DibaMunicipis,
+    DibaMunicipisApp,
     HomePage,
     MunicipiPage,
     PuntsPage,
@@ -23,16 +30,21 @@ import { FiltraUnicMunicipi} from '../pipes/filtra-unic-municipi';
     FiltraUnicMunicipi
   ],
   imports: [
-    IonicModule.forRoot(DibaMunicipis)
+    IonicModule.forRoot(DibaMunicipisApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    DibaMunicipis,
+    DibaMunicipisApp,
     HomePage,
     MunicipiPage,
     PuntsPage,
     ActivitatsPage
   ],
-  providers: [ RepositoriDadesObertes ]
+  providers: [
+    RepositoriDadesObertes,
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+  ]
 })
 export class AppModule {}
