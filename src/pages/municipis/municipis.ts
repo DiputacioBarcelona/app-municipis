@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController} from 'ionic-angular';
 import { RepositoriDadesObertes } from '../../providers/dades-obertes';
-import { MunicipiPage } from '../municipi-detail/municipi-detail';
+import { MunicipiDetailPage } from '../municipi-detail/municipi-detail';
 
 @Component({
 	selector: 'page-home',
-	templateUrl: 'home.html'
+	templateUrl: 'municipis.html'
 })
-export class HomePage {
+export class MunicipisPage {
 	public paginacio: number;
 	public filtreAplicat: number[];
 
@@ -46,7 +46,7 @@ export class HomePage {
 
 	/*	Navegació a la pàgina pròpia d'un municipi seleccionat */
 	entraPaginaMunicipi(ine: string) {
-		this.navCtrl.push(MunicipiPage,{ine : ine});
+		this.navCtrl.push(MunicipiDetailPage,{ine : ine});
 	}
 
 	/*	Guarda a la BD el canvi d'estat de preferit d'un municipi */

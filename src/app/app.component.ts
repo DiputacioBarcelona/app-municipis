@@ -4,9 +4,9 @@ import { Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { HomePage } from '../pages/home/home';
-import { ActivitatsPage } from '../pages/activitats/activitats';
-import { PuntsPage } from '../pages/punts/punts';
+import { MunicipisPage } from '../pages/municipis/municipis';
+import { ActivitiesPage } from '../pages/activities/activities';
+import { PoisPage } from '../pages/pois/pois';
 
 export interface PageInterface {
   title: string;
@@ -17,10 +17,11 @@ export interface PageInterface {
 @Component({
   templateUrl: 'app.html'
 })
+
 export class DibaMunicipisApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = MunicipisPage;
 
   appPages: PageInterface[];
 
@@ -30,9 +31,9 @@ export class DibaMunicipisApp {
 
     // List of pages that can be navigated to from the left menu
     this.appPages = [
-      { title: 'Home', component: HomePage, icon: 'contacts' },
-      { title: 'Activitats', component: ActivitatsPage, icon: 'calendar' },
-      { title: 'Punts', component: PuntsPage, icon: 'map' }
+      { title: 'Municipis', component: MunicipisPage, icon: 'contacts' },
+      { title: 'Activitats', component: ActivitiesPage, icon: 'calendar' },
+      { title: 'Punts', component: PoisPage, icon: 'map' }
     ];
 
   }

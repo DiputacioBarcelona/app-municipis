@@ -7,10 +7,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { DibaMunicipisApp } from './app.component';
 
-import { HomePage } from '../pages/home/home';
-import { MunicipiPage } from '../pages/municipi-detail/municipi-detail';
-import { PuntsPage } from '../pages/punts/punts';
-import { ActivitatsPage } from '../pages/activitats/activitats';
+import { MunicipisPage } from '../pages/municipis/municipis';
+import { MunicipiDetailPage } from '../pages/municipi-detail/municipi-detail';
+import { PoisPage } from '../pages/pois/pois';
+import { ActivitiesPage } from '../pages/activities/activities';
 
 import { FiltraMunicipis } from '../pipes/filtra-municipis';
 import { FiltraPreferits } from '../pipes/filtra-preferits';
@@ -21,10 +21,10 @@ import { RepositoriDadesObertes } from '../providers/dades-obertes';
 @NgModule({
   declarations: [
     DibaMunicipisApp,
-    HomePage,
-    MunicipiPage,
-    PuntsPage,
-    ActivitatsPage,
+    MunicipisPage,
+    MunicipiDetailPage,
+    PoisPage,
+    ActivitiesPage,
     FiltraMunicipis,
     FiltraPreferits,
     FiltraUnicMunicipi
@@ -35,10 +35,10 @@ import { RepositoriDadesObertes } from '../providers/dades-obertes';
   bootstrap: [IonicApp],
   entryComponents: [
     DibaMunicipisApp,
-    HomePage,
-    MunicipiPage,
-    PuntsPage,
-    ActivitatsPage
+    MunicipisPage,
+    MunicipiDetailPage,
+    PoisPage,
+    ActivitiesPage
   ],
   providers: [
     RepositoriDadesObertes,

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RepositoriDadesObertes } from '../../providers/dades-obertes';
-import { PuntsPage } from '../punts/punts';
-import { ActivitatsPage } from '../activitats/activitats';
+import { PoisPage } from '../pois/pois';
+import { ActivitiesPage } from '../activities/activities';
 
 
 @Component({
-  selector: 'page-municipi',
+  selector: 'page-municipi_detail',
   templateUrl: 'municipi-detail.html'
 })
-export class MunicipiPage {
+export class MunicipiDetailPage {
   public index;
   public preferit;
   private ine;
@@ -29,10 +29,10 @@ export class MunicipiPage {
   }
 
   entraPaginaPunts(index: string) {
-    this.navCtrl.push(PuntsPage,{ine : this.ine});
+    this.navCtrl.push(PoisPage,{ine : this.ine});
   }
 
   entraPaginaActivitats(index: string) {
-    this.navCtrl.push(ActivitatsPage,{ine : this.ine});
+    this.navCtrl.push(ActivitiesPage,{ine : this.ine});
   }
 }

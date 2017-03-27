@@ -4,10 +4,10 @@ import { RepositoriDadesObertes } from '../../providers/dades-obertes';
 
 
 @Component({
-  selector: 'page-punts',
-  templateUrl: 'punts.html'
+  selector: 'page-pois',
+  templateUrl: 'pois.html'
 })
-export class PuntsPage {
+export class PoisPage {
   public ine;
   public temaActual;
 
