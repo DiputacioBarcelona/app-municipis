@@ -8,7 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DibaMunicipisApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
-import { MunicipiPage } from '../pages/municipi/municipi';
+import { MunicipiPage } from '../pages/municipi-detail/municipi-detail';
 import { PuntsPage } from '../pages/punts/punts';
 import { ActivitatsPage } from '../pages/activitats/activitats';
 

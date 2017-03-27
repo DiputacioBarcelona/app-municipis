@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController} from 'ionic-angular';
 import { RepositoriDadesObertes } from '../../providers/dades-obertes';
-import { MunicipiPage } from '../municipi/municipi';
+import { MunicipiPage } from '../municipi-detail/municipi-detail';
 
 @Component({
 	selector: 'page-home',

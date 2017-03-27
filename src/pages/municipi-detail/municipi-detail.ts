@@ -7,7 +7,7 @@ import { ActivitatsPage } from '../activitats/activitats';
 
 @Component({
   selector: 'page-municipi',
-  templateUrl: 'municipi.html'
+  templateUrl: 'municipi-detail.html'
 })
 export class MunicipiPage {
   public index;
