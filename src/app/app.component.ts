@@ -8,6 +8,11 @@ import { HomePage } from '../pages/home/home';
 import { ActivitatsPage } from '../pages/activitats/activitats';
 import { PuntsPage } from '../pages/punts/punts';
 
+export interface PageInterface {
+  title: string;
+  component: any;
+  icon: string;
+}
 
 @Component({
   templateUrl: 'app.html'
@@ -17,17 +22,17 @@ export class DibaMunicipisApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  appPages: PageInterface[];
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
 
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Activitats', component: ActivitatsPage },
-      { title: 'Punts', component: PuntsPage }
+    // List of pages that can be navigated to from the left menu
+    this.appPages = [
+      { title: 'Home', component: HomePage, icon: 'contacts' },
+      { title: 'Activitats', component: ActivitatsPage, icon: 'calendar' },
+      { title: 'Punts', component: PuntsPage, icon: 'map' }
     ];
 
   }
@@ -36,7 +41,7 @@ export class DibaMunicipisApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      //this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
