@@ -16,23 +16,23 @@ export class MunicipisPage {
 
 	constructor(public navCtrl: NavController, public openData: OpenData, public loadingCtrl: LoadingController) {}
 
-	/*	S'executa quan la pagina s'ha carregat. Nomes s'executa una vegada per pagina creada. */
+	/*	Executed when the page is loaded. Only runs once per page created. */
 	ionViewDidLoad() {
 		this.paginacio = 10;
 		this.filtreAplicat = [];
 
 		let loading = this.loadingCtrl.create({ content: 'Espereu siusplau...' });
 		loading.present();
-		this.openData.carregaMunicipis(loading)
+		this.openData.loadMunicipis(loading)
 		.catch((err) => { console.log('home(ionViewDidLoad) - Error: ' + err) });
 	}
 
-	/*	Aplica el filtre preguntant a la API */
+	/*	Apply Filter asking API */
 	cercaMunicipis(event:any) {
 		let val = event.target.value;
 		if (!val || val.trim() == '') return this.filtreAplicat = [];;
 
-		this.openData.redueixFiltrats(this.filtreAplicat,val).then((resultat: any) => {
+		this.openData.reduceFiltering(this.filtreAplicat,val).then((resultat: any) => {
 			if (resultat[0] == undefined) {
 				this.filtreAplicat = [];
 				this.filtreAplicat[0] = -1;
@@ -41,19 +41,19 @@ export class MunicipisPage {
 		}).catch((err) => {console.log('ERROR - cercaMunicipis: ' + err['message'])});
 	}
 
-	/*	S'encarrega de montar l'scroll infinit */
+	/* Responsible for the infinite scroll */
 	doInfinite(infiniteScroll) {
 		if (this.filtreAplicat[0] == undefined && this.filtreAplicat[0] != -1 && this.paginacio < this.openData.municipisInfo.length) this.paginacio++;
 		return infiniteScroll.complete();
 	}
 
-	/*	Navegació a la pàgina pròpia d'un municipi seleccionat */
+	/*	Navigation page of the selected municipality */
 	entraPaginaMunicipi(ine: string) {
 		this.navCtrl.push(MunicipiDetailPage,{ine : ine});
 	}
 
-	/*	Guarda a la BD el canvi d'estat de preferit d'un municipi */
+	/*	Save the change BD preferred status of a municipality */
 	canviaPreferit(ine: string) {
-		this.openData.canviaPreferit(ine);
+		this.openData.toggleFavourite(ine);
 	}
 }

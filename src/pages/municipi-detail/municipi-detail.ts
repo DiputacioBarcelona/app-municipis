@@ -27,7 +27,7 @@ export class MunicipiDetailPage {
 
   canviaPreferit() {
     this.preferit = !this.preferit;
-    this.openData.canviaPreferit(this.ine);
+    this.openData.toggleFavourite(this.ine);
   }
 
   entraPaginaPunts(index: string) {
