@@ -5,6 +5,7 @@ import { NavController,  NavParams } from 'ionic-angular';
   selector: 'page-activities',
   templateUrl: 'activities.html'
 })
+
 export class ActivitiesPage {
   private ine;
 
