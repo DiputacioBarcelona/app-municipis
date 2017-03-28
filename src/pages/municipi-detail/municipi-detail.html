@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title *ngIf="index != undefined">{{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'municipi_nom'} }}</ion-title>
+    <ion-title *ngIf="index != undefined">{{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'municipi_nom'} }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,13 +10,13 @@
 <ion-content padding>
   <ion-item text-wrap class="no-padding">
     <ion-thumbnail item-left>
-      <img *ngIf="index != undefined" class="thumbnail" src="{{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'municipi_escut'} }}">
+      <img *ngIf="index != undefined" class="thumbnail" src="{{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'municipi_escut'} }}">
     </ion-thumbnail>
     <div *ngIf="index != undefined">
-      INE : {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'ine'} }} <br>
-      CIF: {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'cif'} }} <br>
-      Província: {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'provincia_nom'} }} <br>
-      Comarca: {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'comarca_nom'} }}
+      INE : {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'ine'} }} <br>
+      CIF: {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'cif'} }} <br>
+      Província: {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'provincia_nom'} }} <br>
+      Comarca: {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'comarca_nom'} }}
     </div>
     <ion-icon *ngIf="index != undefined && preferit == true" (click)="canviaPreferit()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
     <ion-icon *ngIf="index != undefined && preferit != true" (click)="canviaPreferit()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
@@ -33,19 +33,19 @@
   </ion-grid>
   <ion-item text-wrap *ngIf="index != undefined" class="item-text-wrap">
     <strong>Ajuntament</strong><br>
-    Adreça : {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'adreca'} }}<br>
-    Email : {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'email'} }}<br>
-    Telèfon : {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'telefon_contacte'} }}<br>
-    Fax : {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'fax'} }}<br>
-    Coords: {{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'localitzacio'} }}<br>
+    Adreça : {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'adreca'} }}<br>
+    Email : {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'email'} }}<br>
+    Telèfon : {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'telefon_contacte'} }}<br>
+    Fax : {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'fax'} }}<br>
+    Coords: {{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'localitzacio'} }}<br>
   </ion-item>
   <br>
   <ion-row *ngIf="index != undefined">
     <ion-col width-50>
-      <img src="{{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'municipi_vista'} }}">
+      <img src="{{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'municipi_vista'} }}">
     </ion-col>
     <ion-col width-50>
-      <img item-left src="{{ doProvider.municipisInfo|filtraUnicMunicipi: {i:index, atr:'municipi_bandera'} }}">
+      <img item-left src="{{ openData.municipisInfo|filtraUnicMunicipi: {i:index, atr:'municipi_bandera'} }}">
     </ion-col>
   </ion-row>
 </ion-content>

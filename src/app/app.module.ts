@@ -16,7 +16,7 @@ import { FiltraMunicipis } from '../pipes/filtra-municipis';
 import { FiltraPreferits } from '../pipes/filtra-preferits';
 import { FiltraUnicMunicipi} from '../pipes/filtra-unic-municipi';
 
-import { RepositoriDadesObertes } from '../providers/dades-obertes';
+import { OpenData } from '../providers/dades-obertes';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { RepositoriDadesObertes } from '../providers/dades-obertes';
     ActivitiesPage
   ],
   providers: [
-    RepositoriDadesObertes,
+    OpenData,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

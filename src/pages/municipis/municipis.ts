@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController} from 'ionic-angular';
-import { RepositoriDadesObertes } from '../../providers/dades-obertes';
+import { OpenData } from '../../providers/dades-obertes';
 import { MunicipiDetailPage } from '../municipi-detail/municipi-detail';
 
 @Component({
@@ -11,7 +11,7 @@ export class MunicipisPage {
 	public paginacio: number;
 	public filtreAplicat: number[];
 
-	constructor(public navCtrl: NavController, public doProvider: RepositoriDadesObertes, public loadingCtrl: LoadingController) {}
+	constructor(public navCtrl: NavController, public openData: OpenData, public loadingCtrl: LoadingController) {}
 
 	/*	S'executa quan la pagina s'ha carregat. Nomes s'executa una vegada per pagina creada. */
 	ionViewDidLoad() {
@@ -20,7 +20,7 @@ export class MunicipisPage {
 
 		let loading = this.loadingCtrl.create({ content: 'Espereu siusplau...' });
 		loading.present();
-		this.doProvider.carregaMunicipis(loading)
+		this.openData.carregaMunicipis(loading)
 		.catch((err) => { console.log('home(ionViewDidLoad) - Error: ' + err) });
 	}
 
@@ -29,7 +29,7 @@ export class MunicipisPage {
 		let val = event.target.value;
 		if (!val || val.trim() == '') return this.filtreAplicat = [];;
 
-		this.doProvider.redueixFiltrats(this.filtreAplicat,val).then((resultat: any) => {
+		this.openData.redueixFiltrats(this.filtreAplicat,val).then((resultat: any) => {
 			if (resultat[0] == undefined) {
 				this.filtreAplicat = [];
 				this.filtreAplicat[0] = -1;
@@ -40,7 +40,7 @@ export class MunicipisPage {
 
 	/*	S'encarrega de montar l'scroll infinit */
 	doInfinite(infiniteScroll) {
-		if (this.filtreAplicat[0] == undefined && this.filtreAplicat[0] != -1 && this.paginacio < this.doProvider.municipisInfo.length) this.paginacio++;
+		if (this.filtreAplicat[0] == undefined && this.filtreAplicat[0] != -1 && this.paginacio < this.openData.municipisInfo.length) this.paginacio++;
 		return infiniteScroll.complete();
 	}
 
@@ -51,6 +51,6 @@ export class MunicipisPage {
 
 	/*	Guarda a la BD el canvi d'estat de preferit d'un municipi */
 	canviaPreferit(ine: string) {
-		this.doProvider.canviaPreferit(ine);
+		this.openData.canviaPreferit(ine);
 	}
 }

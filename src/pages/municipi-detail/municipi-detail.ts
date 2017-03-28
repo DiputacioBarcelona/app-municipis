@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { RepositoriDadesObertes } from '../../providers/dades-obertes';
+import { OpenData } from '../../providers/dades-obertes';
 import { PoisPage } from '../pois/pois';
 import { ActivitiesPage } from '../activities/activities';
 
@@ -14,18 +14,18 @@ export class MunicipiDetailPage {
   public preferit;
   private ine;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private doProvider: RepositoriDadesObertes) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private openData: OpenData) {
     this.ine = navParams.get('ine');
   }
 
   ionViewDidLoad() {
-    this.index = this.doProvider.indexMunicipis[this.ine];
-    this.preferit = this.doProvider.municipisInfo[this.index]['preferit'];
+    this.index = this.openData.indexMunicipis[this.ine];
+    this.preferit = this.openData.municipisInfo[this.index]['preferit'];
   }
 
   canviaPreferit() {
     this.preferit = !this.preferit;
-    this.doProvider.canviaPreferit(this.ine);
+    this.openData.canviaPreferit(this.ine);
   }
 
   entraPaginaPunts(index: string) {

@@ -24,7 +24,7 @@
   <ion-item *ngIf="ine != undefined">
     <ion-label>Municipi:</ion-label>
     <ion-select>
-      <div *ngFor="let municipi of doProvider.municipisInfo">
+      <div *ngFor="let municipi of openData.municipisInfo">
         <ion-option *ngIf="municipi.ine == ine" selected="true">{{ municipi.municipi_nom }}</ion-option>
         <ion-option *ngIf="municipi.ine != ine">{{ municipi.municipi_nom }}</ion-option>
       </div>
@@ -33,7 +33,7 @@
   <ion-item *ngIf="ine != undefined">
     <ion-label>Tema:</ion-label>
     <ion-select>
-      <div *ngFor="let tema of doProvider.temes">
+      <div *ngFor="let tema of openData.temes">
         <ion-option *ngIf="tema == temaActual" selected="true">{{ tema }}</ion-option>
         <ion-option *ngIf="tema != temaActual">{{ tema }}</ion-option>
       </div>

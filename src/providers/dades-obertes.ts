@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout'
 
 @Injectable()
-export class RepositoriDadesObertes {
+export class OpenData {
 	public municipisInfo : any = [];
   public indexMunicipis: { [ine: string]: number} = { };
   public puntsInfo : any = [];

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { RepositoriDadesObertes } from '../../providers/dades-obertes';
+import { OpenData } from '../../providers/dades-obertes';
 
 
 @Component({
@@ -11,14 +11,14 @@ export class PoisPage {
   public ine;
   public temaActual;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private doProvider: RepositoriDadesObertes) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private openData: OpenData) {
     this.ine = navParams.get('ine');
   }
 
   ionViewDidLoad() {
-    //this.doProvider.carregaPunts(this.ine);
-    //this.temaActual = this.doProvider.puntsInfo[0]['tema'];
-    //console.log(this.doProvider.puntsInfo[0]);
+    //this.openData.carregaPunts(this.ine);
+    //this.temaActual = this.openData.puntsInfo[0]['tema'];
+    //console.log(this.openData.puntsInfo[0]);
   }
 
 }
