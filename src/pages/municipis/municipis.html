@@ -18,7 +18,7 @@
 <ion-content>
 	<ion-list>
 		<ion-item text-wrap class="item-avatar" *ngFor="let municipi of openData.municipisInfo |
-		filtraMunicipis: { nbElements: paginacio, filtre: filtreAplicat } | filtraPreferits">
+		municipisFilter: { nbElements: paginacio, filtre: filtreAplicat } | favouritesFilter">
 			<ion-thumbnail item-left (click)="entraPaginaMunicipi(municipi.ine)">
 				<img src="{{municipi.municipi_escut}}">
 			</ion-thumbnail>

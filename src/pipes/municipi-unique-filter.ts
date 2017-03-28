@@ -1,10 +1,11 @@
 import { Injectable, Pipe } from '@angular/core';
 
 @Pipe({
-  name: 'filtraUnicMunicipi'
+  name: 'municipiUniqueFilter'
 })
+
 @Injectable()
-export class FiltraUnicMunicipi {
+export class MunicipiUniqueFilter {
   transform(value, args) {
     return value[args['i']][args['atr']];
   }

@@ -1,12 +1,12 @@
 import { Injectable, Pipe } from '@angular/core';
 
 @Pipe({
-  name: 'filtraMunicipis'
+  name: 'municipisFilter'
 })
 
 @Injectable()
-export class FiltraMunicipis {
-  // Filtra els municipis segons la pagina o la cerca que s'hagi introduit
+export class MunicipisFilter {
+  // Filter the municipalities according to the search page or have been entered
   transform(value, args) {
     var result = [];
     if (value[0] != undefined && args['nbElements']) {

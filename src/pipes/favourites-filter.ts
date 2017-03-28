@@ -1,10 +1,11 @@
 import { Injectable, Pipe } from '@angular/core';
 
 @Pipe({
-  name: 'filtraPreferits'
+  name: 'favouritesFilter'
 })
+
 @Injectable()
-export class FiltraPreferits {
+export class FavouritesFilter {
   transform(value) {
     var preferits = [];
     var noPreferits = [];

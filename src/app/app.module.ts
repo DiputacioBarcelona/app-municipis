@@ -12,9 +12,9 @@ import { MunicipiDetailPage } from '../pages/municipi-detail/municipi-detail';
 import { PoisPage } from '../pages/pois/pois';
 import { ActivitiesPage } from '../pages/activities/activities';
 
-import { FiltraMunicipis } from '../pipes/municipis-filter';
-import { FiltraPreferits } from '../pipes/favourites-filter';
-import { FiltraUnicMunicipi} from '../pipes/municipi-unique-filter';
+import { MunicipisFilter } from '../pipes/municipis-filter';
+import { FavouritesFilter } from '../pipes/favourites-filter';
+import { MunicipiUniqueFilter} from '../pipes/municipi-unique-filter';
 
 import { OpenData } from '../providers/open-data';
 
@@ -25,9 +25,9 @@ import { OpenData } from '../providers/open-data';
     MunicipiDetailPage,
     PoisPage,
     ActivitiesPage,
-    FiltraMunicipis,
-    FiltraPreferits,
-    FiltraUnicMunicipi
+    MunicipisFilter,
+    FavouritesFilter,
+    MunicipiUniqueFilter
   ],
   imports: [
     IonicModule.forRoot(DibaMunicipisApp)
