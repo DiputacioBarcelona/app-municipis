@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { OpenData } from '../../providers/dades-obertes';
 
+import { OpenData } from '../../providers/open-data';
 
 @Component({
   selector: 'page-pois',
   templateUrl: 'pois.html'
 })
+
 export class PoisPage {
   public ine;
   public temaActual;

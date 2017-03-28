@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { OpenData } from '../../providers/dades-obertes';
+
 import { PoisPage } from '../pois/pois';
 import { ActivitiesPage } from '../activities/activities';
 
+import { OpenData } from '../../providers/open-data';
 
 @Component({
   selector: 'page-municipi_detail',
   templateUrl: 'municipi-detail.html'
 })
+
 export class MunicipiDetailPage {
   public index;
   public preferit;

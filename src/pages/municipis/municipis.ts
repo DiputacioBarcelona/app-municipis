@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController} from 'ionic-angular';
-import { OpenData } from '../../providers/dades-obertes';
+
 import { MunicipiDetailPage } from '../municipi-detail/municipi-detail';
+
+import { OpenData } from '../../providers/open-data';
 
 @Component({
 	selector: 'page-home',
 	templateUrl: 'municipis.html'
 })
+
 export class MunicipisPage {
 	public paginacio: number;
 	public filtreAplicat: number[];
