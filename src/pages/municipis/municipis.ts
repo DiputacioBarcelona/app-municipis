@@ -6,54 +6,54 @@ import { MunicipiDetailPage } from '../municipi-detail/municipi-detail';
 import { OpenData } from '../../providers/open-data';
 
 @Component({
-	selector: 'page-home',
+	selector: 'page-municipis',
 	templateUrl: 'municipis.html'
 })
 
 export class MunicipisPage {
-	public paginacio: number;
-	public filtreAplicat: number[];
+	public pageSize: number;
+	public appliedFilter: number[];
 
 	constructor(public navCtrl: NavController, public openData: OpenData, public loadingCtrl: LoadingController) {}
 
 	/*	Executed when the page is loaded. Only runs once per page created. */
 	ionViewDidLoad() {
-		this.paginacio = 10;
-		this.filtreAplicat = [];
+		this.pageSize = 10;
+		this.appliedFilter  = [];
 
 		let loading = this.loadingCtrl.create({ content: 'Espereu siusplau...' });
 		loading.present();
 		this.openData.loadMunicipis(loading)
-		.catch((err) => { console.log('home(ionViewDidLoad) - Error: ' + err) });
+		.catch((err) => { console.error('municipis(ionViewDidLoad) - Error: ' + err) });
 	}
 
 	/*	Apply Filter asking API */
-	cercaMunicipis(event:any) {
+	searchMunicipis(event:any) {
 		let val = event.target.value;
-		if (!val || val.trim() == '') return this.filtreAplicat = [];;
+		if (!val || val.trim() == '') return this.appliedFilter  = [];;
 
-		this.openData.reduceFiltering(this.filtreAplicat,val).then((resultat: any) => {
+		this.openData.reduceFiltering(this.appliedFilter ,val).then((resultat: any) => {
 			if (resultat[0] == undefined) {
-				this.filtreAplicat = [];
-				this.filtreAplicat[0] = -1;
+				this.appliedFilter  = [];
+				this.appliedFilter [0] = -1;
 			}
-			else this.filtreAplicat = resultat;
-		}).catch((err) => {console.log('ERROR - cercaMunicipis: ' + err['message'])});
+			else this.appliedFilter  = resultat;
+		}).catch((err) => {console.error('ERROR - searchMunicipis: ' + err['message'])});
 	}
 
 	/* Responsible for the infinite scroll */
 	doInfinite(infiniteScroll) {
-		if (this.filtreAplicat[0] == undefined && this.filtreAplicat[0] != -1 && this.paginacio < this.openData.municipisInfo.length) this.paginacio++;
+		if (this.appliedFilter [0] == undefined && this.appliedFilter [0] != -1 && this.pageSize < this.openData.municipisInfo.length) this.pageSize++;
 		return infiniteScroll.complete();
 	}
 
 	/*	Navigation page of the selected municipality */
-	entraPaginaMunicipi(ine: string) {
+	goToMunicipiDetail(ine: string) {
 		this.navCtrl.push(MunicipiDetailPage,{ine : ine});
 	}
 
 	/*	Save the change BD preferred status of a municipality */
-	canviaPreferit(ine: string) {
+	toggleFavourite(ine: string) {
 		this.openData.toggleFavourite(ine);
 	}
 }

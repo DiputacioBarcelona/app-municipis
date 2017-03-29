@@ -10,7 +10,7 @@ import { OpenData } from '../../providers/open-data';
 
 export class PoisPage {
   public ine;
-  public temaActual;
+  //public temaActual;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private openData: OpenData) {
     this.ine = navParams.get('ine');

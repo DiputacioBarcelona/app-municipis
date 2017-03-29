@@ -348,7 +348,7 @@ export class OpenData {
       }).catch((err) => { console.error('ERROR - loadMunicipis: ' + err['message']) });
     }
 
-    /*  Consulta el <valorCerca> a la API i retorna les claus dels municipis dins el vector municipisInfo */
+    /*  Consulta el <searchValue> a la API i retorna les claus dels municipis dins el vector municipisInfo */
     public reduceFiltering(arrayIndexsFiltering: number[], searchValue : any) {
       let munFil : any;
       let comFil : any;
@@ -406,7 +406,7 @@ export class OpenData {
           this.temes.push(temesContingut[i]['tema_nom']);
         }
         return;
-      }).catch((err) => { console.log('ERROR - carregaPunts: ' + err['message']) });
+      }).catch((err) => { console.error('ERROR - carregaPunts: ' + err['message']) });
     }
     */
 

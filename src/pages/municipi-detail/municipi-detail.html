@@ -15,16 +15,16 @@
       Província: {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'provincia_nom'} }} <br>
       Comarca: {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'comarca_nom'} }}
     </div>
-    <ion-icon *ngIf="index != undefined && preferit == true" (click)="canviaPreferit()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
-    <ion-icon *ngIf="index != undefined && preferit != true" (click)="canviaPreferit()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
+    <ion-icon *ngIf="index != undefined && favourite == true" (click)="toggleFavourite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
+    <ion-icon *ngIf="index != undefined && favourite != true" (click)="toggleFavourite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
   </ion-item>
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button ion-button medium block light (click)="entraPaginaPunts()">Punts d'interès</button>
+        <button ion-button medium block light (click)="goToPois()">Punts d'interès</button>
       </ion-col>
       <ion-col>
-        <button ion-button medium block light (click)="entraPaginaActivitats()">Activitats</button>
+        <button ion-button medium block light (click)="goToActivities()">Activitats</button>
       </ion-col>
     </ion-row>
   </ion-grid>

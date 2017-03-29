@@ -13,7 +13,7 @@ import { OpenData } from '../../providers/open-data';
 
 export class MunicipiDetailPage {
   public index;
-  public preferit;
+  public favourite;
   private ine;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private openData: OpenData) {
@@ -22,19 +22,19 @@ export class MunicipiDetailPage {
 
   ionViewDidLoad() {
     this.index = this.openData.indexMunicipis[this.ine];
-    this.preferit = this.openData.municipisInfo[this.index]['preferit'];
+    this.favourite = this.openData.municipisInfo[this.index]['preferit'];
   }
 
-  canviaPreferit() {
-    this.preferit = !this.preferit;
+  toggleFavourite() {
+    this.favourite = !this.favourite;
     this.openData.toggleFavourite(this.ine);
   }
 
-  entraPaginaPunts(index: string) {
+  goToPois(index: string) {
     this.navCtrl.push(PoisPage,{ine : this.ine});
   }
 
-  entraPaginaActivitats(index: string) {
+  goToActivities(index: string) {
     this.navCtrl.push(ActivitiesPage,{ine : this.ine});
   }
 }

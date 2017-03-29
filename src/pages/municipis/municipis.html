@@ -11,23 +11,23 @@
 	placeholder="Nom del municipi o comarca..."
 	[showCancelButton]="true"
 	cancelButtonText="X"
-	(ionInput)="cercaMunicipis($event)">
+	(ionInput)="searchMunicipis($event)">
 	</ion-searchbar>
 </ion-header>
 
 <ion-content>
 	<ion-list>
 		<ion-item text-wrap class="item-avatar" *ngFor="let municipi of openData.municipisInfo |
-		municipisFilter: { nbElements: paginacio, filtre: filtreAplicat } | favouritesFilter">
-			<ion-thumbnail item-left (click)="entraPaginaMunicipi(municipi.ine)">
+		municipisFilter: { numElements: pageSize, filter: appliedFilter } | favouritesFilter">
+			<ion-thumbnail item-left (click)="goToMunicipiDetail(municipi.ine)">
 				<img src="{{municipi.municipi_escut}}">
 			</ion-thumbnail>
-			<div (click)="entraPaginaMunicipi(municipi.ine)">
+			<div (click)="goToMunicipiDetail(municipi.ine)">
 				{{municipi.municipi_nom}} <br>
 				{{municipi.comarca_nom}}
 			</div>
-			<ion-icon  clear  color="primary" item-right (click)="canviaPreferit(municipi.ine)" *ngIf="municipi.preferit==true" name="star" class="fav"></ion-icon>
-			<ion-icon  clear color="primary" item-right (click)="canviaPreferit(municipi.ine)" *ngIf="municipi.preferit!=true" name="star-outline" class="fav"></ion-icon>
+			<ion-icon  clear  color="primary" item-right (click)="toggleFavourite(municipi.ine)" *ngIf="municipi.preferit==true" name="star" class="fav"></ion-icon>
+			<ion-icon  clear color="primary" item-right (click)="toggleFavourite(municipi.ine)" *ngIf="municipi.preferit!=true" name="star-outline" class="fav"></ion-icon>
 		</ion-item>
 	</ion-list>
 
