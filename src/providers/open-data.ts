@@ -20,7 +20,7 @@ export class OpenData {
   private token: string = '6b628524631aa27df30d122024f32dd8';
 
 
-  constructor(public http: Http, private loadingCtrl: LoadingController) {}
+  constructor(private http: Http, private loadingCtrl: LoadingController) {}
 
   /*************************************** BD MANAGEMENT ************************************************/
     /*  tslint:disable */
