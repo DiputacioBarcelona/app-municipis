@@ -4,6 +4,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import {TranslateService} from 'ng2-translate';
+
 import { MunicipisPage } from '../pages/municipis/municipis';
 import { ActivitiesPage } from '../pages/activities/activities';
 import { PoisPage } from '../pages/pois/pois';
@@ -25,9 +27,12 @@ export class DibaMunicipisApp {
 
   appPages: PageInterface[];
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public translate: TranslateService) {
 
     this.initializeApp();
+
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.setDefaultLang('en');
 
     // List of pages that can be navigated to from the left menu
     this.appPages = [

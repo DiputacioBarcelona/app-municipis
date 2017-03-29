@@ -1,9 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-
+import { Http } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate/ng2-translate';
 
 import { DibaMunicipisApp } from './app.component';
 
@@ -18,6 +20,10 @@ import { MunicipiUniqueFilter} from '../pipes/municipi-unique-filter';
 
 import { OpenData } from '../providers/open-data';
 
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, 'assets/i18n', '.json');
+}
+
 @NgModule({
   declarations: [
     DibaMunicipisApp,
@@ -30,7 +36,12 @@ import { OpenData } from '../providers/open-data';
     MunicipiUniqueFilter
   ],
   imports: [
-    IonicModule.forRoot(DibaMunicipisApp)
+    IonicModule.forRoot(DibaMunicipisApp),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,4 +58,5 @@ import { OpenData } from '../providers/open-data';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
+
 export class AppModule {}
