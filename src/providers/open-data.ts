@@ -13,7 +13,11 @@ export class OpenData {
   public temes : string[] = [];
   private storage: SQLite;
   private isOpen: boolean;
+
+  /* This is the base url of the open data's API  */
   private baseUrl: string = 'http://do.diba.cat/api/';
+  /* This token is used to collect statistics on the API calls */
+  private token: string = '6b628524631aa27df30d122024f32dd8';
 
 
   constructor(public http: Http, private loadingCtrl: LoadingController) {}
@@ -199,9 +203,9 @@ export class OpenData {
     /*  Retorna la informació d'un dataset <nomDataset> de la API
         Return d'enllaç: Promise
         Return de dades: Promise(resultat -> array) */
-    private getDatasetAPIContent(datasetName: string, token: string, camp_ord: string) {
+    private getDatasetAPIContent(datasetName: string, camp_ord: string) {
       return new Promise((resolve) => {
-        this.http.get(this.baseUrl + 'dataset/' + datasetName + '/format/JSON/ord-' + camp_ord + '/token/' + token)
+        this.http.get(this.baseUrl + 'dataset/' + datasetName + '/format/JSON/ord-' + camp_ord + '/token/' + this.token)
         .timeout(5000)
         .map(res => res.json()['elements'])
         .subscribe(data => { resolve(data) });
@@ -212,7 +216,7 @@ export class OpenData {
     /*  Retorna l'informació d'un contentType <contentType>, pel municipi <ine> especificat */
     private getContentTypeContent(contentTypeName: string, ine: string) {
       return new Promise((resolve) => {
-        this.http.get(this.baseUrl + 'tipus/' + contentTypeName + '/camp-rel_municipis/' + ine)
+        this.http.get(this.baseUrl + 'tipus/' + contentTypeName + '/camp-rel_municipis/' + ine + '/token/' + this.token)
         .timeout(5000)
         .map((data) => data.json().datasets)
         .subscribe((data) => { resolve(data) });
@@ -314,14 +318,14 @@ export class OpenData {
       var pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'];
       if (pref == true) pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = false;
       else pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = true;
-      return this.storage.executeSql("UPDATE municipis SET favourite='" + String(pref) + "' WHERE ine ='" + ine + "'",[])
+      return this.storage.executeSql("UPDATE municipis SET favourite = '" + String(pref) + "' WHERE ine = '" + ine + "'",[])
       .catch((err) => { console.error('ERROR - toggleFavourite: ' + err['message']) });
     }
 
     /*  Carrega desde la API de dades Obertes el dataset Municipis amb els elements ordenats per municipi transliterat */
     public loadMunicipis(loading: any) {
       return Promise.resolve().then(() => {
-        return this.getDatasetAPIContent('municipis','','municipi_transliterat');
+        return this.getDatasetAPIContent('municipis', 'municipi_transliterat');
       }).then((contingutAPI) => {
         return this.contentFormat(contingutAPI);
       }).then((contingutFormatejat: any) => {
@@ -354,7 +358,7 @@ export class OpenData {
       let munFil : any;
       let comFil : any;
       return new Promise(resolve => {
-        this.http.get(this.baseUrl + 'dataset/municipis/format/JSON/ord-municipi_transliterat/camp-municipi_nom-like/'+searchValue)
+        this.http.get(this.baseUrl + 'dataset/municipis/format/JSON/ord-municipi_transliterat/camp-municipi_nom-like/' + searchValue + '/token/' + this.token)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -363,7 +367,7 @@ export class OpenData {
       }).then((municipis) => {
         munFil = municipis;
         return new Promise(resolve => {
-          this.http.get(this.baseUrl + 'dataset/municipis/format/JSON/ord-municipi_transliterat/camp-comarca_nom-like/'+searchValue)
+          this.http.get(this.baseUrl + 'dataset/municipis/format/JSON/ord-municipi_transliterat/camp-comarca_nom-like/' + searchValue + '/token/' + this.token)
           .map(res => res.json())
           .subscribe(data => {
             resolve(data);
