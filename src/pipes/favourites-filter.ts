@@ -10,8 +10,12 @@ export class FavouritesFilter {
     var favourites = [];
     var noFavourites = [];
     for (var i = 0; i < value.length; ++i) {
-      if (value[i]['favourite']) favourites.push(value[i]);
-      else noFavourites.push(value[i]);
+      if (value[i]['favourite']) {
+        favourites.push(value[i]);
+      }
+      else {
+        noFavourites.push(value[i]);
+      }
     }
     return favourites.concat(noFavourites);
   }

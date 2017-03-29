@@ -14,7 +14,9 @@ export class MunicipisFilter {
         result = [];
         let numElements = args['numElements'] > value.length ? value.length : args['numElements'];
         for (var i = 0; i < value.length; ++i) {
-          if (value[i]['favourite']) result.push(value[i]);
+          if (value[i]['favourite']) {
+            result.push(value[i]);
+          } 
           else {
             if (numElements > 0) {
               result.push(value[i]);
@@ -24,7 +26,9 @@ export class MunicipisFilter {
         }
       }
       else {
-        if (args['filter'].length > 0 && args['filter'][0] == -1) return [];
+        if (args['filter'].length > 0 && args['filter'][0] == -1) {
+          return [];
+        }
         else {
           for (var i = 0; i < args['filter'].length; ++i) {
             result.push(value[args['filter'][i]]);
@@ -32,7 +36,9 @@ export class MunicipisFilter {
         }
       }
     }
-    else result = value;
+    else {
+      result = value;
+    }
     return result;
   }
 }

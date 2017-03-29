@@ -276,7 +276,9 @@ export class OpenData {
     /*  Formateja el contingut provinent de la API perque tingui una estructura més simple dins la app */
     private contentFormat (APIContent: any) {
       return Promise.resolve().then(() => {
-        if(APIContent[0] == undefined) return [];
+        if(APIContent[0] == undefined) {
+          return [];
+        }
         let indexsAPI = Object.keys(APIContent[0]); // Index dels camps de la API, alguns son arrays
         let dataset = [];
         interface camps {[ind: string]: string};
@@ -287,18 +289,31 @@ export class OpenData {
             let index = indexsAPI[j];
             let subIndex: string[] = [];
 
-            if (this.isIterable(APIContent[i][index])) subIndex = Object.keys(APIContent[i][index]);
-            else subIndex.push('empty');
+            if (this.isIterable(APIContent[i][index])) {
+              subIndex = Object.keys(APIContent[i][index]);
+            }
+            else { 
+              subIndex.push('empty');
+            }
 
             for (var z = 0; z < subIndex.length; ++z) {
               let subSubIndex: string[] = [];
-              if (subIndex[0] == 'empty') element[index] = APIContent[i][index];
-              else if (this.isIterable(APIContent[i][index][subIndex[z]])) subSubIndex = Object.keys(APIContent[i][index][subIndex[z]]);
-              else subSubIndex.push('empty');
+              if (subIndex[0] == 'empty') {
+                element[index] = APIContent[i][index];
+              } else {
+                if (this.isIterable(APIContent[i][index][subIndex[z]])) {
+                  subSubIndex = Object.keys(APIContent[i][index][subIndex[z]]);
+                } else {
+                  subSubIndex.push('empty');
+                }
+              }
 
               for (var w = 0; w < subSubIndex.length; ++w) {
-                if (subSubIndex[0] == 'empty') element[subIndex[z]] = APIContent[i][index][subIndex[z]];
-                else element[subSubIndex[w]] = APIContent[i][index][subIndex[z]][subSubIndex[w]];
+                if (subSubIndex[0] == 'empty') {
+                  element[subIndex[z]] = APIContent[i][index][subIndex[z]];
+                } else {
+                  element[subSubIndex[w]] = APIContent[i][index][subIndex[z]][subSubIndex[w]];
+                }
               }
             }
           }
@@ -316,8 +331,12 @@ export class OpenData {
     /*  Caniva l'estat "favourite" d'un municipi  */
     public toggleFavourite(ine: string) {
       var pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'];
-      if (pref == true) pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = false;
-      else pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = true;
+      if (pref == true) {
+        pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = false;
+      }
+      else {
+        pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = true;
+      }
       return this.storage.executeSql("UPDATE municipis SET favourite = '" + String(pref) + "' WHERE ine = '" + ine + "'",[])
       .catch((err) => { console.error('ERROR - toggleFavourite: ' + err['message']) });
     }
