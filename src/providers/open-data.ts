@@ -72,7 +72,9 @@ export class OpenData {
         let aux : string[] = [];
         for (var i = 0; i < columnsNames.length; ++i) {
           aux[i] = columnsNames[i] + ' TEXT';
-          if (i == 0) aux[i] += ' PRIMARY KEY';
+          if (i == 0){
+            aux[i] += ' PRIMARY KEY';
+          } 
         }
         let titols = aux.join(',');
         return this.storage.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + ' (' + titols + ')', []);
@@ -88,8 +90,12 @@ export class OpenData {
       }).then(() => {
         return this.existsTable(tableName);
       }).then((existeix) => {
-        if (!existeix) return '';
-        else return this.storage.executeSql('SELECT * FROM ' + tableName, []);
+        if (!existeix) {
+          return '';
+        } 
+        else {
+          return this.storage.executeSql('SELECT * FROM ' + tableName, []);
+        }
       }).catch((err) => { console.error('ERROR - getTableContent: ' + err['message']) });
     }
 
@@ -101,7 +107,7 @@ export class OpenData {
       }).then(() => {
         return this.existsTable(tableName);
       }).then((exists) => {
-        if (exists && columnsNames.length > 0 && values.length > 0){
+        if (exists && columnsNames.length > 0 && values.length > 0) {
           let aux: any[] = values;
           for (var i = 0; i < values.length; ++i) {
             for (var j = 0; j < values[i].length; ++j) {
@@ -181,7 +187,9 @@ export class OpenData {
 
     /*  Retorna si un objecte es Iterable, retorna fals amb strings */
     private isIterable(obj) {
-      if (obj == undefined) return false;
+      if (obj == undefined) {
+        return false;
+      }
       let keys = Object.keys(obj);
       // Comprovem que l'objecte conté indexos i son diferents de 0
       // ja que els strings s'indexen numericament
@@ -239,8 +247,11 @@ export class OpenData {
 
           // Si es iterable agafem els subindexs com a index
           // No cal mantenir una sincronia absoluta amb l'estructura de la API, la comunicació sera d'un sol sentit (API -> BD)
-          if (this.isIterable(APIData[0][indexsAPI[i]])) indexs = Object.keys(APIData[0][indexsAPI[i]]);
-          else indexs.push(indexsAPI[i]);
+          if (this.isIterable(APIData[0][indexsAPI[i]])) {
+            indexs = Object.keys(APIData[0][indexsAPI[i]]);
+          } else {
+            indexs.push(indexsAPI[i]);
+          }
 
           for (var j = 0; j < indexs.length; ++j) {
             colTitles.push(indexs[j]);
@@ -253,13 +264,19 @@ export class OpenData {
             let index = indexsAPI[j];
             let subIndex: string[] = [];
 
-            if (this.isIterable(APIData[i][indexsAPI[j]])) subIndex = Object.keys(APIData[i][indexsAPI[j]]);
-            else subIndex.push('empty');
+            if (this.isIterable(APIData[i][indexsAPI[j]])) {
+              subIndex = Object.keys(APIData[i][indexsAPI[j]]);
+            } else {
+              subIndex.push('empty');
+            }
 
             for (var z = 0; z < subIndex.length; ++z) {
               let fieldContent;
-              if (subIndex[0] == 'empty') fieldContent = APIData[i][index];
-              else fieldContent = APIData[i][index][subIndex[z]];
+              if (subIndex[0] == 'empty') {
+                fieldContent = APIData[i][index];
+              } else {
+                fieldContent = APIData[i][index][subIndex[z]];
+              }
               // Per no generar problemes en l'inserció a la BD
               fieldContent = fieldContent.replace(/,/g,';');
               fieldContent = fieldContent.replace(/'/g,'¿');
@@ -291,8 +308,7 @@ export class OpenData {
 
             if (this.isIterable(APIContent[i][index])) {
               subIndex = Object.keys(APIContent[i][index]);
-            }
-            else { 
+            } else { 
               subIndex.push('empty');
             }
 
@@ -362,8 +378,11 @@ export class OpenData {
           return this.getTableContent('municipis').then((contingut) => {
             for (var i = 0; i < contingut.rows.length; ++i) {
               this.indexMunicipis[contingut.rows.item(i)['ine']] = i;
-              if(contingut.rows.item(i)['favourite'] == 'true') contingutFormatejat[i]['favourite'] = true;
-              else contingutFormatejat[i]['favourite'] = false;
+              if(contingut.rows.item(i)['favourite'] == 'true') {
+                contingutFormatejat[i]['favourite'] = true;
+              } else {
+                contingutFormatejat[i]['favourite'] = false;
+              }
             }
             this.municipisInfo = contingutFormatejat;
             return loading.dismiss();
