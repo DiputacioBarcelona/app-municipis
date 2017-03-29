@@ -28,7 +28,7 @@ export class OpenData {
         return Promise.resolve().then(() => {
           this.storage = new SQLite();
           this.isOpen = true;
-          return this.storage.openDatabase({ name: 'data.db', location: 'default' });
+          return this.storage.openDatabase({ name: 'mesmunicipis.db', location: 'default' });
         }).catch((err) => {
           console.error('ERROR - openBD1: ' + err['message']);
           this.isOpen = false;
@@ -297,7 +297,7 @@ export class OpenData {
               }
             }
           }
-          element['preferit'] = 'false';
+          element['favourite'] = 'false';
           dataset.push(element);
         }
         return dataset;
@@ -308,12 +308,12 @@ export class OpenData {
   /*************************************** UTILS END ************************************************/
 
   /********************************* CRIDES APP +MUNICIPIS ******************************************/
-    /*  Caniva l'estat "preferit" d'un municipi  */
+    /*  Caniva l'estat "favourite" d'un municipi  */
     public toggleFavourite(ine: string) {
-      var pref = this.municipisInfo[this.indexMunicipis[ine]]['preferit'];
-      if (pref == true) pref = this.municipisInfo[this.indexMunicipis[ine]]['preferit'] = false;
-      else pref = this.municipisInfo[this.indexMunicipis[ine]]['preferit'] = true;
-      return this.storage.executeSql("UPDATE municipis SET preferit='" + String(pref) + "' WHERE ine ='" + ine + "'",[])
+      var pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'];
+      if (pref == true) pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = false;
+      else pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = true;
+      return this.storage.executeSql("UPDATE municipis SET favourite='" + String(pref) + "' WHERE ine ='" + ine + "'",[])
       .catch((err) => { console.error('ERROR - toggleFavourite: ' + err['message']) });
     }
 
@@ -324,22 +324,22 @@ export class OpenData {
       }).then((contingutAPI) => {
         return this.contentFormat(contingutAPI);
       }).then((contingutFormatejat: any) => {
-        return this.existsTable('municipis').then((existeix) => {
-          if (!existeix) {
-            return this.createTable('municipis',['ine','municipi_transliterat','preferit']).then(() => {
+        return this.existsTable('municipis').then((exists) => {
+          if (!exists) {
+            return this.createTable('municipis',['ine','municipi_transliterat','favourite']).then(() => {
               let elements = [];
               for (var i = 0; i < contingutFormatejat.length; ++i) {
                 elements.push([contingutFormatejat[i]['ine'],contingutFormatejat[i]['municipi_transliterat'],'false']);
               }
-              return this.setTableContent('municipis',['ine','municipi_transliterat','preferit'],elements);
+              return this.setTableContent('municipis',['ine','municipi_transliterat','favourite'],elements);
             })
           }
         }).then(() => {
           return this.getTableContent('municipis').then((contingut) => {
             for (var i = 0; i < contingut.rows.length; ++i) {
               this.indexMunicipis[contingut.rows.item(i)['ine']] = i;
-              if(contingut.rows.item(i)['preferit'] == 'true') contingutFormatejat[i]['preferit'] = true;
-              else contingutFormatejat[i]['preferit'] = false;
+              if(contingut.rows.item(i)['favourite'] == 'true') contingutFormatejat[i]['favourite'] = true;
+              else contingutFormatejat[i]['favourite'] = false;
             }
             this.municipisInfo = contingutFormatejat;
             return loading.dismiss();
@@ -419,67 +419,67 @@ export class OpenData {
     /*  Obté el contingut de la taula <nomTaula> i el mostra per consola amb <numFil> especificat
         Return d'enllaç: Promise
         Retorn de dades: Void (printa per consola) */
-    private printInfoTable(tableName: string, numFil: number) {
-      return Promise.resolve().then(() => {
-        return this.openBD()
-      }).then(() => {
-        return this.existsTable(tableName);
-      }).then((existeixTaula : any) => {
-        if (existeixTaula) return this.storage.executeSql('SELECT * FROM ' + tableName + ' ORDER BY ROWID', []);
-        else return '';
-      }).then((data : any) => {
-        if (data) {
-          if (numFil > data.rows.length) numFil = data.rows.length;
-          console.log('----------------------------------------------------------');
-          console.log(
-            'Informacio de la taula: ' + tableName + '                       ' +
-            ' Mostrant ' + numFil + ' de ' + data.rows.length + ' files.'
-            );
-          console.log('----------------------------------------------------------');
-          if(data.rows.length > 0) {
-            for(let i = 0; i < numFil; i++) {
-              console.log(i+1 + ': ' + JSON.stringify(data.rows.item(i)));
-            }
-          }
-          else {
-            console.log('La taula és buida');
-          }
-          console.log('----------------------------------------------------------');
-          return;
-        }
-        else {
-          console.log('----------------------------------------------------------');
-          console.log('La taula ' + tableName + ' no existeix.');
-          console.log('----------------------------------------------------------');
-        }
-      }).catch((err) => { console.error('ERROR - printInfoTable: ' + err['message']) });
-    }
+    // private printInfoTable(tableName: string, numFil: number) {
+    //   return Promise.resolve().then(() => {
+    //     return this.openBD()
+    //   }).then(() => {
+    //     return this.existsTable(tableName);
+    //   }).then((existeixTaula : any) => {
+    //     if (existeixTaula) return this.storage.executeSql('SELECT * FROM ' + tableName + ' ORDER BY ROWID', []);
+    //     else return '';
+    //   }).then((data : any) => {
+    //     if (data) {
+    //       if (numFil > data.rows.length) numFil = data.rows.length;
+    //       console.log('----------------------------------------------------------');
+    //       console.log(
+    //         'Informacio de la taula: ' + tableName + '                       ' +
+    //         ' Mostrant ' + numFil + ' de ' + data.rows.length + ' files.'
+    //         );
+    //       console.log('----------------------------------------------------------');
+    //       if(data.rows.length > 0) {
+    //         for(let i = 0; i < numFil; i++) {
+    //           console.log(i+1 + ': ' + JSON.stringify(data.rows.item(i)));
+    //         }
+    //       }
+    //       else {
+    //         console.log('La taula és buida');
+    //       }
+    //       console.log('----------------------------------------------------------');
+    //       return;
+    //     }
+    //     else {
+    //       console.log('----------------------------------------------------------');
+    //       console.log('La taula ' + tableName + ' no existeix.');
+    //       console.log('----------------------------------------------------------');
+    //     }
+    //   }).catch((err) => { console.error('ERROR - printInfoTable: ' + err['message']) });
+    // }
 
     /*  Obté i printa per consola els noms de totes les taules presents a la BD
         Return d'enllaç: Promise
         Retorn de dades: Void (printa per consola) */
-    private printaInfoBD() {
-      return this.openBD().then(() => {
-        return this.storage.executeSql("SELECT * FROM sqlite_master WHERE type='table'", [])
-      }).then((res : any) => {
-        console.log('----------------------------------------------------------');
-        console.log(
-          'Informacio de la BD ' + '                                     ' +
-          ' Mostrant ' + res.rows.length + ' de ' + res.rows.length + ' files.'
-        );
-        console.log('----------------------------------------------------------');
-        if(res.rows.length > 0) {
-          for(let i = 0; i < res.rows.length; i++) {
-            console.log(i+1 + ': ' + JSON.stringify(res.rows.item(i)));
-          }
-        }
-        else {
-          console.log('La BD no conte taules');
-        }
-        console.log('----------------------------------------------------------');
-        return;
-      }).catch((err) => { console.error("ERROR - printaInfoBD: " + err['message']) });
-    }
+    // private printaInfoBD() {
+    //   return this.openBD().then(() => {
+    //     return this.storage.executeSql("SELECT * FROM sqlite_master WHERE type='table'", [])
+    //   }).then((res : any) => {
+    //     console.log('----------------------------------------------------------');
+    //     console.log(
+    //       'Informacio de la BD ' + '                                     ' +
+    //       ' Mostrant ' + res.rows.length + ' de ' + res.rows.length + ' files.'
+    //     );
+    //     console.log('----------------------------------------------------------');
+    //     if(res.rows.length > 0) {
+    //       for(let i = 0; i < res.rows.length; i++) {
+    //         console.log(i+1 + ': ' + JSON.stringify(res.rows.item(i)));
+    //       }
+    //     }
+    //     else {
+    //       console.log('La BD no conte taules');
+    //     }
+    //     console.log('----------------------------------------------------------');
+    //     return;
+    //   }).catch((err) => { console.error("ERROR - printaInfoBD: " + err['message']) });
+    // }
 
     /*  tslint:enable */
   /********************************** DEBUGGING TOOLS END *******************************************/

@@ -7,12 +7,12 @@ import { Injectable, Pipe } from '@angular/core';
 @Injectable()
 export class FavouritesFilter {
   transform(value) {
-    var preferits = [];
-    var noPreferits = [];
+    var favourites = [];
+    var noFavourites = [];
     for (var i = 0; i < value.length; ++i) {
-      if (value[i]['preferit']) preferits.push(value[i]);
-      else noPreferits.push(value[i]);
+      if (value[i]['favourite']) favourites.push(value[i]);
+      else noFavourites.push(value[i]);
     }
-    return preferits.concat(noPreferits);
+    return favourites.concat(noFavourites);
   }
 }

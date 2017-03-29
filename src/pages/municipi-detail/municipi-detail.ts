@@ -22,7 +22,7 @@ export class MunicipiDetailPage {
 
   ionViewDidLoad() {
     this.index = this.openData.indexMunicipis[this.ine];
-    this.favourite = this.openData.municipisInfo[this.index]['preferit'];
+    this.favourite = this.openData.municipisInfo[this.index]['favourite'];
   }
 
   toggleFavourite() {

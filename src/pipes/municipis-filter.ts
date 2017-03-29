@@ -14,7 +14,7 @@ export class MunicipisFilter {
         result = [];
         let numElements = args['numElements'] > value.length ? value.length : args['numElements'];
         for (var i = 0; i < value.length; ++i) {
-          if (value[i]['preferit']) result.push(value[i]);
+          if (value[i]['favourite']) result.push(value[i]);
           else {
             if (numElements > 0) {
               result.push(value[i]);
