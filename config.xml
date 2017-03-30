@@ -25,12 +25,12 @@
     <splash density="port-xhdpi" src="resources/android/splash/screen-xhdpi-portrait.png"/>
     <splash density="port-xxhdpi" src="resources/android/splash/screen-xxhdpi-portrait.png"/>
     <splash density="port-xxxhdpi" src="resources/android/splash/screen-xxxhdpi-portrait.png"/>
-    <icon density="ldpi" src="resources\android\icon\drawable-ldpi-icon.png"/>
-    <icon density="mdpi" src="resources\android\icon\drawable-mdpi-icon.png"/>
-    <icon density="hdpi" src="resources\android\icon\drawable-hdpi-icon.png"/>
-    <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png"/>
-    <icon density="xxhdpi" src="resources\android\icon\drawable-xxhdpi-icon.png"/>
-    <icon density="xxxhdpi" src="resources\android\icon\drawable-xxxhdpi-icon.png"/>
+    <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png"/>
+    <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png"/>
+    <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png"/>
+    <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png"/>
+    <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png"/>
+    <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png"/>
   </platform>
   <platform name="ios">
     <allow-intent href="itms:*"/>
@@ -82,5 +82,6 @@
   <allow-navigation href="http://172.17.0.114:8100"/>
   <allow-navigation href="http://172.17.0.37:8100"/>
   <allow-navigation href="http://172.17.0.112:8100"/>
+  <allow-navigation href="http://10.1.148.229:8100"/>
   <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
 </widget>
