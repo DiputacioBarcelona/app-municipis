@@ -1,3 +1,9 @@
 {
-  "HELLO": "hola"
+  "HELLO": "hola_es",
+
+  "CATALA": "Catalán",
+
+  "CASTELLA": "Castellano",
+
+  "ANGLES": "Inglés"
 }

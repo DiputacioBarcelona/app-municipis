@@ -32,7 +32,7 @@ export class DibaMunicipisApp {
     this.initializeApp();
 
     // this language will be used as a fallback when a translation isn't found in the current language
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('ca');
 
     // List of pages that can be navigated to from the left menu
     this.appPages = [
@@ -56,5 +56,9 @@ export class DibaMunicipisApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  useLanguage(lang) {
+    this.translate.use(lang)
   }
 }
