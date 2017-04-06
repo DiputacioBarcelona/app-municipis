@@ -27,18 +27,20 @@ export class DibaMunicipisApp {
 
   appPages: PageInterface[];
 
+  lang: string = 'ca';
+
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public translate: TranslateService) {
 
     this.initializeApp();
 
     // this language will be used as a fallback when a translation isn't found in the current language
-    translate.setDefaultLang('ca');
+    translate.setDefaultLang(this.lang);    
 
     // List of pages that can be navigated to from the left menu
     this.appPages = [
-      { title: 'Municipis', component: MunicipisPage, icon: 'contacts' },
-      { title: 'Activitats', component: ActivitiesPage, icon: 'calendar' },
-      { title: 'Punts', component: PoisPage, icon: 'map' }
+      { title: 'TITLE_MUNCIPIS', component: MunicipisPage, icon: 'home' },
+      { title: 'TITLE_ACTIVITIES', component: ActivitiesPage, icon: 'calendar' },
+      { title: 'TITLE_POIS', component: PoisPage, icon: 'pin' }
     ];
 
   }
@@ -60,5 +62,23 @@ export class DibaMunicipisApp {
 
   useLanguage(lang) {
     this.translate.use(lang)
+    this.lang = lang;
+  }
+
+  isActive(page: PageInterface) {
+    //let childNav = this.nav.getActiveChildNav();
+
+    // Tabs are a special case because they have their own navigation
+    // if (childNav) {
+    //   if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
+    //     return 'primary';
+    //   }
+    //   return;
+    // }
+
+    if (this.nav.getActive() && this.nav.getActive().component === page.component) {
+      return 'primary';
+    }
+    return;
   }
 }

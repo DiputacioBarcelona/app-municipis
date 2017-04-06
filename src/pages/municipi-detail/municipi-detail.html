@@ -1,19 +1,19 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title *ngIf="index != undefined">{{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'municipi_nom'} }}</ion-title>
+    <ion-title *ngIf="index != undefined">{{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'municipi_nom'} }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item text-wrap class="no-padding">
     <ion-thumbnail item-left>
-      <img *ngIf="index != undefined" class="thumbnail" src="{{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'municipi_escut'} }}">
+      <img *ngIf="index != undefined" class="thumbnail" src="{{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'municipi_escut'} }}">
     </ion-thumbnail>
     <div *ngIf="index != undefined">
-      INE : {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'ine'} }} <br>
-      CIF: {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'cif'} }} <br>
-      Província: {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'provincia_nom'} }} <br>
-      Comarca: {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'comarca_nom'} }}
+      {{ 'INE' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'ine'} }} <br>
+      {{ 'CIE' | translate }}: {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'cif'} }} <br>
+      {{ 'PROVINCE' | translate }}: {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'provincia_nom'} }} <br>
+      {{ 'REGION' | translate }}: {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'comarca_nom'} }}
     </div>
     <ion-icon *ngIf="index != undefined && favourite == true" (click)="toggleFavourite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
     <ion-icon *ngIf="index != undefined && favourite != true" (click)="toggleFavourite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
@@ -21,28 +21,28 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button ion-button medium block light (click)="goToPois()">Punts d'interès</button>
+        <button ion-button medium block light (click)="goToPois()">{{ 'TITLE_POIS' | translate }}</button>
       </ion-col>
       <ion-col>
-        <button ion-button medium block light (click)="goToActivities()">Activitats</button>
+        <button ion-button medium block light (click)="goToActivities()">{{ 'TITLE_ACTIVITIES' | translate }}</button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-item text-wrap *ngIf="index != undefined" class="item-text-wrap">
     <strong>Ajuntament</strong><br>
-    Adreça : {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'adreca'} }}<br>
-    Email : {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'email'} }}<br>
-    Telèfon : {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'telefon_contacte'} }}<br>
-    Fax : {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'fax'} }}<br>
-    Coords: {{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'localitzacio'} }}<br>
+    {{ 'ADDRESS' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'adreca'} }}<br>
+    {{ 'EMAIL' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'email'} }}<br>
+    {{ 'TELEPHONE' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'telefon_contacte'} }}<br>
+    {{ 'FAX' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'fax'} }}<br>
+    {{ 'COORDS' | translate }}: {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'localitzacio'} }}<br>
   </ion-item>
   <br>
   <ion-row *ngIf="index != undefined">
     <ion-col width-50>
-      <img src="{{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'municipi_vista'} }}">
+      <img src="{{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'municipi_vista'} }}">
     </ion-col>
     <ion-col width-50>
-      <img item-left src="{{ openData.municipisInfo|municipiUniqueFilter: {i:index, atr:'municipi_bandera'} }}">
+      <img item-left src="{{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'municipi_bandera'} }}">
     </ion-col>
   </ion-row>
 </ion-content>

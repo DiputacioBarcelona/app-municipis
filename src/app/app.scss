@@ -17,8 +17,20 @@
 
 .language-switcher {
   text-align: right;
-  padding-right: 15px; }
-  .language-switcher .button.button-positive.button-clear {
-    opacity: .3; }
-    .language-switcher .button.button-positive.button-clear.active {
-      opacity: 1; }
+  padding-right: 15px; 
+}
+
+.language-switcher .button.button-positive.button-clear {
+  opacity: .3; 
+}
+
+.language-switcher .button.button-positive.button-clear.active {
+  opacity: 1; 
+}
+
+.button.button-positive.button-clear {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: color($colors, primary);
+}

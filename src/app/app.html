@@ -4,33 +4,41 @@
 
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{ 'HELLO' | translate }}</ion-title>
+        <ion-title>{{ 'MENU' | translate }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content class="outer-content">
 
       <ion-list>
+        <ion-list-header>
+          {{ 'INFORMATION' | translate }}
+        </ion-list-header>
         <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
-          <ion-icon item-left [name]="p.icon"></ion-icon>
-          {{p.title}}
+          <ion-icon item-left [name]="p.icon" [color]="isActive(p)"></ion-icon>
+          {{ p.title | translate }}
         </button>
       </ion-list>
       
-      <div class="language-switcher">
-        <button class="button button-clear button-positive" (click)="useLanguage('ca')"
-                ng-class="{'active' : $root.lang === 'ca'}">
-          {{ 'CATALA' | translate}}
-        </button>
-        <button class="button button-clear button-positive" (click)="useLanguage('es')"
-                ng-class="{'active' : $root.lang === 'es'}">
-          {{ 'CASTELLA' | translate}}
-        </button>
-        <button class="button button-clear button-positive" (click)="useLanguage('en')"
-                ng-class="{'active' : $root.lang === 'en'}">
-          {{ 'ANGLES' | translate}}
-        </button>
-      </div>
+      <ion-list>
+        <ion-list-header>
+          {{ 'LANGUAGE' | translate }}
+        </ion-list-header>
+        <div class="language-switcher">
+          <button class="button button-clear button-positive" (click)="useLanguage('ca')"
+                  [ngClass]="{'active': lang == 'ca'}">
+            {{ 'CATALA' | translate }}
+          </button>
+          <button class="button button-clear button-positive" (click)="useLanguage('es')"
+                  [ngClass]="{'active': lang == 'es'}">
+            {{ 'CASTELLA' | translate }}
+          </button>
+          <button class="button button-clear button-positive" (click)="useLanguage('en')"
+                  [ngClass]="{'active': lang == 'en'}">
+            {{ 'ANGLES' | translate }}
+          </button>
+        </div>
+      </ion-list>
 
     </ion-content>
 

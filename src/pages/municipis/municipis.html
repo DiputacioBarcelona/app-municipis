@@ -3,12 +3,10 @@
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title class="bar">
-			Diba+Municipis
-		</ion-title>
+		<ion-title>{{ 'TITLE_MUNCIPIS' | translate }}</ion-title>
 	</ion-navbar>
 	<ion-searchbar
-	placeholder="Nom del municipi o comarca..."
+	placeholder="{{ 'PLACEHOLDER_SEARCH_MUNICIPIS' | translate }}"
 	[showCancelButton]="true"
 	cancelButtonText="X"
 	(ionInput)="searchMunicipis($event)">
@@ -20,11 +18,11 @@
 		<ion-item text-wrap class="item-avatar" *ngFor="let municipi of openData.municipisInfo |
 		municipisFilter: { numElements: pageSize, filter: appliedFilter } | favouritesFilter">
 			<ion-thumbnail item-left (click)="goToMunicipiDetail(municipi.ine)">
-				<img src="{{municipi.municipi_escut}}">
+				<img src="{{ municipi.municipi_escut }}">
 			</ion-thumbnail>
 			<div (click)="goToMunicipiDetail(municipi.ine)">
-				{{municipi.municipi_nom}} <br>
-				{{municipi.comarca_nom}}
+				{{ municipi.municipi_nom }} <br>
+				{{ municipi.comarca_nom }}
 			</div>
 			<ion-icon  clear  color="primary" item-right (click)="toggleFavourite(municipi.ine)" *ngIf="municipi.favourite == true" name="star" class="fav"></ion-icon>
 			<ion-icon  clear color="primary" item-right (click)="toggleFavourite(municipi.ine)" *ngIf="municipi.favourite != true" name="star-outline" class="fav"></ion-icon>

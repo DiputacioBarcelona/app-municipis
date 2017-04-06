@@ -1,9 +1,39 @@
 {
-  "HELLO": "hola_ca",
+  "MENU": "Menú",
 
   "CATALA": "Català",
 
   "CASTELLA": "Castellà",
 
-  "ANGLES": "Anglès"
+  "ANGLES": "Anglès",
+
+  "LANGUAGE": "Idioma",
+
+  "INFORMATION": "Informació",
+
+  "TITLE_MUNCIPIS": "Municipis",
+
+  "TITLE_ACTIVITIES": "Activitats",
+
+  "TITLE_POIS": "Punts d'interès",
+
+  "PLACEHOLDER_SEARCH_MUNICIPIS": "Nom del municipi o comarca...",
+
+  "INE": "INE",
+
+  "CIF": "CIF",
+
+  "REGION": "Comarca",
+
+  "PROVINCE": "Província",
+
+  "ADDRESS": "Adreça",
+
+  "EMAIL": "Correu electrònic",
+
+  "TELEPHONE": "Telèfon",
+
+  "FAX": "Fax",
+
+  "COORDS": "Coordenades"
 }
