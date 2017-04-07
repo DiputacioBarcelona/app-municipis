@@ -27,6 +27,8 @@
 
   "PROVINCE": "Província",
 
+  "TOWN": "Municipi",
+
   "ADDRESS": "Adreça",
 
   "EMAIL": "Correu electrònic",
@@ -35,5 +37,13 @@
 
   "FAX": "Fax",
 
-  "COORDS": "Coordenades"
+  "COORDS": "Coordenades",
+
+  "THEME": "Temàtica",
+
+  "LIST": "Llista",
+
+  "MAP": "Mapa",
+
+  "LOADING_MESSAGE": "Espereu siusplau..."
 }

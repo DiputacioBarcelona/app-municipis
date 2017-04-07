@@ -27,6 +27,8 @@
 
   "PROVINCE": "Province",
 
+  "TOWN": "Town",
+
   "ADDRESS": "Address",
 
   "EMAIL": "email",
@@ -35,5 +37,13 @@
 
   "FAX": "Fax",
 
-  "COORDS": "Coords"
+  "COORDS": "Coords",
+
+  "THEME": "Theme",
+
+  "LIST": "List",
+
+  "MAP": "Map",
+
+  "LOADING_MESSAGE": "Please wait ..."
 }

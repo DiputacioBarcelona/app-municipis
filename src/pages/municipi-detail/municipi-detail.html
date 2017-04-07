@@ -29,7 +29,7 @@
     </ion-row>
   </ion-grid>
   <ion-item text-wrap *ngIf="index != undefined" class="item-text-wrap">
-    <strong>Ajuntament</strong><br>
+    <strong>{{ 'TOWN' | translate }}</strong><br>
     {{ 'ADDRESS' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'adreca'} }}<br>
     {{ 'EMAIL' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'email'} }}<br>
     {{ 'TELEPHONE' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'telefon_contacte'} }}<br>

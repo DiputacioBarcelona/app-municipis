@@ -27,6 +27,8 @@
 
   "PROVINCE": "Provincia",
 
+  "TOWN": "Municipio",
+
   "ADDRESS": "Dirección",
 
   "EMAIL": "Correo electrónico",
@@ -35,5 +37,13 @@
 
   "FAX": "Fax",
 
-  "COORDS": "Cordenadas"
+  "COORDS": "Cordenadas",
+
+  "THEME": "Temática",
+
+  "LIST": "Lista",
+
+  "MAP": "Mapa",
+
+  "LOADING_MESSAGE": "Espere por favor ..."
 }
