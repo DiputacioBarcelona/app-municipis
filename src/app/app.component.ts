@@ -4,7 +4,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate'
+import { TranslateService } from 'ng2-translate/ng2-translate'
 
 import { MunicipisPage } from '../pages/municipis/municipis';
 import { ActivitiesPage } from '../pages/activities/activities';
