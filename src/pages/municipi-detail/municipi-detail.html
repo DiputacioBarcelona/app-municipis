@@ -1,19 +1,19 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title *ngIf="index != undefined">{{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'municipi_nom'} }}</ion-title>
+    <ion-title>{{ municipi.municipi_nom }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item text-wrap class="no-padding">
     <ion-thumbnail item-left>
-      <img *ngIf="index != undefined" class="thumbnail" src="{{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'municipi_escut'} }}">
+      <img class="thumbnail" src="{{ municipi.municipi_escut }}">
     </ion-thumbnail>
-    <div *ngIf="index != undefined">
-      {{ 'INE' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'ine'} }} <br>
-      {{ 'CIE' | translate }}: {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'cif'} }} <br>
-      {{ 'PROVINCE' | translate }}: {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'provincia_nom'} }} <br>
-      {{ 'REGION' | translate }}: {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'comarca_nom'} }}
+    <div>
+      {{ 'INE' | translate }}: {{ municipi.ine }} <br>
+      {{ 'CIE' | translate }}: {{ municipi.cif }} <br>
+      {{ 'PROVINCE' | translate }}: {{ municipi.provincia_nom }} <br>
+      {{ 'REGION' | translate }}: {{ municipi.comarca_nom }}
     </div>
     <ion-icon *ngIf="index != undefined && favourite == true" (click)="toggleFavourite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
     <ion-icon *ngIf="index != undefined && favourite != true" (click)="toggleFavourite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>

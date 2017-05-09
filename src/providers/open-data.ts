@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { LoadingController} from 'ionic-angular';
-import { SQLite } from 'ionic-native';
+import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout'
 
@@ -11,128 +11,14 @@ export class OpenData {
   public indexMunicipis: { [ine: string]: number} = { };
   public puntsInfo : any = [];
   public temes : string[] = [];
-  private storage: SQLite;
-  private isOpen: boolean;
 
   /* This is the base url of the open data's API  */
   private baseUrl: string = 'http://do.diba.cat/api/';
-  /* This token is used to collect statistics on the API calls */
+  /* This token is used to collect statistics for this app on the API calls */
   private token: string = '6b628524631aa27df30d122024f32dd8';
 
 
-  constructor(private http: Http, private loadingCtrl: LoadingController) {}
-
-  /*************************************** BD MANAGEMENT ************************************************/
-    /*  tslint:disable */
-
-    /*  Genera l'accés a la BD, si ja està obert retorna
-        Return d'enllaç: Promise
-        Retorn de dades: Promise */
-    private openBD() {
-      if(!this.isOpen) {
-        return Promise.resolve().then(() => {
-          this.storage = new SQLite();
-          this.isOpen = true;
-          return this.storage.openDatabase({ name: 'mesmunicipis.db', location: 'default' });
-        }).catch((err) => {
-          console.error('ERROR - openBD1: ' + err['message']);
-          this.isOpen = false;
-        });
-      } else {
-        return Promise.resolve()
-        .catch((err) => { console.error('ERROR - openBD2: ' + err['message'])} );
-      }
-    }
-
-    /*  Comprova si existeix la taula <nomTaula> a la BD
-        Return d'enllaç: Promise
-        Retorn de dades: Boolean */
-    private existsTable(tableName: string) {
-      return Promise.resolve().then(() => {
-        return this.openBD();
-      }).then(() => {
-        return this.storage.executeSql("SELECT * FROM sqlite_master WHERE type='table'", []);
-      }).then((res : any) => {
-        if(res.rows.length > 0) {
-          for(let i = 0; i < res.rows.length; i++) {
-            if (res.rows.item(i).tbl_name == tableName) return true;
-          }
-        }
-        return false;
-      }).catch((err) => { console.error('ERROR - existsTable: ' + err['message']) });
-    }
-
-    /*  Crea la taula <nomTaula> a la BD si no existeix, amb els titols de les columnes <titolsCol> i el seu <contingut>
-        Return d'enllaç: Promise
-        Retorn de dades: Promise */
-    private createTable(tableName: string, columnsNames: any[]) {
-      return Promise.resolve().then(() => {
-        return this.openBD();
-      }).then(() => {
-        let aux : string[] = [];
-        for (var i = 0; i < columnsNames.length; ++i) {
-          aux[i] = columnsNames[i] + ' TEXT';
-          if (i == 0){
-            aux[i] += ' PRIMARY KEY';
-          } 
-        }
-        let titols = aux.join(',');
-        return this.storage.executeSql('CREATE TABLE IF NOT EXISTS ' + tableName + ' (' + titols + ')', []);
-      }).catch((err) => { console.error('ERROR: - createTable: ' + err['message']) });
-    }
-
-    /*  Retorna el contingut de la taula <nomTaula> si existeix, si no retorna buit
-        Return d'enllaç: Promise
-        Retorn de dades: Promise(resultat -> Array) */
-    private getTableContent(tableName: string) {
-      return Promise.resolve().then(() => {
-        return this.openBD();
-      }).then(() => {
-        return this.existsTable(tableName);
-      }).then((existeix) => {
-        if (!existeix) {
-          return '';
-        } 
-        else {
-          return this.storage.executeSql('SELECT * FROM ' + tableName, []);
-        }
-      }).catch((err) => { console.error('ERROR - getTableContent: ' + err['message']) });
-    }
-
-    /*  Inserta o fa replace del contingut <contingut> a la taula <nomTaula> a través de la primera
-        columna (ID) de <titolsCol> */
-    private setTableContent(tableName: string, columnsNames: any[], values: any[]) {
-      return Promise.resolve().then(() => {
-        return this.openBD();
-      }).then(() => {
-        return this.existsTable(tableName);
-      }).then((exists) => {
-        if (exists && columnsNames.length > 0 && values.length > 0) {
-          let aux: any[] = values;
-          for (var i = 0; i < values.length; ++i) {
-            for (var j = 0; j < values[i].length; ++j) {
-              aux[i][j] = "'" + values[i][j] + "'";
-            }
-            aux[i] = '(' + values[i].join(',') + ')';
-          }
-          let columns = columnsNames.join(',');
-          let fieldValues = aux.join(',');
-          return this.storage.executeSql(
-            'INSERT OR REPLACE INTO ' + tableName + ' (' + columns + ') ' + 'VALUES ' + fieldValues,
-            []
-          )
-        }
-      }).catch((err) => { console.error('ERROR - setTableContent: ' + err['message']) });
-    }
-
-    /*  Retorna el titols de les columnes de la taula <nomTaula> */
-    private getColumnsNames(tableName: string) {
-      return Promise.resolve().then(() => {
-        return this.openBD();
-      }).then(() => {
-        return this.storage.executeSql('PRAGMA table_info(' + tableName + ')',[]);
-      }).catch((err) => { console.error('ERROR - getColumnsNames: ' + err['message']) });
-    }
+  constructor(private http: Http, private loadingCtrl: LoadingController, private storage2: Storage) {}
 
     /*  Retorna si un objecte es Iterable, retorna fals amb strings */
     private isIterable(obj) {
@@ -161,83 +47,26 @@ export class OpenData {
         Return d'enllaç: Promise
         Return de dades: Promise(resultat -> array) */
     private getDatasetAPIContent(datasetName: string, camp_ord: string) {
-      return new Promise((resolve) => {
-        this.http.get(this.baseUrl + 'dataset/' + datasetName + '/format/JSON/ord-' + camp_ord + '/token/' + this.token)
+      let url : string  = this.baseUrl + 'dataset/' + datasetName + '/format/JSON/ord-' + camp_ord + '/token/' + this.token;
+      console.log('getDatasetAPIContent - URL: ' + url);
+      return new Promise((resolve) => {  
+        this.http.get(url)
         .timeout(5000)
         .map(res => res.json()['elements'])
         .subscribe(data => { resolve(data) });
-      })
-      .catch((err) => { console.error('getDatasetAPIContent - Error: ' + err); });
+      }).catch((err) => { console.error('getDatasetAPIContent - URL: '+ url + ' - Error: ' + err); });
     }
 
     /*  Retorna l'informació d'un contentType <contentType>, pel municipi <ine> especificat */
-    private getContentTypeContent(contentTypeName: string, ine: string) {
-      return new Promise((resolve) => {
-        this.http.get(this.baseUrl + 'tipus/' + contentTypeName + '/camp-rel_municipis/' + ine + '/token/' + this.token)
-        .timeout(5000)
-        .map((data) => data.json().datasets)
-        .subscribe((data) => { resolve(data) });
-      })
-      .catch((err) => { console.error('getContentTypeContent - Error: ' + err); });
-    }
-
-    /*  Converteix el resultat (elements[]) d'una crida a la API formatejada en JSON a una taula (matriu)
-        Return d'enllaç: Promise
-        Return de dades: Promise(resultat -> array) */
-    private APIData2SqlData(APIData: any) {
-      return Promise.resolve()
-      .then(() => {
-        let indexsAPI = Object.keys(APIData[0]); // Index dels camps de la API, alguns son arrays
-        let colTitles = []; // Titols de les columnes de la futura taula
-        let content = []; // Contingut dels camps de la futura taula
-
-        for (var i = 0; i < indexsAPI.length; ++i) {
-          let indexs: string[] = [];
-
-          // Si es iterable agafem els subindexs com a index
-          // No cal mantenir una sincronia absoluta amb l'estructura de la API, la comunicació sera d'un sol sentit (API -> BD)
-          if (this.isIterable(APIData[0][indexsAPI[i]])) {
-            indexs = Object.keys(APIData[0][indexsAPI[i]]);
-          } else {
-            indexs.push(indexsAPI[i]);
-          }
-
-          for (var j = 0; j < indexs.length; ++j) {
-            colTitles.push(indexs[j]);
-          }
-        }
-
-        for (var i = 0; i < APIData.length; ++i) {
-          let camp = [];
-          for (var j = 0; j < indexsAPI.length; ++j) {
-            let index = indexsAPI[j];
-            let subIndex: string[] = [];
-
-            if (this.isIterable(APIData[i][indexsAPI[j]])) {
-              subIndex = Object.keys(APIData[i][indexsAPI[j]]);
-            } else {
-              subIndex.push('empty');
-            }
-
-            for (var z = 0; z < subIndex.length; ++z) {
-              let fieldContent;
-              if (subIndex[0] == 'empty') {
-                fieldContent = APIData[i][index];
-              } else {
-                fieldContent = APIData[i][index][subIndex[z]];
-              }
-              // Per no generar problemes en l'inserció a la BD
-              fieldContent = fieldContent.replace(/,/g,';');
-              fieldContent = fieldContent.replace(/'/g,'¿');
-              camp.push("'" + fieldContent + "'");
-            }
-          }
-          content.push(camp);
-        }
-        return [colTitles,content];
-      })
-      .catch((err) => { console.error('APIData2SqlData - Error: ' + err['message']) });
-    }
+    // private getContentTypeContent(contentTypeName: string, ine: string) {
+    //   return new Promise((resolve) => {
+    //     this.http.get(this.baseUrl + 'tipus/' + contentTypeName + '/camp-rel_municipis/' + ine + '/token/' + this.token)
+    //     .timeout(5000)
+    //     .map((data) => data.json().datasets)
+    //     .subscribe((data) => { resolve(data) });
+    //   })
+    //   .catch((err) => { console.error('getContentTypeContent - Error: ' + err); });
+    // }
 
     /*  Formateja el contingut provinent de la API perque tingui una estructura més simple dins la app */
     private contentFormat (APIContent: any) {
@@ -245,12 +74,12 @@ export class OpenData {
         if(APIContent[0] == undefined) {
           return [];
         }
-        let indexsAPI = Object.keys(APIContent[0]); // Index dels camps de la API, alguns son arrays
+        let indexsAPI = Object.keys(APIContent[0]); // Index dels fields de la API, alguns son arrays
         let dataset = [];
-        interface camps {[ind: string]: string};
+        interface fields {[ind: string]: string};
 
         for (var i = 0; i < APIContent.length; ++i) {
-          let element = {} as camps;
+          let element = {} as fields;
           for (var j = 0; j < indexsAPI.length; ++j) {
             let index = indexsAPI[j];
             let subIndex: string[] = [];
@@ -286,25 +115,13 @@ export class OpenData {
           dataset.push(element);
         }
         return dataset;
-      }).catch((err) => { console.error('ERROR - contentFormat: ' + err['message']) });
+      }).catch((err) => { console.error('contentFormat - Error: ' + err['message']) });
     }
 
     /*  tslint:enable */
   /*************************************** UTILS END ************************************************/
 
   /********************************* CRIDES APP +MUNICIPIS ******************************************/
-    /*  Caniva l'estat "favourite" d'un municipi  */
-    public toggleFavourite(ine: string) {
-      var pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'];
-      if (pref == true) {
-        pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = false;
-      }
-      else {
-        pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = true;
-      }
-      return this.storage.executeSql("UPDATE municipis SET favourite = '" + String(pref) + "' WHERE ine = '" + ine + "'",[])
-      .catch((err) => { console.error('ERROR - toggleFavourite: ' + err['message']) });
-    }
 
     /*  Carrega desde la API de dades Obertes el dataset Municipis amb els elements ordenats per municipi transliterat */
     public loadMunicipis(loading: any) {
@@ -313,31 +130,49 @@ export class OpenData {
       }).then((contingutAPI) => {
         return this.contentFormat(contingutAPI);
       }).then((contingutFormatejat: any) => {
-        return this.existsTable('municipis').then((exists) => {
-          if (!exists) {
-            return this.createTable('municipis',['ine','municipi_transliterat','favourite']).then(() => {
-              let elements = [];
-              for (var i = 0; i < contingutFormatejat.length; ++i) {
-                elements.push([contingutFormatejat[i]['ine'],contingutFormatejat[i]['municipi_transliterat'],'false']);
-              }
-              return this.setTableContent('municipis',['ine','municipi_transliterat','favourite'],elements);
-            })
-          }
-        }).then(() => {
-          return this.getTableContent('municipis').then((contingut) => {
-            for (var i = 0; i < contingut.rows.length; ++i) {
-              this.indexMunicipis[contingut.rows.item(i)['ine']] = i;
-              if(contingut.rows.item(i)['favourite'] == 'true') {
-                contingutFormatejat[i]['favourite'] = true;
-              } else {
-                contingutFormatejat[i]['favourite'] = false;
-              }
-            }
-            this.municipisInfo = contingutFormatejat;
+        this.municipisInfo = contingutFormatejat;
             return loading.dismiss();
-          })
-        })
-      }).catch((err) => { console.error('ERROR - loadMunicipis: ' + err['message']) });
+      }).catch((err) => { console.error('loadMunicipis - Error: ' + err['message']) });
+      
+      // .then((contingutFormatejat: any) => {
+      //   // return this.existsTable('municipis').then((exists) => {
+      //   //   if (!exists) {
+      //   //     return this.createTable('municipis',['ine','municipi_transliterat','favourite']).then(() => {
+      //   //       let elements = [];
+      //   //       for (var i = 0; i < contingutFormatejat.length; ++i) {
+      //   //         elements.push([contingutFormatejat[i]['ine'],contingutFormatejat[i]['municipi_transliterat'],'false']);
+      //   //       }
+      //   //       return this.setTableContent('municipis',['ine','municipi_transliterat','favourite'],elements);
+      //   //     })
+      //   //   }
+      //   // }).then(() => {
+      //     return this.getTableContent('municipis').then((contingut) => {
+      //       for (var i = 0; i < contingut.rows.length; ++i) {
+      //         this.indexMunicipis[contingut.rows.item(i)['ine']] = i;
+      //         if(contingut.rows.item(i)['favourite'] == 'true') {
+      //           contingutFormatejat[i]['favourite'] = true;
+      //         } else {
+      //           contingutFormatejat[i]['favourite'] = false;
+      //         }
+      //       }
+      //       this.municipisInfo = contingutFormatejat;
+      //       return loading.dismiss();
+      //     })
+      //   })
+      // })
+    }
+
+    /*  Caniva l'estat "favourite" d'un municipi  */
+    public toggleFavourite(ine: string) {
+      // var pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'];
+      // if (pref == true) {
+      //   pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = false;
+      // }
+      // else {
+      //   pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = true;
+      // }
+      // return this.storage.executeSql("UPDATE municipis SET favourite = '" + String(pref) + "' WHERE ine = '" + ine + "'",[])
+      // .catch((err) => { console.error('ERROR - toggleFavourite: ' + err['message']) });
     }
 
     /*  Consulta el <searchValue> a la API i retorna les claus dels municipis dins el vector municipisInfo */

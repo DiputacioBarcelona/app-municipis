@@ -48,8 +48,13 @@ export class MunicipisPage {
 	}
 
 	/*	Navigation page of the selected municipality */
-	goToMunicipiDetail(ine: string) {
-		this.navCtrl.push(MunicipiDetailPage,{ine : ine});
+	goToMunicipiDetail(municipiData: any) {
+		// go to the session detail page
+    // and pass in the session data
+    this.navCtrl.push(MunicipiDetailPage, {
+      ine: municipiData.ine,
+      municipi: municipiData
+    });
 	}
 
 	/*	Save the change BD preferred status of a municipality */
