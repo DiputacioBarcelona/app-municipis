@@ -5,12 +5,18 @@
 		</button>
 		<ion-title>{{ 'TITLE_MUNCIPIS' | translate }}</ion-title>
 	</ion-navbar>
-	<ion-searchbar
+	<!--<ion-searchbar
 	placeholder="{{ 'PLACEHOLDER_SEARCH_MUNICIPIS' | translate }}"
 	[showCancelButton]="true"
 	cancelButtonText="X"
 	(ionInput)="searchMunicipis($event)">
-	</ion-searchbar>
+	</ion-searchbar>-->
+	<ion-toolbar no-border-top>
+    <ion-searchbar color="primary"                  
+                   (ionInput)="searchMunicipis($event)"
+                   placeholder="{{ 'PLACEHOLDER_SEARCH_MUNICIPIS' | translate }}">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
