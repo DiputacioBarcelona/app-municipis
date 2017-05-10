@@ -1,9 +1,17 @@
 <ion-header>
-	<ion-navbar>
+	<ion-navbar no-border-bottom>
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
 		<ion-title>{{ 'TITLE_MUNCIPIS' | translate }}</ion-title>
+		<!--<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Favorites
+      </ion-segment-button>
+    </ion-segment>-->
 	</ion-navbar>
 	<ion-toolbar no-border-top>
     <ion-searchbar color="primary"                  

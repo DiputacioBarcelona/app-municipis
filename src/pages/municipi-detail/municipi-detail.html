@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar>
     <ion-title>{{ municipi.municipi_nom }}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -15,8 +15,8 @@
       {{ 'PROVINCE' | translate }}: {{ municipi.provincia_nom }} <br>
       {{ 'REGION' | translate }}: {{ municipi.comarca_nom }}
     </div>
-    <ion-icon *ngIf="index != undefined && favourite == true" (click)="toggleFavourite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
-    <ion-icon *ngIf="index != undefined && favourite != true" (click)="toggleFavourite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
+    <ion-icon *ngIf="favourite == true" (click)="toggleFavourite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
+    <ion-icon *ngIf="favourite != true" (click)="toggleFavourite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
   </ion-item>
   <ion-grid>
     <ion-row>
@@ -28,21 +28,21 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-item text-wrap *ngIf="index != undefined" class="item-text-wrap">
-    <strong>{{ 'TOWN' | translate }}</strong><br>
-    {{ 'ADDRESS' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'adreca'} }}<br>
-    {{ 'EMAIL' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'email'} }}<br>
-    {{ 'TELEPHONE' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'telefon_contacte'} }}<br>
-    {{ 'FAX' | translate }} : {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'fax'} }}<br>
-    {{ 'COORDS' | translate }}: {{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'localitzacio'} }}<br>
+  <ion-item text-wrap class="item-text-wrap">
+    <h2>{{ 'CONTACT' | translate }}</h2>
+    <p ng-if="municipi.adreca"><b>{{ 'ADDRESS' | translate }}:</b> {{ municipi.adreca }}</p>
+    <p ng-if="municipi.email"><b>{{ 'EMAIL' | translate }}:</b> {{ municipi.email }}</p>
+    <p ng-if="municipi.telefon_contacte"><b>{{ 'TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.telefon_contacte }}">{{ municipi.telefon_contacte }}</a></p>
+    <p ng-if="municipi.fax"><b>{{ 'FAX' | translate }}:</b> {{ municipi.fax }}</p>
+    <p ng-if="municipi.localitzacio"><b>{{ 'COORDS' | translate }}:</b> {{ municipi.localitzacio }}</p>
   </ion-item>
   <br>
-  <ion-row *ngIf="index != undefined">
+  <ion-row>
     <ion-col width-50>
-      <img src="{{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'municipi_vista'} }}">
+      <img src="{{ municipi.municipi_vista }}">
     </ion-col>
     <ion-col width-50>
-      <img item-left src="{{ openData.municipisInfo | municipiUniqueFilter: {i:index, atr:'municipi_bandera'} }}">
+      <img item-left src="{{ municipi.municipi_bandera }}">
     </ion-col>
   </ion-row>
 </ion-content>
