@@ -5,6 +5,7 @@ import { PoisPage } from '../pois/pois';
 import { ActivitiesPage } from '../activities/activities';
 
 import { OpenData } from '../../providers/open-data';
+import { UserData } from '../../providers/user-data';
 
 @Component({
   selector: 'page-municipi_detail',
@@ -17,7 +18,7 @@ export class MunicipiDetailPage {
   // private ine;
   municipi: any;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private openData: OpenData) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private openData: OpenData, public userData: UserData) {
     // this.ine = navParams.get('ine');
     this.municipi = navParams.data.municipi;
   }
@@ -30,16 +31,16 @@ export class MunicipiDetailPage {
   //   //this.favourite = this.openData.municipisInfo[this.index]['favourite'];
   // }
 
-  toggleFavourite() {
-    // this.favourite = !this.favourite;
-    this.openData.toggleFavourite(this.municipi.ine);
-  }
-
   goToPois(index: string) {
     this.navCtrl.push(PoisPage,{ine : this.municipi.ine});
-  }
+  };
 
   goToActivities(index: string) {
     this.navCtrl.push(ActivitiesPage,{ine : this.municipi.ine});
-  }
+  };
+
+  /*	Save the change BD preferred status of a municipality */
+	toggleFavourite(ine: string) {
+		this.userData.toggleFavourite(ine);
+	};
 }

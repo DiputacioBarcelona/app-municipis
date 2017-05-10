@@ -56,9 +56,4 @@ export class MunicipisPage {
       municipi: municipiData
     });
 	}
-
-	/*	Save the change BD preferred status of a municipality */
-	toggleFavourite(ine: string) {
-		this.openData.toggleFavourite(ine);
-	}
 }

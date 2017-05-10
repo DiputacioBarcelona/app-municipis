@@ -20,6 +20,7 @@ import { MunicipisFilter } from '../pipes/municipis-filter';
 import { FavouritesFilter } from '../pipes/favourites-filter';
 
 import { OpenData } from '../providers/open-data';
+import { UserData } from '../providers/user-data';
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -54,6 +55,7 @@ export function createTranslateLoader(http: Http) {
   ],
   providers: [
     OpenData,
+    UserData,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

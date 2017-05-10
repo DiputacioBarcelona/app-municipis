@@ -133,47 +133,20 @@ export class OpenData {
         this.municipisInfo = contingutFormatejat;
             return loading.dismiss();
       }).catch((err) => { console.error('loadMunicipis - Error: ' + err['message']) });
-      
-      // .then((contingutFormatejat: any) => {
-      //   // return this.existsTable('municipis').then((exists) => {
-      //   //   if (!exists) {
-      //   //     return this.createTable('municipis',['ine','municipi_transliterat','favourite']).then(() => {
-      //   //       let elements = [];
-      //   //       for (var i = 0; i < contingutFormatejat.length; ++i) {
-      //   //         elements.push([contingutFormatejat[i]['ine'],contingutFormatejat[i]['municipi_transliterat'],'false']);
-      //   //       }
-      //   //       return this.setTableContent('municipis',['ine','municipi_transliterat','favourite'],elements);
-      //   //     })
-      //   //   }
-      //   // }).then(() => {
-      //     return this.getTableContent('municipis').then((contingut) => {
-      //       for (var i = 0; i < contingut.rows.length; ++i) {
-      //         this.indexMunicipis[contingut.rows.item(i)['ine']] = i;
-      //         if(contingut.rows.item(i)['favourite'] == 'true') {
-      //           contingutFormatejat[i]['favourite'] = true;
-      //         } else {
-      //           contingutFormatejat[i]['favourite'] = false;
-      //         }
-      //       }
-      //       this.municipisInfo = contingutFormatejat;
-      //       return loading.dismiss();
-      //     })
-      //   })
-      // })
     }
 
-    /*  Caniva l'estat "favourite" d'un municipi  */
-    public toggleFavourite(ine: string) {
-      // var pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'];
-      // if (pref == true) {
-      //   pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = false;
-      // }
-      // else {
-      //   pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = true;
-      // }
-      // return this.storage.executeSql("UPDATE municipis SET favourite = '" + String(pref) + "' WHERE ine = '" + ine + "'",[])
-      // .catch((err) => { console.error('ERROR - toggleFavourite: ' + err['message']) });
-    }
+    // /*  Caniva l'estat "favourite" d'un municipi  */
+    // public toggleFavourite(ine: string) {
+    //   // var pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'];
+    //   // if (pref == true) {
+    //   //   pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = false;
+    //   // }
+    //   // else {
+    //   //   pref = this.municipisInfo[this.indexMunicipis[ine]]['favourite'] = true;
+    //   // }
+    //   // return this.storage.executeSql("UPDATE municipis SET favourite = '" + String(pref) + "' WHERE ine = '" + ine + "'",[])
+    //   // .catch((err) => { console.error('ERROR - toggleFavourite: ' + err['message']) });
+    // }
 
     /*  Consulta el <searchValue> a la API i retorna les claus dels municipis dins el vector municipisInfo */
     public reduceFiltering(arrayIndexsFiltering: number[], searchValue : any) {
