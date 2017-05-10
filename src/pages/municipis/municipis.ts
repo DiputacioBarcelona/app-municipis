@@ -32,13 +32,13 @@ export class MunicipisPage {
 		let val = event.target.value;
 		if (!val || val.trim() == '') return this.appliedFilter  = [];;
 
-		this.openData.reduceFiltering(this.appliedFilter ,val).then((resultat: any) => {
-			if (resultat[0] == undefined) {
-				this.appliedFilter  = [];
-				this.appliedFilter [0] = -1;
-			}
-			else this.appliedFilter  = resultat;
-		}).catch((err) => {console.error('ERROR - searchMunicipis: ' + err['message'])});
+		// this.openData.reduceFiltering(this.appliedFilter ,val).then((resultat: any) => {
+		// 	if (resultat[0] == undefined) {
+		// 		this.appliedFilter  = [];
+		// 		this.appliedFilter [0] = -1;
+		// 	}
+		// 	else this.appliedFilter  = resultat;
+		// }).catch((err) => {console.error('ERROR - searchMunicipis: ' + err['message'])});
 	}
 
 	/* Responsible for the infinite scroll */
