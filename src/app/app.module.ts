@@ -18,7 +18,6 @@ import { ActivitiesPage } from '../pages/activities/activities';
 
 import { MunicipisFilter } from '../pipes/municipis-filter';
 import { FavouritesFilter } from '../pipes/favourites-filter';
-import { MunicipiUniqueFilter} from '../pipes/municipi-unique-filter';
 
 import { OpenData } from '../providers/open-data';
 
@@ -34,8 +33,7 @@ export function createTranslateLoader(http: Http) {
     PoisPage,
     ActivitiesPage,
     MunicipisFilter,
-    FavouritesFilter,
-    MunicipiUniqueFilter
+    FavouritesFilter
   ],
   imports: [
     IonicModule.forRoot(DibaMunicipisApp),
