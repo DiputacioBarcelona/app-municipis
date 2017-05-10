@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ItemSliding, AlertController } from 'ionic-angular';
+import { NavController, App, LoadingController, ItemSliding, AlertController } from 'ionic-angular';
 
 import { MunicipiDetailPage } from '../municipi-detail/municipi-detail';
 
@@ -12,71 +12,62 @@ import { UserData } from '../../providers/user-data';
 })
 
 export class MunicipisPage {
+	//TODO:
 	pageSize: number;
 	appliedFilter: number[];
+	
+	queryText = '';
 	segment = 'all';
+	data: any = [];
 
 	constructor(
 		public alertCtrl: AlertController,
-		public navCtrl: NavController, 
-		public openData: OpenData, 
+		public app: App,
+		public navCtrl: NavController,
 		public loadingCtrl: LoadingController,
-		public user: UserData
+		public openData: OpenData,
+		public userData: UserData
 	) {}
 
-	/*	Executed when the page is loaded. Only runs once per page created. */
 	ionViewDidLoad() {
+		this.app.setTitle('Muncipis-Schedule');
+    this.updateSchedule();
+
 		this.pageSize = 10;
 		this.appliedFilter  = [];
-
-		let loading = this.loadingCtrl.create({ content: 'Espereu siusplau...' });
-		loading.present();
-		this.openData.loadMunicipis(loading)
-		.catch((err) => { console.error('municipis(ionViewDidLoad) - Error: ' + err) });
 	}
 
 	updateSchedule() {
+		let loading = this.loadingCtrl.create({ content: 'Espereu siusplau...' });
+		loading.present();
+
+		this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
+      this.data = data;
+			loading.dismiss();
+    });
 	}
 
-	/*	Apply Filter asking API */
-	searchMunicipis(event:any) {
-		let val = event.target.value;
-		if (!val || val.trim() == '') return this.appliedFilter  = [];;
-
-		// this.openData.reduceFiltering(this.appliedFilter ,val).then((resultat: any) => {
-		// 	if (resultat[0] == undefined) {
-		// 		this.appliedFilter  = [];
-		// 		this.appliedFilter [0] = -1;
-		// 	}
-		// 	else this.appliedFilter  = resultat;
-		// }).catch((err) => {console.error('ERROR - searchMunicipis: ' + err['message'])});
-	}
-
-	/* Responsible for the infinite scroll */
 	doInfinite(infiniteScroll) {
-		if (this.appliedFilter [0] == undefined && this.appliedFilter [0] != -1 && this.pageSize < this.openData.municipisInfo.length) this.pageSize++;
+		if (this.appliedFilter [0] == undefined && this.appliedFilter [0] != -1 && this.pageSize < this.data.length) this.pageSize++;
 		return infiniteScroll.complete();
 	}
 
-	/*	Navigation page of the selected municipi */
 	goToMunicipiDetail(municipiData: any) {
 		// go to the municipi detail page
     // and pass in the municipi data
     this.navCtrl.push(MunicipiDetailPage, {
-      ine: municipiData.ine,
       municipi: municipiData
     });
 	}
 
 	addFavorite(slidingItem: ItemSliding, municipiData: any) {
-
-    if (this.user.hasFavorite(municipiData.ine)) {
+    if (this.userData.hasFavorite(municipiData.ine)) {
       // woops, they already favorited it! What shall we do!?
       // prompt them to remove it
       this.removeFavorite(slidingItem, municipiData, 'Favorite already added');
     } else {
-      // remember this municipi as a user favorite
-      this.user.addFavorite(municipiData.ine);
+      // remember this municipi as a userData favorite
+      this.userData.addFavorite(municipiData.ine);
 
       // create an alert instance
       let alert = this.alertCtrl.create({
@@ -112,8 +103,8 @@ export class MunicipisPage {
           text: 'Remove',
           handler: () => {
             // they want to remove this session from their favorites
-            this.user.removeFavorite(municipiData.ine);
-            //this.updateSchedule();
+            this.userData.removeFavorite(municipiData.ine);
+            this.updateSchedule();
 
             // close the sliding item and hide the option buttons
             slidingItem.close();

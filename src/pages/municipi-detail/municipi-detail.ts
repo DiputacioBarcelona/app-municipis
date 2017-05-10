@@ -4,7 +4,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { PoisPage } from '../pois/pois';
 import { ActivitiesPage } from '../activities/activities';
 
-import { OpenData } from '../../providers/open-data';
 import { UserData } from '../../providers/user-data';
 
 @Component({
@@ -13,23 +12,14 @@ import { UserData } from '../../providers/user-data';
 })
 
 export class MunicipiDetailPage {
-  // public index;
-  // //public favourite;
-  // private ine;
   municipi: any;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private openData: OpenData, public userData: UserData) {
-    // this.ine = navParams.get('ine');
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public userData: UserData) {
     this.municipi = navParams.data.municipi;
   }
-
-  // /*	Executed when the page is loaded. Only runs once per page created. */
-  // ionViewDidLoad() {
-  //   this.index = this.openData.indexMunicipis[this.ine];
-  //   console.log('INDEX: '+ this.index);
-  //   console.log('INE: '+ this.ine);
-  //   //this.favourite = this.openData.municipisInfo[this.index]['favourite'];
-  // }
 
   goToPois(index: string) {
     this.navCtrl.push(PoisPage,{ine : this.municipi.ine});
@@ -39,7 +29,6 @@ export class MunicipiDetailPage {
     this.navCtrl.push(ActivitiesPage,{ine : this.municipi.ine});
   };
 
-  /*	Save the change BD preferred status of a municipality */
 	toggleFavourite(ine: string) {
 		this.userData.toggleFavourite(ine);
 	};
