@@ -15,19 +15,23 @@ export class UserData {
   ) {}
 
   hasFavorite(municipiINE: string): boolean {
+    console.log('hasFavorite: '+ municipiINE);
     return (this._favorites.indexOf(municipiINE) > -1);
-  };
+  }
 
   addFavorite(municipiINE: string): void {
+    console.log('addFavorite: '+ municipiINE);
     this._favorites.push(municipiINE);
-  };
+  }
 
   removeFavorite(municipiINE: string): void {
+    console.log('removeFavorite: '+ municipiINE);
     let index = this._favorites.indexOf(municipiINE);
+    console.log('removeFavorite: '+ municipiINE);
     if (index > -1) {
       this._favorites.splice(index, 1);
     }
-  };
+  }
 
   toggleFavourite(municipiINE: string): void {
     if (this.hasFavorite(municipiINE)) {
@@ -35,11 +39,11 @@ export class UserData {
     } else {
       this.addFavorite(municipiINE);
     }
-  };
+  }
 
   // checkHasSeenTutorial(): Promise<string> {
   //   return this.storage.get(this.HAS_SEEN_TUTORIAL).then((value) => {
   //     return value;
   //   });
-  // };
+  // }
 }

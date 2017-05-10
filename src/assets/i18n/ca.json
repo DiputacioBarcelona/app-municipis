@@ -47,5 +47,13 @@
 
   "LOADING_MESSAGE": "Espereu siusplau...",
 
-  "CONTACT": "Contacte"
+  "CONTACT": "Contacte",
+
+  "ALL": "Tots",
+
+  "FAVOURITES": "Preferits",
+
+  "FAVOURITE": "Preferit",
+
+  "REMOVE": "Eliminar"
 }

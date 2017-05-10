@@ -45,7 +45,16 @@
 
   "MAP": "Map",
 
-  "LOADING_MESSAGE": "Please wait ...",
+  // "LOADING_MESSAGE": "Please wait ...",
 
-  "CONTACT": "Contact"
+  "CONTACT": "Contact",
+
+  "ALL": "All",
+
+  "FAVOURITES": "Favorites",
+
+  "FAVOURITE": "Favorite",
+
+  "REMOVE": "Remove"
+
 }
