@@ -8,9 +8,10 @@ import 'rxjs/add/operator/timeout'
 
 @Injectable()
 export class OpenData {
-  //TODO:
+  //TODO: puntsInfo, temes
   // puntsInfo: any;
   // temes: string;
+  dataMunicipi: any;
 
   /* This is the base url of the open data's API  */
   private baseUrl: string = 'http://do.diba.cat/api/';
@@ -39,64 +40,26 @@ export class OpenData {
   // }
 
   loadMunicipis(): any {    
-    // if (this.municipisInfo) {
-    //   console.log('Observable');
-    //   return Observable.of(this.municipisInfo);
-    // } else {     
+    if (this.dataMunicipi) {
+      console.log('Observable');
+      return Observable.of(this.dataMunicipi);
+    } else {     
       let url : string  = this.baseUrl + 'dataset/' + 'municipis' + '/format/JSON/ord-' + 'municipi_transliterat' + '/token/' + this.token;
        console.log('URL: ' + url);
       return this.http.get(url)
         .map(res => res.json()['elements']);
-    // }
+    }
   }
-
-  // processMunicipis(municipisInfo: any) {
-  //   // just some good 'ol JS fun with objects and arrays
-  //   // build up the data by linking speakers to sessions
-  //   this.municipisInfo = municipisInfo.json();
-
-  //   // this.data.tracks = [];
-
-  //   // // loop through each day in the schedule
-  //   // this.data.schedule.forEach((day: any) => {
-  //   //   // loop through each timeline group in the day
-  //   //   day.groups.forEach((group: any) => {
-  //   //     // loop through each session in the timeline group
-  //   //     group.sessions.forEach((session: any) => {
-  //   //       session.speakers = [];
-  //   //       if (session.speakerNames) {
-  //   //         session.speakerNames.forEach((speakerName: any) => {
-  //   //           let speaker = this.data.speakers.find((s: any) => s.name === speakerName);
-  //   //           if (speaker) {
-  //   //             session.speakers.push(speaker);
-  //   //             speaker.sessions = speaker.sessions || [];
-  //   //             speaker.sessions.push(session);
-  //   //           }
-  //   //         });
-  //   //       }
-
-  //   //       if (session.tracks) {
-  //   //         session.tracks.forEach((track: any) => {
-  //   //           if (this.data.tracks.indexOf(track) < 0) {
-  //   //             this.data.tracks.push(track);
-  //   //           }
-  //   //         });
-  //   //       }
-  //   //     });
-  //   //   });
-  //   // });
-
-  //   return this.municipisInfo;
-  // }
 
   getMunicipis(queryText = '', segment = 'all') {
     return this.loadMunicipis().map((data: any) => {
-      let day = data;
+      this.dataMunicipi = data;
+      // let day = data;
       // let day = data.schedule[dayIndex];
       // day.shownSessions = 0;
 
-      // queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
-      // let queryWords = queryText.split(' ').filter(w => !!w.trim().length);
+      queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
+      let queryWords = queryText.split(' ').filter(w => !!w.trim().length);
 
       // day.groups.forEach((group: any) => {
       //   group.hide = true;
@@ -114,7 +77,8 @@ export class OpenData {
 
       // });
 
-      return day;
+      // return day;
+      return this.dataMunicipi;
     });
   }
 

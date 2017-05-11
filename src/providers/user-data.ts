@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class UserData {
-  _favorites: string[] = [];
+  favorites: string[] = [];
 
   constructor(
     //TODO: storage
@@ -13,20 +13,20 @@ export class UserData {
 
   hasFavorite(municipiINE: string): boolean {
     console.log('hasFavorite: '+ municipiINE);
-    return (this._favorites.indexOf(municipiINE) > -1);
+    return (this.favorites.indexOf(municipiINE) > -1);
   }
 
   addFavorite(municipiINE: string): void {
     console.log('addFavorite: '+ municipiINE);
-    this._favorites.push(municipiINE);
+    this.favorites.push(municipiINE);
   }
 
   removeFavorite(municipiINE: string): void {
     console.log('removeFavorite: '+ municipiINE);
-    let index = this._favorites.indexOf(municipiINE);
-    console.log('removeFavorite: '+ municipiINE);
+    let index = this.favorites.indexOf(municipiINE);
+    console.log('removeFavorite - index: '+ index);
     if (index > -1) {
-      this._favorites.splice(index, 1);
+      this.favorites.splice(index, 1);
     }
   }
 

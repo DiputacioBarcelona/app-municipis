@@ -12,7 +12,7 @@ import { UserData } from '../../providers/user-data';
 })
 
 export class MunicipisPage {
-	//TODO:
+	//TODO: pageSize, appliedFilter...
 	pageSize: number;
 	appliedFilter: number[];
 	
