@@ -44,13 +44,7 @@ export class OpenData {
       // .catch(this.handleError);
 
     console.log(jsonObject);
-
-    // return this.http.get(url).map((data: any) => {
-    //   let date = data;
-    //   console.log('----------------date: ' + date);
-
-    //   return date;
-    // });
+    return jsonObject
 
   }
 
@@ -75,17 +69,19 @@ export class OpenData {
 
   getMunicipis() {
     console.log('GET_MUNICIPIS');
-    // console.log('this.dateLoadedMunicipis: ' + this.dateLoadedMunicipis);
+    // // console.log('this.dateLoadedMunicipis: ' + this.dateLoadedMunicipis);
 
-    //FIXME: asíncon
-    // this.getUpdateDateAPI('municipis')
-    //   .then(data => {
+    // //FIXME: asíncon
+    // // this.getUpdateDateAPI('municipis')
+    // //   .then(data => {
         
-    //     this.dateLoadedMunicipis = data;
-    //     console.log('this.dateLoadedMunicipis: ' + this.dateLoadedMunicipis);
-    //   });
+    // //     this.dateLoadedMunicipis = data;
+    // //     console.log('this.dateLoadedMunicipis: ' + this.dateLoadedMunicipis);
+    // //   });
 
-    this.getUpdateDateAPI('municipis');
+    this.getUpdateDateAPI('municipis').subscribe((data: any) => {
+      console.log('----------- .subscribe: ' + data);			
+    });
      
     if (this.dataMunicipi) {
       console.log('Observable');
@@ -93,10 +89,13 @@ export class OpenData {
     } else {
       return this.getDatasetAPIContent('municipis', 'municipi_transliterat').map((data: any)=>{
         this.dataMunicipi = data;
-        // console.log(this.dataMunicipi);
+        this.storage.set(this.DATE_LOADED_MUNICIPIS, new Date());
+        console.log('----------- DATE_LOADED_MUNICIPIS: ' + this.storage.get(this.DATE_LOADED_MUNICIPIS).toLocaleString());
+        this.storage.set(this.DATA_LOADED_MUNICIPIS, this.dataMunicipi);
         return this.dataMunicipi;
       });
     }
+
   }
 
 }
