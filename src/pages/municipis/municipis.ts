@@ -41,7 +41,7 @@ export class MunicipisPage {
 		let loading = this.loadingCtrl.create({ content: 'Espereu siusplau...' });
 		loading.present();
 
-		this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
+		this.openData.getMunicipis().subscribe((data: any) => {
       this.data = data;
 			loading.dismiss();
     });
