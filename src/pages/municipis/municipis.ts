@@ -13,6 +13,7 @@ import { UserData } from '../../providers/user-data';
 
 export class MunicipisPage {
 	//TODO: pageSize, appliedFilter...
+  //TODO: translate from .ts
 	pageSize: number;
 	appliedFilter: number[];
 	

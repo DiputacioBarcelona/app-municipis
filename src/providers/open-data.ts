@@ -23,30 +23,16 @@ export class OpenData {
     private storage: Storage
   ) {}
 
-  private getUpdateDateAPI(datasetName: string) {
-    let url : string  = this.BASEURL + 'info/datasets/dataset/' + datasetName + '/token/' + this.TOKEN;
-    console.log('URL: ' + url);
+  // private getUpdateDateAPI(datasetName: string) {
+  //   let url : string  = this.BASEURL + 'info/datasets/dataset/' + datasetName + '/token/' + this.TOKEN;
+  //   console.log('URL: ' + url);
 
-    // //FIXME: asíncon
-    // return new Promise(resolve => {
-    //   this.http.get(url)
-    //     .map(res => res.json()['modificacio'])
-    //     .subscribe(data => {
-    //       this.dateLoadedMunicipis = data;
-    //       resolve(this.dateLoadedMunicipis);
-    //     });
-    // });
+  //    let jsonObject = this.http.get(url)
+  //     .map(res => res.json()['modificacio'])
+  //     .timeout(5000);
 
-    // FIXME: [object Object]
-     let jsonObject = this.http.get(url)
-      .map(res => res.json()['modificacio'])
-      .timeout(5000);
-      // .catch(this.handleError);
-
-    console.log(jsonObject);
-    return jsonObject
-
-  }
+  //   return jsonObject
+  // }
 
   private getDatasetAPIContent(datasetName: string, camp_ord: string): any {  
     let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/ord-' + camp_ord + '/token/' + this.TOKEN;
@@ -59,29 +45,20 @@ export class OpenData {
     return elements;    
   }
 
-  private loadMunicipisFromStorage(): any {
-    console.log('LOAD_MUNICIPIS_STORAGE');
+  // private loadMunicipisFromStorage(): any {
+  //   console.log('LOAD_MUNICIPIS_STORAGE');
 
-    this.storage.get(this.DATA_LOADED_MUNICIPIS).then((value) => {
-      return value;
-    });
-  }
+  //   this.storage.get(this.DATA_LOADED_MUNICIPIS).then((value) => {
+  //     return value;
+  //   });
+  // }
 
   getMunicipis() {
-    console.log('GET_MUNICIPIS');
-    // // console.log('this.dateLoadedMunicipis: ' + this.dateLoadedMunicipis);
+    // console.log('GET_MUNICIPIS');
 
-    // //FIXME: asíncon
-    // // this.getUpdateDateAPI('municipis')
-    // //   .then(data => {
-        
-    // //     this.dateLoadedMunicipis = data;
-    // //     console.log('this.dateLoadedMunicipis: ' + this.dateLoadedMunicipis);
-    // //   });
-
-    this.getUpdateDateAPI('municipis').subscribe((data: any) => {
-      console.log('----------- .subscribe: ' + data);			
-    });
+    // this.getUpdateDateAPI('municipis').subscribe((data: any) => {
+    //   console.log('----------- .subscribe: ' + data);			
+    // });
      
     if (this.dataMunicipi) {
       console.log('Observable');
@@ -90,7 +67,7 @@ export class OpenData {
       return this.getDatasetAPIContent('municipis', 'municipi_transliterat').map((data: any)=>{
         this.dataMunicipi = data;
         this.storage.set(this.DATE_LOADED_MUNICIPIS, new Date());
-        console.log('----------- DATE_LOADED_MUNICIPIS: ' + this.storage.get(this.DATE_LOADED_MUNICIPIS).toLocaleString());
+        // console.log('----------- DATE_LOADED_MUNICIPIS: ' + this.storage.get(this.DATE_LOADED_MUNICIPIS).toLocaleString());
         this.storage.set(this.DATA_LOADED_MUNICIPIS, this.dataMunicipi);
         return this.dataMunicipi;
       });
