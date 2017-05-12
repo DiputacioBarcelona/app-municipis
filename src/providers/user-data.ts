@@ -30,7 +30,6 @@ export class UserData {
   addFavorite(municipiINE: string): void {    
     this.favorites.push(municipiINE);
     this.storage.set(this.DATA_LOADED_MUNICIPIS, this.favorites);
-    this.storage.set("age", 25);
   }
 
   removeFavorite(municipiINE: string): void {    
@@ -38,7 +37,6 @@ export class UserData {
     if (index > -1) {
       this.favorites.splice(index, 1);
       this.storage.set(this.DATA_LOADED_MUNICIPIS, this.favorites);
-      this.storage.set("age", 25);
     }
   }
 
