@@ -55,5 +55,8 @@
 
   "FAVOURITE": "Preferit",
 
-  "REMOVE": "Eliminar"
+  "REMOVE": "Eliminar",
+
+  "NO_TOWN_FOUND": "No s'han trobat municipis"
+
 }

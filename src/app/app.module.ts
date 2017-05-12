@@ -16,8 +16,6 @@ import { MunicipiDetailPage } from '../pages/municipi-detail/municipi-detail';
 import { PoisPage } from '../pages/pois/pois';
 import { ActivitiesPage } from '../pages/activities/activities';
 
-import { MunicipisFilter } from '../pipes/municipis-filter';
-
 import { OpenData } from '../providers/open-data';
 import { UserData } from '../providers/user-data';
 
@@ -31,8 +29,7 @@ export function createTranslateLoader(http: Http) {
     MunicipisPage,
     MunicipiDetailPage,
     PoisPage,
-    ActivitiesPage,
-    MunicipisFilter
+    ActivitiesPage
   ],
   imports: [
     IonicModule.forRoot(DibaMunicipisApp),

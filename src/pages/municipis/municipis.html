@@ -3,7 +3,7 @@
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>{{ 'TITLE_MUNCIPIS' | translate }}</ion-title>
+		<!--<ion-title>{{ 'TITLE_MUNCIPIS' | translate }}</ion-title>-->
 		<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
       <ion-segment-button value="all">
         {{ 'ALL' | translate }}
@@ -24,14 +24,13 @@
 
 <ion-content>
 
-	<ion-list>
-		<ion-item-sliding *ngFor="let municipi of data | 
-										municipisFilter: { numElements: pageSize, filter: appliedFilter }" #slidingItem>
+	<ion-list #scheduleList [hidden]="shownData === 0">
+		<ion-item-sliding *ngFor="let municipi of data" #slidingItem [hidden]="municipi.hide">
 			
 			<button ion-item (click)="goToMunicipiDetail(municipi)">
-				<ion-avatar item-left>
+				<ion-thumbnail item-left>
 					<img src="{{ municipi.municipi_escut }}">
-				</ion-avatar>
+				</ion-thumbnail>
 				<h3>{{ municipi.municipi_nom }}</h3>
 				<p>{{ municipi.grup_comarca.comarca_nom }}</p>
       </button>
@@ -48,8 +47,8 @@
 
 	</ion-list>
 
-	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-		<ion-infinite-scroll-content></ion-infinite-scroll-content>
-	</ion-infinite-scroll>
+	<ion-list-header [hidden]="shownData > 0">
+      {{ 'NO_TOWN_FOUND' | translate }}
+  </ion-list-header>
 	
 </ion-content>	

@@ -11,15 +11,12 @@ import { UserData } from '../../providers/user-data';
 	templateUrl: 'municipis.html'
 })
 
-export class MunicipisPage {
-	//TODO: pageSize, appliedFilter...
-  //TODO: translate from .ts
-	pageSize: number;
-	appliedFilter: number[];
-	
+//TODO: translate from .ts	
+export class MunicipisPage {  
 	queryText = '';
 	segment = 'all';
 	data: any = [];
+  shownData: any = [];
 
 	constructor(
 		public alertCtrl: AlertController,
@@ -33,24 +30,17 @@ export class MunicipisPage {
 	ionViewDidLoad() {
 		this.app.setTitle('Muncipis-Schedule');
     this.updateSchedule();
-
-		this.pageSize = 10;
-		this.appliedFilter  = [];
 	}
 
 	updateSchedule() {
 		let loading = this.loadingCtrl.create({ content: 'Espereu siusplau...' });
 		loading.present();
 
-		this.openData.getMunicipis().subscribe((data: any) => {
-      this.data = data;
+		this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
+      this.data = data.elements;
+      this.shownData = data.shownData;
 			loading.dismiss();
     });
-	}
-
-	doInfinite(infiniteScroll) {
-		if (this.appliedFilter [0] == undefined && this.appliedFilter [0] != -1 && this.pageSize < this.data.length) this.pageSize++;
-		return infiniteScroll.complete();
 	}
 
 	goToMunicipiDetail(municipiData: any) {

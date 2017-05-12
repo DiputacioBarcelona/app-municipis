@@ -11,20 +11,16 @@ export class UserData {
     public storage: Storage
   ) {}
 
-  hasFavorite(municipiINE: string): boolean {
-    console.log('hasFavorite: '+ municipiINE);
+  hasFavorite(municipiINE: string): boolean {    
     return (this.favorites.indexOf(municipiINE) > -1);
   }
 
-  addFavorite(municipiINE: string): void {
-    console.log('addFavorite: '+ municipiINE);
+  addFavorite(municipiINE: string): void {    
     this.favorites.push(municipiINE);
   }
 
-  removeFavorite(municipiINE: string): void {
-    console.log('removeFavorite: '+ municipiINE);
-    let index = this.favorites.indexOf(municipiINE);
-    console.log('removeFavorite - index: '+ index);
+  removeFavorite(municipiINE: string): void {    
+    let index = this.favorites.indexOf(municipiINE);    
     if (index > -1) {
       this.favorites.splice(index, 1);
     }
@@ -38,9 +34,4 @@ export class UserData {
     }
   }
 
-  // checkHasSeenTutorial(): Promise<string> {
-  //   return this.storage.get(this.HAS_SEEN_TUTORIAL).then((value) => {
-  //     return value;
-  //   });
-  // }
 }

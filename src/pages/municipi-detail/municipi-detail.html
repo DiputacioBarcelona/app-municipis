@@ -12,8 +12,8 @@
     <div>
       {{ 'INE' | translate }}: {{ municipi.ine }} <br>
       {{ 'CIE' | translate }}: {{ municipi.grup_ajuntament.cif }} <br>
-      {{ 'PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }} <br>
-      {{ 'REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }}
+      {{ 'REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }} <br>
+      {{ 'PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}
     </div>
     <ion-icon *ngIf="favourite == true" (click)="toggleFavourite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
     <ion-icon *ngIf="favourite != true" (click)="toggleFavourite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
