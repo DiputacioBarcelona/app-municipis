@@ -11,7 +11,7 @@ export class UserData {
     public storage: Storage
   ) {
     this.getData().then((data) => {
-      if(data){
+      if(data) {
         this.favorites = JSON.parse(data);
       }
     });
@@ -21,7 +21,7 @@ export class UserData {
     return this.storage.get(this.FAVOURITES);  
   }
  
-  private save(){
+  private save() {
     let newData = JSON.stringify(this.favorites);
     this.storage.set(this.FAVOURITES, newData);
   }
