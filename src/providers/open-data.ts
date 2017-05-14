@@ -85,12 +85,12 @@ export class OpenData {
       let data = jsonObject;
       data.shownData = 0;
 
-      queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
-      let queryWords = queryText.split(' ').filter(w => !!w.trim().length);
+      // queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
+      // let queryWords = queryText.split(' ').filter(w => !!w.trim().length);
 
       data.elements.forEach((municipi: any) => {
       // check if this municipi should show or not
-      this.filterMunicipis(municipi, queryWords, segment);
+      this.filterMunicipis(municipi, queryText, segment);
           if (!municipi.hide) {
             data.shownData++;
           }
@@ -99,16 +99,16 @@ export class OpenData {
     });
   }
 
-  private filterMunicipis(municipi: any, queryWords: string[], segment: string) {
+  private filterMunicipis(municipi: any, queryText: string, segment: string) {
 
     let matchesQueryText = false;
-    if (queryWords.length) {
+    // if (queryWords.length) {
       // of any query word is in the municipi name than it passes the query test
-      queryWords.forEach((queryWord: string) => {
-        if (municipi.municipi_nom.toLowerCase().indexOf(queryWord) > -1) {
+      // queryWords.forEach((queryWord: string) => {
+        if (municipi.municipi_transliterat.indexOf(this.transliterate(queryText)) > -1) {
           matchesQueryText = true;
-        }
-      });
+        // }
+      // });
     } else {
       // if there are no query words then this municipi passes the query test
       matchesQueryText = true;
@@ -128,5 +128,34 @@ export class OpenData {
     // all tests must be true if it should not be hidden
     municipi.hide = !(matchesQueryText && matchesSegment);
   }
+
+  private transliterate(text: string ) : string {
+    // sanitize
+    // Transliterem segons les normes del català
+    // Eliminem tot el que no sigui text
+    text = text.replace("/[^A-Za-z0-9 ]/", '');
+    // Separador dels espais
+    text = text.replace(' ', '_');
+    // Torna-ho tot en minúscules
+    text = text.toLowerCase();
+
+    return text;
+  }
+  // /**
+  // * Transliteració de cadenes de text
+  // */
+  // public static function transliterate($text, $separador = '_', $charset = '') {
+  //     $text = self::sanitizeString($text, $charset);
+  //     // Transliterem segons les normes del català
+  //     setlocale(LC_CTYPE, 'ca_ES.utf8');
+  //     $text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
+  //     // Eliminem tot el que no sigui text
+  //     $text = preg_replace("/[^A-Za-z0-9 ]/", '', $text);
+  //     // Separador dels espais.
+  //     $text = str_replace(' ', $separador, $text);
+  //     // Torna-ho tot en minúscules
+  //     $text = mb_strtolower($text);
+  //     return filter_var($text, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
+  // }
 
 }
