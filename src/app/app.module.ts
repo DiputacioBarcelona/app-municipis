@@ -33,7 +33,9 @@ export function createTranslateLoader(http: Http) {
   ],
   imports: [
     IonicModule.forRoot(DibaMunicipisApp),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__mesmunicipisdb'
+    }),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
