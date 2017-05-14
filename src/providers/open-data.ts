@@ -12,9 +12,9 @@ import { UserData } from './user-data';
 @Injectable()
 export class OpenData {
   private dataMunicipi: any;
-  private DATA_LOADED_MUNICIPIS = 'dataLoadedMunicipis';
-  private DATE_LOADED_MUNICIPIS = 'dateLoadedMunicipis';
-  private DATE_API_UPDATE_MUNICIPIS = 'dateAPIUpdateMunicipis';
+  // private DATA_LOADED_MUNICIPIS = 'dataLoadedMunicipis';
+  // private DATE_LOADED_MUNICIPIS = 'dateLoadedMunicipis';
+  // private DATE_API_UPDATE_MUNICIPIS = 'dateAPIUpdateMunicipis';
 
   /* This is the base url of the open data's API  */
   private BASEURL = 'http://do.diba.cat/api/';
@@ -72,10 +72,9 @@ export class OpenData {
     } else {
       return this.getDatasetAPIContent('municipis', 'municipi_transliterat').map((data: any)=>{
         this.dataMunicipi = data;
-        this.storage.set(this.DATE_LOADED_MUNICIPIS, new Date());
-        // console.log('----------- DATE_LOADED_MUNICIPIS: ' + this.storage.get(this.DATE_LOADED_MUNICIPIS).toLocaleString());
-        this.storage.set(this.DATA_LOADED_MUNICIPIS, this.dataMunicipi);
-        this.storage.set(this.DATE_API_UPDATE_MUNICIPIS, new Date(this.dataMunicipi.modificacio));        
+        // this.storage.set(this.DATE_LOADED_MUNICIPIS, new Date());
+        // this.storage.set(this.DATA_LOADED_MUNICIPIS, this.dataMunicipi);
+        // this.storage.set(this.DATE_API_UPDATE_MUNICIPIS, new Date(this.dataMunicipi.modificacio));        
         return this.dataMunicipi;
       });
     }
