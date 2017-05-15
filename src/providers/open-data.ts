@@ -113,8 +113,7 @@ export class OpenData {
     
     // replace diacritic characters with the closest-looking characters
     text = this.removeDiacritics(text);
-    // remove everything that is not text
-    console.log('-------- POST removeDiacritics: ' + text);
+    // remove everything that is not text    
     text = text.replace(/[^A-Za-z0-9 ]/i, '');
     // replace spaces with underscores
     text = text.replace(' ', '_');
