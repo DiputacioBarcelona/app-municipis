@@ -79,7 +79,6 @@ export class OpenData {
   }
 
   private filterMunicipis(municipi: any, queryText: string, segment: string) {
-
     let matchesQueryText = false;
     if (queryText) {
       // of any query word is in the municipi name than it passes the query test
