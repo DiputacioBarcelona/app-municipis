@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, App, LoadingController, ItemSliding, AlertController } from 'ionic-angular';
 
+import { TranslateService } from 'ng2-translate/ng2-translate'
+
 import { MunicipiDetailPage } from '../municipi-detail/municipi-detail';
 
 import { OpenData } from '../../providers/open-data';
@@ -11,7 +13,6 @@ import { UserData } from '../../providers/user-data';
 	templateUrl: 'municipis.html'
 })
 
-//TODO: translate from .ts	
 export class MunicipisPage {  
 	queryText = '';
 	segment = 'all';
@@ -24,7 +25,8 @@ export class MunicipisPage {
 		public navCtrl: NavController,
 		public loadingCtrl: LoadingController,
 		public openData: OpenData,
-		public userData: UserData
+		public userData: UserData,
+    public translate: TranslateService
 	) {}
 
 	ionViewDidLoad() {
@@ -33,7 +35,12 @@ export class MunicipisPage {
 	}
 
 	updateSchedule() {
-		let loading = this.loadingCtrl.create({ content: 'Espereu siusplau...' });
+    let msg = 'Espereu siusplau...';
+    this.translate.get('LOADING_MESSAGE').subscribe((res: string) => {
+        msg = res;
+    });
+
+		let loading = this.loadingCtrl.create({ content: msg });
 		loading.present();
 
 		this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
