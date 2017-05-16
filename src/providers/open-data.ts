@@ -36,29 +36,6 @@ export class OpenData {
     return jsonObject
   }*/
 
-  private getDatasetAPIContent(datasetName: string, camp_ord: string): any {  
-    let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/ord-' + camp_ord + '/token/' + this.TOKEN;
-    console.log('URL: ' + url);
-    
-    let elements = this.http.get(url)
-      .map(res => res.json())
-      .timeout(5000);
-
-    return elements;    
-  }
-
-  private loadMunicipis(): any {     
-    if (this.dataMunicipi) {
-      console.log('Observable');
-      return Observable.of(this.dataMunicipi);
-    } else {
-      return this.getDatasetAPIContent('municipis', 'municipi_transliterat').map((data: any)=>{
-        this.dataMunicipi = data;  
-        return this.dataMunicipi;
-      });
-    }
-  }
-
   getMunicipis(queryText = '', segment = 'all') {
      return this.loadMunicipis().map((jsonObject: any) => {
       let data = jsonObject;
@@ -73,6 +50,18 @@ export class OpenData {
       });
       return data;
     });
+  }
+
+  private loadMunicipis(): any {     
+    if (this.dataMunicipi) {
+      console.log('Observable');
+      return Observable.of(this.dataMunicipi);
+    } else {
+      return this.getDatasetAPIContent('municipis', 'municipi_transliterat').map((data: any)=>{
+        this.dataMunicipi = data;  
+        return this.dataMunicipi;
+      });
+    }
   }
 
   private filterMunicipis(municipi: any, queryText: string, segment: string) {
@@ -90,7 +79,7 @@ export class OpenData {
     // then this municipi does not pass the segment test
     let matchesSegment = false;
     if (segment === 'favorites') {
-      if (this.userData.hasFavorite(municipi.ine)) {
+      if (this.userData.hasFavoriteMunicipis(municipi.ine)) {
         matchesSegment = true;
       }
     } else {
@@ -99,6 +88,17 @@ export class OpenData {
 
     // all tests must be true if it should not be hidden
     municipi.hide = !(matchesQueryText && matchesSegment);
+  }
+
+  private getDatasetAPIContent(datasetName: string, camp_ord: string): any {  
+    let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/ord-' + camp_ord + '/token/' + this.TOKEN;
+    console.log('URL: ' + url);
+    
+    let elements = this.http.get(url)
+      .map(res => res.json())
+      .timeout(5000);
+
+    return elements;    
   }
 
   private transliterate(text: string ) : string {

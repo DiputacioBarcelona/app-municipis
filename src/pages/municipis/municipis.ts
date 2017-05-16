@@ -67,13 +67,13 @@ export class MunicipisPage {
     this.translate.get('MUNICIPIS.OK').subscribe((res: string) => {
         msg_ok = res;
     });
-    if (this.userData.hasFavorite(municipiData.ine)) {
+    if (this.userData.hasFavoriteMunicipis(municipiData.ine)) {
       // woops, they already favorited it! What shall we do!?
       // prompt them to remove it
       this.removeFavorite(slidingItem, municipiData, false);
     } else {
       // remember this municipi as a userData favorite
-      this.userData.addFavorite(municipiData.ine);
+      this.userData.addFavoriteMunicipis(municipiData.ine);
 
       // create an alert instance
       let alert = this.alertCtrl.create({
@@ -131,7 +131,7 @@ export class MunicipisPage {
           text: msg_remove,
           handler: () => {
             // they want to remove this session from their favorites
-            this.userData.removeFavorite(municipiData.ine);
+            this.userData.removeFavoriteMunicipis(municipiData.ine);
             this.updateSchedule();
 
             // close the sliding item and hide the option buttons

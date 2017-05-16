@@ -14,6 +14,7 @@ export class PoisPage {
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private openData: OpenData) {
     this.ine = navParams.get('ine');
+    console.log('-------constructor - PoisPage: ' + this.ine);
   }
 
   ionViewDidLoad() {

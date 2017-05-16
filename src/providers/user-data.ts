@@ -4,50 +4,42 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class UserData {
-  private favorites: string[] = [];
-  private FAVOURITES = 'favorites';
+  private municipisMUNICIPIS_FAVOURITES: string[] = [];
+  private MUNICIPIS_FAVOURITES = 'municipisMUNICIPIS_FAVOURITES';
 
   constructor(
     public storage: Storage
   ) {
-    this.getData().then((data) => {
+    this.getDataMunicipis().then((data) => {
       if(data) {
-        this.favorites = JSON.parse(data);
+        this.municipisMUNICIPIS_FAVOURITES = JSON.parse(data);
       }
     });
   }
 
-  private getData() {
-    return this.storage.get(this.FAVOURITES);  
+  private getDataMunicipis() {
+    return this.storage.get(this.MUNICIPIS_FAVOURITES);  
   }
  
-  private save() {
-    let newData = JSON.stringify(this.favorites);
-    this.storage.set(this.FAVOURITES, newData);
+  private saveMunicipis() {
+    let newData = JSON.stringify(this.municipisMUNICIPIS_FAVOURITES);
+    this.storage.set(this.MUNICIPIS_FAVOURITES, newData);
   }
 
-  hasFavorite(municipiINE: string): boolean {    
-    return (this.favorites.indexOf(municipiINE) > -1);
+  hasFavoriteMunicipis(municipiINE: string): boolean {    
+    return (this.municipisMUNICIPIS_FAVOURITES.indexOf(municipiINE) > -1);
   }
 
-  addFavorite(municipiINE: string): void {    
-    this.favorites.push(municipiINE);
-    this.save();
+  addFavoriteMunicipis(municipiINE: string): void {    
+    this.municipisMUNICIPIS_FAVOURITES.push(municipiINE);
+    this.saveMunicipis();
   }
 
-  removeFavorite(municipiINE: string): void {    
-    let index = this.favorites.indexOf(municipiINE);    
+  removeFavoriteMunicipis(municipiINE: string): void {    
+    let index = this.municipisMUNICIPIS_FAVOURITES.indexOf(municipiINE);    
     if (index > -1) {
-      this.favorites.splice(index, 1);
-      this.save();
-    }
-  }
-
-  toggleFavourite(municipiINE: string): void {
-    if (this.hasFavorite(municipiINE)) {
-      this.removeFavorite(municipiINE);
-    } else {
-      this.addFavorite(municipiINE);
+      this.municipisMUNICIPIS_FAVOURITES.splice(index, 1);
+      this.saveMunicipis();
     }
   }
 

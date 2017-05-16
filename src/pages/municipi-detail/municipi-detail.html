@@ -15,8 +15,8 @@
       {{ 'MUNICIPI-DETAIL.REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }} <br>
       {{ 'MUNICIPI-DETAIL.PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}
     </div>
-    <ion-icon *ngIf="favourite == true" (click)="toggleFavourite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
-    <ion-icon *ngIf="favourite != true" (click)="toggleFavourite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
+    <ion-icon *ngIf="favorite == true" (click)="removeFavorite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
+    <ion-icon *ngIf="favorite != true" (click)="addFavorite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
   </ion-item>
   <ion-grid>
     <ion-row>

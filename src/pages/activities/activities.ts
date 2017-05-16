@@ -14,7 +14,7 @@ export class ActivitiesPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.ine);
+    console.log('-------ionViewDidLoad - ActivitiesPage: ' + this.ine);
   }
 
 }
