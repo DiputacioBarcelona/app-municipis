@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, Events } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Events, FabContainer } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -96,5 +96,14 @@ export class MunicipiDetailPage {
       ]
     });
     alert.present();
+  }
+
+  share(socialNet: string, fab: FabContainer) {
+    console.log("Sharing in" + socialNet);
+    fab.close();
+  }
+
+  openMap() {
+    console.log("Open map");
   }
 }

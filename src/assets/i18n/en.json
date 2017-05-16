@@ -40,7 +40,9 @@
 
     "COORDS": "Coords",
 
-    "CONTACT": "Contact"
+    "CONTACT": "Contact",
+
+    "URL": "web"
   },
 
   "POIS": {
