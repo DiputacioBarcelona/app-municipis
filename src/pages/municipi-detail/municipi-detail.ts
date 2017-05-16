@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Events } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -22,7 +22,8 @@ export class MunicipiDetailPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public userData: UserData, 
-    public translate: TranslateService) {
+    public translate: TranslateService, 
+    public events: Events) {
       this.municipi = this.navParams.data.municipi;
   }
 
@@ -89,7 +90,7 @@ export class MunicipiDetailPage {
           handler: () => {
             this.userData.removeFavoriteMunicipis(this.municipi.ine);
             this.favorite = false;
-            //TODO: this.updateSchedule();
+            this.events.publish('MunicipiDetailPage:removeFavorite', this.municipi);
           }
         }
       ]
