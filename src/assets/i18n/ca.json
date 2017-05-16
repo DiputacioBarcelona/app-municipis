@@ -63,13 +63,23 @@
     
     "FAVOURITES": "Preferits",
 
-    "FAVOURITE": "Preferit",
+    "FAVORITE": "Preferit",
 
     "REMOVE": "Eliminar",
 
     "NO_TOWN_FOUND": "No s'han trobat municipis",
 
-    "REMOVE_FAVORITES": "Vol eliminar {{value}} dels seus preferits?"
+    "REMOVE_FAVORITES": "Vol eliminar <strong>{{value}}</strong> dels seus preferits?",
+
+    "FAVORITE_ALREADY_ADDED" : "Ja es troba entre seus preferits",
+
+    "FAVORITE_ADDED": "S'ha afegit <strong>{{value}}</strong> als seus preferits",
+
+    "OK": "D'acord",
+
+    "CANCEL": "Cancel·lar",
+
+    "REMOVE_FAVORITE": "Eliminar preferit"
   }
 
 }

@@ -37,9 +37,9 @@
 			
 			<ion-item-options>
 				<button ion-button color="favorite" (click)="addFavorite(slidingItem, municipi)" *ngIf="segment === 'all'">
-					{{ 'MUNICIPIS.FAVOURITE' | translate }}
+					{{ 'MUNICIPIS.FAVORITE' | translate }}
 				</button>
-				<button ion-button color="danger" (click)="removeFavorite(slidingItem, municipi, 'Remove Favorite')" *ngIf="segment === 'favorites'">
+				<button ion-button color="danger" (click)="removeFavorite(slidingItem, municipi, true )" *ngIf="segment === 'favorites'">
 					{{ 'MUNICIPIS.REMOVE' | translate }}
 				</button>
       </ion-item-options>

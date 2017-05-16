@@ -63,13 +63,23 @@
     
     "FAVOURITES": "Favoritos",
 
-    "FAVOURITE": "Favorito",
+    "FAVORITE": "Favorito",
 
     "REMOVE": "Eliminar",
 
+    "NO_TOWN_FOUND": "No se han encontrado municipios",
+
     "REMOVE_FAVORITES": "Quiere eliminar {{value}} de sus favoritos?",
 
-    "NO_TOWN_FOUND": "No se han encontrado municipios"
+    "FAVORITE_ALREADY_ADDED" : "Ya se encuentra entre sus favoritos",
+
+    "FAVORITE_ADDED": "Se ha añadido {{value}} a sus favoritos",
+
+    "OK": "De acuerdo",
+
+    "CANCEL": "Cancelar",
+
+    "MUNICIPIS.REMOVE_FAVORITE": "Eliminar favorito"
   }
 
 }

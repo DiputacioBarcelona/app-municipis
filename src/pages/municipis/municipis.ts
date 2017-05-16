@@ -58,21 +58,28 @@ export class MunicipisPage {
     });
 	}
 
-  //TODO: with PARSE: https://www.npmjs.com/package/ng2-translate
 	addFavorite(slidingItem: ItemSliding, municipiData: any) {
+    let msg_added = '';
+    this.translate.get('MUNICIPIS.FAVORITE_ADDED', {value: municipiData.municipi_nom}).subscribe((res: string) => {
+        msg_added = res;
+    });
+    let msg_ok = '';
+    this.translate.get('MUNICIPIS.OK').subscribe((res: string) => {
+        msg_ok = res;
+    });
     if (this.userData.hasFavorite(municipiData.ine)) {
       // woops, they already favorited it! What shall we do!?
       // prompt them to remove it
-      this.removeFavorite(slidingItem, municipiData, 'Favorite already added');
+      this.removeFavorite(slidingItem, municipiData, false);
     } else {
       // remember this municipi as a userData favorite
       this.userData.addFavorite(municipiData.ine);
 
       // create an alert instance
       let alert = this.alertCtrl.create({
-        title: 'Favorite Added',
+        title: msg_added,
         buttons: [{
-          text: 'OK',
+          text: msg_ok,
           handler: () => {
             // close the sliding item
             slidingItem.close();
@@ -85,13 +92,35 @@ export class MunicipisPage {
 
   }
 
-  removeFavorite(slidingItem: ItemSliding, municipiData: any, title: string) {
+  removeFavorite(slidingItem: ItemSliding, municipiData: any, fromFavourites: boolean) {
+    let title = '';
+    if (fromFavourites) {
+      this.translate.get('MUNICIPIS.REMOVE_FAVORITE').subscribe((res: string) => {
+        title = res;
+    });
+    } else {
+      this.translate.get('MUNICIPIS.FAVORITE_ALREADY_ADDED').subscribe((res: string) => {
+          title = res;
+      });
+    }
+    let msg_remove_favorites = '';
+    this.translate.get('MUNICIPIS.REMOVE_FAVORITES', {value: municipiData.municipi_nom}).subscribe((res: string) => {
+        msg_remove_favorites = res;
+    });
+    let msg_cancel = '';
+    this.translate.get('MUNICIPIS.CANCEL').subscribe((res: string) => {
+        msg_cancel = res;
+    });
+    let msg_remove = '';
+    this.translate.get('MUNICIPIS.REMOVE').subscribe((res: string) => {
+        msg_remove = res;
+    });
     let alert = this.alertCtrl.create({
       title: title,
-      message: 'Would you like to remove this municipi from your favorites?',
+      message: msg_remove_favorites,
       buttons: [
         {
-          text: 'Cancel',
+          text: msg_cancel,
           handler: () => {
             // they clicked the cancel button, do not remove the session
             // close the sliding item and hide the option buttons
@@ -99,7 +128,7 @@ export class MunicipisPage {
           }
         },
         {
-          text: 'Remove',
+          text: msg_remove,
           handler: () => {
             // they want to remove this session from their favorites
             this.userData.removeFavorite(municipiData.ine);

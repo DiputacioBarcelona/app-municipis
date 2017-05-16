@@ -61,15 +61,25 @@
 
     "ALL": "All",
     
-    "FAVOURITES": "Favorites",
+    "FAVOURITES": "Favourites",
 
-    "FAVOURITE": "Favorite",
+    "FAVORITE": "Favorite",
 
     "REMOVE": "Remove",
 
-    "REMOVE_FAVORITES": "Would you like to remove {{value}} from your favorites?",
+    "NO_TOWN_FOUND": "No towns found",
 
-    "NO_TOWN_FOUND": "No towns found"
+    "REMOVE_FAVORITES": "Would you like to remove {{value}} from your favourites?",
+
+    "FAVORITE_ALREADY_ADDED" : "Favorite already added",
+
+    "FAVORITE_ADDED": "{{value}} added to your favourites",
+
+    "OK": "Ok",
+
+    "CANCEL": "Cancel",
+
+    "MUNICIPIS.REMOVE_FAVORITE": "Remove favorite"
   }
 
 }
