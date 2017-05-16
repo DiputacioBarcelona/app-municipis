@@ -64,9 +64,6 @@ export class OpenData {
       let data = jsonObject;
       data.shownData = 0;
 
-      // queryText = queryText.toLowerCase().replace(/,|\.|-/g, ' ');
-      // let queryWords = queryText.split(' ').filter(w => !!w.trim().length);
-
       data.elements.forEach((municipi: any) => {
       // check if this municipi should show or not
       this.filterMunicipis(municipi, queryText, segment);
@@ -81,13 +78,9 @@ export class OpenData {
   private filterMunicipis(municipi: any, queryText: string, segment: string) {
     let matchesQueryText = false;
     if (queryText) {
-      // of any query word is in the municipi name than it passes the query test
-      // queryWords.forEach((queryWord: string) => {
-        if (municipi.municipi_transliterat.indexOf(this.transliterate(queryText)) > -1) {
-          matchesQueryText = true;
-        // }
-      // });
-        }
+      if (municipi.municipi_transliterat.indexOf(this.transliterate(queryText)) > -1) {
+        matchesQueryText = true;
+      }
     } else {
       // if there are no query words then this municipi passes the query test
       matchesQueryText = true;
