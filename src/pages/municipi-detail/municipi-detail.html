@@ -37,6 +37,31 @@
       <p ng-if="municipi.grup_ajuntament.localitzacio"><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</p>
     
     </ion-card-content>    
+
+<!--    <ion-row>
+      <ion-col>
+        <button ion-button medium block light (click)="goToPois()">{{ 'APP.TITLE_POIS' | translate }}</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button medium block light (click)="goToActivities()">{{ 'APP.TITLE_ACTIVITIES' | translate }}</button>
+      </ion-col>
+    </ion-row>-->
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="goToPois()">
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{ 'APP.TITLE_POIS' | translate }}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="goToActivities()">
+          <ion-icon name="text"></ion-icon>
+          <div>{{ 'APP.TITLE_ACTIVITIES' | translate }}</div>
+        </button>
+      </ion-col>
+    </ion-row>
+
   </ion-card>
 </ion-content>
 <ion-fab bottom right #fab>
@@ -47,11 +72,4 @@
   </ion-fab-list>
 </ion-fab>
 
-<ion-row>
-  <ion-col>
-    <button ion-button medium block light (click)="goToPois()">{{ 'APP.TITLE_POIS' | translate }}</button>
-  </ion-col>
-  <ion-col>
-    <button ion-button medium block light (click)="goToActivities()">{{ 'APP.TITLE_ACTIVITIES' | translate }}</button>
-  </ion-col>
-</ion-row>
+
