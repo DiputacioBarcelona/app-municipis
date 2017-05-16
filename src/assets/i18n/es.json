@@ -1,61 +1,75 @@
 {
-  "MENU": "Menu",
+  "APP" : {
+    "MENU": "Menu",
 
-  "CATALA": "Catalán",
+    "CATALA": "Catalán",
 
-  "CASTELLA": "Castellano",
+    "CASTELLA": "Castellano",
 
-  "ANGLES": "Inglés",
+    "ANGLES": "Inglés",
 
-  "LANGUAGE": "Idioma",
+    "LANGUAGE": "Idioma",
 
-  "INFORMATION": "Información",
+    "INFORMATION": "Información",
 
-  "TITLE_MUNCIPIS": "Municipios",
+    "TITLE_MUNICIPIS": "Municipios",
 
-  "TITLE_ACTIVITIES": "Actividades",
+    "TITLE_ACTIVITIES": "Actividades",
 
-  "TITLE_POIS": "Puntos de interés",
+    "TITLE_POIS": "Puntos de interés"
+  },
 
-  "PLACEHOLDER_SEARCH_MUNICIPIS": "Nombre del municipio...",
+  "MUNICIPI-DETAIL": {
+    "INE": "INE",
 
-  "INE": "INE",
+    "CIF": "CIF",
 
-  "CIF": "CIF",
+    "REGION": "Comarca",
 
-  "REGION": "Comarca",
+    "PROVINCE": "Provincia",
 
-  "PROVINCE": "Provincia",
+    "TOWN": "Municipio",
 
-  "TOWN": "Municipio",
+    "ADDRESS": "Dirección",
 
-  "ADDRESS": "Dirección",
+    "EMAIL": "Correo electrónico",
 
-  "EMAIL": "Correo electrónico",
+    "TELEPHONE": "Teléfono",
 
-  "TELEPHONE": "Teléfono",
+    "FAX": "Fax",
 
-  "FAX": "Fax",
+    "COORDS": "Cordenadas",
 
-  "COORDS": "Cordenadas",
+    "CONTACT": "Contacto"
+  },
 
-  "THEME": "Temática",
+  "POIS": {
+    "THEME": "Temática",
 
-  "LIST": "Lista",
+    "LIST": "Lista",
 
-  "MAP": "Mapa",
+    "MAP": "Mapa",
 
-  "LOADING_MESSAGE": "Espere por favor ...",
+    "TOWN": "Municipio"
+  },
 
-  "CONTACT": "Contacto",
+  "MUNICIPIS" : {
 
-  "ALL": "Todos",
+    "PLACEHOLDER_SEARCH": "Nombre del municipio...",
 
-  "FAVOURITES": "Favoritos",
+    "LOADING_MESSAGE": "Espere por favor ...",
 
-  "FAVOURITE": "Favorito",
+    "ALL": "Todos",
+    
+    "FAVOURITES": "Favoritos",
 
-  "REMOVE": "Eliminar",
+    "FAVOURITE": "Favorito",
 
-  "NO_TOWN_FOUND": "No sehan encontrado municipios"
+    "REMOVE": "Eliminar",
+
+    "REMOVE_FAVORITES": "Quiere eliminar {{value}} de sus favoritos?",
+
+    "NO_TOWN_FOUND": "No se han encontrado municipios"
+  }
+
 }

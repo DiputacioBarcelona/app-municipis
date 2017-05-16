@@ -1,62 +1,75 @@
 {
-  "MENU": "Menu",
+  "APP" : {
+    "MENU": "Menu",
 
-  "CATALA": "Catalan",
+    "CATALA": "Catalan",
 
-  "CASTELLA": "Spanish",
+    "CASTELLA": "Spanish",
 
-  "ANGLES": "English",
+    "ANGLES": "English",
 
-  "LANGUAGE": "Language",
+    "LANGUAGE": "Language",
 
-  "INFORMATION": "Information",
+    "INFORMATION": "Information",
 
-  "TITLE_MUNCIPIS": "Towns",
+    "TITLE_MUNICIPIS": "Towns",
 
-  "TITLE_ACTIVITIES": "Activities",
+    "TITLE_ACTIVITIES": "Activities",
 
-  "TITLE_POIS": "Points of interest",
+    "TITLE_POIS": "Points of interest"
+  },
 
-  "PLACEHOLDER_SEARCH_MUNICIPIS": "Name of the town...",
+  "MUNICIPI-DETAIL": {
+    "INE": "INE",
 
-  "INE": "INE",
+    "CIF": "CIF",
 
-  "CIF": "CIF",
+    "REGION": "Region",
 
-  "REGION": "Region",
+    "PROVINCE": "Province",
 
-  "PROVINCE": "Province",
+    "TOWN": "Town",
 
-  "TOWN": "Town",
+    "ADDRESS": "Address",
 
-  "ADDRESS": "Address",
+    "EMAIL": "email",
 
-  "EMAIL": "email",
+    "TELEPHONE": "Telephone",
 
-  "TELEPHONE": "Telephone",
+    "FAX": "Fax",
 
-  "FAX": "Fax",
+    "COORDS": "Coords",
 
-  "COORDS": "Coords",
+    "CONTACT": "Contact"
+  },
 
-  "THEME": "Theme",
+  "POIS": {
+    "THEME": "Theme",
 
-  "LIST": "List",
+    "LIST": "List",
 
-  "MAP": "Map",
+    "MAP": "Map",
 
-  "LOADING_MESSAGE": "Please wait ...",
+    "TOWN": "Town"
+  },
 
-  "CONTACT": "Contact",
+  "MUNICIPIS" : {
 
-  "ALL": "All",
+    "PLACEHOLDER_SEARCH": "Name of the town...",
 
-  "FAVOURITES": "Favorites",
+    "LOADING_MESSAGE": "Please wait ...",
 
-  "FAVOURITE": "Favorite",
+    "ALL": "All",
+    
+    "FAVOURITES": "Favorites",
 
-  "REMOVE": "Remove",
+    "FAVOURITE": "Favorite",
 
-  "NO_TOWN_FOUND": "No towns found"
+    "REMOVE": "Remove",
+
+    "REMOVE_FAVORITES": "Would you like to remove {{value}} from your favorites?",
+
+    "NO_TOWN_FOUND": "No towns found"
+  }
 
 }

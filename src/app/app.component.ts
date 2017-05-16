@@ -38,9 +38,9 @@ export class DibaMunicipisApp {
 
     // List of pages that can be navigated to from the left menu
     this.appPages = [
-      { title: 'TITLE_MUNCIPIS', component: MunicipisPage, icon: 'home' },
-      { title: 'TITLE_ACTIVITIES', component: ActivitiesPage, icon: 'calendar' },
-      { title: 'TITLE_POIS', component: PoisPage, icon: 'pin' }
+      { title: 'APP.TITLE_MUNICIPIS', component: MunicipisPage, icon: 'home' },
+      { title: 'APP.TITLE_ACTIVITIES', component: ActivitiesPage, icon: 'calendar' },
+      { title: 'APP.TITLE_POIS', component: PoisPage, icon: 'pin' }
     ];
 
   }

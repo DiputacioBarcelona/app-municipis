@@ -4,7 +4,7 @@
 
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{ 'MENU' | translate }}</ion-title>
+        <ion-title>{{ 'APP.MENU' | translate }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -12,7 +12,7 @@
 
       <ion-list>
         <ion-list-header>
-          {{ 'INFORMATION' | translate }}
+          {{ 'APP.INFORMATION' | translate }}
         </ion-list-header>
         <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
           <ion-icon item-left [name]="p.icon" [color]="isActive(p)"></ion-icon>
@@ -22,20 +22,20 @@
       
       <ion-list>
         <ion-list-header>
-          {{ 'LANGUAGE' | translate }}
+          {{ 'APP.LANGUAGE' | translate }}
         </ion-list-header>
         <div class="language-switcher">
           <button class="button button-clear button-positive" (click)="useLanguage('ca')"
                   [ngClass]="{'active': lang == 'ca'}">
-            {{ 'CATALA' | translate }}
+            {{ 'APP.CATALA' | translate }}
           </button>
           <button class="button button-clear button-positive" (click)="useLanguage('es')"
                   [ngClass]="{'active': lang == 'es'}">
-            {{ 'CASTELLA' | translate }}
+            {{ 'APP.CASTELLA' | translate }}
           </button>
           <button class="button button-clear button-positive" (click)="useLanguage('en')"
                   [ngClass]="{'active': lang == 'en'}">
-            {{ 'ANGLES' | translate }}
+            {{ 'APP.ANGLES' | translate }}
           </button>
         </div>
       </ion-list>

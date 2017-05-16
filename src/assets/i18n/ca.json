@@ -1,62 +1,75 @@
 {
-  "MENU": "Menú",
+  "APP": {
+    "MENU": "Menú",
 
-  "CATALA": "Català",
+    "CATALA": "Català",
 
-  "CASTELLA": "Castellà",
+    "CASTELLA": "Castellà",
 
-  "ANGLES": "Anglès",
+    "ANGLES": "Anglès",
 
-  "LANGUAGE": "Idioma",
+    "LANGUAGE": "Idioma",
 
-  "INFORMATION": "Informació",
+    "INFORMATION": "Informació",
 
-  "TITLE_MUNCIPIS": "Municipis",
+    "TITLE_MUNICIPIS": "Municipis",
 
-  "TITLE_ACTIVITIES": "Activitats",
+    "TITLE_ACTIVITIES": "Activitats",
 
-  "TITLE_POIS": "Punts d'interès",
+    "TITLE_POIS": "Punts d'interès"
+  },
 
-  "PLACEHOLDER_SEARCH_MUNICIPIS": "Nom del municipi...",
+  "MUNICIPI-DETAIL": {
+    "INE": "INE",
 
-  "INE": "INE",
+    "CIF": "CIF",
 
-  "CIF": "CIF",
+    "REGION": "Comarca",
 
-  "REGION": "Comarca",
+    "PROVINCE": "Província",
 
-  "PROVINCE": "Província",
+    "TOWN": "Municipi",
 
-  "TOWN": "Municipi",
+    "ADDRESS": "Adreça",
 
-  "ADDRESS": "Adreça",
+    "EMAIL": "Correu electrònic",
 
-  "EMAIL": "Correu electrònic",
+    "TELEPHONE": "Telèfon",
 
-  "TELEPHONE": "Telèfon",
+    "FAX": "Fax",
 
-  "FAX": "Fax",
+    "COORDS": "Coordenades",
 
-  "COORDS": "Coordenades",
+    "CONTACT": "Contacte"
+  },
 
-  "THEME": "Temàtica",
+  "POIS": {
+    "THEME": "Temàtica",
 
-  "LIST": "Llista",
+    "LIST": "Llista",
 
-  "MAP": "Mapa",
+    "MAP": "Mapa",
 
-  "LOADING_MESSAGE": "Espereu siusplau...",
+    "TOWN": "Municipi"
+  },
 
-  "CONTACT": "Contacte",
+  "MUNICIPIS": {
 
-  "ALL": "Tots",
+    "PLACEHOLDER_SEARCH": "Nom del municipi...",
 
-  "FAVOURITES": "Preferits",
+    "LOADING_MESSAGE": "Espereu siusplau...",
 
-  "FAVOURITE": "Preferit",
+    "ALL": "Tots",
+    
+    "FAVOURITES": "Preferits",
 
-  "REMOVE": "Eliminar",
+    "FAVOURITE": "Preferit",
 
-  "NO_TOWN_FOUND": "No s'han trobat municipis"
+    "REMOVE": "Eliminar",
+
+    "NO_TOWN_FOUND": "No s'han trobat municipis",
+
+    "REMOVE_FAVORITES": "Vol eliminar {{value}} dels seus preferits?"
+  }
 
 }

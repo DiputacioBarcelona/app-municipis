@@ -3,13 +3,13 @@
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<!--<ion-title>{{ 'TITLE_MUNCIPIS' | translate }}</ion-title>-->
+		<ion-title>{{ 'APP.TITLE_MUNICIPIS' | translate }}</ion-title>
 		<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
       <ion-segment-button value="all">
-        {{ 'ALL' | translate }}
+        {{ 'MUNICIPIS.ALL' | translate }}
       </ion-segment-button>
       <ion-segment-button value="favorites">
-        {{ 'FAVOURITES' | translate }}
+        {{ 'MUNICIPIS.FAVOURITES' | translate }}
       </ion-segment-button>
     </ion-segment>
 	</ion-navbar>
@@ -17,7 +17,7 @@
     <ion-searchbar color="primary"
 									 [(ngModel)]="queryText"                 
                    (ionInput)="updateSchedule()"
-                   placeholder="{{ 'PLACEHOLDER_SEARCH_MUNICIPIS' | translate }}">
+                   placeholder="{{ 'MUNICIPIS.PLACEHOLDER_SEARCH' | translate }}">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -37,10 +37,10 @@
 			
 			<ion-item-options>
 				<button ion-button color="favorite" (click)="addFavorite(slidingItem, municipi)" *ngIf="segment === 'all'">
-					{{ 'FAVOURITE' | translate }}
+					{{ 'MUNICIPIS.FAVOURITE' | translate }}
 				</button>
 				<button ion-button color="danger" (click)="removeFavorite(slidingItem, municipi, 'Remove Favorite')" *ngIf="segment === 'favorites'">
-					{{ 'REMOVE' | translate }}
+					{{ 'MUNICIPIS.REMOVE' | translate }}
 				</button>
       </ion-item-options>
 		</ion-item-sliding>
@@ -48,7 +48,7 @@
 	</ion-list>
 
 	<ion-list-header [hidden]="shownData > 0">
-      {{ 'NO_TOWN_FOUND' | translate }}
+      {{ 'MUNICIPIS.NO_TOWN_FOUND' | translate }}
   </ion-list-header>
 	
 </ion-content>	

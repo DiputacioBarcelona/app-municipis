@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-    <ion-title>{{ 'TITLE_POIS' | translate }}</ion-title>
+    <ion-title>{{ 'APP.TITLE_POIS' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,15 +11,15 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button ion-button medium block light>{{ 'LIST' | translate }}</button>
+        <button ion-button medium block light>{{ 'POIS.LIST' | translate }}</button>
       </ion-col>
       <ion-col>
-        <button ion-button medium block light>{{ 'MAP' | translate }}</button>
+        <button ion-button medium block light>{{ 'POIS.MAP' | translate }}</button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-item *ngIf="ine != undefined">
-    <ion-label>{{ 'TOWN' | translate }}:</ion-label>
+    <ion-label>{{ 'POIS.TOWN' | translate }}:</ion-label>
     <ion-select>
       <div *ngFor="let municipi of openData.municipisInfo">
         <ion-option *ngIf="municipi.ine == ine" selected="true">{{ municipi.municipi_nom }}</ion-option>
@@ -28,7 +28,7 @@
     </ion-select>
   </ion-item>
   <ion-item *ngIf="ine != undefined">
-    <ion-label>{{ 'THEME' | translate }}:</ion-label>
+    <ion-label>{{ 'POIS.THEME' | translate }}:</ion-label>
     <ion-select>
       <div *ngFor="let tema of openData.temes">
         <ion-option *ngIf="tema == temaActual" selected="true">{{ tema }}</ion-option>

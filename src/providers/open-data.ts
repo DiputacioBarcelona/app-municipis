@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Storage } from '@ionic/storage';
+/*import { Storage } from '@ionic/storage';*/
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -20,7 +20,7 @@ export class OpenData {
 
   constructor(
     private http: Http,
-    private storage: Storage,
+    /*private storage: Storage,*/
     public userData: UserData
   ) {}
 

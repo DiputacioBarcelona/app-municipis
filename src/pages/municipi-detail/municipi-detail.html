@@ -10,10 +10,10 @@
       <img class="thumbnail" src="{{ municipi.municipi_escut }}">
     </ion-thumbnail>
     <div>
-      {{ 'INE' | translate }}: {{ municipi.ine }} <br>
-      {{ 'CIE' | translate }}: {{ municipi.grup_ajuntament.cif }} <br>
-      {{ 'REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }} <br>
-      {{ 'PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}
+      {{ 'MUNICIPI-DETAIL.INE' | translate }}: {{ municipi.ine }} <br>
+      {{ 'MUNICIPI-DETAIL.CIF' | translate }}: {{ municipi.grup_ajuntament.cif }} <br>
+      {{ 'MUNICIPI-DETAIL.REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }} <br>
+      {{ 'MUNICIPI-DETAIL.PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}
     </div>
     <ion-icon *ngIf="favourite == true" (click)="toggleFavourite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
     <ion-icon *ngIf="favourite != true" (click)="toggleFavourite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
@@ -21,20 +21,20 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button ion-button medium block light (click)="goToPois()">{{ 'TITLE_POIS' | translate }}</button>
+        <button ion-button medium block light (click)="goToPois()">{{ 'APP.TITLE_POIS' | translate }}</button>
       </ion-col>
       <ion-col>
-        <button ion-button medium block light (click)="goToActivities()">{{ 'TITLE_ACTIVITIES' | translate }}</button>
+        <button ion-button medium block light (click)="goToActivities()">{{ 'APP.TITLE_ACTIVITIES' | translate }}</button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-item text-wrap class="item-text-wrap">
-    <h2>{{ 'CONTACT' | translate }}</h2>
-    <p ng-if="municipi.grup_ajuntament.adreca"><b>{{ 'ADDRESS' | translate }}:</b> {{ municipi.grup_ajuntament.adreca }}, {{ municipi.grup_ajuntament.codi_postal }}</p>
-    <p ng-if="municipi.grup_ajuntament.email"><b>{{ 'EMAIL' | translate }}:</b> {{ municipi.grup_ajuntament.email }}</p>
-    <p ng-if="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
-    <p ng-if="municipi.grup_ajuntament.fax"><b>{{ 'FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
-    <p ng-if="municipi.grup_ajuntament.localitzacio"><b>{{ 'COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</p>
+    <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
+    <p ng-if="municipi.grup_ajuntament.adreca"><b>{{ 'MUNICIPI-DETAIL.ADDRESS' | translate }}:</b> {{ municipi.grup_ajuntament.adreca }}, {{ municipi.grup_ajuntament.codi_postal }}</p>
+    <p ng-if="municipi.grup_ajuntament.email"><b>{{ 'MUNICIPI-DETAIL.EMAIL' | translate }}:</b> {{ municipi.grup_ajuntament.email }}</p>
+    <p ng-if="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
+    <p ng-if="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
+    <p ng-if="municipi.grup_ajuntament.localitzacio"><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</p>
   </ion-item>
   <br>
   <ion-row>

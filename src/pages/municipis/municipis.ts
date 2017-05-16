@@ -36,7 +36,7 @@ export class MunicipisPage {
 
 	updateSchedule() {
     let msg = 'Espereu siusplau...';
-    this.translate.get('LOADING_MESSAGE').subscribe((res: string) => {
+    this.translate.get('MUNICIPIS.LOADING_MESSAGE').subscribe((res: string) => {
         msg = res;
     });
 
@@ -58,6 +58,7 @@ export class MunicipisPage {
     });
 	}
 
+  //TODO: with PARSE: https://www.npmjs.com/package/ng2-translate
 	addFavorite(slidingItem: ItemSliding, municipiData: any) {
     if (this.userData.hasFavorite(municipiData.ine)) {
       // woops, they already favorited it! What shall we do!?
