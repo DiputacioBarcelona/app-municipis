@@ -4,45 +4,46 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-item text-wrap class="no-padding">
-    <ion-thumbnail item-left>
-      <img class="thumbnail" src="{{ municipi.municipi_escut }}">
-    </ion-thumbnail>
-    <div>
-      {{ 'MUNICIPI-DETAIL.INE' | translate }}: {{ municipi.ine }} <br>
-      {{ 'MUNICIPI-DETAIL.CIF' | translate }}: {{ municipi.grup_ajuntament.cif }} <br>
-      {{ 'MUNICIPI-DETAIL.REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }} <br>
-      {{ 'MUNICIPI-DETAIL.PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}
-    </div>
-    <ion-icon *ngIf="favorite == true" (click)="removeFavorite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
-    <ion-icon *ngIf="favorite != true" (click)="addFavorite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
-  </ion-item>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <button ion-button medium block light (click)="goToPois()">{{ 'APP.TITLE_POIS' | translate }}</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button medium block light (click)="goToActivities()">{{ 'APP.TITLE_ACTIVITIES' | translate }}</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-item text-wrap class="item-text-wrap">
-    <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
-    <p ng-if="municipi.grup_ajuntament.adreca"><b>{{ 'MUNICIPI-DETAIL.ADDRESS' | translate }}:</b> {{ municipi.grup_ajuntament.adreca }}, {{ municipi.grup_ajuntament.codi_postal }}</p>
-    <p ng-if="municipi.grup_ajuntament.email"><b>{{ 'MUNICIPI-DETAIL.EMAIL' | translate }}:</b> {{ municipi.grup_ajuntament.email }}</p>
-    <p ng-if="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
-    <p ng-if="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
-    <p ng-if="municipi.grup_ajuntament.localitzacio"><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</p>
-  </ion-item>
-  <br>
-  <ion-row>
-    <ion-col width-50>
-      <img src="{{ municipi.municipi_vista }}">
-    </ion-col>
-    <ion-col width-50>
-      <img item-left src="{{ municipi.municipi_bandera }}">
-    </ion-col>
-  </ion-row>
+<ion-content fullscreen>
+  <ion-card>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img class="thumbnail" src="{{ municipi.municipi_escut }}">
+      </ion-thumbnail>
+      <div>
+        {{ 'MUNICIPI-DETAIL.INE' | translate }}: {{ municipi.ine }} <br>
+        {{ 'MUNICIPI-DETAIL.CIF' | translate }}: {{ municipi.grup_ajuntament.cif }} <br>
+        {{ 'MUNICIPI-DETAIL.REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }} <br>
+        {{ 'MUNICIPI-DETAIL.PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}
+      </div>
+      <ion-icon *ngIf="favorite == true" (click)="removeFavorite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
+      <ion-icon *ngIf="favorite != true" (click)="addFavorite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
+    </ion-item>
+    
+    <img src="{{ municipi.municipi_vista }}" />
+    <ion-fab right middle>
+      <button ion-fab>
+        <ion-icon name="pin"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-card-content>
+      <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
+      <p ng-if="municipi.grup_ajuntament.adreca"><b>{{ 'MUNICIPI-DETAIL.ADDRESS' | translate }}:</b> {{ municipi.grup_ajuntament.adreca }}, {{ municipi.grup_ajuntament.codi_postal }}</p>
+      <p ng-if="municipi.grup_ajuntament.email"><b>{{ 'MUNICIPI-DETAIL.EMAIL' | translate }}:</b> {{ municipi.grup_ajuntament.email }}</p>
+      <p ng-if="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
+      <p ng-if="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
+      <p ng-if="municipi.grup_ajuntament.localitzacio"><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</p>
+    
+    </ion-card-content>    
+  </ion-card>
 </ion-content>
+
+<ion-row>
+  <ion-col>
+    <button ion-button medium block light (click)="goToPois()">{{ 'APP.TITLE_POIS' | translate }}</button>
+  </ion-col>
+  <ion-col>
+    <button ion-button medium block light (click)="goToActivities()">{{ 'APP.TITLE_ACTIVITIES' | translate }}</button>
+  </ion-col>
+</ion-row>

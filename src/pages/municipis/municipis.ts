@@ -81,7 +81,7 @@ export class MunicipisPage {
 
       // create an alert instance
       let alert = this.alertCtrl.create({
-        title: msg_added,
+        message: msg_added,
         buttons: [{
           text: msg_ok,
           handler: () => {
