@@ -81,7 +81,11 @@
 
     "CANCEL": "Cancel",
 
-    "MUNICIPIS.REMOVE_FAVORITE": "Remove favorite"
+    "MUNICIPIS.REMOVE_FAVORITE": "Remove favorite",
+
+    "PULL_TO_REFRESH": "Pull to refresh",
+
+    "REFRESHING": "Refreshing..."
   }
 
 }

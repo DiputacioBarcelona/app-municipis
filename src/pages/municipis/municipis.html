@@ -23,6 +23,14 @@
 </ion-header>
 
 <ion-content>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="{{ 'MUNICIPIS.PULL_TO_REFRESH' | translate }}"
+      refreshingSpinner="circles"
+      refreshingText="{{ 'MUNICIPIS.REFRESHING' | translate }}">
+    </ion-refresher-content>
+  </ion-refresher>
 
 	<ion-list #scheduleList [hidden]="shownData === 0">
 		<ion-item-sliding *ngFor="let municipi of data" #slidingItem [hidden]="municipi.hide">

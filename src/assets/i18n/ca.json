@@ -81,7 +81,11 @@
 
     "CANCEL": "Cancel·lar",
 
-    "REMOVE_FAVORITE": "Eliminar preferit"
+    "REMOVE_FAVORITE": "Eliminar preferit",
+
+    "PULL_TO_REFRESH": "Actualitzar",
+
+    "REFRESHING": "Actualizant..."
   }
 
 }

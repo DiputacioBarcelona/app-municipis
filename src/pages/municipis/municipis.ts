@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App, LoadingController, ItemSliding, AlertController, Events } from 'ionic-angular';
+import { NavController, App, LoadingController, ItemSliding, AlertController, Events, Refresher } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -37,6 +37,14 @@ export class MunicipisPage {
       this.updateSchedule();
     });
 	}
+
+  doRefresh(refresher: Refresher) {
+    this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
+      this.data = data.elements;
+      this.shownData = data.shownData;
+			refresher.complete();
+    });
+  }
 
 	updateSchedule() {
     let msg = 'Espereu siusplau...';
