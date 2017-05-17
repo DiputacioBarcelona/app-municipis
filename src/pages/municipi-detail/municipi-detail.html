@@ -1,6 +1,15 @@
 <ion-header>
   <ion-navbar>
     <ion-title>{{ municipi.municipi_nom }}</ion-title>
+    <!--<ion-icon *ngIf="favorite == true" (click)="removeFavorite()" clear  color="light" item-right   name="star" class="fav"></ion-icon>
+    <ion-icon *ngIf="favorite != true" (click)="addFavorite()" clear color="light" item-right   name="star-outline" class="fav"></ion-icon>-->
+
+    <button ion-button color="light" (click)="removeFavorite()" *ngIf="favorite == true" item-right>
+      <ion-icon name="star"></ion-icon>
+    </button>
+    <button ion-button color="light" (click)="addFavorite()" *ngIf="favorite != true" item-right>
+      <ion-icon name="star-outline"></ion-icon>
+    </button>
   </ion-navbar>
 </ion-header>
 
@@ -60,7 +69,7 @@
     </ion-row>
 
   </ion-card>
-  <ion-fab top right (click)="removeFavorite()" *ngIf="favorite == true">
+  <!--<ion-fab top right (click)="removeFavorite()" *ngIf="favorite == true">
         <button ion-fab>
           <ion-icon name="star"></ion-icon>
         </button>
@@ -69,7 +78,7 @@
         <button ion-fab>
           <ion-icon name="star-outline"></ion-icon>
         </button>
-      </ion-fab>
+      </ion-fab>-->
 </ion-content>
 
 <ion-fab bottom right #fab>
