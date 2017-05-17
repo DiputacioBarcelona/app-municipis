@@ -1,14 +1,15 @@
 <ion-header>
-
   <ion-navbar>
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>    
     <ion-title>{{ 'APP.TITLE_ACTIVITIES' | translate }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
+	<ion-list-header [hidden]="shownData > 0">
+      {{ 'ACTIVITIES.NO_ACTIVITIES_FOUND' | translate }}
+  </ion-list-header>
 </ion-content>

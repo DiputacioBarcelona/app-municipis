@@ -10,31 +10,23 @@
       <ion-thumbnail item-left>
         <img class="thumbnail" src="{{ municipi.municipi_escut }}">
       </ion-thumbnail>
-      <div>
-        {{ 'MUNICIPI-DETAIL.INE' | translate }}: {{ municipi.ine }} <br>
+      <p>
+        {{ 'MUNICIPI-DETAIL.REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }}<br>
+        {{ 'MUNICIPI-DETAIL.PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}<br>
+        {{ 'MUNICIPI-DETAIL.INE' | translate }}: {{ municipi.ine }}<br>
         {{ 'MUNICIPI-DETAIL.CIF' | translate }}: {{ municipi.grup_ajuntament.cif }} <br>
-        {{ 'MUNICIPI-DETAIL.REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }} <br>
-        {{ 'MUNICIPI-DETAIL.PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}
-      </div>
-     
-     <ion-fab top right (click)="removeFavorite()" *ngIf="favorite == true">
-        <button ion-fab>
-          <ion-icon name="star"></ion-icon>
-        </button>
-      </ion-fab>
-      <ion-fab top right (click)="addFavorite()" *ngIf="favorite != true">
-        <button ion-fab>
-          <ion-icon name="star-outline"></ion-icon>
-        </button>
-      </ion-fab>
+      </p>
+      <!--<ion-icon *ngIf="favorite == true" (click)="removeFavorite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
+      <ion-icon *ngIf="favorite != true" (click)="addFavorite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
+     -->
     </ion-item>
     
     <img src="{{ municipi.municipi_vista }}" />
-    <ion-fab right middle (click)="openMap()">
+    <!--<ion-fab right middle (click)="openMap()">
       <button ion-fab>
         <ion-icon name="navigate"></ion-icon>
       </button>
-    </ion-fab>
+    </ion-fab>-->
 
     <ion-card-content>
       <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
@@ -43,7 +35,13 @@
       <p ng-if="municipi.grup_ajuntament.url_general"><b>{{ 'MUNICIPI-DETAIL.URL' | translate }}:</b> {{ municipi.grup_ajuntament.url_general }}</p>
       <p ng-if="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
       <p ng-if="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
-      <p ng-if="municipi.grup_ajuntament.localitzacio"><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</p>
+      <p ng-if="municipi.grup_ajuntament.localitzacio">
+
+        <button ion-button icon-left clear small (click)="openMap()">
+          <ion-icon name="navigate"></ion-icon>
+          <div><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</div>
+        </button>
+      </p>
     </ion-card-content>
 
     <ion-row>
@@ -62,6 +60,16 @@
     </ion-row>
 
   </ion-card>
+  <ion-fab top right (click)="removeFavorite()" *ngIf="favorite == true">
+        <button ion-fab>
+          <ion-icon name="star"></ion-icon>
+        </button>
+      </ion-fab>
+      <ion-fab top right (click)="addFavorite()" *ngIf="favorite != true">
+        <button ion-fab>
+          <ion-icon name="star-outline"></ion-icon>
+        </button>
+      </ion-fab>
 </ion-content>
 
 <ion-fab bottom right #fab>

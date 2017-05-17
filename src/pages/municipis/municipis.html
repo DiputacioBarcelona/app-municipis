@@ -32,7 +32,7 @@
     </ion-refresher-content>
   </ion-refresher>
 
-	<ion-list #scheduleList [hidden]="shownData === 0">
+	<ion-list [hidden]="shownData === 0">
 		<ion-item-sliding *ngFor="let municipi of data" #slidingItem [hidden]="municipi.hide">
 			
 			<button ion-item (click)="goToMunicipiDetail(municipi)">
