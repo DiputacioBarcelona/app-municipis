@@ -32,7 +32,9 @@ export function createTranslateLoader(http: Http) {
     ActivitiesPage
   ],
   imports: [
-    IonicModule.forRoot(DibaMunicipisApp),
+    IonicModule.forRoot(DibaMunicipisApp, {
+      backButtonText: ''
+    }),
     IonicStorageModule.forRoot({
       name: '__mesmunicipisdb'
     }),
