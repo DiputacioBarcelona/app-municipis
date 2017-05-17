@@ -1,33 +1,27 @@
 <ion-header>
-	<expandable-header [scrollArea]="content" headerHeight="80">
-		<ion-title>{{ 'APP.TITLE_MUNICIPIS' | translate }}</ion-title>
-		<ion-toolbar no-border-top>
-    <ion-searchbar color="primary"
-									 [(ngModel)]="queryText"                 
-                   (ionInput)="updateSchedule()"
-                   placeholder="{{ 'MUNICIPIS.PLACEHOLDER_SEARCH' | translate }}">
-    </ion-searchbar>
-  </ion-toolbar>
-	</expandable-header>
+ 	<ion-navbar no-border-bottom>
+ 		<button ion-button menuToggle>
+ 			<ion-icon name="menu"></ion-icon>
+ 		</button>
+ 		<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+       <ion-segment-button value="all">
+         {{ 'MUNICIPIS.ALL' | translate }}
+       </ion-segment-button>
+       <ion-segment-button value="favorites">
+         {{ 'MUNICIPIS.FAVOURITES' | translate }}
+       </ion-segment-button>
+     </ion-segment>
+ 	</ion-navbar>
+ 	<ion-toolbar no-border-top>
+     <ion-searchbar color="primary"
+ 									 [(ngModel)]="queryText"                 
+                    (ionInput)="updateSchedule()"
+                    placeholder="{{ 'MUNICIPIS.PLACEHOLDER_SEARCH' | translate }}">
+     </ion-searchbar>
+   </ion-toolbar>
+ </ion-header>
 
-	<ion-navbar no-border-bottom>
-		<button ion-button menuToggle>
-			<ion-icon name="menu"></ion-icon>
-		</button>
-		
-		<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-      <ion-segment-button value="all">
-        {{ 'MUNICIPIS.ALL' | translate }}
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        {{ 'MUNICIPIS.FAVOURITES' | translate }}
-      </ion-segment-button>
-    </ion-segment>
-	</ion-navbar>
-	
-</ion-header>
-
-<ion-content fullscreen #content>
+<ion-content>
 
 	<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -47,7 +41,6 @@
 				</ion-thumbnail>
 				<h3>{{ municipi.municipi_nom }}</h3>
 				<p>{{ municipi.grup_comarca.comarca_nom }}</p>
-				<ion-icon name="more" item-right></ion-icon>
       </button>
 			
 			<ion-item-options>

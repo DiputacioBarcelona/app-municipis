@@ -19,8 +19,6 @@ import { ActivitiesPage } from '../pages/activities/activities';
 import { OpenData } from '../providers/open-data';
 import { UserData } from '../providers/user-data';
 
-import { ExpandableHeader } from '../components/expandable-header/expandable-header';
-
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
 }
@@ -31,8 +29,7 @@ export function createTranslateLoader(http: Http) {
     MunicipisPage,
     MunicipiDetailPage,
     PoisPage,
-    ActivitiesPage,
-    ExpandableHeader
+    ActivitiesPage
   ],
   imports: [
     IonicModule.forRoot(DibaMunicipisApp),
