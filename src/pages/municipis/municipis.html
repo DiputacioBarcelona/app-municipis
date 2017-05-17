@@ -1,25 +1,25 @@
 <ion-header>
- 	<ion-navbar no-border-bottom>
- 		<button ion-button menuToggle>
- 			<ion-icon name="menu"></ion-icon>
- 		</button>
- 		<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-       <ion-segment-button value="all">
-         {{ 'MUNICIPIS.ALL' | translate }}
-       </ion-segment-button>
-       <ion-segment-button value="favorites">
-         {{ 'MUNICIPIS.FAVOURITES' | translate }}
-       </ion-segment-button>
-     </ion-segment>
- 	</ion-navbar>
- 	<ion-toolbar no-border-top>
-     <ion-searchbar color="primary"
- 									 [(ngModel)]="queryText"                 
-                    (ionInput)="updateSchedule()"
-                    placeholder="{{ 'MUNICIPIS.PLACEHOLDER_SEARCH' | translate }}">
-     </ion-searchbar>
-   </ion-toolbar>
- </ion-header>
+	<ion-navbar no-border-bottom>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+			<ion-segment-button value="all">
+				{{ 'MUNICIPIS.ALL' | translate }}
+			</ion-segment-button>
+			<ion-segment-button value="favorites">
+				{{ 'MUNICIPIS.FAVOURITES' | translate }}
+			</ion-segment-button>
+		</ion-segment>
+	</ion-navbar>
+	<ion-toolbar no-border-top>
+		<ion-searchbar color="primary"
+									[(ngModel)]="queryText"                 
+									(ionInput)="updateSchedule()"
+									placeholder="{{ 'MUNICIPIS.PLACEHOLDER_SEARCH' | translate }}">
+		</ion-searchbar>
+	</ion-toolbar>
+</ion-header>
 
 <ion-content>
 
