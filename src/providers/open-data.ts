@@ -43,7 +43,8 @@ export class OpenData {
       console.log('Observable');
       return Observable.of(this.dataMunicipi);
     } else {
-      return this.getDatasetAPIContent('municipis', 'municipi_transliterat').map((data: any)=>{
+			let orderBy: string[] = ['comarca_nom', 'municipi_transliterat'];
+      return this.getDatasetAPIContent('municipis', orderBy).map((data: any)=>{
         this.dataMunicipi = data;  
         return this.dataMunicipi;
       });
@@ -76,8 +77,15 @@ export class OpenData {
     municipi.hide = !(matchesQueryText && matchesSegment);
   }
 
-  private getDatasetAPIContent(datasetName: string, camp_ord: string): any {  
-    let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/ord-' + camp_ord + '/token/' + this.TOKEN;
+  private getDatasetAPIContent(datasetName: string, orderBy: string[]): any {  
+    let strOrderBy : string = '';
+		if (orderBy.length) {
+			orderBy.forEach((field: string) => {
+        strOrderBy += 'ord-' + field + '/asc/'
+      });
+		}
+		
+		let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/' + strOrderBy + 'token/' + this.TOKEN;
     console.log('URL: ' + url);
     
     let elements = this.http.get(url)
