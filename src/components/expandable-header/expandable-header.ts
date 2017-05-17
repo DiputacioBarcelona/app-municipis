@@ -14,23 +14,18 @@ export class ExpandableHeader {
   constructor (
     public element: ElementRef,
     public renderer: Renderer
-  ) {
+  ) {}
+
+  ngOnInit(){
     this.renderer.setElementStyle(this.element.nativeElement, 'height', this.headerHeight + 'px');
-  }
-
-
-  ngAfterViewInit(){
-    console.log(this.scrollArea);
-
+ 
     this.scrollArea.ionScroll.subscribe((ev) => {
       this.resizeHeader(ev);
     });
   }
 
   resizeHeader(ev){
- 
     ev.domWrite(() => {
-      /*console.log(ev.scrollTop);*/
       this.newHeaderHeight = this.headerHeight - ev.scrollTop;
  
       if(this.newHeaderHeight < 0){
@@ -50,10 +45,8 @@ export class ExpandableHeader {
           headerElement.isHidden = false;
           this.renderer.setElementStyle(headerElement, 'opacity', '0.7');
         }
- 
       }
- 
     });
- 
   }
+
 }
