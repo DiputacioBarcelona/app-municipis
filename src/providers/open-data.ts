@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-/*import { Storage } from '@ionic/storage';*/
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -20,21 +19,8 @@ export class OpenData {
 
   constructor(
     private http: Http,
-    /*private storage: Storage,*/
     public userData: UserData
   ) {}
-
-  // http://do.diba.cat/api/dataset/municipis/format/JSON/ord-municipi_transliterat/token/6b628524631aa27df30d122024f32dd8/pag-ini/0/pag-fi/1
-/*  private getUpdateDateAPI(datasetName: string) {
-    let url : string  = this.BASEURL + 'dataset/' + '/format/JSON/token/' + this.TOKEN;
-    console.log('URL: ' + url);
-
-    let jsonObject = this.http.get(url)
-      .map(res => res.json()['modificacio'])
-      .timeout(5000);
-
-    return jsonObject
-  }*/
 
   getMunicipis(queryText = '', segment = 'all') {
      return this.loadMunicipis().map((jsonObject: any) => {
