@@ -16,14 +16,23 @@
         {{ 'MUNICIPI-DETAIL.REGION' | translate }}: {{ municipi.grup_comarca.comarca_nom }} <br>
         {{ 'MUNICIPI-DETAIL.PROVINCE' | translate }}: {{ municipi.grup_provincia.provincia_nom }}
       </div>
-      <ion-icon *ngIf="favorite == true" (click)="removeFavorite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
-      <ion-icon *ngIf="favorite != true" (click)="addFavorite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
+     
+     <ion-fab top right (click)="removeFavorite()" *ngIf="favorite == true">
+        <button ion-fab>
+          <ion-icon name="star"></ion-icon>
+        </button>
+      </ion-fab>
+      <ion-fab top right (click)="addFavorite()" *ngIf="favorite != true">
+        <button ion-fab>
+          <ion-icon name="star-outline"></ion-icon>
+        </button>
+      </ion-fab>
     </ion-item>
     
     <img src="{{ municipi.municipi_vista }}" />
     <ion-fab right middle (click)="openMap()">
       <button ion-fab>
-        <ion-icon name="pin"></ion-icon>
+        <ion-icon name="navigate"></ion-icon>
       </button>
     </ion-fab>
 
@@ -35,28 +44,18 @@
       <p ng-if="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
       <p ng-if="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
       <p ng-if="municipi.grup_ajuntament.localitzacio"><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</p>
-    
-    </ion-card-content>    
-
-<!--    <ion-row>
-      <ion-col>
-        <button ion-button medium block light (click)="goToPois()">{{ 'APP.TITLE_POIS' | translate }}</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button medium block light (click)="goToActivities()">{{ 'APP.TITLE_ACTIVITIES' | translate }}</button>
-      </ion-col>
-    </ion-row>-->
+    </ion-card-content>
 
     <ion-row>
       <ion-col>
         <button ion-button icon-left clear small (click)="goToPois()">
-          <ion-icon name="thumbs-up"></ion-icon>
+          <ion-icon name="pin"></ion-icon>
           <div>{{ 'APP.TITLE_POIS' | translate }}</div>
         </button>
       </ion-col>
       <ion-col>
         <button ion-button icon-left clear small (click)="goToActivities()">
-          <ion-icon name="text"></ion-icon>
+          <ion-icon name="calendar"></ion-icon>
           <div>{{ 'APP.TITLE_ACTIVITIES' | translate }}</div>
         </button>
       </ion-col>
@@ -64,11 +63,14 @@
 
   </ion-card>
 </ion-content>
+
 <ion-fab bottom right #fab>
   <button ion-fab><ion-icon name="share"></ion-icon></button>
   <ion-fab-list side="left">
     <button ion-fab color="twitter" (click)="share('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
     <button ion-fab color="facebook" (click)="share('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
+    <button ion-fab color="whatsapp" (click)="share('Whatsapp', fab)"><ion-icon name="logo-whatsapp"></ion-icon></button>
+    <button ion-fab color="primary" (click)="share('Mail', fab)"><ion-icon name="mail"></ion-icon></button>
   </ion-fab-list>
 </ion-fab>
 
