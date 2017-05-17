@@ -1,9 +1,20 @@
 <ion-header>
+	<expandable-header [scrollArea]="content" headerHeight="80">
+		<ion-title>{{ 'APP.TITLE_MUNICIPIS' | translate }}</ion-title>
+		<ion-toolbar no-border-top>
+    <ion-searchbar color="primary"
+									 [(ngModel)]="queryText"                 
+                   (ionInput)="updateSchedule()"
+                   placeholder="{{ 'MUNICIPIS.PLACEHOLDER_SEARCH' | translate }}">
+    </ion-searchbar>
+  </ion-toolbar>
+	</expandable-header>
+
 	<ion-navbar no-border-bottom>
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>{{ 'APP.TITLE_MUNICIPIS' | translate }}</ion-title>
+		
 		<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
       <ion-segment-button value="all">
         {{ 'MUNICIPIS.ALL' | translate }}
@@ -13,16 +24,11 @@
       </ion-segment-button>
     </ion-segment>
 	</ion-navbar>
-	<ion-toolbar no-border-top>
-    <ion-searchbar color="primary"
-									 [(ngModel)]="queryText"                 
-                   (ionInput)="updateSchedule()"
-                   placeholder="{{ 'MUNICIPIS.PLACEHOLDER_SEARCH' | translate }}">
-    </ion-searchbar>
-  </ion-toolbar>
+	
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen #content>
+
 	<ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -52,8 +58,8 @@
 					{{ 'MUNICIPIS.REMOVE' | translate }}
 				</button>
       </ion-item-options>
-		</ion-item-sliding>
 
+		</ion-item-sliding>
 	</ion-list>
 
 	<ion-list-header [hidden]="shownData > 0">

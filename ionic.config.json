@@ -1,5 +1,6 @@
 {
   "name": "DibaMunicipis",
   "app_id": "e9e0fc84",
+  "v2": true,
   "type": "ionic-angular"
 }
