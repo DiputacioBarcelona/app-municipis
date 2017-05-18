@@ -5,7 +5,7 @@
 		</button>
 		<ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
 			<ion-segment-button value="all">
-				{{ 'MUNICIPIS.ALL' | translate }}
+				{{ 'MUNICIPIS.ALL' | translate }} 
 			</ion-segment-button>
 			<ion-segment-button value="favorites">
 				{{ 'MUNICIPIS.FAVOURITES' | translate }}
@@ -33,7 +33,40 @@
   </ion-refresher>
 
 	<ion-list [hidden]="shownData === 0">
-		<ion-item-sliding *ngFor="let municipi of data" #slidingItem [hidden]="municipi.hide">
+
+		<ion-item-group *ngFor="let comarca of data" > <!--[hidden]="group.hide"-->
+
+		<ion-item-divider sticky>
+			<ion-label>
+			{{ comarca.comarca_nom }}
+			</ion-label>
+		</ion-item-divider>
+
+		<ion-item-sliding *ngFor="let municipi of comarca.municipis" #slidingItem > <!--[attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide"-->
+
+			<button ion-item (click)="goToMunicipiDetail(municipi)">
+				<ion-thumbnail item-left>
+					<img src="{{ municipi.municipi_escut }}">
+				</ion-thumbnail>
+				<h3>{{ municipi.municipi_nom }}</h3>
+				<!--<p>{{ municipi.grup_comarca.comarca_nom }}</p>-->
+      		</button>
+			
+			<ion-item-options>
+				<button ion-button color="favorite" (click)="addFavorite(slidingItem, municipi)" *ngIf="segment === 'all'">
+					{{ 'MUNICIPIS.FAVORITE' | translate }}
+				</button>
+				<button ion-button color="danger" (click)="removeFavorite(slidingItem, municipi, true )" *ngIf="segment === 'favorites'">
+					{{ 'MUNICIPIS.REMOVE' | translate }}
+				</button>
+      		</ion-item-options>
+
+		</ion-item-sliding>
+
+		</ion-item-group>
+
+
+<!--		<ion-item-sliding *ngFor="let municipi of data" #slidingItem [hidden]="municipi.hide">
 			
 			<button ion-item (click)="goToMunicipiDetail(municipi)">
 				<ion-thumbnail item-left>
@@ -41,7 +74,7 @@
 				</ion-thumbnail>
 				<h3>{{ municipi.municipi_nom }}</h3>
 				<p>{{ municipi.grup_comarca.comarca_nom }}</p>
-      </button>
+      		</button>
 			
 			<ion-item-options>
 				<button ion-button color="favorite" (click)="addFavorite(slidingItem, municipi)" *ngIf="segment === 'all'">
@@ -52,7 +85,8 @@
 				</button>
       </ion-item-options>
 
-		</ion-item-sliding>
+		</ion-item-sliding>-->
+
 	</ion-list>
 
 	<ion-list-header [hidden]="shownData > 0">

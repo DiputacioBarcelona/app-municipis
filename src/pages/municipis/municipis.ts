@@ -40,7 +40,7 @@ export class MunicipisPage {
 
   doRefresh(refresher: Refresher) {
     this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
-      this.data = data.elements;
+      this.data = data;
       this.shownData = data.shownData;
 			refresher.complete();
     });
@@ -56,7 +56,8 @@ export class MunicipisPage {
 		loading.present();
 
 		this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
-      this.data = data.elements;
+      this.data = data;
+      console.log(data);
       this.shownData = data.shownData;
 			loading.dismiss();
     });

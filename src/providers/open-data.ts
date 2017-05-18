@@ -27,13 +27,22 @@ export class OpenData {
       let data = jsonObject;
       data.shownData = 0;
 
-      data.elements.forEach((municipi: any) => {
-      // check if this municipi should show or not
-      this.filterMunicipis(municipi, queryText, segment);
+			/*data.comarques.forEach((comarca: any) => {
+        comarca.hide = true;
+
+        comarca.municipis.forEach((municipi: any) => {
+          /// check if this municipi should show or not
+          this.filterMunicipis(municipi, queryText, segment);
+
           if (!municipi.hide) {
+            // if this session is not hidden then this group should show
+            comarca.hide = false;
             data.shownData++;
           }
-      });
+        });
+
+      });*/
+			data.shownData++;
       return data;
     });
   }
@@ -44,13 +53,324 @@ export class OpenData {
       return Observable.of(this.dataMunicipi);
     } else {
 			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},
-													{"fieldName":"municipi_transliterat","order":"asc"}];
-      return this.getDatasetAPIContent('municipis', orderBy).map((data: any)=>{
-        this.dataMunicipi = data;  
-        return this.dataMunicipi;
+												{"fieldName":"municipi_transliterat","order":"asc"}];
+			return this.getDatasetAPIContent('municipis', orderBy).map((data: any)=>{
+				return this.processData(data).map((newdata: any)=>{
+					this.dataMunicipi = newdata;  
+        	return this.dataMunicipi;
+				});
       });
     }
   }
+
+	processData(data: any) : any{
+		/*var retValue = [{ "fieldName":"comarca_nom","order":"asc"},
+												{"fieldName":"municipi_transliterat","order":"asc"}];*/
+		
+		let retValue = [{
+											"comarca_nom": "NOM1_TEST_COMARCA",
+											"municipis":
+											[
+												{
+												"ine": "08013",
+												"municipi_nom": "Avinyonet del PenedÃ¨s",
+												"municipi_nom_curt": "Avinyonet del PenedÃ¨s",
+												"municipi_article": "",
+												"municipi_transliterat": "avinyonet_del_penedes",
+												"municipi_curt_transliterat": "avinyonet_del_penedes",
+												"centre_municipal": "41.361054,1.779303",
+												"grup_comarca": {
+													"comarca_codi": "3",
+													"comarca_nom": "Alt PenedÃ¨s"
+												},
+												"grup_provincia": {
+													"provincia_codi": "8",
+													"provincia_nom": "Barcelona"
+												},
+												"grup_ajuntament": {
+													"adreca": "Pl. Vila, 1",
+													"codi_postal": "08793",
+													"localitzacio": "41.361054,1.779303",
+													"telefon_contacte": "938970000",
+													"fax": "938970667",
+													"email": "avinyonet@diba.cat",
+													"url_general": "http://www.avinyonet.org",
+													"cif": "P0801300E"
+												},
+												"municipi_escut": "http://media.diba.cat/diba/municipis/img/escuts/ec08013.png",
+												"municipi_bandera": "",
+												"municipi_vista": "http://media.diba.cat/diba/municipis/img/vistes/vista08013.jpg",
+												"ine6": "080137"
+											},
+											{
+												"ine": "08013",
+												"municipi_nom": "Avinyonet del PenedÃ¨s",
+												"municipi_nom_curt": "Avinyonet del PenedÃ¨s",
+												"municipi_article": "",
+												"municipi_transliterat": "avinyonet_del_penedes",
+												"municipi_curt_transliterat": "avinyonet_del_penedes",
+												"centre_municipal": "41.361054,1.779303",
+												"grup_comarca": {
+													"comarca_codi": "3",
+													"comarca_nom": "Alt PenedÃ¨s"
+												},
+												"grup_provincia": {
+													"provincia_codi": "8",
+													"provincia_nom": "Barcelona"
+												},
+												"grup_ajuntament": {
+													"adreca": "Pl. Vila, 1",
+													"codi_postal": "08793",
+													"localitzacio": "41.361054,1.779303",
+													"telefon_contacte": "938970000",
+													"fax": "938970667",
+													"email": "avinyonet@diba.cat",
+													"url_general": "http://www.avinyonet.org",
+													"cif": "P0801300E"
+												},
+												"municipi_escut": "http://media.diba.cat/diba/municipis/img/escuts/ec08013.png",
+												"municipi_bandera": "",
+												"municipi_vista": "http://media.diba.cat/diba/municipis/img/vistes/vista08013.jpg",
+												"ine6": "080137"
+											},
+											{
+												"ine": "08013",
+												"municipi_nom": "Avinyonet del PenedÃ¨s",
+												"municipi_nom_curt": "Avinyonet del PenedÃ¨s",
+												"municipi_article": "",
+												"municipi_transliterat": "avinyonet_del_penedes",
+												"municipi_curt_transliterat": "avinyonet_del_penedes",
+												"centre_municipal": "41.361054,1.779303",
+												"grup_comarca": {
+													"comarca_codi": "3",
+													"comarca_nom": "Alt PenedÃ¨s"
+												},
+												"grup_provincia": {
+													"provincia_codi": "8",
+													"provincia_nom": "Barcelona"
+												},
+												"grup_ajuntament": {
+													"adreca": "Pl. Vila, 1",
+													"codi_postal": "08793",
+													"localitzacio": "41.361054,1.779303",
+													"telefon_contacte": "938970000",
+													"fax": "938970667",
+													"email": "avinyonet@diba.cat",
+													"url_general": "http://www.avinyonet.org",
+													"cif": "P0801300E"
+												},
+												"municipi_escut": "http://media.diba.cat/diba/municipis/img/escuts/ec08013.png",
+												"municipi_bandera": "",
+												"municipi_vista": "http://media.diba.cat/diba/municipis/img/vistes/vista08013.jpg",
+												"ine6": "080137"
+											},
+											{
+												"ine": "08013",
+												"municipi_nom": "Avinyonet del PenedÃ¨s",
+												"municipi_nom_curt": "Avinyonet del PenedÃ¨s",
+												"municipi_article": "",
+												"municipi_transliterat": "avinyonet_del_penedes",
+												"municipi_curt_transliterat": "avinyonet_del_penedes",
+												"centre_municipal": "41.361054,1.779303",
+												"grup_comarca": {
+													"comarca_codi": "3",
+													"comarca_nom": "Alt PenedÃ¨s"
+												},
+												"grup_provincia": {
+													"provincia_codi": "8",
+													"provincia_nom": "Barcelona"
+												},
+												"grup_ajuntament": {
+													"adreca": "Pl. Vila, 1",
+													"codi_postal": "08793",
+													"localitzacio": "41.361054,1.779303",
+													"telefon_contacte": "938970000",
+													"fax": "938970667",
+													"email": "avinyonet@diba.cat",
+													"url_general": "http://www.avinyonet.org",
+													"cif": "P0801300E"
+												},
+												"municipi_escut": "http://media.diba.cat/diba/municipis/img/escuts/ec08013.png",
+												"municipi_bandera": "",
+												"municipi_vista": "http://media.diba.cat/diba/municipis/img/vistes/vista08013.jpg",
+												"ine6": "080137"
+												}
+											]	
+									 		},
+											 {
+											"comarca_nom": "NOM1_TEST_COMARCA_2",
+											"municipis":
+											[
+												{
+												"ine": "08013",
+												"municipi_nom": "Avinyonet del PenedÃ¨s",
+												"municipi_nom_curt": "Avinyonet del PenedÃ¨s",
+												"municipi_article": "",
+												"municipi_transliterat": "avinyonet_del_penedes",
+												"municipi_curt_transliterat": "avinyonet_del_penedes",
+												"centre_municipal": "41.361054,1.779303",
+												"grup_comarca": {
+													"comarca_codi": "3",
+													"comarca_nom": "Alt PenedÃ¨s"
+												},
+												"grup_provincia": {
+													"provincia_codi": "8",
+													"provincia_nom": "Barcelona"
+												},
+												"grup_ajuntament": {
+													"adreca": "Pl. Vila, 1",
+													"codi_postal": "08793",
+													"localitzacio": "41.361054,1.779303",
+													"telefon_contacte": "938970000",
+													"fax": "938970667",
+													"email": "avinyonet@diba.cat",
+													"url_general": "http://www.avinyonet.org",
+													"cif": "P0801300E"
+												},
+												"municipi_escut": "http://media.diba.cat/diba/municipis/img/escuts/ec08013.png",
+												"municipi_bandera": "",
+												"municipi_vista": "http://media.diba.cat/diba/municipis/img/vistes/vista08013.jpg",
+												"ine6": "080137"
+											},
+											{
+												"ine": "08013",
+												"municipi_nom": "Avinyonet del PenedÃ¨s",
+												"municipi_nom_curt": "Avinyonet del PenedÃ¨s",
+												"municipi_article": "",
+												"municipi_transliterat": "avinyonet_del_penedes",
+												"municipi_curt_transliterat": "avinyonet_del_penedes",
+												"centre_municipal": "41.361054,1.779303",
+												"grup_comarca": {
+													"comarca_codi": "3",
+													"comarca_nom": "Alt PenedÃ¨s"
+												},
+												"grup_provincia": {
+													"provincia_codi": "8",
+													"provincia_nom": "Barcelona"
+												},
+												"grup_ajuntament": {
+													"adreca": "Pl. Vila, 1",
+													"codi_postal": "08793",
+													"localitzacio": "41.361054,1.779303",
+													"telefon_contacte": "938970000",
+													"fax": "938970667",
+													"email": "avinyonet@diba.cat",
+													"url_general": "http://www.avinyonet.org",
+													"cif": "P0801300E"
+												},
+												"municipi_escut": "http://media.diba.cat/diba/municipis/img/escuts/ec08013.png",
+												"municipi_bandera": "",
+												"municipi_vista": "http://media.diba.cat/diba/municipis/img/vistes/vista08013.jpg",
+												"ine6": "080137"
+											},
+											{
+												"ine": "08013",
+												"municipi_nom": "Avinyonet del PenedÃ¨s",
+												"municipi_nom_curt": "Avinyonet del PenedÃ¨s",
+												"municipi_article": "",
+												"municipi_transliterat": "avinyonet_del_penedes",
+												"municipi_curt_transliterat": "avinyonet_del_penedes",
+												"centre_municipal": "41.361054,1.779303",
+												"grup_comarca": {
+													"comarca_codi": "3",
+													"comarca_nom": "Alt PenedÃ¨s"
+												},
+												"grup_provincia": {
+													"provincia_codi": "8",
+													"provincia_nom": "Barcelona"
+												},
+												"grup_ajuntament": {
+													"adreca": "Pl. Vila, 1",
+													"codi_postal": "08793",
+													"localitzacio": "41.361054,1.779303",
+													"telefon_contacte": "938970000",
+													"fax": "938970667",
+													"email": "avinyonet@diba.cat",
+													"url_general": "http://www.avinyonet.org",
+													"cif": "P0801300E"
+												},
+												"municipi_escut": "http://media.diba.cat/diba/municipis/img/escuts/ec08013.png",
+												"municipi_bandera": "",
+												"municipi_vista": "http://media.diba.cat/diba/municipis/img/vistes/vista08013.jpg",
+												"ine6": "080137"
+											},
+											{
+												"ine": "08013",
+												"municipi_nom": "Avinyonet del PenedÃ¨s",
+												"municipi_nom_curt": "Avinyonet del PenedÃ¨s",
+												"municipi_article": "",
+												"municipi_transliterat": "avinyonet_del_penedes",
+												"municipi_curt_transliterat": "avinyonet_del_penedes",
+												"centre_municipal": "41.361054,1.779303",
+												"grup_comarca": {
+													"comarca_codi": "3",
+													"comarca_nom": "Alt PenedÃ¨s"
+												},
+												"grup_provincia": {
+													"provincia_codi": "8",
+													"provincia_nom": "Barcelona"
+												},
+												"grup_ajuntament": {
+													"adreca": "Pl. Vila, 1",
+													"codi_postal": "08793",
+													"localitzacio": "41.361054,1.779303",
+													"telefon_contacte": "938970000",
+													"fax": "938970667",
+													"email": "avinyonet@diba.cat",
+													"url_general": "http://www.avinyonet.org",
+													"cif": "P0801300E"
+												},
+												"municipi_escut": "http://media.diba.cat/diba/municipis/img/escuts/ec08013.png",
+												"municipi_bandera": "",
+												"municipi_vista": "http://media.diba.cat/diba/municipis/img/vistes/vista08013.jpg",
+												"ine6": "080137"
+												}
+											]	
+									 		}];
+
+	/*	data.elements*/
+		
+		return retValue;
+	}
+
+	/*processData(data: any) {
+    // just some good 'ol JS fun with objects and arrays
+    // build up the data by linking speakers to sessions
+    this.data = data.json();
+
+    this.data.tracks = [];
+
+    // loop through each day in the schedule
+    this.data.schedule.forEach((day: any) => {
+      // loop through each timeline group in the day
+      day.groups.forEach((group: any) => {
+        // loop through each session in the timeline group
+        group.sessions.forEach((session: any) => {
+          session.speakers = [];
+          if (session.speakerNames) {
+            session.speakerNames.forEach((speakerName: any) => {
+              let speaker = this.data.speakers.find((s: any) => s.name === speakerName);
+              if (speaker) {
+                session.speakers.push(speaker);
+                speaker.sessions = speaker.sessions || [];
+                speaker.sessions.push(session);
+              }
+            });
+          }
+
+          if (session.tracks) {
+            session.tracks.forEach((track: any) => {
+              if (this.data.tracks.indexOf(track) < 0) {
+                this.data.tracks.push(track);
+              }
+            });
+          }
+        });
+      });
+    });
+
+    return this.data;
+  }*/
 
   private filterMunicipis(municipi: any, queryText: string, segment: string) {
     let matchesQueryText = false;
