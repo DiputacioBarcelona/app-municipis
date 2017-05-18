@@ -1,20 +1,21 @@
 <ion-header>
   <ion-navbar>
     <ion-title>{{ municipi.municipi_nom }}</ion-title>
-    <!--<ion-icon *ngIf="favorite == true" (click)="removeFavorite()" clear  color="light" item-right   name="star" class="fav"></ion-icon>
-    <ion-icon *ngIf="favorite != true" (click)="addFavorite()" clear color="light" item-right   name="star-outline" class="fav"></ion-icon>-->
-
-    <button ion-button color="light" (click)="removeFavorite()" *ngIf="favorite == true" item-right>
-      <ion-icon name="star"></ion-icon>
-    </button>
-    <button ion-button color="light" (click)="addFavorite()" *ngIf="favorite != true" item-right>
-      <ion-icon name="star-outline"></ion-icon>
-    </button>
+    <ion-buttons end>      
+      <button ion-button icon-only (click)="removeFavorite()" *ngIf="favorite == true">
+        <ion-icon name="star"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="addFavorite()" *ngIf="favorite != true">
+        <ion-icon name="star-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content fullscreen>
+
   <ion-card>
+
     <ion-item>
       <ion-thumbnail item-left>
         <img class="thumbnail" src="{{ municipi.municipi_escut }}">
@@ -25,17 +26,9 @@
         {{ 'MUNICIPI-DETAIL.INE' | translate }}: {{ municipi.ine }}<br>
         {{ 'MUNICIPI-DETAIL.CIF' | translate }}: {{ municipi.grup_ajuntament.cif }} <br>
       </p>
-      <!--<ion-icon *ngIf="favorite == true" (click)="removeFavorite()" clear  color="primary" item-right   name="star" class="fav"></ion-icon>
-      <ion-icon *ngIf="favorite != true" (click)="addFavorite()" clear color="primary" item-right   name="star-outline" class="fav"></ion-icon>
-     -->
     </ion-item>
     
     <img src="{{ municipi.municipi_vista }}" />
-    <!--<ion-fab right middle (click)="openMap()">
-      <button ion-fab>
-        <ion-icon name="navigate"></ion-icon>
-      </button>
-    </ion-fab>-->
 
     <ion-card-content>
       <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
@@ -45,7 +38,6 @@
       <p ng-if="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
       <p ng-if="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
       <p ng-if="municipi.grup_ajuntament.localitzacio">
-
         <button ion-button icon-left clear small (click)="openMap()">
           <ion-icon name="navigate"></ion-icon>
           <div><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</div>
@@ -69,16 +61,7 @@
     </ion-row>
 
   </ion-card>
-  <!--<ion-fab top right (click)="removeFavorite()" *ngIf="favorite == true">
-        <button ion-fab>
-          <ion-icon name="star"></ion-icon>
-        </button>
-      </ion-fab>
-      <ion-fab top right (click)="addFavorite()" *ngIf="favorite != true">
-        <button ion-fab>
-          <ion-icon name="star-outline"></ion-icon>
-        </button>
-      </ion-fab>-->
+
 </ion-content>
 
 <ion-fab bottom right #fab>

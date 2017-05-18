@@ -43,7 +43,8 @@ export class OpenData {
       console.log('Observable');
       return Observable.of(this.dataMunicipi);
     } else {
-			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},{"fieldName":"municipi_transliterat","order":"asc"}];
+			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},
+													{"fieldName":"municipi_transliterat","order":"asc"}];
       return this.getDatasetAPIContent('municipis', orderBy).map((data: any)=>{
         this.dataMunicipi = data;  
         return this.dataMunicipi;
