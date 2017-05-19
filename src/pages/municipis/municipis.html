@@ -24,13 +24,13 @@
 <ion-content>
 
 	<ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-dropdown"
-      pullingText="{{ 'MUNICIPIS.PULL_TO_REFRESH' | translate }}"
-      refreshingSpinner="circles"
-      refreshingText="{{ 'MUNICIPIS.REFRESHING' | translate }}">
-    </ion-refresher-content>
-  </ion-refresher>
+    	<ion-refresher-content
+      	pullingIcon="arrow-dropdown"
+      	pullingText="{{ 'MUNICIPIS.PULL_TO_REFRESH' | translate }}"
+      	refreshingSpinner="circles"
+      	refreshingText="{{ 'MUNICIPIS.REFRESHING' | translate }}">
+    	</ion-refresher-content>
+  	</ion-refresher>
 
 	<ion-list [hidden]="shownData === 0">
 
