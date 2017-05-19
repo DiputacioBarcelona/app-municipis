@@ -39,7 +39,7 @@ export class ActivitiesListPage {
   doRefresh(refresher: Refresher) {
     this.openData.getActivities('actesparcs', this.queryText).subscribe((data: any) => {
       this.data = data.elements;
-      this.shownData = data.elements.length > 0;
+      this.shownData = data.elements.length;
 			refresher.complete();
     });
     refresher.complete();
@@ -56,7 +56,7 @@ export class ActivitiesListPage {
 
 		this.openData.getActivities('actesparcs', this.queryText).subscribe((data: any) => {
       this.data = data.elements;
-      this.shownData = data.elements.length > 0;
+      this.shownData = data.elements.length;
 			loading.dismiss();
     });
 	}
