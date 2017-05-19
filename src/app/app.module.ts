@@ -30,7 +30,8 @@ export function createTranslateLoader(http: Http) {
     MunicipisPage,
     MunicipisDetailPage,
     PoisPage,
-    ActivitiesPage
+    ActivitiesPage,
+    ActivitiesFilterPage
   ],
   imports: [
     IonicModule.forRoot(DibaMunicipisApp, {
@@ -51,7 +52,8 @@ export function createTranslateLoader(http: Http) {
     MunicipisPage,
     MunicipisDetailPage,
     PoisPage,
-    ActivitiesPage
+    ActivitiesPage,
+    ActivitiesFilterPage
   ],
   providers: [
     OpenData,

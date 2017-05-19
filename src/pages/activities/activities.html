@@ -12,14 +12,22 @@
   </ion-navbar>
 </ion-header>
 
-<!--<ion-content>
-
-	<ion-list-header [hidden]="shownData > 0">
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      	pullingIcon="arrow-dropdown"
+      	pullingText="{{ 'ACTIVITIES.PULL_TO_REFRESH' | translate }}"
+      	refreshingSpinner="circles"
+      	refreshingText="{{ 'ACTIVITIES.REFRESHING' | translate }}">
+    </ion-refresher-content>
+  </ion-refresher>
+	<!--<ion-list-header [hidden]="shownData > 0">
       {{ 'ACTIVITIES.NO_ACTIVITIES_FOUND' | translate }}
-  </ion-list-header>
-</ion-content>-->
+  </ion-list-header>-->
+  <ion-tabs [selectedIndex]="mySelectedIndex">
+    <ion-tab [root]="tab1Root" tabTitle="{{ 'ACTIVITIES.TAB_TITLE_LIST' | translate }}" tabIcon="information-circle"></ion-tab>  
+    <ion-tab [root]="tab2Root" tabTitle="{{ 'ACTIVITIES.TAB_TITLE_MAP' | translate }}" tabIcon="map"></ion-tab>
+  </ion-tabs>
+</ion-content>
 
-<ion-tabs [selectedIndex]="mySelectedIndex">
-  <ion-tab [root]="tab1Root" tabTitle="{{ 'ACTIVITIES.TAB_TITLE_LIST' | translate }}" tabIcon="information-circle"></ion-tab>  
-  <ion-tab [root]="tab2Root" tabTitle="{{ 'ACTIVITIES.TAB_TITLE_MAP' | translate }}" tabIcon="map"></ion-tab>
-</ion-tabs>
+

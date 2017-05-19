@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,  NavParams, ModalController } from 'ionic-angular';
+import { NavController,  NavParams, ModalController, Refresher } from 'ionic-angular';
 
 import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
 
@@ -26,6 +26,15 @@ export class ActivitiesPage {
   }
 
   updateData() {
+  }
+
+  doRefresh(refresher: Refresher) {
+    /*this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
+      this.data = data;
+      this.shownData = data.shownData;
+			refresher.complete();
+    });*/
+    refresher.complete();
   }
 
   presentFilter() {
