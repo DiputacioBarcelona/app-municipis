@@ -26,17 +26,14 @@ export class OpenData {
      return this.loadMunicipis().map((jsonObject: any) => {
       let data = jsonObject;
       data.shownData = 0;
-			/*console.log('data.forEach!!');
-			console.log(data);*/
 			data.forEach((comarca: any) => {
         comarca.hide = true;
-				/*console.log('comarca.municipis.forEach!!');*/
         comarca.municipis.forEach((municipi: any) => {
           /// check if this municipi should show or not
           this.filterMunicipis(municipi, queryText, segment);
 
           if (!municipi.hide) {
-            // if this session is not hidden then this group should show
+            // if this municipi is not hidden then this comarca should show
             comarca.hide = false;
             data.shownData++;
           }
@@ -55,14 +52,8 @@ export class OpenData {
     } else {
 			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},
 												{"fieldName":"municipi_transliterat","order":"asc"}];
-			return this.getDatasetAPIContent('municipis', orderBy).map((data: any)=>{
-				return this.processData(data).map((newdata: any)=>{
-					console.log('this.processData');
-					this.dataMunicipi = newdata; 
-					console.log(newdata);
-        	return this.dataMunicipi;
-				});
-      });
+			return this.getDatasetAPIContent('municipis', orderBy)
+        .map(this.processData, this);
     }
   }
 
@@ -70,7 +61,6 @@ export class OpenData {
 		let retValue = [];
 		let lastComarca = -1;
 		let i = 0;
-		console.log('processData');
 
 		data.elements.forEach((municipi: any) => {
 			let comarca = municipi.grup_comarca.comarca_codi;
@@ -85,8 +75,7 @@ export class OpenData {
 			} else {
 				retValue[i-1].municipis.push(municipi);
 			}
-		});	
-		console.log(retValue);
+		});
 		return retValue;
 	}
 
