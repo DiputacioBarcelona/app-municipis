@@ -11,6 +11,7 @@ import { UserData } from './user-data';
 @Injectable()
 export class OpenData {
   private dataMunicipi: any;
+	private dataActivities: any;
 
   /* This is the base url of the open data's API  */
   private BASEURL = 'http://do.diba.cat/api/';
@@ -52,7 +53,7 @@ export class OpenData {
     } else {
 			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},
 												{"fieldName":"municipi_transliterat","order":"asc"}];
-			return this.getDatasetAPIContent('municipis', orderBy)
+			return this.getDatasetAPIContent('municipis', orderBy, '', 0, 0)
         .map(this.processDataMunicipis, this);
     }
   }
@@ -86,12 +87,9 @@ export class OpenData {
         matchesQueryText = true;
       }
     } else {
-      // if there are no query words then this municipi passes the query test
       matchesQueryText = true;
     }
 
-    // if the segement is 'favorites', but municipi is not a user favorite
-    // then this municipi does not pass the segment test
     let matchesSegment = false;
     if (segment === 'favorites') {
       if (this.userData.hasFavoriteMunicipis(municipi.ine)) {
@@ -101,44 +99,37 @@ export class OpenData {
       matchesSegment = true;
     }
 
-    // all tests must be true if it should not be hidden
     municipi.hide = !(matchesQueryText && matchesSegment);
   }
 
 	getActivities(queryText = '') {
-     return this.loadMunicipis().map((jsonObject: any) => {
-      let data = jsonObject;
-      data.shownData = 0;
-			data.forEach((comarca: any) => {
-        comarca.hide = true;
-        comarca.municipis.forEach((municipi: any) => {
-          /// check if this municipi should show or not
-          this.filterMunicipis(municipi, queryText, 'all');
-
-          if (!municipi.hide) {
-            // if this municipi is not hidden then this comarca should show
-            comarca.hide = false;
-            data.shownData++;
-          }
-        });
-
-      });
-			data.shownData++;
-      return data;
-    });
+    let orderBy: any = [];
+		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, 1, 10).map((data: any)=>{
+			this.dataActivities = data;
+			return this.dataActivities;
+		});
   }
 
+  private getDatasetAPIContent(datasetName: string, orderBy: any, queryText: string, pagIni: number, pagFi: number): any {
 
-  private getDatasetAPIContent(datasetName: string, orderBy: any): any {
-
-    let strOrderBy : string = '';
+    let strOrderBy: string = '';
 		if (orderBy.length) {
 			orderBy.forEach((field: any) => {
-        strOrderBy += 'ord-' + field.fieldName + '/' + field.order + '/'
+        strOrderBy += 'ord-' + field.fieldName + '/' + field.order + '/';
       });
 		}
+
+		let strQueryText: string = '';
+		if (queryText.length) {
+      strQueryText += 'camp-all-like/' + queryText + '/';
+		}
+
+		let strPag: string = '';
+		if (pagIni > 0 && pagFi > 0 && pagFi > pagIni) {
+      strPag += 'pag-ini/' + pagIni + '/pag-fi/' + pagFi + '/'; 
+		}
 		
-		let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/' + strOrderBy + 'token/' + this.TOKEN;
+		let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/' + strOrderBy + strQueryText + strPag + 'token/' + this.TOKEN;
     console.log('URL: ' + url);
     
     let elements = this.http.get(url)
