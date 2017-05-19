@@ -58,25 +58,25 @@ export class OpenData {
   }
 
 	processDataMunicipis(data: any) : any{
-		let retValue = [];
 		let lastComarca = -1;
 		let i = 0;
 
+		this.dataMunicipi = [];
 		data.elements.forEach((municipi: any) => {
 			let comarca = municipi.grup_comarca.comarca_codi;
 
 			if (lastComarca != comarca || i == 0) {
-				retValue[i] = {};
-				retValue[i].comarca_nom = municipi.grup_comarca.comarca_nom;
-				retValue[i].municipis = [];
-				retValue[i].municipis.push(municipi);
+				this.dataMunicipi[i] = {};
+				this.dataMunicipi[i].comarca_nom = municipi.grup_comarca.comarca_nom;
+				this.dataMunicipi[i].municipis = [];
+				this.dataMunicipi[i].municipis.push(municipi);
 				lastComarca = comarca;
 				i++;
 			} else {
-				retValue[i-1].municipis.push(municipi);
+				this.dataMunicipi[i-1].municipis.push(municipi);
 			}
 		});
-		return retValue;
+		return this.dataMunicipi;
 	}
 
   private filterMunicipis(municipi: any, queryText: string, segment: string) {
