@@ -103,7 +103,8 @@ export class OpenData {
   }
 
 	getActivities(queryText = '') {
-    let orderBy: any = [];
+		
+    let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
 		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, 1, 5).map((data: any)=>{
 			this.dataActivities = data;
 			return this.dataActivities;
