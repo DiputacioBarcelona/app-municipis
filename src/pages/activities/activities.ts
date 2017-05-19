@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { NavParams } from 'ionic-angular';
 
 import { ActivitiesListPage } from "../activities-list/activities-list";

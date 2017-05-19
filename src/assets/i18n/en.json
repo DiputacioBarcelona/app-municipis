@@ -95,7 +95,9 @@
 
     "TAB_TITLE_LIST": "List",
 
-    "TAB_TITLE_MAP": "Map"
+    "TAB_TITLE_MAP": "Map",
+
+    "PLACEHOLDER_SEARCH": "Search"
   }
 
 }

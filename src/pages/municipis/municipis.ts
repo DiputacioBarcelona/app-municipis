@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, App, LoadingController, ItemSliding, AlertController, Events, Refresher } from 'ionic-angular';
+import { NavController, LoadingController, ItemSliding, AlertController, Events, Refresher } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -21,7 +21,6 @@ export class MunicipisPage {
 
 	constructor(
 		public alertCtrl: AlertController,
-		public app: App,
 		public navCtrl: NavController,
 		public loadingCtrl: LoadingController,
 		public openData: OpenData,
@@ -31,7 +30,6 @@ export class MunicipisPage {
 	) {}
 
 	ionViewDidLoad() {
-		this.app.setTitle('Muncipis-Schedule');
     this.updateList();
     this.events.subscribe('MunicipiDetailPage:removeFavorite', eventData => { 
       this.updateList();
@@ -63,8 +61,6 @@ export class MunicipisPage {
 	}
 
 	goToMunicipiDetail(municipiData: any) {
-		// go to the municipi detail page
-    // and pass in the municipi data
     this.navCtrl.push(MunicipisDetailPage, {
       municipi: municipiData
     });

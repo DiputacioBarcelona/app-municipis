@@ -30,4 +30,20 @@
     </ion-refresher-content>
   </ion-refresher>
 
+  <ion-list [hidden]="shownData === 0">
+
+    <ion-item *ngFor="let activity of data" #slidingItem [hidden]="activity.hide">
+
+      <button ion-item (click)="goToActivityDetail(activity)">
+        <h3>{{ activity.municipi_nom }}</h3>
+      </button>
+
+    </ion-item>
+
+	</ion-list>
+
+	<ion-list-header [hidden]="shownData > 0">
+      {{ 'ACTIVITIES.NO_ACTIVITIES_FOUND' | translate }}
+  </ion-list-header>
+
 </ion-content>

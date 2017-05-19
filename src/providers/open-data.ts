@@ -53,11 +53,11 @@ export class OpenData {
 			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},
 												{"fieldName":"municipi_transliterat","order":"asc"}];
 			return this.getDatasetAPIContent('municipis', orderBy)
-        .map(this.processData, this);
+        .map(this.processDataMunicipis, this);
     }
   }
 
-	processData(data: any) : any{
+	processDataMunicipis(data: any) : any{
 		let retValue = [];
 		let lastComarca = -1;
 		let i = 0;
@@ -104,6 +104,30 @@ export class OpenData {
     // all tests must be true if it should not be hidden
     municipi.hide = !(matchesQueryText && matchesSegment);
   }
+
+	getActivities(queryText = '') {
+     return this.loadMunicipis().map((jsonObject: any) => {
+      let data = jsonObject;
+      data.shownData = 0;
+			data.forEach((comarca: any) => {
+        comarca.hide = true;
+        comarca.municipis.forEach((municipi: any) => {
+          /// check if this municipi should show or not
+          this.filterMunicipis(municipi, queryText, 'all');
+
+          if (!municipi.hide) {
+            // if this municipi is not hidden then this comarca should show
+            comarca.hide = false;
+            data.shownData++;
+          }
+        });
+
+      });
+			data.shownData++;
+      return data;
+    });
+  }
+
 
   private getDatasetAPIContent(datasetName: string, orderBy: any): any {
 
