@@ -37,7 +37,7 @@ export class ActivitiesListPage {
 	}
 
   doRefresh(refresher: Refresher) {
-    this.openData.getActivities('actesparcs', this.queryText).subscribe((data: any) => {
+    this.openData.getActivities('actesparcs', this.queryText, 1, 5).subscribe((data: any) => {
       this.data = data.elements;
       this.shownData = data.elements.length;
 			refresher.complete();
@@ -54,7 +54,7 @@ export class ActivitiesListPage {
 		let loading = this.loadingCtrl.create({ content: msg });
 		loading.present();
 
-		this.openData.getActivities('actesparcs', this.queryText).subscribe((data: any) => {
+		this.openData.getActivities('actesparcs', this.queryText, 1, 5).subscribe((data: any) => {
       this.data = data.elements;
       this.shownData = data.elements.length;
 			loading.dismiss();
