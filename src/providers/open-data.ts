@@ -102,7 +102,7 @@ export class OpenData {
     municipi.hide = !(matchesQueryText && matchesSegment);
   }
 
-	getActivities(queryText = '') {
+	getActivities(datasetName: string, queryText: string) {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
 		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, 1, 5).map((data: any)=>{
