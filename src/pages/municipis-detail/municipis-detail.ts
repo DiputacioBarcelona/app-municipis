@@ -32,11 +32,17 @@ export class MunicipisDetailPage {
   }
 
   goToPois(index: string) {
-    this.navCtrl.push(PoisPage,{ine : this.municipi.ine});
+    this.navCtrl.push(PoisPage, {
+      ine: this.municipi.ine,
+      name: this.municipi.municipi_nom
+    });
   };
 
   goToActivities(index: string) {
-    this.navCtrl.push(ActivitiesPage,{ine : this.municipi.ine});
+    this.navCtrl.push(ActivitiesPage, {
+      ine: this.municipi.ine,
+      name: this.municipi.municipi_nom
+    });
   };
 
 	addFavorite() {

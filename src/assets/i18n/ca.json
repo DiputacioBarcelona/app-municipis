@@ -56,7 +56,6 @@
   },
 
   "MUNICIPIS": {
-
     "PLACEHOLDER_SEARCH": "Nom del municipi...",
 
     "LOADING_MESSAGE": "Espereu siusplau...",
@@ -86,6 +85,16 @@
     "PULL_TO_REFRESH": "Actualitzar",
 
     "REFRESHING": "Actualizant..."
+  },
+
+  "ACTIVITIES": {
+    "PULL_TO_REFRESH": "Actualitzar",
+
+    "REFRESHING": "Actualizant...",
+
+    "TAB_TITLE_LIST": "Llista",
+
+    "TAB_TITLE_MAP": "Mapa"
   }
 
 }

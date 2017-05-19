@@ -1,22 +1,54 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Refresher } from 'ionic-angular';
 
-/*
-  Generated class for the ActivitiesList page.
+import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-activities-list',
   templateUrl: 'activities-list.html'
 })
+
 export class ActivitiesListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  private ine;
+  queryText = '';
+  filters: any = [];
+
+  constructor(
+    public navCtrl: NavController, 
+    public modalCtrl: ModalController,
+    private navParams: NavParams
+  ) {
+    this.ine = navParams.get('ine');
+    console.log('-------------------------------this.ine: ' + this.ine);
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivitiesListPage');
+    /*console.log('ionViewDidLoad - ActivitiesPage: ' + this.ine);*/
+  }
+
+  updateData() {
+  }
+
+  doRefresh(refresher: Refresher) {
+    /*this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
+      this.data = data;
+      this.shownData = data.shownData;
+			refresher.complete();
+    });*/
+    refresher.complete();
+  }
+
+  presentFilter() {
+    let modal = this.modalCtrl.create(ActivitiesFilterPage, this.filters);
+    modal.present();
+
+    modal.onWillDismiss((data: any[]) => {
+      if (data) {
+        this.filters = data;
+        this.updateData();
+      }
+    });
   }
 
 }

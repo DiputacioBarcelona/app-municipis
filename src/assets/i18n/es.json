@@ -86,6 +86,16 @@
     "PULL_TO_REFRESH": "Actualizar",
 
     "REFRESHING": "Actualizando..."
+  },
+
+  "ACTIVITIES": {
+    "PULL_TO_REFRESH": "Actualizar",
+
+    "REFRESHING": "Actualizando...",
+
+    "TAB_TITLE_LIST": "Lista",
+
+    "TAB_TITLE_MAP": "Mapa"
   }
 
 }

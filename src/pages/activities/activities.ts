@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController,  NavParams, ModalController, Refresher } from 'ionic-angular';
 
-import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
+import { NavParams } from 'ionic-angular';
+
+import { ActivitiesListPage } from "../activities-list/activities-list";
+import { ActivitiesMapPage } from "../activities-map/activities-map";
 
 @Component({
   selector: 'page-activities',
@@ -9,44 +11,15 @@ import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
 })
 
 export class ActivitiesPage {
-  private ine;
-  queryText = '';
-  filters: any = [];
 
-  constructor(
-    public navCtrl: NavController, 
-    public modalCtrl: ModalController,
-    private navParams: NavParams
-  ) {
-    this.ine = navParams.get('ine');
-  }
+  tab1Root = ActivitiesListPage;
+  tab2Root = ActivitiesMapPage;
+  mySelectedIndex: number;
+  ine: string;
 
-  ionViewDidLoad() {
-    /*console.log('ionViewDidLoad - ActivitiesPage: ' + this.ine);*/
-  }
-
-  updateData() {
-  }
-
-  doRefresh(refresher: Refresher) {
-    /*this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
-      this.data = data;
-      this.shownData = data.shownData;
-			refresher.complete();
-    });*/
-    refresher.complete();
-  }
-
-  presentFilter() {
-    let modal = this.modalCtrl.create(ActivitiesFilterPage, this.filters);
-    modal.present();
-
-    modal.onWillDismiss((data: any[]) => {
-      if (data) {
-        this.filters = data;
-        this.updateData();
-      }
-    });
+  constructor(navParams: NavParams) {
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
+    this.ine = navParams.data.tabIndex || '';
   }
 
 }

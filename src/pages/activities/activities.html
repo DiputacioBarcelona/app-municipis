@@ -1,33 +1,5 @@
-<ion-header>
-  <ion-navbar>
-		<button ion-button menuToggle>
-			<ion-icon name="menu"></ion-icon>
-		</button>    
-    <ion-title>{{ 'APP.TITLE_ACTIVITIES' | translate }}</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="presentFilter()">
-        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
-<ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      	pullingIcon="arrow-dropdown"
-      	pullingText="{{ 'ACTIVITIES.PULL_TO_REFRESH' | translate }}"
-      	refreshingSpinner="circles"
-      	refreshingText="{{ 'ACTIVITIES.REFRESHING' | translate }}">
-    </ion-refresher-content>
-  </ion-refresher>
-	<!--<ion-list-header [hidden]="shownData > 0">
-      {{ 'ACTIVITIES.NO_ACTIVITIES_FOUND' | translate }}
-  </ion-list-header>-->
-  <ion-tabs [selectedIndex]="mySelectedIndex">
+<ion-tabs [selectedIndex]="mySelectedIndex">
     <ion-tab [root]="tab1Root" tabTitle="{{ 'ACTIVITIES.TAB_TITLE_LIST' | translate }}" tabIcon="information-circle"></ion-tab>  
     <ion-tab [root]="tab2Root" tabTitle="{{ 'ACTIVITIES.TAB_TITLE_MAP' | translate }}" tabIcon="map"></ion-tab>
-  </ion-tabs>
-</ion-content>
-
+</ion-tabs>
 

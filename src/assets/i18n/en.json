@@ -86,6 +86,16 @@
     "PULL_TO_REFRESH": "Pull to refresh",
 
     "REFRESHING": "Refreshing..."
+  },
+
+  "ACTIVITIES": {
+    "PULL_TO_REFRESH": "Pull to refresh",
+
+    "REFRESHING": "Refreshing...",
+
+    "TAB_TITLE_LIST": "List",
+
+    "TAB_TITLE_MAP": "Map"
   }
 
 }
