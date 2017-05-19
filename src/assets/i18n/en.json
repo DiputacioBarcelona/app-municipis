@@ -97,7 +97,9 @@
 
     "TAB_TITLE_MAP": "Map",
 
-    "PLACEHOLDER_SEARCH": "Search"
+    "PLACEHOLDER_SEARCH": "Search",
+
+    "NO_ACTIVITIES_FOUND": "No activities found"
   }
 
 }

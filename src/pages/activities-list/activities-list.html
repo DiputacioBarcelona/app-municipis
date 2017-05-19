@@ -32,11 +32,11 @@
 
   <ion-list [hidden]="shownData === 0">
 
-    <ion-item *ngFor="let activity of data" #slidingItem [hidden]="activity.hide">
+    <ion-item *ngFor="let activity of data" [hidden]="activity.hide">
 
-      <button ion-item (click)="goToActivityDetail(activity)">
-        <h3>{{ activity.municipi_nom }}</h3>
-      </button>
+      <!--<button ion-item (click)="goToActivityDetail(activity)">-->
+        <h3>{{ activity.titol }}</h3>
+      <!--</button>-->
 
     </ion-item>
 

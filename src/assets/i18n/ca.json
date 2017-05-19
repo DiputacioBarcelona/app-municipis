@@ -96,7 +96,9 @@
 
     "TAB_TITLE_MAP": "Mapa",
 
-    "PLACEHOLDER_SEARCH": "Cercar"
+    "PLACEHOLDER_SEARCH": "Cercar",
+
+    "NO_ACTIVITIES_FOUND": "No s'han trobat activitats"
   }
 
 }

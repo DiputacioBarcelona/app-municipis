@@ -55,8 +55,8 @@ export class ActivitiesListPage {
 		loading.present();
 
 		this.openData.getActivities(this.queryText).subscribe((data: any) => {
-      this.data = data;
-      this.shownData = data.shownData;
+      this.data = data.elements;
+      this.shownData = data.elements.length > 0;
 			loading.dismiss();
     });
 	}

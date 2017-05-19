@@ -53,7 +53,7 @@ export class OpenData {
     } else {
 			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},
 												{"fieldName":"municipi_transliterat","order":"asc"}];
-			return this.getDatasetAPIContent('municipis', orderBy, '', 0, 0)
+			return this.getDatasetAPIContent('municipis', orderBy)
         .map(this.processDataMunicipis, this);
     }
   }
@@ -104,13 +104,13 @@ export class OpenData {
 
 	getActivities(queryText = '') {
     let orderBy: any = [];
-		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, 1, 10).map((data: any)=>{
+		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, 1, 5).map((data: any)=>{
 			this.dataActivities = data;
 			return this.dataActivities;
 		});
   }
 
-  private getDatasetAPIContent(datasetName: string, orderBy: any, queryText: string, pagIni: number, pagFi: number): any {
+  private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', pagIni: number = 0, pagFi: number = 0): any {
 
     let strOrderBy: string = '';
 		if (orderBy.length) {
