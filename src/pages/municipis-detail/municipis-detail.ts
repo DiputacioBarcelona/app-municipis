@@ -9,11 +9,11 @@ import { ActivitiesPage } from '../activities/activities';
 import { UserData } from '../../providers/user-data';
 
 @Component({
-  selector: 'page-municipi_detail',
-  templateUrl: 'municipi-detail.html'
+  selector: 'page-municipis_detail',
+  templateUrl: 'municipis-detail.html'
 })
 
-export class MunicipiDetailPage {
+export class MunicipisDetailPage {
   municipi: any;
   favorite: boolean;
 

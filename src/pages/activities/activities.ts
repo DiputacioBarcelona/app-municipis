@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController,  NavParams } from 'ionic-angular';
+import { NavController,  NavParams, ModalController } from 'ionic-angular';
+
+import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
 
 @Component({
   selector: 'page-activities',
@@ -8,13 +10,34 @@ import { NavController,  NavParams } from 'ionic-angular';
 
 export class ActivitiesPage {
   private ine;
+  queryText = '';
+  filters: any = [];
 
-  constructor(public navCtrl: NavController, private navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public modalCtrl: ModalController,
+    private navParams: NavParams
+  ) {
     this.ine = navParams.get('ine');
   }
 
   ionViewDidLoad() {
-    console.log('-------ionViewDidLoad - ActivitiesPage: ' + this.ine);
+    /*console.log('ionViewDidLoad - ActivitiesPage: ' + this.ine);*/
+  }
+
+  updateData() {
+  }
+
+  presentFilter() {
+    let modal = this.modalCtrl.create(ActivitiesFilterPage, this.filters);
+    modal.present();
+
+    modal.onWillDismiss((data: any[]) => {
+      if (data) {
+        this.filters = data;
+        this.updateData();
+      }
+    });
   }
 
 }

@@ -12,9 +12,10 @@ import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-tra
 import { DibaMunicipisApp } from './app.component';
 
 import { MunicipisPage } from '../pages/municipis/municipis';
-import { MunicipiDetailPage } from '../pages/municipi-detail/municipi-detail';
+import { MunicipisDetailPage } from '../pages/municipis-detail/municipis-detail';
 import { PoisPage } from '../pages/pois/pois';
 import { ActivitiesPage } from '../pages/activities/activities';
+import { ActivitiesFilterPage } from '../pages/activities-filter/activities-filter';
 
 import { OpenData } from '../providers/open-data';
 import { UserData } from '../providers/user-data';
@@ -27,7 +28,7 @@ export function createTranslateLoader(http: Http) {
   declarations: [
     DibaMunicipisApp,
     MunicipisPage,
-    MunicipiDetailPage,
+    MunicipisDetailPage,
     PoisPage,
     ActivitiesPage
   ],
@@ -48,7 +49,7 @@ export function createTranslateLoader(http: Http) {
   entryComponents: [
     DibaMunicipisApp,
     MunicipisPage,
-    MunicipiDetailPage,
+    MunicipisDetailPage,
     PoisPage,
     ActivitiesPage
   ],

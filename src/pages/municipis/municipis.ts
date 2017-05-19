@@ -3,7 +3,7 @@ import { NavController, App, LoadingController, ItemSliding, AlertController, Ev
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
-import { MunicipiDetailPage } from '../municipi-detail/municipi-detail';
+import { MunicipisDetailPage } from '../municipis-detail/municipis-detail';
 
 import { OpenData } from '../../providers/open-data';
 import { UserData } from '../../providers/user-data';
@@ -65,7 +65,7 @@ export class MunicipisPage {
 	goToMunicipiDetail(municipiData: any) {
 		// go to the municipi detail page
     // and pass in the municipi data
-    this.navCtrl.push(MunicipiDetailPage, {
+    this.navCtrl.push(MunicipisDetailPage, {
       municipi: municipiData
     });
 	}
