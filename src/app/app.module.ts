@@ -26,6 +26,7 @@ import { ActivitiesMapPage } from '../pages/activities-map/activities-map';
 
 import { OpenData } from '../providers/open-data';
 import { UserData } from '../providers/user-data';
+import { ParamsData } from '../providers/params-data';
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -79,6 +80,7 @@ export function createTranslateLoader(http: Http) {
   providers: [
     OpenData,
     UserData,
+    ParamsData,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

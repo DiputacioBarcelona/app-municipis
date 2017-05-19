@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+
+import { NavController, ModalController } from 'ionic-angular';
+
+import { ParamsData } from '../../providers/params-data';
 
 @Component({
   selector: 'page-activities-map',
@@ -7,11 +10,14 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 
 export class ActivitiesMapPage {
+  private ine;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivitiesMapPage');
+  constructor(
+    public navCtrl: NavController, 
+    public modalCtrl: ModalController,
+    public paramsData: ParamsData
+  ) {
+    this.ine = paramsData.params.ine;
   }
 
 }

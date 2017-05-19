@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, Refresher } from 'ionic-angular';
+
+import { NavController, ModalController, Refresher } from 'ionic-angular';
 
 import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
+
+import { ParamsData } from '../../providers/params-data';
 
 @Component({
   selector: 'page-activities-list',
@@ -10,22 +13,17 @@ import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
 
 export class ActivitiesListPage {
   private ine;
-  queryText = '';
-  filters: any = [];
-	data: any = [];
-  shownData: any = [];
+  private queryText = '';
+  private filters: any = [];
+	private data: any = [];
+  private shownData: any = [];
 
   constructor(
     public navCtrl: NavController, 
     public modalCtrl: ModalController,
-    private navParams: NavParams
+    public paramsData: ParamsData
   ) {
-    this.ine = navParams.data.ine || '';
-    console.log('-------------------------------this.ine: ' + this.ine);
-  }
-
-  ionViewDidLoad() {
-    /*console.log('ionViewDidLoad - ActivitiesPage: ' + this.ine);*/
+    this.ine = paramsData.params.ine;
   }
 
   updateList() {
