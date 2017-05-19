@@ -14,8 +14,15 @@ import { DibaMunicipisApp } from './app.component';
 import { MunicipisPage } from '../pages/municipis/municipis';
 import { MunicipisDetailPage } from '../pages/municipis-detail/municipis-detail';
 import { PoisPage } from '../pages/pois/pois';
+import { PoisDetailPage } from '../pages/pois-detail/pois-detail';
+import { PoisFilterPage } from '../pages/pois-filter/pois-filter';
+import { PoisListPage } from '../pages/pois-list/pois-list';
+import { PoisMapPage } from '../pages/pois-map/pois-map';
 import { ActivitiesPage } from '../pages/activities/activities';
+import { ActivitiesDetailPage } from '../pages/activities-detail/activities-detail';
 import { ActivitiesFilterPage } from '../pages/activities-filter/activities-filter';
+import { ActivitiesListPage } from '../pages/activities-list/activities-list';
+import { ActivitiesMapPage } from '../pages/activities-map/activities-map';
 
 import { OpenData } from '../providers/open-data';
 import { UserData } from '../providers/user-data';
@@ -30,8 +37,15 @@ export function createTranslateLoader(http: Http) {
     MunicipisPage,
     MunicipisDetailPage,
     PoisPage,
+    PoisDetailPage,
+    PoisFilterPage,
+    PoisListPage,
+    PoisMapPage,
     ActivitiesPage,
-    ActivitiesFilterPage
+    ActivitiesDetailPage,
+    ActivitiesFilterPage,
+    ActivitiesListPage,
+    ActivitiesMapPage
   ],
   imports: [
     IonicModule.forRoot(DibaMunicipisApp, {
@@ -52,8 +66,15 @@ export function createTranslateLoader(http: Http) {
     MunicipisPage,
     MunicipisDetailPage,
     PoisPage,
+    PoisDetailPage,
+    PoisFilterPage,
+    PoisListPage,
+    PoisMapPage,
     ActivitiesPage,
-    ActivitiesFilterPage
+    ActivitiesDetailPage,
+    ActivitiesFilterPage,
+    ActivitiesListPage,
+    ActivitiesMapPage
   ],
   providers: [
     OpenData,

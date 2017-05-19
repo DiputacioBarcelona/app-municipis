@@ -6,9 +6,19 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>activities-filter</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">{{ 'ACTIVITIES_FILTER.CANCEL' | translate }}</button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ 'APP.TITLE_ACTIVITIES_FILTER' | translate }}
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="applyFilters()" strong>{{ 'ACTIVITIES_FILTER.DONE' | translate }}</button>
+    </ion-buttons>
+  </ion-toolbar>
 
 </ion-header>
 

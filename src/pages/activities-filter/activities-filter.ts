@@ -19,4 +19,16 @@ export class ActivitiesFilterPage {
     console.log('ionViewDidLoad ActivitiesFilterPage');
   }
 
+  applyFilters() {
+    // Pass back a new array of track names to exclude
+    /*let excludedTrackNames = this.tracks.filter(c => !c.isChecked).map(c => c.name);
+    this.dismiss(excludedTrackNames);*/
+  }
+
+  dismiss(data?: any) {
+    // using the injected ViewController this page
+    // can "dismiss" itself and pass back data
+    /*this.viewCtrl.dismiss(data);*/
+  }
+
 }
