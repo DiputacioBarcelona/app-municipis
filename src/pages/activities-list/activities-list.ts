@@ -20,6 +20,11 @@ export class ActivitiesListPage {
   private filters: any = [];
 	private data: any = [];
   private shownData: any = [];
+  private total: number;
+  private pageSize: number = 10;
+
+  private start: number = 1;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -36,30 +41,41 @@ export class ActivitiesListPage {
     this.updateList();
 	}
 
-  doRefresh(refresher: Refresher) {
-    this.openData.getActivities('actesparcs', this.queryText, 1, 5).subscribe((data: any) => {
-      this.data = data.elements;
-      this.shownData = data.elements.length;
-			refresher.complete();
-    });
-    refresher.complete();
-  }
-
   updateList() {
-    let msg = 'Espereu siusplau...';
-    this.translate.get('MUNICIPIS.LOADING_MESSAGE').subscribe((res: string) => {
-        msg = res;
+  
+    return new Promise(resolve => {
+      let msg = 'Espereu siusplau...';
+      this.translate.get('MUNICIPIS.LOADING_MESSAGE').subscribe((res: string) => {
+          msg = res;
+      });
+
+      let loading = this.loadingCtrl.create({ content: msg });
+      loading.present();
+
+      this.openData.getActivities('actesparcs', this.queryText, this.start, this.start + this.pageSize - 1).subscribe((data: any) => {
+        for(let elem of data.elements) {
+          this.data.push(elem);
+        }
+        this.shownData = data.elements.length;
+        this.total = data.entitats;
+        loading.dismiss();
+        resolve(true);
+      });
+            
     });
 
-		let loading = this.loadingCtrl.create({ content: msg });
-		loading.present();
-
-		this.openData.getActivities('actesparcs', this.queryText, 1, 5).subscribe((data: any) => {
-      this.data = data.elements;
-      this.shownData = data.elements.length;
-			loading.dismiss();
-    });
 	}
+
+  doInfinite(infiniteScroll:any) {     
+     this.start += this.pageSize;
+
+     if (this.start < this.total){
+        this.updateList().then(()=>{       
+          infiniteScroll.complete();
+        });
+     }
+
+  }
 
 	goToActivityDetail(activityData: any) {
     this.navCtrl.push(ActivitiesDetailPage, {

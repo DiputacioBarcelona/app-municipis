@@ -20,27 +20,22 @@
 </ion-header>
 
 <ion-content padding>
-  
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      	pullingIcon="arrow-dropdown"
-      	pullingText="{{ 'ACTIVITIES.PULL_TO_REFRESH' | translate }}"
-      	refreshingSpinner="circles"
-      	refreshingText="{{ 'ACTIVITIES.REFRESHING' | translate }}">
-    </ion-refresher-content>
-  </ion-refresher>
 
   <ion-list [hidden]="shownData === 0">
 
     <ion-item *ngFor="let activity of data" [hidden]="activity.hide">
-
-      <button ion-item (click)="goToActivityDetail(activity)">
+      {{ activity.titol }}
+      <!--<button ion-item (click)="goToActivityDetail(activity)">
         <h3>{{ activity.titol }}</h3>
-      </button>
+      </button>-->
 
     </ion-item>
 
 	</ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 	<ion-list-header [hidden]="shownData > 0">
       {{ 'ACTIVITIES.NO_ACTIVITIES_FOUND' | translate }}
