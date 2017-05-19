@@ -9,17 +9,18 @@ import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
 })
 
 export class ActivitiesListPage {
-
   private ine;
   queryText = '';
   filters: any = [];
+	data: any = [];
+  shownData: any = [];
 
   constructor(
     public navCtrl: NavController, 
     public modalCtrl: ModalController,
     private navParams: NavParams
   ) {
-    this.ine = navParams.get('ine');
+    this.ine = navParams.data.ine || '';
     console.log('-------------------------------this.ine: ' + this.ine);
   }
 
@@ -27,7 +28,7 @@ export class ActivitiesListPage {
     /*console.log('ionViewDidLoad - ActivitiesPage: ' + this.ine);*/
   }
 
-  updateData() {
+  updateList() {
   }
 
   doRefresh(refresher: Refresher) {
@@ -46,7 +47,7 @@ export class ActivitiesListPage {
     modal.onWillDismiss((data: any[]) => {
       if (data) {
         this.filters = data;
-        this.updateData();
+        this.updateList();
       }
     });
   }

@@ -10,9 +10,17 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+		<ion-searchbar color="primary"
+									[(ngModel)]="queryText"                 
+									(ionInput)="updateList()"
+									placeholder="{{ 'ACTIVITIES.PLACEHOLDER_SEARCH' | translate }}">
+		</ion-searchbar>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       	pullingIcon="arrow-dropdown"
@@ -21,4 +29,5 @@
       	refreshingText="{{ 'ACTIVITIES.REFRESHING' | translate }}">
     </ion-refresher-content>
   </ion-refresher>
+
 </ion-content>

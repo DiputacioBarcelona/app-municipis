@@ -19,7 +19,8 @@ export class ActivitiesPage {
 
   constructor(navParams: NavParams) {
     this.mySelectedIndex = navParams.data.tabIndex || 0;
-    this.ine = navParams.data.tabIndex || '';
+    this.ine = navParams.data.ine || '';
+    console.log('-------------------------------this.ine: ' + this.ine);
   }
 
 }
