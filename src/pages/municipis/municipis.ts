@@ -32,9 +32,9 @@ export class MunicipisPage {
 
 	ionViewDidLoad() {
 		this.app.setTitle('Muncipis-Schedule');
-    this.updateSchedule();
+    this.updateList();
     this.events.subscribe('MunicipiDetailPage:removeFavorite', eventData => { 
-      this.updateSchedule();
+      this.updateList();
     });
 	}
 
@@ -46,7 +46,7 @@ export class MunicipisPage {
     });
   }
 
-	updateSchedule() {
+	updateList() {
     let msg = 'Espereu siusplau...';
     this.translate.get('MUNICIPIS.LOADING_MESSAGE').subscribe((res: string) => {
         msg = res;
@@ -57,7 +57,6 @@ export class MunicipisPage {
 
 		this.openData.getMunicipis(this.queryText, this.segment).subscribe((data: any) => {
       this.data = data;
-      console.log(data);
       this.shownData = data.shownData;
 			loading.dismiss();
     });
@@ -145,7 +144,7 @@ export class MunicipisPage {
           handler: () => {
             // they want to remove this session from their favorites
             this.userData.removeFavoriteMunicipis(municipiData.ine);
-            this.updateSchedule();
+            this.updateList();
 
             // close the sliding item and hide the option buttons
             slidingItem.close();
