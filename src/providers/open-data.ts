@@ -41,7 +41,6 @@ export class OpenData {
         });
 
       });
-			data.shownData++;
       return data;
     });
   }

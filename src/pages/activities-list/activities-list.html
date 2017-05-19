@@ -19,7 +19,7 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <ion-list [hidden]="shownData === 0">
 
@@ -33,12 +33,12 @@
 
 	</ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-
-	<ion-list-header [hidden]="shownData > 0">
+  <ion-list-header [hidden]="shownData > 0">
       {{ 'ACTIVITIES.NO_ACTIVITIES_FOUND' | translate }}
   </ion-list-header>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [hidden]="shownData === 0">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

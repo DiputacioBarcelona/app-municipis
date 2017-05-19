@@ -22,6 +22,7 @@ export class ActivitiesListPage {
   private shownData: any = [];
   private total: number;
   private pageSize: number = 10;
+  private lastQueryText = '';
 
   private start: number = 1;
 
@@ -52,12 +53,18 @@ export class ActivitiesListPage {
       let loading = this.loadingCtrl.create({ content: msg });
       loading.present();
 
+      if (this.lastQueryText != this.queryText) {
+        this.start = 1;
+        this.data = [];
+      }
+
       this.openData.getActivities('actesparcs', this.queryText, this.start, this.start + this.pageSize - 1).subscribe((data: any) => {
         for(let elem of data.elements) {
           this.data.push(elem);
         }
         this.shownData = data.elements.length;
         this.total = data.entitats;
+        this.lastQueryText = this.queryText;
         loading.dismiss();
         resolve(true);
       });
