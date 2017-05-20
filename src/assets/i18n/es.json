@@ -16,7 +16,9 @@
 
     "TITLE_ACTIVITIES": "Actividades",
 
-    "TITLE_POIS": "Puntos de interés"
+    "TITLE_POIS": "Puntos de interés",
+
+    "TITLE_FILTER": "Filter"
   },
 
   "MUNICIPI-DETAIL": {
@@ -96,7 +98,11 @@
 
     "PLACEHOLDER_SEARCH": "Buscar",
 
-    "NO_ACTIVITIES_FOUND": "No se han encontrado actividades"
+    "NO_ACTIVITIES_FOUND": "No se han encontrado actividades",
+
+    "CANCEL": "Cancelar",
+
+    "DONE": "Filtra"
   }
 
 }

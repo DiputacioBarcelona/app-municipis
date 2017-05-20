@@ -110,7 +110,7 @@ export class OpenData {
 		});
   }
 
-  private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
+  getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
 															 pagIni: number = 0, pagFi: number = 0, 
 															 relPunt: string = ''): any {
 

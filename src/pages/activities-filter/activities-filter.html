@@ -8,15 +8,15 @@
 
   <ion-toolbar>
     <ion-buttons start>
-      <button ion-button (click)="dismiss()">{{ 'ACTIVITIES_FILTER.CANCEL' | translate }}</button>
+      <button ion-button (click)="dismiss()">{{ 'ACTIVITIES.CANCEL' | translate }}</button>
     </ion-buttons>
 
     <ion-title>
-      {{ 'APP.TITLE_ACTIVITIES_FILTER' | translate }}
+      {{ 'APP.TITLE_FILTER' | translate }}
     </ion-title>
 
     <ion-buttons end>
-      <button ion-button (click)="applyFilters()" strong>{{ 'ACTIVITIES_FILTER.DONE' | translate }}</button>
+      <button ion-button (click)="applyFilters()" strong>{{ 'ACTIVITIES.DONE' | translate }}</button>
     </ion-buttons>
   </ion-toolbar>
 
@@ -24,5 +24,15 @@
 
 
 <ion-content padding>
+
+  <ion-item>
+    <ion-label>{{ 'MUNICIPI-DETAIL.TOWN' | translate }}:</ion-label>
+    <ion-select>
+      <div *ngFor="let municipi of municipis">
+        <ion-option *ngIf="municipi.ine == selectedIne" selected="true">{{ municipi.nom }}</ion-option>
+        <ion-option *ngIf="municipi.ine != selectedIne">{{ municipi.nom }}</ion-option>
+      </div>
+    </ion-select>
+  </ion-item>
 
 </ion-content>

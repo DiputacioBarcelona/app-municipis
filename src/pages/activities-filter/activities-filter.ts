@@ -1,22 +1,33 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
-/*
-  Generated class for the ActivitiesFilter page.
+import { OpenData } from '../../providers/open-data';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-activities-filter',
   templateUrl: 'activities-filter.html'
 })
-export class ActivitiesFilterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+export class ActivitiesFilterPage {
+  private municipis: any = [];
+  private selectedIne: string;
+
+  constructor(
+    public viewCtrl: ViewController, 
+    public navParams: NavParams,
+    public openData: OpenData,
+  ) {
+    this.selectedIne = navParams.data.ine || '';
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivitiesFilterPage');
+    let orderBy: any = [{"fieldName":"municipi_transliterat","order":"asc"}];
+    this.openData.getDatasetAPIContent('municipis', orderBy).subscribe((data: any) => {
+      data.elements.forEach((elem: any) => {
+        let municipi: any = {"ine":elem.ine, "nom":elem.municipi_nom};
+        this.municipis.push(municipi);
+      });
+    });
   }
 
   applyFilters() {
@@ -28,7 +39,7 @@ export class ActivitiesFilterPage {
   dismiss(data?: any) {
     // using the injected ViewController this page
     // can "dismiss" itself and pass back data
-    /*this.viewCtrl.dismiss(data);*/
+    this.viewCtrl.dismiss(data);
   }
 
 }

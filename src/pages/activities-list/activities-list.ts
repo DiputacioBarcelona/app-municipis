@@ -15,9 +15,9 @@ import { ParamsData } from '../../providers/params-data';
 })
 
 export class ActivitiesListPage {
-  private ine;
+  private ine: string;
   private queryText = '';
-  private filters: any = [];
+  /*private filters: any = {};*/
 	private data: any = [];
   private shownData: any = [];
   private total: number;
@@ -36,6 +36,7 @@ export class ActivitiesListPage {
     public translate: TranslateService
   ) {
     this.ine = paramsData.params.ine;
+    /*this.filters.ine = this.ine;*/
   }
 
   ionViewDidLoad() {
@@ -94,12 +95,14 @@ export class ActivitiesListPage {
 	}
 
   presentFilter() {
-    let modal = this.modalCtrl.create(ActivitiesFilterPage, this.filters);
+    let modal = this.modalCtrl.create(ActivitiesFilterPage, {
+      ine: this.ine
+    });
     modal.present();
 
     modal.onWillDismiss((data: any[]) => {
       if (data) {
-        this.filters = data;
+        /*this.filters.ine = this.ine;*/
         this.updateList();
       }
     });
