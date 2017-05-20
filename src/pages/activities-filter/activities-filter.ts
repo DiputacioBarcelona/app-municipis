@@ -18,15 +18,8 @@ export class ActivitiesFilterPage {
     public openData: OpenData,
   ) {
     this.selectedIne = navParams.data.ine || '';
-  }
-
-  ionViewDidLoad() {
-    let orderBy: any = [{"fieldName":"municipi_transliterat","order":"asc"}];
-    this.openData.getDatasetAPIContent('municipis', orderBy).subscribe((data: any) => {
-      data.elements.forEach((elem: any) => {
-        let municipi: any = {"ine":elem.ine, "nom":elem.municipi_nom};
-        this.municipis.push(municipi);
-      });
+    this.openData.getMuncipisCombo().subscribe((data: any) => {
+      this.municipis = data;
     });
   }
 

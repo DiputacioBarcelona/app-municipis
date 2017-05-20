@@ -12,6 +12,7 @@ import { UserData } from './user-data';
 export class OpenData {
   private dataMunicipi: any;
 	private dataActivities: any;
+	private comboMunicipis: any;
 
   /* This is the base url of the open data's API  */
   private BASEURL = 'http://do.diba.cat/api/';
@@ -57,7 +58,7 @@ export class OpenData {
     }
   }
 
-	processDataMunicipis(data: any) : any{
+	private processDataMunicipis(data: any) : any {
 		let lastComarca = -1;
 		let i = 0;
 
@@ -110,7 +111,27 @@ export class OpenData {
 		});
   }
 
-  getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
+	getMuncipisCombo(){
+		if (this.comboMunicipis) {
+      console.log('Observable');
+      return Observable.of(this.comboMunicipis);
+    } else {
+			let orderBy: any = [{"fieldName":"municipi_transliterat","order":"asc"}];
+			return this.getDatasetAPIContent('municipis', orderBy)
+        .map(this.processComboMunicipis, this);
+    }
+	}
+
+	private processComboMunicipis(data: any) : any{
+		this.comboMunicipis = []
+		data.elements.forEach((elem: any) => {
+			let municipi: any = {"ine":elem.ine, "nom":elem.municipi_nom};
+        this.comboMunicipis.push(municipi);
+		});
+		return this.comboMunicipis;
+	}
+
+  private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
 															 pagIni: number = 0, pagFi: number = 0, 
 															 relPunt: string = ''): any {
 
