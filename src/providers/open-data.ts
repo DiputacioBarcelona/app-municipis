@@ -101,16 +101,18 @@ export class OpenData {
     municipi.hide = !(matchesQueryText && matchesSegment);
   }
 
-	getActivities(datasetName: string, queryText: string, pagIni: number, pagFi: number) {
+	getActivities(datasetName: string, queryText: string, pagIni: number, pagFi: number, relPunt: string) {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
-		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi).map((data: any)=>{
+		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi, relPunt).map((data: any)=>{
 			this.dataActivities = data;
 			return this.dataActivities;
 		});
   }
 
-  private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', pagIni: number = 0, pagFi: number = 0): any {
+  private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
+															 pagIni: number = 0, pagFi: number = 0, 
+															 relPunt: string = ''): any {
 
     let strOrderBy: string = '';
 		if (orderBy.length) {
@@ -128,8 +130,14 @@ export class OpenData {
 		if (pagIni > 0 && pagFi > 0 && pagFi > pagIni) {
       strPag += 'pag-ini/' + pagIni + '/pag-fi/' + pagFi + '/'; 
 		}
+
+		let strRelPunt: string = '';
+		if (relPunt.length) {
+      strRelPunt += 'camp-rel_municipis/' + relPunt + '/';
+		}
 		
-		let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/' + strOrderBy + strQueryText + strPag + 'token/' + this.TOKEN;
+		let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/' + strOrderBy + 
+												strQueryText + strPag + strRelPunt + 'token/' + this.TOKEN;
     console.log('URL: ' + url);
     
     let elements = this.http.get(url)

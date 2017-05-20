@@ -58,7 +58,8 @@ export class ActivitiesListPage {
         this.data = [];
       }
 
-      this.openData.getActivities('actesparcs', this.queryText, this.start, this.start + this.pageSize - 1).subscribe((data: any) => {
+      this.openData.getActivities('actesparcs', this.queryText, this.start, this.start + this.pageSize - 1, this.ine)
+      .subscribe((data: any) => {
         for(let elem of data.elements) {
           this.data.push(elem);
         }
@@ -80,6 +81,8 @@ export class ActivitiesListPage {
         this.updateList().then(()=>{       
           infiniteScroll.complete();
         });
+     } else {
+       infiniteScroll.complete();
      }
 
   }
