@@ -18,7 +18,45 @@
 
     "TITLE_POIS": "Points of interest",
 
-    "TITLE_FILTER": "Filtrar"
+    "TITLE_FILTER": "Filtrar",
+
+    "JANUARY": "January",
+
+    "FEBRUARY": "February",
+
+    "MARCH": "March",
+
+    "APRIL": "April",
+
+    "MAY": "May",
+
+    "JUNE": "June",
+
+    "JULY": "July",
+
+    "AUGUST": "August",
+
+    "SEPTEMBER": "September",
+
+    "OCTOBER": "October",
+
+    "NOVEMBER": "November",
+
+    "DECEMBER": "December",
+
+    "SU": "Su",
+
+    "MO": "Mo",
+
+    "TU": "Tu",
+
+    "WE": "We",
+
+    "TH": "Th",
+
+    "FR": "Fr",
+
+    "SA": "Sa"
   },
 
   "MUNICIPI-DETAIL": {
@@ -102,7 +140,11 @@
 
     "CANCEL": "Cancel",
 
-    "DONE": "Done"
+    "DONE": "Done",
+
+    "INI_DATE": "Start before",
+
+    "FI_DATE": "Ends after"
   }
 
 }

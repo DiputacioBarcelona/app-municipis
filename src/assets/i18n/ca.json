@@ -18,7 +18,45 @@
 
     "TITLE_POIS": "Punts d'interès",
 
-    "TITLE_FILTER": "Filtre"
+    "TITLE_FILTER": "Filtre",
+
+    "JANUARY": "Gener",
+
+    "FEBRUARY": "Febrer",
+
+    "MARCH": "Març",
+
+    "APRIL": "Abril",
+
+    "MAY": "Maig",
+
+    "JUNE": "Juny",
+
+    "JULY": "Juliol",
+
+    "AUGUST": "Agost",
+
+    "SEPTEMBER": "Setembre",
+
+    "OCTOBER": "Octubre",
+
+    "NOVEMBER": "Novembre",
+
+    "DECEMBER": "Desembre",
+
+    "SU": "Dg",
+
+    "MO": "Dl",
+
+    "TU": "Dt",
+
+    "WE": "Dc",
+
+    "TH": "Dj",
+
+    "FR": "Dv",
+
+    "SA": "Ds"
   },
 
   "MUNICIPI-DETAIL": {
@@ -101,7 +139,11 @@
 
     "CANCEL": "Cancel·lar",
 
-    "DONE": "Filtra"
+    "DONE": "Filtra",
+
+    "INI_DATE": "Comencen després de",
+
+    "FI_DATE": "Acaben abans de "
   }
 
 }

@@ -18,7 +18,45 @@
 
     "TITLE_POIS": "Puntos de interés",
 
-    "TITLE_FILTER": "Filter"
+    "TITLE_FILTER": "Filter",
+
+    "JANUARY": "Enero",
+
+    "FEBRUARY": "Febrero",
+
+    "MARCH": "Marzo",
+
+    "APRIL": "Abril",
+
+    "MAY": "Mayo",
+
+    "JUNE": "Junio",
+
+    "JULY": "Julio",
+
+    "AUGUST": "Agosto",
+
+    "SEPTEMBER": "Septiembre",
+
+    "OCTOBER": "Octubre",
+
+    "NOVEMBER": "Noviembre",
+
+    "DECEMBER": "Diciembre",
+
+    "SU": "Do",
+
+    "MO": "Lu",
+
+    "TU": "Ma",
+
+    "WE": "Mi",
+
+    "TH": "Ju",
+
+    "FR": "Vi",
+
+    "SA": "Sa"
   },
 
   "MUNICIPI-DETAIL": {
@@ -102,7 +140,11 @@
 
     "CANCEL": "Cancelar",
 
-    "DONE": "Filtra"
+    "DONE": "Filtra",
+
+    "INI_DATE": "Empiezan antes de",
+
+    "FI_DATE": "Terminan antes de "
   }
 
 }

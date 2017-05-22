@@ -30,4 +30,54 @@
   </ion-item>
   </ion-item>
 
+  <ion-item class="text-label">
+    <ion-label primary>{{'ACTIVITIES.INI_DATE' | translate}}</ion-label>
+    <ion-datetime displayFormat="DDD/MMMM/YYYY"  min="2016" max="2018-12-31"[(ngModel)]="iniDate"
+        monthNames="{{'APP.JANUARY' | translate}},
+                    {{'APP.FEBRUARY' | translate}},
+                    {{'APP.MARCH' | translate}},
+                    {{'APP.APRIL' | translate}},
+                    {{'APP.MAY' | translate}},       
+                    {{'APP.JUNE' | translate}},
+                    {{'APP.JULY' | translate}},
+                    {{'APP.AUGUST' | translate}},
+                    {{'APP.SEPTEMBER' | translate}},  
+                    {{'APP.OCTOBER' | translate}},
+                    {{'APP.NOVEMBER' | translate}},        
+                    {{'APP.DECEMBER' | translate}}"        
+        dayShortNames="{{'APP.SU' | translate}},
+                      {{'APP.MO' | translate}},
+                      {{'APP.TU' | translate}},
+                      {{'APP.WE' | translate}},
+                      {{'APP.TH' | translate}}
+                      {{'APP.FR' | translate}},
+                      {{'APP.SA' | translate}}">
+    </ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label primary>{{'ACTIVITIES.FI_DATE' | translate}}</ion-label>
+      <ion-datetime displayFormat="DDD/MMMM/YYYY"  min="2016" max="2018-12-31"[(ngModel)]="fiDate"
+        monthNames="{{'APP.JANUARY' | translate}},
+                    {{'APP.FEBRUARY' | translate}},
+                    {{'APP.MARCH' | translate}},
+                    {{'APP.APRIL' | translate}},
+                    {{'APP.MAY' | translate}},       
+                    {{'APP.JUNE' | translate}},
+                    {{'APP.JULY' | translate}},
+                    {{'APP.AUGUST' | translate}},
+                    {{'APP.SEPTEMBER' | translate}},  
+                    {{'APP.OCTOBER' | translate}},
+                    {{'APP.NOVEMBER' | translate}},        
+                    {{'APP.DECEMBER' | translate}}"        
+        dayShortNames="{{'APP.SU' | translate}},
+                      {{'APP.MO' | translate}},
+                      {{'APP.TU' | translate}},
+                      {{'APP.WE' | translate}},
+                      {{'APP.TH' | translate}},
+                      {{'APP.FR' | translate}},
+                      {{'APP.SA' | translate}}">
+      </ion-datetime>
+  </ion-item>
+
 </ion-content>
