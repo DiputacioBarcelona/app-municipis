@@ -72,7 +72,7 @@ export class MunicipisPage {
         msg_added = res;
     });
     let msg_ok = '';
-    this.translate.get('MUNICIPIS.OK').subscribe((res: string) => {
+    this.translate.get('APP.OK').subscribe((res: string) => {
         msg_ok = res;
     });
     if (this.userData.hasFavoriteMunicipis(municipiData.ine)) {
@@ -116,7 +116,7 @@ export class MunicipisPage {
         msg_remove_favorites = res;
     });
     let msg_cancel = '';
-    this.translate.get('MUNICIPIS.CANCEL').subscribe((res: string) => {
+    this.translate.get('APP.CANCEL').subscribe((res: string) => {
         msg_cancel = res;
     });
     let msg_remove = '';

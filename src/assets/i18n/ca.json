@@ -56,7 +56,11 @@
 
     "FR": "Dv",
 
-    "SA": "Ds"
+    "SA": "Ds",
+
+    "OK": "D'acord",
+
+    "CANCEL": "Cancel·lar"
   },
 
   "MUNICIPI-DETAIL": {
@@ -115,10 +119,6 @@
     "FAVORITE_ALREADY_ADDED" : "Ja es troba entre seus preferits",
 
     "FAVORITE_ADDED": "S'ha afegit <strong>{{value}}</strong> als seus preferits",
-
-    "OK": "D'acord",
-
-    "CANCEL": "Cancel·lar",
 
     "REMOVE_FAVORITE": "Eliminar preferit",
 
