@@ -32,7 +32,7 @@
 
   <ion-item>
     <ion-label>{{ 'ACTIVITIES.CATEGORIES' | translate }}:</ion-label>
-    <ion-select [(ngModel)]="selectedCat">
+    <ion-select [(ngModel)]="selectedCat" multiple="true">
       <div *ngFor="let category of categories">
         <ion-option selected="category.id_tema == selectedCat" value="{{category.id_tema}}">{{ category.tema_nom }}</ion-option>        
       </div>
