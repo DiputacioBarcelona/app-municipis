@@ -13,6 +13,8 @@ export class ActivitiesFilterPage {
   private selectedIne: string;
   private iniDate: string;
   private fiDate: string;
+  private categories: any = [];
+  private selectedCat: string;
 
   constructor(
     public viewCtrl: ViewController, 
@@ -22,8 +24,12 @@ export class ActivitiesFilterPage {
     this.selectedIne = navParams.data.ine || '';
     this.iniDate = navParams.data.iniDate || '';
     this.fiDate = navParams.data.fiDate || '';
+    this.selectedCat = navParams.data.category || '';
     this.openData.getMuncipisCombo().subscribe((data: any) => {
       this.municipis = data;
+    });
+    this.openData.getDibaCategoriesCombo().subscribe((data: any) => {
+      this.categories = data;
     });
   }
 
@@ -31,7 +37,8 @@ export class ActivitiesFilterPage {
     this.dismiss({
       ine: this.selectedIne,
       iniDate: this.iniDate,
-      fiDate: this.fiDate
+      fiDate: this.fiDate,
+      category: this.selectedCat
     });
   }
 

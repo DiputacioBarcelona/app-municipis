@@ -144,7 +144,9 @@
 
     "INI_DATE": "Start before",
 
-    "FI_DATE": "Ends after"
+    "FI_DATE": "Ends after",
+
+    "CATEGORIES": "Thematic areas"
   }
 
 }

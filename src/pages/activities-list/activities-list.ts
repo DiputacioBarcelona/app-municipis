@@ -21,13 +21,12 @@ export class ActivitiesListPage {
 	private data: any = [];
   private shownData: any = [];
   private total: number;
+  private start: number = 1;
   private pageSize: number = 10;
   private lastQueryText = '';
   private iniDate: string;
   private fiDate: string;
-
-  private start: number = 1;
-
+  private category: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -101,7 +100,8 @@ export class ActivitiesListPage {
     let modal = this.modalCtrl.create(ActivitiesFilterPage, {
       ine: this.ine,
       iniDate: this.iniDate,
-      fiDate: this.fiDate
+      fiDate: this.fiDate,
+      category: this.category
     });
     modal.present();
 
@@ -110,6 +110,7 @@ export class ActivitiesListPage {
         this.ine = data.ine;
         this.iniDate = data.iniDate;
         this.fiDate = data.fiDate;
+        this.category = data.category;
         this.updateList();
       }
     });

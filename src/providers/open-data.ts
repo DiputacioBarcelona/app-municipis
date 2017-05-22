@@ -13,6 +13,7 @@ export class OpenData {
   private dataMunicipi: any;
 	private dataActivities: any;
 	private comboMunicipis: any;
+	private comboCategories: any;
 
   /* This is the base url of the open data's API  */
   private BASEURL = 'http://do.diba.cat/api/';
@@ -130,6 +131,26 @@ export class OpenData {
         this.comboMunicipis.push(municipi);
 		});
 		return this.comboMunicipis;
+	}
+
+	getDibaCategoriesCombo(){
+		if (this.comboCategories) {
+      console.log('Observable');
+      return Observable.of(this.comboCategories);
+    } else {
+			let orderBy: any = [{"fieldName":"id_tema","order":"asc"}];
+			return this.getDatasetAPIContent('temes', orderBy)
+        .map(this.processComboDibaCategories, this);
+    }
+	}
+
+	private processComboDibaCategories(data: any) : any{
+		this.comboCategories = []
+		data.elements.forEach((elem: any) => {
+			let category: any = {"id_tema":elem.id_tema, "tema_nom":elem.tema_nom};
+        this.comboCategories.push(category);
+		});
+		return this.comboCategories;
 	}
 
   private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 

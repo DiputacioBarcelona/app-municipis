@@ -144,7 +144,9 @@
 
     "INI_DATE": "Empiezan antes de",
 
-    "FI_DATE": "Terminan antes de "
+    "FI_DATE": "Terminan antes de ",
+
+    "CATEGORIES": "Ámbitos temáticos"
   }
 
 }

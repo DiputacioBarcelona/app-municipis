@@ -143,7 +143,9 @@
 
     "INI_DATE": "Comencen després de",
 
-    "FI_DATE": "Acaben abans de "
+    "FI_DATE": "Acaben abans de ",
+
+    "CATEGORIES": "Àmbits temàtics"
   }
 
 }

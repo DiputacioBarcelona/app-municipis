@@ -30,6 +30,17 @@
   </ion-item>
   </ion-item>
 
+  <ion-item>
+    <ion-label>{{ 'ACTIVITIES.CATEGORIES' | translate }}:</ion-label>
+    <ion-select [(ngModel)]="selectedCat">
+      <div *ngFor="let category of categories">
+        <ion-option selected="category.id_tema == selectedCat" value="{{category.id_tema}}">{{ category.tema_nom }}</ion-option>        
+      </div>
+    </ion-select>
+    <ion-item>    
+  </ion-item>
+  </ion-item>
+
   <ion-item class="text-label">
     <ion-label primary>{{'ACTIVITIES.INI_DATE' | translate}}</ion-label>
     <ion-datetime displayFormat="DDD/MMMM/YYYY"  min="2014" max="2020-12-31"[(ngModel)]="iniDate"
