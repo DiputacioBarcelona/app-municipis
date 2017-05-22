@@ -15,7 +15,7 @@ import { ParamsData } from '../../providers/params-data';
 })
 
 export class ActivitiesListPage {
-  private ine: string;
+  private ine: any;
   private queryText = '';
   /*private filters: any = {};*/
 	private data: any = [];
@@ -102,7 +102,7 @@ export class ActivitiesListPage {
 
     modal.onWillDismiss((data: any[]) => {
       if (data) {
-        /*this.filters.ine = this.ine;*/
+        this.ine = data;
         this.updateList();
       }
     });

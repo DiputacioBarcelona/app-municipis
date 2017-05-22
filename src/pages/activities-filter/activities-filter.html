@@ -1,9 +1,3 @@
-<!--
-  Generated template for the ActivitiesFilter page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-toolbar>
@@ -27,12 +21,13 @@
 
   <ion-item>
     <ion-label>{{ 'MUNICIPI-DETAIL.TOWN' | translate }}:</ion-label>
-    <ion-select>
+    <ion-select [(ngModel)]="selectedIne">
       <div *ngFor="let municipi of municipis">
-        <ion-option *ngIf="municipi.ine == selectedIne" selected="true">{{ municipi.nom }}</ion-option>
-        <ion-option *ngIf="municipi.ine != selectedIne">{{ municipi.nom }}</ion-option>
+        <ion-option selected="municipi.ine == selectedIne" value="{{municipi.ine}}">{{ municipi.nom }}</ion-option>        
       </div>
     </ion-select>
+    <ion-item>    
+  </ion-item>
   </ion-item>
 
 </ion-content>
