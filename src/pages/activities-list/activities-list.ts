@@ -15,9 +15,9 @@ import { ParamsData } from '../../providers/params-data';
 })
 
 export class ActivitiesListPage {
-  private ine: any;
+  private ine: string;
+  private lastIne = '';
   private queryText = '';
-  /*private filters: any = {};*/
 	private data: any = [];
   private shownData: any = [];
   private total: number;
@@ -36,7 +36,6 @@ export class ActivitiesListPage {
     public translate: TranslateService
   ) {
     this.ine = paramsData.params.ine;
-    /*this.filters.ine = this.ine;*/
   }
 
   ionViewDidLoad() {
@@ -54,7 +53,7 @@ export class ActivitiesListPage {
       let loading = this.loadingCtrl.create({ content: msg });
       loading.present();
 
-      if (this.lastQueryText != this.queryText) {
+      if (this.lastQueryText != this.queryText || this.lastIne != this.ine) {
         this.start = 1;
         this.data = [];
       }
@@ -67,6 +66,7 @@ export class ActivitiesListPage {
         this.shownData = data.elements.length;
         this.total = data.entitats;
         this.lastQueryText = this.queryText;
+        this.lastIne = this.ine;
         loading.dismiss();
         resolve(true);
       });
@@ -100,9 +100,9 @@ export class ActivitiesListPage {
     });
     modal.present();
 
-    modal.onWillDismiss((data: any[]) => {
+    modal.onWillDismiss((data: any) => {
       if (data) {
-        this.ine = data;
+        this.ine = data.ine;
         this.updateList();
       }
     });

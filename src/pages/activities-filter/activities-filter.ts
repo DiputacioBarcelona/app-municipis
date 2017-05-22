@@ -24,7 +24,9 @@ export class ActivitiesFilterPage {
   }
 
   applyFilters() {
-    this.dismiss(this.selectedIne);
+    this.dismiss({
+      ine: this.selectedIne
+    });
   }
 
   dismiss(data?: any) {
