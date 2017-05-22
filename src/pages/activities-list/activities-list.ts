@@ -60,7 +60,8 @@ export class ActivitiesListPage {
         this.data = [];
       }
 
-      this.openData.getActivities('actesparcs', this.queryText, this.start, this.start + this.pageSize - 1, this.ine)
+      this.openData.getActivities('actesparcs', this.queryText, this.start, this.start + this.pageSize - 1, 
+                                  this.ine, this.iniDate, this.fiDate)
       .subscribe((data: any) => {
         for(let elem of data.elements) {
           this.data.push(elem);
@@ -102,8 +103,6 @@ export class ActivitiesListPage {
       iniDate: this.iniDate,
       fiDate: this.fiDate
     });
-    console.log("data: " + this.iniDate);
-    console.log("data: " + this.fiDate);
     modal.present();
 
     modal.onWillDismiss((data: any) => {
@@ -111,8 +110,6 @@ export class ActivitiesListPage {
         this.ine = data.ine;
         this.iniDate = data.iniDate;
         this.fiDate = data.fiDate;
-        console.log("data: " + this.iniDate);
-        console.log("data: " + this.fiDate);
         this.updateList();
       }
     });

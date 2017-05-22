@@ -102,10 +102,11 @@ export class OpenData {
     municipi.hide = !(matchesQueryText && matchesSegment);
   }
 
-	getActivities(datasetName: string, queryText: string, pagIni: number, pagFi: number, relPunt: string) {
+	getActivities(datasetName: string, queryText: string, pagIni: number, pagFi: number, 
+								relPunt: string, iniDate: string, fiDate: string) {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
-		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi, relPunt).map((data: any)=>{
+		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi, relPunt, iniDate, fiDate).map((data: any)=>{
 			this.dataActivities = data;
 			return this.dataActivities;
 		});
@@ -133,7 +134,8 @@ export class OpenData {
 
   private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
 															 pagIni: number = 0, pagFi: number = 0, 
-															 relPunt: string = ''): any {
+															 relPunt: string = '', iniDate: string = '', 
+															 fiDate: string = ''): any {
 
     let strOrderBy: string = '';
 		if (orderBy.length) {
@@ -144,21 +146,31 @@ export class OpenData {
 
 		let strQueryText: string = '';
 		if (queryText.length) {
-      strQueryText += 'camp-all-like/' + queryText + '/';
+      strQueryText = 'camp-all-like/' + queryText + '/';
 		}
 
 		let strPag: string = '';
 		if (pagIni > 0 && pagFi > 0 && pagFi > pagIni) {
-      strPag += 'pag-ini/' + pagIni + '/pag-fi/' + pagFi + '/'; 
+      strPag = 'pag-ini/' + pagIni + '/pag-fi/' + pagFi + '/'; 
 		}
 
 		let strRelPunt: string = '';
 		if (relPunt.length) {
-      strRelPunt += 'camp-rel_municipis/' + relPunt + '/';
+      strRelPunt = 'camp-rel_municipis/' + relPunt + '/';
+		}
+
+		let strIniDate: string = '';
+		if (iniDate.length) {
+      strIniDate = 'camp-data_inici-greater/datetime:' + iniDate + '/';
+		}
+
+		let strFiDate: string = '';
+		if (fiDate.length) {
+      strFiDate = 'camp-data_fidata_inici-lower/datetime:' + fiDate + '/';
 		}
 		
 		let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/' + strOrderBy + 
-												strQueryText + strPag + strRelPunt + 'token/' + this.TOKEN;
+												strQueryText + strPag + strRelPunt + strIniDate + strFiDate + 'token/' + this.TOKEN;
     console.log('URL: ' + url);
     
     let elements = this.http.get(url)
