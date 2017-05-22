@@ -23,6 +23,8 @@ export class ActivitiesListPage {
   private total: number;
   private pageSize: number = 10;
   private lastQueryText = '';
+  private iniDate: string;
+  private fiDate: string;
 
   private start: number = 1;
 
@@ -96,13 +98,21 @@ export class ActivitiesListPage {
 
   presentFilter() {
     let modal = this.modalCtrl.create(ActivitiesFilterPage, {
-      ine: this.ine
+      ine: this.ine,
+      iniDate: this.iniDate,
+      fiDate: this.fiDate
     });
+    console.log("data: " + this.iniDate);
+    console.log("data: " + this.fiDate);
     modal.present();
 
     modal.onWillDismiss((data: any) => {
       if (data) {
         this.ine = data.ine;
+        this.iniDate = data.iniDate;
+        this.fiDate = data.fiDate;
+        console.log("data: " + this.iniDate);
+        console.log("data: " + this.fiDate);
         this.updateList();
       }
     });

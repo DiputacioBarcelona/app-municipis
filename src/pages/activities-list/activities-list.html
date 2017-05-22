@@ -25,11 +25,19 @@
 
     <ion-item *ngFor="let activity of data" [hidden]="activity.hide">
       {{ activity.titol }}
+
       <!--<button ion-item (click)="goToActivityDetail(activity)">
-        <h3>{{ activity.titol }}</h3>
+          <h3>{{ activity.titol }}</h3>
+          <p>
+            {{session.timeStart}} &mdash;
+            {{session.timeEnd}}:
+            {{session.location}}
+          </p>
       </button>-->
 
     </ion-item>
+
+    
 
 	</ion-list>
 

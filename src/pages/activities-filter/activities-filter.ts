@@ -11,6 +11,8 @@ import { OpenData } from '../../providers/open-data';
 export class ActivitiesFilterPage {
   private municipis: any = [];
   private selectedIne: string;
+  private iniDate: string;
+  private fiDate: string;
 
   constructor(
     public viewCtrl: ViewController, 
@@ -18,6 +20,8 @@ export class ActivitiesFilterPage {
     public openData: OpenData,
   ) {
     this.selectedIne = navParams.data.ine || '';
+    this.iniDate = navParams.data.iniDate || '';
+    this.fiDate = navParams.data.fiDate || '';
     this.openData.getMuncipisCombo().subscribe((data: any) => {
       this.municipis = data;
     });
@@ -25,7 +29,9 @@ export class ActivitiesFilterPage {
 
   applyFilters() {
     this.dismiss({
-      ine: this.selectedIne
+      ine: this.selectedIne,
+      iniDate: this.iniDate,
+      fiDate: this.fiDate
     });
   }
 
