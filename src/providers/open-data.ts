@@ -107,7 +107,8 @@ export class OpenData {
 								relPunt: string, iniDate: string, fiDate: string, themes: any) {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
-		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi, relPunt, iniDate, fiDate, themes).map((data: any)=>{
+		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi, relPunt, 
+																			iniDate, fiDate, themes).map((data: any)=>{
 			this.dataActivities = data;
 			return this.dataActivities;
 		});
