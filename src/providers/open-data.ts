@@ -231,13 +231,13 @@ export class OpenData {
 
 		let strFiDate: string = '';
 		if (fiDate.length) {
-      strFiDate = 'camp-data_fidata_inici-lower/datetime:' + fiDate + '/';
+      strFiDate = 'camp-data_fi-lower/datetime:' + fiDate + '/';
 		}
 
 		let strThemes: string = '';
 		if (themes.length) {
 			strThemes = 'camp-rel_temes/'
-			for(var i = 0; i < themes.length - 1 ; i ++) {  // take every second element
+			for(var i = 0; i < themes.length - 1 ; i++) {
     		strThemes += themes[i] + '||';
 			}
 			strThemes += themes[themes.length - 1] + '/';

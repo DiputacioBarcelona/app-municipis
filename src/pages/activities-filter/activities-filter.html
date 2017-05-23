@@ -103,7 +103,7 @@
     <ion-list>
       <ion-list-header>{{'ACTIVITIES.DATASETS' | translate}}</ion-list-header>
 
-      <ion-item *ngFor="let dataset of datasets" [attr.track]="dataset.name | lowercase">
+      <ion-item *ngFor="let dataset of datasets" [attr.dataset]="dataset.machinename">
         <span item-start class="dot"></span>
         <ion-label>{{dataset.nom}}</ion-label>
         <ion-toggle [(ngModel)]="dataset.isChecked" color="secondary"></ion-toggle>

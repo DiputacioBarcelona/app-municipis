@@ -23,25 +23,21 @@
 
   <ion-list [hidden]="shownData === 0">
 
-    <ion-item *ngFor="let activity of data" [hidden]="activity.hide">
-
-      <button ion-item (click)="goToActivityDetail(activity)">
-          <h3>{{ activity.titol }}</h3>
-          <p>
-            {{activity.data_inici | date:'dd/MM/yyyy'}} &mdash;
-            {{activity.data_fi | date:'dd/MM/yyyy'}}            
-          </p>
-          <p>
-            {{activity.rel_municipis.municipi_nom}}
-          </p>
-          <p>
-            {{activity.rel_temes.tema_nom}}
-          </p>
-      </button>
-
+    <ion-item *ngFor="let activity of data" [hidden]="activity.hide" 
+        [attr.dataset]="activity.dataset.machinename"        
+        (click)="goToActivityDetail(activity)">
+      <h3>{{ activity.titol }}</h3>
+      <p>
+        {{activity.data_inici | date:'dd/MM/yyyy'}} &mdash;
+        {{activity.data_fi | date:'dd/MM/yyyy'}}            
+      </p>
+      <p>
+        {{activity.rel_municipis.municipi_nom}}
+      </p>
+      <p>
+        {{activity.rel_temes.tema_nom}}
+      </p>
     </ion-item>
-
-    
 
 	</ion-list>
 
