@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController, Refresher } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -18,15 +18,16 @@ export class ActivitiesListPage {
   private ine: string;
   private lastIne = '';
   private queryText = '';
+  private lastQueryText = '';
 	private data: any = [];
   private shownData: any = [];
   private total: number;
   private start: number = 1;
   private pageSize: number = 10;
-  private lastQueryText = '';
   private iniDate: string;
   private fiDate: string;
   private category: string;
+  private lastCategory = '';
 
   constructor(
     public navCtrl: NavController, 
@@ -54,13 +55,13 @@ export class ActivitiesListPage {
       let loading = this.loadingCtrl.create({ content: msg });
       loading.present();
 
-      if (this.lastQueryText != this.queryText || this.lastIne != this.ine) {
+      if (this.lastQueryText != this.queryText || this.lastIne != this.ine || this.lastCategory != this.category) {
         this.start = 1;
         this.data = [];
       }
 
       this.openData.getActivities('actesparcs', this.queryText, this.start, this.start + this.pageSize - 1, 
-                                  this.ine, this.iniDate, this.fiDate)
+                                  this.ine, this.iniDate, this.fiDate, this.category)
       .subscribe((data: any) => {
         for(let elem of data.elements) {
           this.data.push(elem);
@@ -69,6 +70,7 @@ export class ActivitiesListPage {
         this.total = data.entitats;
         this.lastQueryText = this.queryText;
         this.lastIne = this.ine;
+        this.lastCategory = this.category;
         loading.dismiss();
         resolve(true);
       });

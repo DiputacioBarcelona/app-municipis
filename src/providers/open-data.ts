@@ -104,10 +104,10 @@ export class OpenData {
   }
 
 	getActivities(datasetName: string, queryText: string, pagIni: number, pagFi: number, 
-								relPunt: string, iniDate: string, fiDate: string) {
+								relPunt: string, iniDate: string, fiDate: string, themes: any) {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
-		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi, relPunt, iniDate, fiDate).map((data: any)=>{
+		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi, relPunt, iniDate, fiDate, themes).map((data: any)=>{
 			this.dataActivities = data;
 			return this.dataActivities;
 		});
@@ -138,7 +138,7 @@ export class OpenData {
       console.log('Observable');
       return Observable.of(this.comboCategories);
     } else {
-			let orderBy: any = [{"fieldName":"id_tema","order":"asc"}];
+			let orderBy: any = [{"fieldName":"tema_nom","order":"asc"}];
 			return this.getDatasetAPIContent('temes', orderBy)
         .map(this.processComboDibaCategories, this);
     }
@@ -156,7 +156,7 @@ export class OpenData {
   private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
 															 pagIni: number = 0, pagFi: number = 0, 
 															 relPunt: string = '', iniDate: string = '', 
-															 fiDate: string = ''): any {
+															 fiDate: string = '', themes: any = []): any {
 
     let strOrderBy: string = '';
 		if (orderBy.length) {
@@ -189,9 +189,18 @@ export class OpenData {
 		if (fiDate.length) {
       strFiDate = 'camp-data_fidata_inici-lower/datetime:' + fiDate + '/';
 		}
+
+		let strThemes: string = '';
+		if (themes.length) {
+			strThemes = 'camp-rel_temes/'
+			for(var i = 0; i < themes.length - 1 ; i ++) {  // take every second element
+    		strThemes += themes[i] + '||';
+			}
+			strThemes += themes[themes.length - 1] + '/';
+		}
 		
 		let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/' + strOrderBy + 
-												strQueryText + strPag + strRelPunt + strIniDate + strFiDate + 'token/' + this.TOKEN;
+												strQueryText + strPag + strRelPunt + strIniDate + strFiDate + strThemes + 'token/' + this.TOKEN;
     console.log('URL: ' + url);
     
     let elements = this.http.get(url)

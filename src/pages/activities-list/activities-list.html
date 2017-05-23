@@ -24,16 +24,19 @@
   <ion-list [hidden]="shownData === 0">
 
     <ion-item *ngFor="let activity of data" [hidden]="activity.hide">
-      {{ activity.titol }}
+      <!--{{ activity.titol }}-->
 
-      <!--<button ion-item (click)="goToActivityDetail(activity)">
+      <button ion-item (click)="goToActivityDetail(activity)">
           <h3>{{ activity.titol }}</h3>
           <p>
-            {{session.timeStart}} &mdash;
-            {{session.timeEnd}}:
-            {{session.location}}
+            {{activity.rel_temes.tema_nom}}
           </p>
-      </button>-->
+          <p>
+            {{activity.data_inici}} &mdash;
+            {{activity.data_fi}}:
+            {{activity.rel_municipis.municipi_nom}}
+          </p>
+      </button>
 
     </ion-item>
 
