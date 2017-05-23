@@ -105,16 +105,26 @@ export class OpenData {
     municipi.hide = !(matchesQueryText && matchesSegment);
   }
 
-	getActivities(datasetName: string, queryText: string, pagIni: number, pagFi: number, 
+	getActivities(queryText: string, pagIni: number, pagFi: number, 
 								relPunt: string, iniDate: string, fiDate: string, themes: any) {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
-		return this.getDatasetAPIContent('actesparcs', orderBy, queryText, pagIni, pagFi, relPunt, 
-																			iniDate, fiDate, themes).map((data: any)=>{
-			this.dataActivities = data;
-			return this.dataActivities;
-		});
+		return this.getDatasetAPIContent('acte', orderBy, queryText, pagIni, pagFi, relPunt, 
+																			iniDate, fiDate, themes, false)
+        .map(this.processDataActivities, this);
   }
+
+	private processDataActivities(data: any) : any {
+		this.dataActivities = [];
+		data.datasets.forEach((dataset: any) => {
+			dataset.elements.forEach((activity: any) => {
+				activity.dataset = {"nom": dataset.nom, "machinename" :dataset.machinename};				
+				this.dataActivities.push(activity);
+			});
+		});
+		this.dataActivities.entitats = data.entitats;
+		return this.dataActivities;
+	}
 
 	getMuncipisCombo(){
 		if (this.comboMunicipis) {
@@ -164,7 +174,8 @@ export class OpenData {
   private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
 															 pagIni: number = 0, pagFi: number = 0, 
 															 relPunt: string = '', iniDate: string = '', 
-															 fiDate: string = '', themes: any = []): any {
+															 fiDate: string = '', themes: any = [],
+															 dataset: boolean = true): any {
 
     let strOrderBy: string = '';
 		if (orderBy.length) {
@@ -206,8 +217,13 @@ export class OpenData {
 			}
 			strThemes += themes[themes.length - 1] + '/';
 		}
-		
-		let url : string  = this.BASEURL + 'dataset/' + datasetName + '/format/JSON/' + strOrderBy + 
+
+		let strData = 'dataset/'
+		if(!dataset) {
+			strData = 'tipus/'
+		}
+
+		let url : string  = this.BASEURL + strData + datasetName + '/format/JSON/' + strOrderBy + 
 												strQueryText + strPag + strRelPunt + strIniDate + strFiDate + strThemes + 'token/' + this.TOKEN;
     console.log('URL: ' + url);
     

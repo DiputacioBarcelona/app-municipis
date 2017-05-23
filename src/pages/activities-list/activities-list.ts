@@ -23,7 +23,7 @@ export class ActivitiesListPage {
   private shownData: any = [];
   private total: number;
   private start: number = 1;
-  private pageSize: number = 10;
+  private pageSize: number = 2;
   private iniDate: string;
   private fiDate: string;
   private category: string;
@@ -60,13 +60,13 @@ export class ActivitiesListPage {
         this.data = [];
       }
 
-      this.openData.getActivities('actesparcs', this.queryText, this.start, this.start + this.pageSize - 1, 
+      this.openData.getActivities(this.queryText, this.start, this.start + this.pageSize - 1, 
                                   this.ine, this.iniDate, this.fiDate, this.category)
       .subscribe((data: any) => {
-        for(let elem of data.elements) {
+        for(let elem of data) {
           this.data.push(elem);
         }
-        this.shownData = data.elements.length;
+        this.shownData = this.data.length;
         this.total = data.entitats;
         this.lastQueryText = this.queryText;
         this.lastIne = this.ine;
