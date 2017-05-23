@@ -47,11 +47,13 @@ export class ActivitiesFilterPage {
   }
 
   applyFilters() {
+    this.excludedDatasetsNames = this.datasets.filter(c => !c.isChecked).map(c => c.machinename);
     this.dismiss({
       ine: this.selectedIne,
       iniDate: this.iniDate,
       fiDate: this.fiDate,
-      category: this.selectedCat
+      category: this.selectedCat,
+      excludedDatasetsNames: this.excludedDatasetsNames
     });
   }
 

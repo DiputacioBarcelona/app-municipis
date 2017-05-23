@@ -23,11 +23,13 @@ export class ActivitiesListPage {
   private shownData: any = [];
   private total: number;
   private start: number = 1;
-  private pageSize: number = 2;
+  private pageSize: number = 10;
   private iniDate: string;
   private fiDate: string;
   private category: string;
   private lastCategory = '';
+  private excludedDatasetsNames: any = [];
+  private lastExcludedDatasetsNames: any = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -55,13 +57,14 @@ export class ActivitiesListPage {
       let loading = this.loadingCtrl.create({ content: msg });
       loading.present();
 
-      if (this.lastQueryText != this.queryText || this.lastIne != this.ine || this.lastCategory != this.category) {
+      if (this.lastQueryText != this.queryText || this.lastIne != this.ine 
+          || this.lastCategory != this.category  || this.lastExcludedDatasetsNames != this.excludedDatasetsNames) {
         this.start = 1;
         this.data = [];
       }
 
       this.openData.getActivities(this.queryText, this.start, this.start + this.pageSize - 1, 
-                                  this.ine, this.iniDate, this.fiDate, this.category)
+                                  this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames)
       .subscribe((data: any) => {
         for(let elem of data) {
           this.data.push(elem);
@@ -71,6 +74,7 @@ export class ActivitiesListPage {
         this.lastQueryText = this.queryText;
         this.lastIne = this.ine;
         this.lastCategory = this.category;
+        this.lastExcludedDatasetsNames =  this.excludedDatasetsNames;
         loading.dismiss();
         resolve(true);
       });
@@ -103,7 +107,8 @@ export class ActivitiesListPage {
       ine: this.ine,
       iniDate: this.iniDate,
       fiDate: this.fiDate,
-      category: this.category
+      category: this.category,
+      excludedDatasetsNames: this.excludedDatasetsNames
     });
     modal.present();
 
@@ -113,6 +118,7 @@ export class ActivitiesListPage {
         this.iniDate = data.iniDate;
         this.fiDate = data.fiDate;
         this.category = data.category;
+        this.excludedDatasetsNames = data.excludedDatasetsNames;
         this.updateList();
       }
     });

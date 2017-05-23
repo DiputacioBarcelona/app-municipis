@@ -16,6 +16,7 @@ export class OpenData {
 	private comboMunicipis: any;
 	private comboCategories: any;
 	private datasetsActe: any;
+	private excludedDatasetsNames: any;
 
   /* This is the base url of the open data's API  */
   private BASEURL = 'http://do.diba.cat/api/';
@@ -107,9 +108,11 @@ export class OpenData {
   }
 
 	getActivities(queryText: string, pagIni: number, pagFi: number, 
-								relPunt: string, iniDate: string, fiDate: string, themes: any) {
+								relPunt: string, iniDate: string, fiDate: string, 
+								themes: any, excludedDatasetsNames: any) {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
+		this.excludedDatasetsNames = excludedDatasetsNames;
 		return this.getDataAPI('acte', orderBy, queryText, pagIni, pagFi, relPunt, 
 																			iniDate, fiDate, themes, false)
         .map(this.processDataActivities, this);
@@ -118,10 +121,12 @@ export class OpenData {
 	private processDataActivities(data: any) : any {
 		this.dataActivities = [];
 		data.datasets.forEach((dataset: any) => {
-			dataset.elements.forEach((activity: any) => {
-				activity.dataset = {"nom": dataset.nom, "machinename" :dataset.machinename};				
-				this.dataActivities.push(activity);
-			});
+			if (this.excludedDatasetsNames.indexOf(dataset.machinename) === -1) {        
+				dataset.elements.forEach((activity: any) => {
+					activity.dataset = {"nom": dataset.nom, "machinename": dataset.machinename};				
+					this.dataActivities.push(activity);
+				});
+      }
 		});
 		this.dataActivities.entitats = data.entitats;
 		return this.dataActivities;
