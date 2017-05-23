@@ -147,7 +147,9 @@
 
     "CATEGORIES": "Àmbits temàtics",
 
-    "DATASETS": "Fons de dades"
+    "DATASETS": "Fons de dades",
+
+    "RESET_ALL_FILTERS": "Restablir tots els filtres"
   }
 
 }

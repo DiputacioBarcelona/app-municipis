@@ -148,7 +148,9 @@
 
     "CATEGORIES": "Thematic areas",
 
-    "DATASETS": "Data Sources"
+    "DATASETS": "Data Sources",
+
+    "RESET_ALL_FILTERS": "Reset All Filters"
   }
 
 }

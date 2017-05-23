@@ -148,7 +148,9 @@
 
     "CATEGORIES": "Ámbitos temáticos",
 
-    "DATASETS": "Fuentes de datos"
+    "DATASETS": "Fuentes de datos",
+
+    "RESET_ALL_FILTERS": "Restablecer todos los filtros"
   }
 
 }

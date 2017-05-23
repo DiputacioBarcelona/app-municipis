@@ -61,11 +61,14 @@ export class ActivitiesFilterPage {
     this.viewCtrl.dismiss(data);
   }
 
-  /*resetFilters() {
-    // reset all of the toggles to be checked
-    this.datasets.forEach(track => {
-      track.isChecked = true;
+  resetFilters() {
+    this.datasets.forEach(dataset => {
+      dataset.isChecked = true;
     });
-  }*/
+    this.selectedIne = '';
+    this.iniDate = '';
+    this.fiDate = '';
+    this.selectedCat = '';
+  }
 
 }
