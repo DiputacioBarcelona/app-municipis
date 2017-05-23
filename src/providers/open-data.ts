@@ -56,7 +56,7 @@ export class OpenData {
     } else {
 			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},
 												{"fieldName":"municipi_transliterat","order":"asc"}];
-			return this.getDatasetAPIContent('municipis', orderBy)
+			return this.getDataAPI('municipis', orderBy)
         .map(this.processDataMunicipis, this);
     }
   }
@@ -109,7 +109,7 @@ export class OpenData {
 								relPunt: string, iniDate: string, fiDate: string, themes: any) {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
-		return this.getDatasetAPIContent('acte', orderBy, queryText, pagIni, pagFi, relPunt, 
+		return this.getDataAPI('acte', orderBy, queryText, pagIni, pagFi, relPunt, 
 																			iniDate, fiDate, themes, false)
         .map(this.processDataActivities, this);
   }
@@ -132,7 +132,7 @@ export class OpenData {
       return Observable.of(this.comboMunicipis);
     } else {
 			let orderBy: any = [{"fieldName":"municipi_transliterat","order":"asc"}];
-			return this.getDatasetAPIContent('municipis', orderBy)
+			return this.getDataAPI('municipis', orderBy)
         .map(this.processComboMunicipis, this);
     }
 	}
@@ -157,7 +157,7 @@ export class OpenData {
       return Observable.of(this.comboCategories);
     } else {
 			let orderBy: any = [{"fieldName":"tema_nom","order":"asc"}];
-			return this.getDatasetAPIContent('temes', orderBy)
+			return this.getDataAPI('temes', orderBy)
         .map(this.processComboDibaCategories, this);
     }
 	}
@@ -171,11 +171,11 @@ export class OpenData {
 		return this.comboCategories;
 	}
 
-  private getDatasetAPIContent(datasetName: string, orderBy: any = [], queryText: string = '', 
-															 pagIni: number = 0, pagFi: number = 0, 
-															 relPunt: string = '', iniDate: string = '', 
-															 fiDate: string = '', themes: any = [],
-															 dataset: boolean = true): any {
+  private getDataAPI(datasetName: string, orderBy: any = [], queryText: string = '', 
+											pagIni: number = 0, pagFi: number = 0, 
+											relPunt: string = '', iniDate: string = '', 
+											fiDate: string = '', themes: any = [],
+											dataset: boolean = true): any {
 
     let strOrderBy: string = '';
 		if (orderBy.length) {
