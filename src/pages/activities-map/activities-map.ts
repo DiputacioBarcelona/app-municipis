@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, LoadingController, ModalController } from 'ionic-angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-maps';
 
+import { TranslateService } from 'ng2-translate/ng2-translate'
+
+import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
+import { ActivitiesDetailPage } from '../activities-detail/activities-detail';
+
+import { OpenData } from '../../providers/open-data';
 import { ParamsData } from '../../providers/params-data';
 
 @Component({
@@ -11,14 +16,29 @@ import { ParamsData } from '../../providers/params-data';
 })
 
 export class ActivitiesMapPage {
-  private ine;
   private map: GoogleMap;
+  private ine;
+  private lastIne = '';
+  private queryText = '';
+  private lastQueryText = '';
+	private data: any = [];
+  private shownData: any = [];
+  private total: number;
+  private iniDate: string;
+  private fiDate: string;
+  private category: string;
+  private lastCategory = '';
+  private excludedDatasetsNames: any = [];
+  private lastExcludedDatasetsNames: any = [];
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
+    public loadingCtrl: LoadingController, 
     public modalCtrl: ModalController,
     public paramsData: ParamsData,
-    private googleMaps: GoogleMaps
+    public openData: OpenData,
+    private googleMaps: GoogleMaps,
+    public translate: TranslateService
   ) {
     this.ine = paramsData.params.ine;
   }
@@ -27,6 +47,10 @@ export class ActivitiesMapPage {
   ngAfterViewInit() {
     this.loadMap();
   }
+
+  ionViewDidLoad() {
+    this.updateMap();
+	}
 
   loadMap() {
 
@@ -67,6 +91,64 @@ export class ActivitiesMapPage {
       .then((marker: Marker) => {
           marker.showInfoWindow();
         });*/
+  }
+
+  updateMap() {
+
+    return new Promise(resolve => {
+      let msg = 'Espereu siusplau...';
+      this.translate.get('MUNICIPIS.LOADING_MESSAGE').subscribe((res: string) => {
+          msg = res;
+      });
+
+      let loading = this.loadingCtrl.create({ content: msg });
+      loading.present();
+
+      /*if (this.lastQueryText != this.queryText || this.lastIne != this.ine 
+          || this.lastCategory != this.category  || this.lastExcludedDatasetsNames != this.excludedDatasetsNames) {
+        this.start = 1;
+        this.data = [];
+      }*/
+
+      this.openData.getActivities(this.queryText, 0 , 10, 
+                                  this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames)
+      .subscribe((data: any) => {
+        for(let elem of data) {
+          this.data.push(elem);
+        }
+        this.shownData = this.data.length;
+        this.total = data.entitats;
+        this.lastQueryText = this.queryText;
+        this.lastIne = this.ine;
+        this.lastCategory = this.category;
+        this.lastExcludedDatasetsNames =  this.excludedDatasetsNames;
+        loading.dismiss();
+        resolve(true);
+      });
+            
+    });
+  }
+
+  presentFilter() {
+    let modal = this.modalCtrl.create(ActivitiesFilterPage, {
+      ine: this.ine,
+      iniDate: this.iniDate,
+      fiDate: this.fiDate,
+      category: this.category,
+      excludedDatasetsNames: this.excludedDatasetsNames
+    });
+    modal.present();
+
+    modal.onWillDismiss((data: any) => {
+      if (data) {
+        this.ine = data.ine;
+        this.iniDate = data.iniDate;
+        this.fiDate = data.fiDate;
+        this.category = data.category;
+        this.excludedDatasetsNames = data.excludedDatasetsNames;
+        this.updateMap();
+      }
+    });
   }
 
 }
