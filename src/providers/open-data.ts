@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout'
+import { TranslateService } from 'ng2-translate/ng2-translate'
 
 import { UserData } from './user-data';
 
@@ -21,7 +22,8 @@ export class OpenData {
   private TOKEN = '6b628524631aa27df30d122024f32dd8';
 
   constructor(
-    private http: Http,
+    public http: Http,
+		public translate: TranslateService,
     public userData: UserData
   ) {}
 
@@ -126,7 +128,12 @@ export class OpenData {
 	}
 
 	private processComboMunicipis(data: any) : any{
+		let all = 'All';
+    this.translate.get('MUNICIPIS.ALL').subscribe((res: string) => {
+        all = res;
+    });
 		this.comboMunicipis = []
+		this.comboMunicipis.push({"ine":"", "nom":all});
 		data.elements.forEach((elem: any) => {
 			let municipi: any = {"ine":elem.ine, "nom":elem.municipi_nom};
         this.comboMunicipis.push(municipi);
