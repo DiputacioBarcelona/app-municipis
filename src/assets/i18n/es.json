@@ -146,7 +146,9 @@
 
     "FI_DATE": "Terminan antes de ",
 
-    "CATEGORIES": "Ámbitos temáticos"
+    "CATEGORIES": "Ámbitos temáticos",
+
+    "DATASETS": "Fuentes de datos"
   }
 
 }

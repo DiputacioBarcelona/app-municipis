@@ -15,6 +15,7 @@ export class OpenData {
 	private dataActivities: any;
 	private comboMunicipis: any;
 	private comboCategories: any;
+	private datasetsActe: any;
 
   /* This is the base url of the open data's API  */
   private BASEURL = 'http://do.diba.cat/api/';
@@ -169,6 +170,25 @@ export class OpenData {
         this.comboCategories.push(category);
 		});
 		return this.comboCategories;
+	}
+
+	getDatasetsActe(){
+		if (this.datasetsActe) {
+      console.log('Observable');
+      return Observable.of(this.datasetsActe);
+    } else {			
+			return this.getDataAPI('acte', [], '', 1, 2, '','', '', [], false)
+        .map(this.processDatasetsActe, this);
+    }
+	}
+
+	private processDatasetsActe(data: any) : any{
+		this.datasetsActe = []		
+		data.datasets.forEach((data: any) => {
+			let dataset = {"nom": data.nom, "machinename" :data.machinename};				
+			this.datasetsActe.push(dataset);
+		});
+		return this.datasetsActe;
 	}
 
   private getDataAPI(datasetName: string, orderBy: any = [], queryText: string = '', 

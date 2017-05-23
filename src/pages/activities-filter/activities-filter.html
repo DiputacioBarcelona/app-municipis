@@ -21,7 +21,9 @@
 
   <ion-item>
     <ion-label>{{ 'MUNICIPI-DETAIL.TOWN' | translate }}:</ion-label>
-    <ion-select [(ngModel)]="selectedIne">
+    <ion-select [(ngModel)]="selectedIne"
+          cancelText="{{'APP.CANCEL' | translate}}"
+          okText="{{'APP.OK' | translate}}">
       <div *ngFor="let municipi of municipis">
         <ion-option selected="municipi.ine == selectedIne" value="{{municipi.ine}}">{{ municipi.nom }}</ion-option>        
       </div>
@@ -32,7 +34,9 @@
 
   <ion-item>
     <ion-label>{{ 'ACTIVITIES.CATEGORIES' | translate }}:</ion-label>
-    <ion-select [(ngModel)]="selectedCat" multiple="true">
+    <ion-select [(ngModel)]="selectedCat" multiple="true" 
+          cancelText="{{'APP.CANCEL' | translate}}"
+          okText="{{'APP.OK' | translate}}">
       <div *ngFor="let category of categories">
         <ion-option selected="category.id_tema == selectedCat" value="{{category.id_tema}}">{{ category.tema_nom }}</ion-option>        
       </div>
@@ -92,7 +96,25 @@
                       {{'APP.SA' | translate}}"
         cancelText="{{'APP.CANCEL' | translate}}" 
         doneText="{{'APP.OK' | translate}}">
-      </ion-datetime>
+    </ion-datetime>
   </ion-item>
+
+
+    <ion-list>
+      <ion-list-header>{{'ACTIVITIES.DATASETS' | translate}}</ion-list-header>
+
+      <ion-item *ngFor="let dataset of datasets" [attr.track]="dataset.name | lowercase">
+        <span item-start class="dot"></span>
+        <ion-label>{{dataset.nom}}</ion-label>
+        <ion-toggle [(ngModel)]="dataset.isChecked" color="secondary"></ion-toggle>
+      </ion-item>
+
+    </ion-list>
+
+    <!--<ion-list>
+      <button ion-item (click)="resetFilters()" detail-none class="reset-filters">
+        Reset All Filters
+      </button>
+    </ion-list>-->
 
 </ion-content>

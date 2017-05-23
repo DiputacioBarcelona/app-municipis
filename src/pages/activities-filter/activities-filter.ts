@@ -15,6 +15,8 @@ export class ActivitiesFilterPage {
   private fiDate: string;
   private categories: any = [];
   private selectedCat: string;
+  private datasets: Array<{nom: string, machinename: string, isChecked: boolean}> = [];
+  private excludedDatasetsNames: any = [];
 
   constructor(
     public viewCtrl: ViewController, 
@@ -25,11 +27,22 @@ export class ActivitiesFilterPage {
     this.iniDate = navParams.data.iniDate || '';
     this.fiDate = navParams.data.fiDate || '';
     this.selectedCat = navParams.data.category || '';
+    this.excludedDatasetsNames = this.navParams.data.excludedDatasetsNames || [];
     this.openData.getMuncipisCombo().subscribe((data: any) => {
       this.municipis = data;
     });
     this.openData.getDibaCategoriesCombo().subscribe((data: any) => {
       this.categories = data;
+    });
+
+    this.openData.getDatasetsActe().subscribe((data: any) => {
+      data.forEach(dataset => {
+        this.datasets.push({
+          nom: dataset.nom,
+          machinename: dataset.machinename,
+          isChecked: (this.excludedDatasetsNames.indexOf(dataset.machinename) === -1)
+        });
+      }); 
     });
   }
 
@@ -45,5 +58,12 @@ export class ActivitiesFilterPage {
   dismiss(data?: any) {
     this.viewCtrl.dismiss(data);
   }
+
+  /*resetFilters() {
+    // reset all of the toggles to be checked
+    this.datasets.forEach(track => {
+      track.isChecked = true;
+    });
+  }*/
 
 }
