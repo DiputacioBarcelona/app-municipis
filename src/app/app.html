@@ -1,6 +1,6 @@
 <ion-split-pane>
 
-  <ion-menu id="loggedOutMenu" [content]="content">
+  <ion-menu id="loggedOutMenu" [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()">
 
     <ion-header>
       <ion-toolbar>

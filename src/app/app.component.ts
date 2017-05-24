@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -29,7 +29,13 @@ export class DibaMunicipisApp {
 
   lang: string = 'ca';
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public translate: TranslateService) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen, 
+    public translate: TranslateService,
+    public events: Events
+  ) {
 
     this.initializeApp();
 
@@ -66,19 +72,17 @@ export class DibaMunicipisApp {
   }
 
   isActive(page: PageInterface) {
-    //let childNav = this.nav.getActiveChildNav();
-
-    // Tabs are a special case because they have their own navigation
-    // if (childNav) {
-    //   if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
-    //     return 'primary';
-    //   }
-    //   return;
-    // }
-
     if (this.nav.getActive() && this.nav.getActive().component === page.component) {
       return 'primary';
     }
     return;
+  }
+
+  menuClosed() {
+    this.events.publish('menu:closed', '');
+  }
+
+  menuOpened() {
+    this.events.publish('menu:opened', '');
   }
 }

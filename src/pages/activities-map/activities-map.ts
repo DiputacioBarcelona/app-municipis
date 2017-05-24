@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController, Platform } from 'ionic-angular';
+import { NavController, LoadingController, ModalController, Platform, Events } from 'ionic-angular';
 /*import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';*/
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from '@ionic-native/google-maps';
 
@@ -39,7 +39,8 @@ export class ActivitiesMapPage {
     public paramsData: ParamsData,
     public openData: OpenData,
     public translate: TranslateService,
-    public platform: Platform
+    public platform: Platform,
+    public events: Events
   ) {
     this.ine = paramsData.params.ine;
     platform.ready().then(() => {
@@ -49,6 +50,13 @@ export class ActivitiesMapPage {
 
   ionViewDidLoad() {
     this.updateMap();
+    this.events.subscribe('menu:opened', () => {
+      this.map.setClickable(false);
+    });
+
+    this.events.subscribe('menu:closed', () => {
+      this.map.setClickable(true);
+    });
 	}
 
   loadMap() {
@@ -95,7 +103,7 @@ export class ActivitiesMapPage {
       let loading = this.loadingCtrl.create({ content: msg });
       loading.present();
 
-      this.openData.getActivities(this.queryText, 0 , 1, 
+      this.openData.getActivities(this.queryText, 1 , 2, 
                                   this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames)
       .subscribe((data: any) => {
         for(let elem of data) {
