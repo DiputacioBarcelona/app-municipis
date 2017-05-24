@@ -68,8 +68,8 @@
             "cordova-sqlite-storage": {},
             "ionic-plugin-keyboard": {},
             "cordova-plugin-googlemaps": {
-                "API_KEY_FOR_ANDROID": "AIzaSyBRZrEQJT3SubnN83lo5sRgvGB0tSAGYr0",
-                "API_KEY_FOR_IOS": "AIzaSyAv3n5m8YxSdRmUERDHipBlJK7RQCcPTiQ",
+                "API_KEY_FOR_ANDROID": "AIzaSyBk1Wl10XnfCIZQS8i0eSxU9FdlJ7F_oXc",
+                "API_KEY_FOR_IOS": "AIzaSyAzU1lvKIG2QqWMNQOKfau4gze0w0wzU0I",
                 "NSLOCATIONWHENINUSEUSAGEDESCRIPTION": "Show your location on the map",
                 "NSLOCATIONALWAYSUSAGEDESCRIPTION": "Trace your location on the map"
             }

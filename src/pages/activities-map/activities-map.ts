@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, ModalController, Platform, Events } from 'ionic-angular';
-/*import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';*/
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from '@ionic-native/google-maps';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
 import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
-import { ActivitiesDetailPage } from '../activities-detail/activities-detail';
+/*import { ActivitiesDetailPage } from '../activities-detail/activities-detail';*/
 
 import { OpenData } from '../../providers/open-data';
 import { ParamsData } from '../../providers/params-data';
@@ -17,7 +16,6 @@ import { ParamsData } from '../../providers/params-data';
 })
 
 export class ActivitiesMapPage {
-  private map: GoogleMap;
   private ine;
   private lastIne = '';
   private queryText = '';
@@ -31,6 +29,7 @@ export class ActivitiesMapPage {
   private lastCategory = '';
   private excludedDatasetsNames: any = [];
   private lastExcludedDatasetsNames: any = [];
+  private map: GoogleMap;
 
   constructor(
     public navCtrl: NavController,
@@ -40,16 +39,21 @@ export class ActivitiesMapPage {
     public openData: OpenData,
     public translate: TranslateService,
     public platform: Platform,
-    public events: Events
+    public events: Events,
+    private googleMaps: GoogleMaps
   ) {
     this.ine = paramsData.params.ine;
-    platform.ready().then(() => {
+    /*platform.ready().then(() => {
             this.loadMap();
-    });
+    });*/
   }
 
-  ionViewDidLoad() {
-    this.updateMap();
+  // Load map only after view is initialized
+  ngAfterViewInit() {
+    this.loadMap();
+  }
+
+  ionViewDidLoad() {    
     this.events.subscribe('menu:opened', () => {
       this.map.setClickable(false);
     });
@@ -60,10 +64,12 @@ export class ActivitiesMapPage {
 	}
 
   loadMap() {
+    // create a new map by passing HTMLElement
+    let element: HTMLElement = document.getElementById('map');
 
-    let location = new LatLng(41.5777099,1.6122413); //Igualada
+    this.map = this.googleMaps.create(element);
  
-    this.map = new GoogleMap('map', {
+    /*this.map = new GoogleMap('map', {
       'backgroundColor': 'white',
       'controls': {
         'compass': true,
@@ -83,16 +89,50 @@ export class ActivitiesMapPage {
         'zoom': 15,
         'bearing': 50
       }
-    });
+    });*/
 
-    this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
+    /*this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
         console.log('Map is ready!');
-    });
+    });*/
+
+    // listen to MAP_READY event
+    // You must wait for this event to fire before adding something to the map or modifying it in anyway
+    this.map.one(GoogleMapsEvent.MAP_READY).then(
+      () => {
+        console.log('Map is ready!');
+        // Now you can add elements to the map like the marker
+      }
+    );
+
+    // create LatLng object
+    let location: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
+
+    // create CameraPosition
+    let position: CameraPosition = {
+      target: location,
+      zoom: 18,
+      tilt: 30
+    };
+
+    // move the map's camera to position
+    this.map.moveCamera(position);
+
+    // create new marker
+    let markerOptions: MarkerOptions = {
+      position: location,
+      title: 'Ionic'
+    };
+
+    const marker: any = this.map.addMarker(markerOptions)
+      .then((marker: Marker) => {
+          marker.showInfoWindow();
+        });
+ 
   }
 
   updateMap() {
 
-    return new Promise(resolve => {
+    /*return new Promise(resolve => {
       let msg = 'Espereu siusplau...';
       this.translate.get('MUNICIPIS.LOADING_MESSAGE').subscribe((res: string) => {
           msg = res;
@@ -131,7 +171,7 @@ export class ActivitiesMapPage {
         resolve(true);
       });
             
-    });
+    });*/
   }
 
   presentFilter() {
