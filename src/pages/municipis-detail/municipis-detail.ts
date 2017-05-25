@@ -14,8 +14,8 @@ import { UserData } from '../../providers/user-data';
 })
 
 export class MunicipisDetailPage {
-  municipi: any;
-  favorite: boolean;
+  private municipi: any;
+  private favorite: boolean;
 
   constructor(
     public alertCtrl: AlertController,

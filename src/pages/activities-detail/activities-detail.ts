@@ -1,22 +1,28 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, FabContainer } from 'ionic-angular';
 
-/*
-  Generated class for the ActivitiesDetail page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-activities-detail',
   templateUrl: 'activities-detail.html'
 })
 export class ActivitiesDetailPage {
+  private activity: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
+      this.activity = this.navParams.data.activity;
+      console.log('alla va');
+      console.log(this.activity.imatge);
+  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivitiesDetailPage');
+  share(socialNet: string, fab: FabContainer) {
+    console.log("Sharing in" + socialNet);
+    fab.close();
+  }
+
+  openMap() {
+    console.log("Open map");
   }
 
 }

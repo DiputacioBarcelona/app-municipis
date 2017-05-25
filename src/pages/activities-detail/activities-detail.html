@@ -1,18 +1,51 @@
-<!--
-  Generated template for the ActivitiesDetail page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>activities-detail</ion-title>
+    <ion-title>{{ activity.titol }}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content fullscreen>
+  <ion-card>
+
+    <ion-item>
+      <ion-thumbnail ng-if="activity.rel_municipis.municipi_escut" item-left>
+        <img class="thumbnail" src="{{ activity.rel_municipis.municipi_escut }}">
+      </ion-thumbnail>
+      <p>
+        {{ activity.data_inici }}<br>
+        {{ activity.data_fi }}<br>
+        {{ activity.rel_municipis.municipi_nom }}<br>
+        {{ activity.rel_temes.tema_nom }} <br>
+      </p>
+    </ion-item>
+    
+    <img ng-if="activity.imatge.length > 0" src="{{ activity.imatge['0'] }}" />
+    
+    <ion-card-content>
+      <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
+      <p ng-if="activity.grup_adreca.adreca_nom">{{ activity.grup_adreca.adreca_nom }}</p>
+      <p ng-if="activity.grup_adreca.adreca">{{ activity.grup_adreca.adreca }}</p>
+      <p ng-if="activity.grup_adreca.codi_postal">{{ activity.grup_adreca.codi_postal }}</p>
+      <p ng-if="activity.grup_adreca.municipi_nom">{{ activity.grup_adreca.municipi_nom }}</p>
+      <p ng-if="activity.grup_adreca.localitzacio">
+        <button ion-button icon-left clear small (click)="openMap()">
+          <ion-icon name="navigate"></ion-icon>
+          <div><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ activity.grup_adreca.localitzacio }}</div>
+        </button>
+      </p>
+    </ion-card-content>
+
+  </ion-card>
 
 </ion-content>
+
+<ion-fab middle right #fab>
+  <button ion-fab><ion-icon name="share"></ion-icon></button>
+  <ion-fab-list side="left">
+    <button ion-fab color="twitter" (click)="share('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
+    <button ion-fab color="facebook" (click)="share('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
+    <button ion-fab color="whatsapp" (click)="share('Whatsapp', fab)"><ion-icon name="logo-whatsapp"></ion-icon></button>
+    <button ion-fab color="primary" (click)="share('Mail', fab)"><ion-icon name="mail"></ion-icon></button>
+  </ion-fab-list>
+</ion-fab>
