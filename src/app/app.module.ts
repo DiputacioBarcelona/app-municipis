@@ -25,6 +25,8 @@ import { ActivitiesFilterPage } from '../pages/activities-filter/activities-filt
 import { ActivitiesListPage } from '../pages/activities-list/activities-list';
 import { ActivitiesMapPage } from '../pages/activities-map/activities-map';
 
+import { DateFormat } from '../pipes/date-format';
+
 import { OpenData } from '../providers/open-data';
 import { UserData } from '../providers/user-data';
 import { ParamsData } from '../providers/params-data';
@@ -47,7 +49,8 @@ export function createTranslateLoader(http: Http) {
     ActivitiesDetailPage,
     ActivitiesFilterPage,
     ActivitiesListPage,
-    ActivitiesMapPage
+    ActivitiesMapPage,
+    DateFormat
   ],
   imports: [
     IonicModule.forRoot(DibaMunicipisApp, {

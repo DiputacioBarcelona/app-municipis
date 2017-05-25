@@ -28,8 +28,8 @@
         (click)="goToActivityDetail(activity)">
       <h3>{{ activity.titol }}</h3>
       <p>
-        {{activity.data_inici | date:'dd/MM/yyyy'}} &mdash;
-        {{activity.data_fi | date:'dd/MM/yyyy'}}            
+        {{activity.data_inici | dateFormat}} &mdash;
+        {{activity.data_fi | dateFormat}}            
       </p>
       <p>
         {{activity.rel_municipis.municipi_nom}}
