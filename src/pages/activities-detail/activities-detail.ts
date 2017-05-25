@@ -25,4 +25,23 @@ export class ActivitiesDetailPage {
     console.log("Open map");
   }
 
+  arrayToString(text: any){
+      return text.join(", ");
+  };
+
+  /*$scope.openLink = function (link) {
+      $window.open(link, '_system', 'location=yes');
+      // return false;
+    };
+
+    $scope.openMail = function (link) {
+      $window.open('mailto:'+link, '_system', 'location=yes');
+      return false;
+    };
+
+    $scope.openTel = function (link) {
+      $window.open('tel:'+link, '_system', 'location=yes');
+      return false;
+    };*/
+
 }

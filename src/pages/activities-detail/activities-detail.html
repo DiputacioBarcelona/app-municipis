@@ -23,6 +23,20 @@
     <img ng-if="activity.imatge.length > 0" src="{{ activity.imatge['0'] }}" />
     
     <ion-card-content>
+      <h2 ng-if="activity.descripcio">{{'INFORMATION' | translate}}:</h2>
+      <p ng-if="activity.descripcio" ng-bind-html="activity.descripcio"></p>
+      <p ng-if="activity.organitzadors"><b>{{'OBSERVACIONS' | translate }}:</b> {{activity.observacions}}</p>
+      <p ng-if="activity.organitzadors"><b>{{'ORGANITZADORS' | translate }}:</b> {{activity.organitzadors}}</p>
+      <p ng-if="activity.public && activity.public.length"><b>{{'PUBLIC' | translate }}:</b> {{arrayToString(activity.public)}}</p>
+      <p ng-if="activity.tipus && activity.tipus.length"><b>{{'TIPUS' | translate }}:</b> {{arrayToString(activity.tipus)}}</p>
+
+      <p ng-if="activity.preu"><b>{{'PREU' | translate }}:</b> {{activity.preu}}</p>
+
+      <p ng-if="activity.url_general"><b>Web:</b> <a href="#" data-ng-click="openLink(activity.url_general)">{{activity.url_general}}</a></p>
+      <p ng-if="activity.grup_adreca.adreca_nom"><b>{{'PLACE' | translate}}:</b> {{activity.grup_adreca.adreca_nom}}</p>
+      <p ng-if="activity.email[0]"><b>Email:</b> <a href="#" data-ng-click="openMail(activity.email[0])">{{activity.email[0]}}</a></p>
+      <p ng-if="activity.telefon_contacte[0]"><b>{{'TELEPHONE' | translate}}:</b> <a href="#" data-ng-click="openTel(activity.telefon_contacte[0])">{{activity.telefon_contacte[0]}}</a></p>
+
       <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
       <p ng-if="activity.grup_adreca.adreca_nom">{{ activity.grup_adreca.adreca_nom }}</p>
       <p ng-if="activity.grup_adreca.adreca">{{ activity.grup_adreca.adreca }}</p>
