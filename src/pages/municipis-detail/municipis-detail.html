@@ -32,12 +32,12 @@
 
     <ion-card-content>
       <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
-      <p ng-if="municipi.grup_ajuntament.adreca"><b>{{ 'MUNICIPI-DETAIL.ADDRESS' | translate }}:</b> {{ municipi.grup_ajuntament.adreca }}, {{ municipi.grup_ajuntament.codi_postal }}</p>
-      <p ng-if="municipi.grup_ajuntament.email"><b>{{ 'MUNICIPI-DETAIL.EMAIL' | translate }}:</b> {{ municipi.grup_ajuntament.email }}</p>
-      <p ng-if="municipi.grup_ajuntament.url_general"><b>{{ 'MUNICIPI-DETAIL.URL' | translate }}:</b> {{ municipi.grup_ajuntament.url_general }}</p>
-      <p ng-if="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
-      <p ng-if="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
-      <p ng-if="municipi.grup_ajuntament.localitzacio">
+      <p *ngIf="municipi.grup_ajuntament.adreca"><b>{{ 'MUNICIPI-DETAIL.ADDRESS' | translate }}:</b> {{ municipi.grup_ajuntament.adreca }}, {{ municipi.grup_ajuntament.codi_postal }}</p>
+      <p *ngIf="municipi.grup_ajuntament.email"><b>{{ 'MUNICIPI-DETAIL.EMAIL' | translate }}:</b> {{ municipi.grup_ajuntament.email }}</p>
+      <p *ngIf="municipi.grup_ajuntament.url_general"><b>{{ 'MUNICIPI-DETAIL.URL' | translate }}:</b> {{ municipi.grup_ajuntament.url_general }}</p>
+      <p *ngIf="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
+      <p *ngIf="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
+      <p *ngIf="municipi.grup_ajuntament.localitzacio">
         <button ion-button icon-left clear small (click)="openMap()">
           <ion-icon name="navigate"></ion-icon>
           <div><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</div>

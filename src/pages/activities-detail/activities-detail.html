@@ -18,26 +18,26 @@
       </p>
     </ion-item>
     
-    <img ng-if="activity.imatge.length > 0" src="{{ activity.imatge['0'] }}" />
+    <img *ngIf="activity.imatge.length > 0" src="{{ activity.imatge['0'] }}" />
     
     <ion-card-content>
       <h2>{{'ACTIVITIES.INFORMATION' | translate}}:</h2>
       <div [innerHTML]="activity.descripcio">
       </div>
-      <p ng-if="activity.organitzadors"><b>{{'ACTIVITIES.OBSERVATIONS' | translate }}:</b></p>
+      <p *ngIf="activity.organitzadors"><b>{{'ACTIVITIES.OBSERVATIONS' | translate }}:</b></p>
       
-      <div ng-if="activity.organitzadors" [innerHTML]="activity.observacions">
+      <div *ngIf="activity.organitzadors" [innerHTML]="activity.observacions">
       </div>
-      <p ng-if="activity.observacions_horari"><b>{{'ACTIVITIES.SCHEDULE_OBSERVATIONS' | translate }}:</b> {{activity.observacions_horari}}</p>
-      <p ng-if="activity.organitzadors"><b>{{'ACTIVITIES.ORGANIZERS' | translate }}:</b> {{activity.organitzadors}}</p>
-      <p ng-if="activity.preu"><b>{{'ACTIVITIES.PRICE' | translate }}:</b> {{activity.preu}}</p>
-      <p ng-if="activity.durada"><b>{{'ACTIVITIES.DURATION' | translate }}:</b> {{activity.durada}}</p>
-      <p ng-if="activity.dies"><b>{{'ACTIVITIES.DAYS' | translate }}:</b> {{activity.dies}}</p>
-      <p ng-if="activity.aforament"><b>{{'ACTIVITIES.CAPACITY' | translate }}:</b> {{activity.aforament}}</p>
+      <p *ngIf="activity.observacions_horari"><b>{{'ACTIVITIES.SCHEDULE_OBSERVATIONS' | translate }}:</b> {{activity.observacions_horari}}</p>
+      <p *ngIf="activity.organitzadors"><b>{{'ACTIVITIES.ORGANIZERS' | translate }}:</b> {{activity.organitzadors}}</p>
+      <p *ngIf="activity.preu"><b>{{'ACTIVITIES.PRICE' | translate }}:</b> {{activity.preu}}</p>
+      <p *ngIf="activity.durada"><b>{{'ACTIVITIES.DURATION' | translate }}:</b> {{activity.durada}}</p>
+      <p *ngIf="activity.dies"><b>{{'ACTIVITIES.DAYS' | translate }}:</b> {{activity.dies}}</p>
+      <p *ngIf="activity.aforament"><b>{{'ACTIVITIES.CAPACITY' | translate }}:</b> {{activity.aforament}}</p>
 
-      <p ng-if="activity.public && activity.public.length"><b>{{'ACTIVITIES.PUBLIC' | translate }}:</b> {{arrayToString(activity.public)}}</p>
-      <p ng-if="activity.tipus && activity.tipus.length"><b>{{'ACTIVITIES.CLASSIFICATION' | translate }}:</b> {{arrayToString(activity.tipus)}}</p>
-      <p ng-if="activity.acte_url">
+      <p *ngIf="activity.public && activity.public.length"><b>{{'ACTIVITIES.PUBLIC' | translate }}:</b> {{arrayToString(activity.public)}}</p>
+      <p *ngIf="activity.tipus && activity.tipus.length"><b>{{'ACTIVITIES.CLASSIFICATION' | translate }}:</b> {{arrayToString(activity.tipus)}}</p>
+      <p *ngIf="activity.acte_url">
         <button ion-button icon-left clear small (click)="openInfo()">
           <ion-icon name="information-circle"></ion-icon>
           <div><b>{{ 'ACTIVITIES.MORE_INFORMATION' | translate }}:</b></div>
@@ -45,14 +45,14 @@
       </p>
 
       <h2>{{ 'ACTIVITIES.CONTACT' | translate }}</h2>
-      <p ng-if="activity.grup_adreca.adreca_nom">{{ activity.grup_adreca.adreca_nom }}</p>
-      <p ng-if="activity.grup_adreca.adreca">{{ activity.grup_adreca.adreca }}</p>
-      <p ng-if="activity.grup_adreca.codi_postal">{{ activity.grup_adreca.codi_postal }}</p>
-      <p ng-if="activity.grup_adreca.municipi_nom">{{ activity.grup_adreca.municipi_nom }}</p>
-      <p ng-if="activity.url_general"><b>Web:</b> <a href="#" data-ng-click="openLink(activity.url_general)">{{activity.url_general}}</a></p>
-      <p ng-if="activity.email[0]"><b>Email:</b> <a href="#" data-ng-click="openMail(activity.email[0])">{{activity.email[0]}}</a></p>
-      <p ng-if="activity.telefon_contacte[0]"><b>{{'ACTIVITIES.TELEPHONE' | translate}}:</b> <a href="#" data-ng-click="openTel(activity.telefon_contacte[0])">{{activity.telefon_contacte[0]}}</a></p>
-      <p ng-if="activity.grup_adreca.localitzacio">
+      <p *ngIf="activity.grup_adreca.adreca_nom">{{ activity.grup_adreca.adreca_nom }}</p>
+      <p *ngIf="activity.grup_adreca.adreca">{{ activity.grup_adreca.adreca }}</p>
+      <p *ngIf="activity.grup_adreca.codi_postal">{{ activity.grup_adreca.codi_postal }}</p>
+      <p *ngIf="activity.grup_adreca.municipi_nom">{{ activity.grup_adreca.municipi_nom }}</p>
+      <p *ngIf="activity.url_general"><b>Web:</b> <a href="#" data-ng-click="openLink(activity.url_general)">{{activity.url_general}}</a></p>
+      <p *ngIf="activity.email[0]"><b>Email:</b> <a href="#" data-ng-click="openMail(activity.email[0])">{{activity.email[0]}}</a></p>
+      <p *ngIf="activity.telefon_contacte[0]"><b>{{'ACTIVITIES.TELEPHONE' | translate}}:</b> <a href="#" data-ng-click="openTel(activity.telefon_contacte[0])">{{activity.telefon_contacte[0]}}</a></p>
+      <p *ngIf="activity.grup_adreca.localitzacio">
         <button ion-button icon-left clear small (click)="openMap()">
           <ion-icon name="navigate"></ion-icon>
           <div><b>{{ 'ACTIVITIES.COORDS' | translate }}:</b> {{ activity.grup_adreca.localitzacio }}</div>
