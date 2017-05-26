@@ -72,19 +72,9 @@
 
     "TOWN": "Town",
 
-    "ADDRESS": "Address",
+    "ADDRESS": "Council",
 
-    "EMAIL": "email",
-
-    "TELEPHONE": "Telephone",
-
-    "FAX": "Fax",
-
-    "COORDS": "Coords",
-
-    "CONTACT": "Contact",
-
-    "URL": "web"
+    "CONTACT": "Contact"
   },
 
   "POIS": {
@@ -165,8 +155,6 @@
     "CLASSIFICATION": "Classification",
 
     "PRICE": "Price",
-
-    "TELEPHONE": "Telephone",
 
     "CONTACT": "Contact",
 

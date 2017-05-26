@@ -31,16 +31,35 @@
     <img src="{{ municipi.municipi_vista }}" />
 
     <ion-card-content>
-      <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
-      <p *ngIf="municipi.grup_ajuntament.adreca"><b>{{ 'MUNICIPI-DETAIL.ADDRESS' | translate }}:</b> {{ municipi.grup_ajuntament.adreca }}, {{ municipi.grup_ajuntament.codi_postal }}</p>
-      <p *ngIf="municipi.grup_ajuntament.email"><b>{{ 'MUNICIPI-DETAIL.EMAIL' | translate }}:</b> {{ municipi.grup_ajuntament.email }}</p>
-      <p *ngIf="municipi.grup_ajuntament.url_general"><b>{{ 'MUNICIPI-DETAIL.URL' | translate }}:</b> {{ municipi.grup_ajuntament.url_general }}</p>
+      <h2>{{ 'MUNICIPI-DETAIL.ADDRESS' | translate }}</h2>
+      <p *ngIf="municipi.grup_ajuntament.adreca">{{ municipi.grup_ajuntament.adreca }}, {{ municipi.grup_ajuntament.codi_postal }}</p>
+      <p *ngIf="municipi.grup_ajuntament.url_general">
+        <button ion-button icon-left clear small (click)="openLink(municipi.grup_ajuntament.url_general)"
+          class="button-padding-left">
+          <ion-icon name="open"></ion-icon>
+          <div class="button-text-transform">{{municipi.grup_ajuntament.url_general}}</div>
+        </button>
+      </p>
+      <p *ngIf="municipi.grup_ajuntament.email">
+        <button ion-button icon-left clear small (click)="openMail(municipi.grup_ajuntament.email)"
+          class="button-padding-left">
+          <ion-icon name="at"></ion-icon>
+          <div class="button-text-transform">{{municipi.grup_ajuntament.email}}</div>
+        </button>
+      </p>
+      <p *ngIf="municipi.grup_ajuntament.telefon_contacte">
+        <button ion-button icon-left clear small (click)="openTel(municipi.grup_ajuntament.telefon_contacte)"
+          class="button-padding-left">
+          <ion-icon name="call"></ion-icon>
+          <div>{{municipi.grup_ajuntament.telefon_contacte}}</div>
+        </button>
+      </p>
       <p *ngIf="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
-      <p *ngIf="municipi.grup_ajuntament.fax"><b>{{ 'MUNICIPI-DETAIL.FAX' | translate }}:</b> {{ municipi.grup_ajuntament.fax }}</p>
       <p *ngIf="municipi.grup_ajuntament.localitzacio">
-        <button ion-button icon-left clear small (click)="openMap()">
+        <button ion-button icon-left clear small (click)="openMap()"
+          class="button-padding-left">
           <ion-icon name="navigate"></ion-icon>
-          <div><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ municipi.grup_ajuntament.localitzacio }}</div>
+          <div> {{ municipi.grup_ajuntament.localitzacio }}</div>
         </button>
       </p>
     </ion-card-content>

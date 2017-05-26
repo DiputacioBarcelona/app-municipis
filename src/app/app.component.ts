@@ -23,7 +23,7 @@ export interface PageInterface {
 export class DibaMunicipisApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ActivitiesPage;
+  rootPage: any = MunicipisPage;
 
   appPages: PageInterface[];
 

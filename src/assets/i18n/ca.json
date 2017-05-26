@@ -76,19 +76,9 @@
 
     "TOWN": "Municipi",
 
-    "ADDRESS": "Adreça",
+    "ADDRESS": "Ajuntament",
 
-    "EMAIL": "Correu electrònic",
-
-    "TELEPHONE": "Telèfon",
-
-    "FAX": "Fax",
-
-    "COORDS": "Coordenades",
-
-    "CONTACT": "Contacte",
-
-    "URL": "web"
+    "CONTACT": "Contacte"
   },
 
   "POIS": {
@@ -164,8 +154,6 @@
     "CLASSIFICATION": "Classificació",
 
     "PRICE": "Preu",
-
-    "TELEPHONE": "Telèfon",
 
     "CONTACT": "Contacte",    
 

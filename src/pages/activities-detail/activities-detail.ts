@@ -31,9 +31,9 @@ export class ActivitiesDetailPage {
     window.open(`mailto:${email}`, '_system', 'location=yes');
   }
 
-  openTel(telf) {
+/*  openTel(telf) {
     window.open(`telf:${telf}`, '_system', 'location=yes');
-  }
+  }*/
 
   openLink(link) {
     console.log('openLink: ' + link);

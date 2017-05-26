@@ -9,7 +9,7 @@ import { ActivitiesPage } from '../activities/activities';
 import { UserData } from '../../providers/user-data';
 
 @Component({
-  selector: 'page-municipis_detail',
+  selector: 'page-municipi-detail',
   templateUrl: 'municipis-detail.html'
 })
 
@@ -118,6 +118,7 @@ export class MunicipisDetailPage {
   }
 
   openTel(telf) {
+    console.log(telf);
     window.open(`telf:${telf}`, '_system', 'location=yes');
   }
 
