@@ -20,6 +20,8 @@
 
     "TITLE_FILTER": "Filtre",
 
+    "TITLE_ACTIVITY": "Activitat",
+
     "JANUARY": "Gener",
 
     "FEBRUARY": "Febrer",
@@ -149,7 +151,25 @@
 
     "DATASETS": "Fons de dades",
 
-    "RESET_ALL_FILTERS": "Restablir tots els filtres"
+    "RESET_ALL_FILTERS": "Restablir tots els filtres",
+
+    "INFORMATION": "Informació",
+
+    "OBSERVATIONS": "Observacions",
+
+    "ORGANIZERS": "Organitzazors",
+
+    "PUBLIC": "Públic",
+
+    "CLASSIFICATION": "Classificació",
+
+    "PRICE": "Preu",
+
+    "TELEPHONE": "Telèfon",
+
+    "CONTACT": "Contacte",
+
+    "COORDS": "Coordenades"
   }
 
 }

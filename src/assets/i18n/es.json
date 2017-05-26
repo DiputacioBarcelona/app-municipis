@@ -18,7 +18,9 @@
 
     "TITLE_POIS": "Puntos de interés",
 
-    "TITLE_FILTER": "Filter",
+    "TITLE_FILTER": "Filtrar",
+
+    "TITLE_ACTIVITY": "Actividad",
 
     "JANUARY": "Enero",
 
@@ -150,7 +152,25 @@
 
     "DATASETS": "Fuentes de datos",
 
-    "RESET_ALL_FILTERS": "Restablecer todos los filtros"
+    "RESET_ALL_FILTERS": "Restablecer todos los filtros",
+
+    "INFORMATION": "Información",
+
+    "OBSERVATIONS": "Observaciones",
+
+    "ORGANIZERS": "Organitzadores",
+
+    "PUBLIC": "Público",
+
+    "CLASSIFICATION": "Classificatción",
+
+    "PRICE": "Precio",
+
+    "TELEPHONE": "Teléfono",
+
+    "CONTACT": "Contacto",
+
+    "COORDS": "Cordenadas"
   }
 
 }

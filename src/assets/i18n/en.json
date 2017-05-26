@@ -18,7 +18,9 @@
 
     "TITLE_POIS": "Points of interest",
 
-    "TITLE_FILTER": "Filtrar",
+    "TITLE_FILTER": "Filter",
+
+    "TITLE_ACTIVITY": "Activity",
 
     "JANUARY": "January",
 
@@ -150,7 +152,25 @@
 
     "DATASETS": "Data Sources",
 
-    "RESET_ALL_FILTERS": "Reset All Filters"
+    "RESET_ALL_FILTERS": "Reset All Filters",
+
+    "INFORMATION": "Information",
+
+    "OBSERVATIONS": "Observations",
+
+    "ORGANIZERS": "Organizers",
+
+    "PUBLIC": "Public",
+
+    "CLASSIFICATION": "Classification",
+
+    "PRICE": "Price",
+
+    "TELEPHONE": "Telephone",
+
+    "CONTACT": "Contact",
+
+    "COORDS": "Coords"
   }
 
 }

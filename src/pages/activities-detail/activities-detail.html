@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ activity.titol }}</ion-title>
+    <ion-title>{{'APP.TITLE_ACTIVITY' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -8,10 +8,8 @@
 <ion-content fullscreen>
   <ion-card>
 
-    <ion-item>
-      <ion-thumbnail ng-if="activity.rel_municipis.municipi_escut" item-left>
-        <img class="thumbnail" src="{{ activity.rel_municipis.municipi_escut }}">
-      </ion-thumbnail>
+    <ion-item>      
+      <h2>{{ activity.titol }}</h2>
       <p>
         {{ activity.data_inici }}<br>
         {{ activity.data_fi }}<br>
@@ -23,29 +21,29 @@
     <img ng-if="activity.imatge.length > 0" src="{{ activity.imatge['0'] }}" />
     
     <ion-card-content>
-      <h2 ng-if="activity.descripcio">{{'INFORMATION' | translate}}:</h2>
-      <p ng-if="activity.descripcio" ng-bind-html="activity.descripcio"></p>
-      <p ng-if="activity.organitzadors"><b>{{'OBSERVACIONS' | translate }}:</b> {{activity.observacions}}</p>
-      <p ng-if="activity.organitzadors"><b>{{'ORGANITZADORS' | translate }}:</b> {{activity.organitzadors}}</p>
-      <p ng-if="activity.public && activity.public.length"><b>{{'PUBLIC' | translate }}:</b> {{arrayToString(activity.public)}}</p>
-      <p ng-if="activity.tipus && activity.tipus.length"><b>{{'TIPUS' | translate }}:</b> {{arrayToString(activity.tipus)}}</p>
+      <h2>{{'ACTIVITIES.INFORMATION' | translate}}:</h2>
+      <div [innerHTML]="activity.descripcio">
+      </div>
+      <p ng-if="activity.organitzadors"><b>{{'ACTIVITIES.OBSERVATIONS' | translate }}:</b></p>
+      <div ng-if="activity.organitzadors" [innerHTML]="activity.observacions">
+      </div>
+      <p ng-if="activity.organitzadors"><b>{{'ACTIVITIES.ORGANIZERS' | translate }}:</b> {{activity.organitzadors}}</p>
+      <p ng-if="activity.public && activity.public.length"><b>{{'ACTIVITIES.PUBLIC' | translate }}:</b> {{arrayToString(activity.public)}}</p>
+      <p ng-if="activity.tipus && activity.tipus.length"><b>{{'ACTIVITIES.CLASSIFICATION' | translate }}:</b> {{arrayToString(activity.tipus)}}</p>
+      <p ng-if="activity.preu"><b>{{'ACTIVITIES.PRICE' | translate }}:</b> {{activity.preu}}</p>
 
-      <p ng-if="activity.preu"><b>{{'PREU' | translate }}:</b> {{activity.preu}}</p>
-
-      <p ng-if="activity.url_general"><b>Web:</b> <a href="#" data-ng-click="openLink(activity.url_general)">{{activity.url_general}}</a></p>
-      <p ng-if="activity.grup_adreca.adreca_nom"><b>{{'PLACE' | translate}}:</b> {{activity.grup_adreca.adreca_nom}}</p>
-      <p ng-if="activity.email[0]"><b>Email:</b> <a href="#" data-ng-click="openMail(activity.email[0])">{{activity.email[0]}}</a></p>
-      <p ng-if="activity.telefon_contacte[0]"><b>{{'TELEPHONE' | translate}}:</b> <a href="#" data-ng-click="openTel(activity.telefon_contacte[0])">{{activity.telefon_contacte[0]}}</a></p>
-
-      <h2>{{ 'MUNICIPI-DETAIL.CONTACT' | translate }}</h2>
+      <h2>{{ 'ACTIVITIES.CONTACT' | translate }}</h2>
       <p ng-if="activity.grup_adreca.adreca_nom">{{ activity.grup_adreca.adreca_nom }}</p>
       <p ng-if="activity.grup_adreca.adreca">{{ activity.grup_adreca.adreca }}</p>
       <p ng-if="activity.grup_adreca.codi_postal">{{ activity.grup_adreca.codi_postal }}</p>
       <p ng-if="activity.grup_adreca.municipi_nom">{{ activity.grup_adreca.municipi_nom }}</p>
+      <p ng-if="activity.url_general"><b>Web:</b> <a href="#" data-ng-click="openLink(activity.url_general)">{{activity.url_general}}</a></p>
+      <p ng-if="activity.email[0]"><b>Email:</b> <a href="#" data-ng-click="openMail(activity.email[0])">{{activity.email[0]}}</a></p>
+      <p ng-if="activity.telefon_contacte[0]"><b>{{'ACTIVITIES.TELEPHONE' | translate}}:</b> <a href="#" data-ng-click="openTel(activity.telefon_contacte[0])">{{activity.telefon_contacte[0]}}</a></p>
       <p ng-if="activity.grup_adreca.localitzacio">
         <button ion-button icon-left clear small (click)="openMap()">
           <ion-icon name="navigate"></ion-icon>
-          <div><b>{{ 'MUNICIPI-DETAIL.COORDS' | translate }}:</b> {{ activity.grup_adreca.localitzacio }}</div>
+          <div><b>{{ 'ACTIVITIES.COORDS' | translate }}:</b> {{ activity.grup_adreca.localitzacio }}</div>
         </button>
       </p>
     </ion-card-content>
