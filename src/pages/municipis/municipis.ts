@@ -14,10 +14,10 @@ import { UserData } from '../../providers/user-data';
 })
 
 export class MunicipisPage {  
-	queryText = '';
-	segment = 'all';
-	data: any = [];
-  shownData: any = [];
+	private queryText = '';
+	private segment = 'all';
+	private data: any = [];
+  private shownData: any = [];
 
 	constructor(
 		public alertCtrl: AlertController,

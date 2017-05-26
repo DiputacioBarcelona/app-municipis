@@ -12,13 +12,13 @@ import { ParamsData } from '../../providers/params-data';
 })
 
 export class ActivitiesPage {
-  tab1Root = ActivitiesListPage;
-  tab2Root = ActivitiesMapPage;
-  mySelectedIndex: number;
-  ine: string;
+  private tab1Root = ActivitiesListPage;
+  private tab2Root = ActivitiesMapPage;
+  private mySelectedIndex: number;
+  private ine: string;
 
   constructor(
-    navParams: NavParams,
+    public navParams: NavParams,
     public paramsData: ParamsData
   ) {
     this.mySelectedIndex = navParams.data.tabIndex || 0;

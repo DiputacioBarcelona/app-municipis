@@ -23,7 +23,8 @@ export class MunicipisDetailPage {
     public navParams: NavParams, 
     public userData: UserData, 
     public translate: TranslateService, 
-    public events: Events) {
+    public events: Events
+  ) {
       this.municipi = this.navParams.data.municipi;
   }
 
