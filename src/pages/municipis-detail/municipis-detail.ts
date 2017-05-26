@@ -118,8 +118,7 @@ export class MunicipisDetailPage {
   }
 
   openTel(telf) {
-    console.log(telf);
-    window.open(`telf:${telf}`, '_system', 'location=yes');
+    window.open('tel:'+telf);
   }
 
   openLink(link) {

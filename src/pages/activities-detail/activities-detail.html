@@ -62,13 +62,13 @@
       <p *ngIf="activity.telefon_contacte[0]">
         <button ion-button icon-left clear small (click)="openTel(activity.telefon_contacte[0])">
           <ion-icon name="call"></ion-icon>
-          <div>{{activity.telefon_contacte[0]}}</div>
+          <div class="button-text-transform">{{activity.telefon_contacte[0]}}</div>
         </button>
       </p>
       <p *ngIf="activity.grup_adreca.localitzacio">
         <button ion-button icon-left clear small (click)="openMap()">
           <ion-icon name="navigate"></ion-icon>
-          <div> {{ activity.grup_adreca.localitzacio }}</div>
+          <div class="button-text-transform"> {{ activity.grup_adreca.localitzacio }}</div>
         </button>
       </p>
     </ion-card-content>

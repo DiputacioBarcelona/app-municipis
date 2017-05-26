@@ -51,15 +51,14 @@
         <button ion-button icon-left clear small (click)="openTel(municipi.grup_ajuntament.telefon_contacte)"
           class="button-padding-left">
           <ion-icon name="call"></ion-icon>
-          <div>{{municipi.grup_ajuntament.telefon_contacte}}</div>
+          <div class="button-text-transform">{{municipi.grup_ajuntament.telefon_contacte}}</div>
         </button>
       </p>
-      <p *ngIf="municipi.grup_ajuntament.telefon_contacte"><b>{{ 'MUNICIPI-DETAIL.TELEPHONE' | translate }}:</b> <a href="tel: {{ municipi.grup_ajuntament.telefon_contacte }}">{{ municipi.grup_ajuntament.telefon_contacte }}</a></p>
       <p *ngIf="municipi.grup_ajuntament.localitzacio">
         <button ion-button icon-left clear small (click)="openMap()"
           class="button-padding-left">
           <ion-icon name="navigate"></ion-icon>
-          <div> {{ municipi.grup_ajuntament.localitzacio }}</div>
+          <div class="button-text-transform"> {{ municipi.grup_ajuntament.localitzacio }}</div>
         </button>
       </p>
     </ion-card-content>
