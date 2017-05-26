@@ -5,7 +5,7 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerO
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
 import { ActivitiesFilterPage } from '../activities-filter/activities-filter';
-/*import { ActivitiesDetailPage } from '../activities-detail/activities-detail';*/
+import { ActivitiesDetailPage } from '../activities-detail/activities-detail';
 
 import { OpenData } from '../../providers/open-data';
 import { ParamsData } from '../../providers/params-data';
@@ -134,7 +134,7 @@ export class ActivitiesMapPage {
 
     /*return new Promise(resolve => {
       let msg = 'Espereu siusplau...';
-      this.translate.get('MUNICIPIS.LOADING_MESSAGE').subscribe((res: string) => {
+      this.translate.get('APP.LOADING_MESSAGE').subscribe((res: string) => {
           msg = res;
       });
 

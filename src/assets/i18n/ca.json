@@ -62,7 +62,25 @@
 
     "OK": "D'acord",
 
-    "CANCEL": "Cancel·lar"
+    "CANCEL": "Cancel·lar",
+
+    "TAB_TITLE_LIST": "Llista",
+
+    "TAB_TITLE_MAP": "Mapa",
+
+    "PLACEHOLDER_SEARCH": "Cercar",
+
+    "LOADING_MESSAGE": "Espereu siusplau...",
+
+    "DONE": "Filtra",
+
+    "TOWN": "Municipi",
+
+    "CATEGORIES": "Àmbits temàtics",
+
+    "DATASETS": "Fons de dades",
+
+    "RESET_ALL_FILTERS": "Restablir tots els filtres"
   },
 
   "MUNICIPI-DETAIL": {
@@ -74,27 +92,17 @@
 
     "PROVINCE": "Província",
 
-    "TOWN": "Municipi",
-
     "ADDRESS": "Ajuntament",
 
     "CONTACT": "Contacte"
   },
 
   "POIS": {
-    "THEME": "Temàtica",
-
-    "LIST": "Llista",
-
-    "MAP": "Mapa",
-
-    "TOWN": "Municipi"
+    "NO_POIS_FOUND": "No s'han trobat punts d'interès"
   },
 
   "MUNICIPIS": {
     "PLACEHOLDER_SEARCH": "Nom del municipi...",
-
-    "LOADING_MESSAGE": "Espereu siusplau...",
 
     "ALL": "Tots",
     
@@ -121,27 +129,11 @@
 
   "ACTIVITIES": {
 
-    "TAB_TITLE_LIST": "Llista",
-
-    "TAB_TITLE_MAP": "Mapa",
-
-    "PLACEHOLDER_SEARCH": "Cercar",
-
     "NO_ACTIVITIES_FOUND": "No s'han trobat activitats",
-
-    "CANCEL": "Cancel·lar",
-
-    "DONE": "Filtra",
 
     "INI_DATE": "Comencen després de",
 
     "FI_DATE": "Acaben abans de ",
-
-    "CATEGORIES": "Àmbits temàtics",
-
-    "DATASETS": "Fons de dades",
-
-    "RESET_ALL_FILTERS": "Restablir tots els filtres",
 
     "INFORMATION": "Informació",
 

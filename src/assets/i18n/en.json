@@ -58,7 +58,25 @@
 
     "FR": "Fr",
 
-    "SA": "Sa"
+    "SA": "Sa",
+
+    "TAB_TITLE_LIST": "List",
+
+    "TAB_TITLE_MAP": "Map",
+
+    "PLACEHOLDER_SEARCH": "Search",
+
+    "LOADING_MESSAGE": "Please wait ...",
+
+    "DONE": "Done",
+
+    "TOWN": "Town",
+
+    "CATEGORIES": "Thematic areas",
+
+    "DATASETS": "Data Sources",
+
+    "RESET_ALL_FILTERS": "Reset All Filters"
   },
 
   "MUNICIPI-DETAIL": {
@@ -70,28 +88,18 @@
 
     "PROVINCE": "Province",
 
-    "TOWN": "Town",
-
     "ADDRESS": "Council",
 
     "CONTACT": "Contact"
   },
 
   "POIS": {
-    "THEME": "Theme",
-
-    "LIST": "List",
-
-    "MAP": "Map",
-
-    "TOWN": "Town"
+    "NO_POIS_FOUND": "No points of interest found"
   },
 
   "MUNICIPIS" : {
 
     "PLACEHOLDER_SEARCH": "Name of the town...",
-
-    "LOADING_MESSAGE": "Please wait ...",
 
     "ALL": "All",
     
@@ -122,27 +130,11 @@
 
   "ACTIVITIES": {
 
-    "TAB_TITLE_LIST": "List",
-
-    "TAB_TITLE_MAP": "Map",
-
-    "PLACEHOLDER_SEARCH": "Search",
-
     "NO_ACTIVITIES_FOUND": "No activities found",
-
-    "CANCEL": "Cancel",
-
-    "DONE": "Done",
 
     "INI_DATE": "Start before",
 
     "FI_DATE": "Ends after",
-
-    "CATEGORIES": "Thematic areas",
-
-    "DATASETS": "Data Sources",
-
-    "RESET_ALL_FILTERS": "Reset All Filters",
 
     "INFORMATION": "Information",
 

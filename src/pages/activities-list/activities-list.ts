@@ -50,7 +50,7 @@ export class ActivitiesListPage {
   
     return new Promise(resolve => {
       let msg = 'Espereu siusplau...';
-      this.translate.get('MUNICIPIS.LOADING_MESSAGE').subscribe((res: string) => {
+      this.translate.get('APP.LOADING_MESSAGE').subscribe((res: string) => {
           msg = res;
       });
 

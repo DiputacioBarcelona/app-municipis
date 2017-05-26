@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
-import { OpenData } from '../../providers/open-data';
+import { PoisListPage } from "../pois-list/pois-list";
+import { PoisMapPage } from "../pois-map/pois-map";
+
+import { ParamsData } from '../../providers/params-data';
 
 @Component({
   selector: 'page-pois',
@@ -9,19 +12,18 @@ import { OpenData } from '../../providers/open-data';
 })
 
 export class PoisPage {
-  private ine;
-  //public temaActual;
+  private tab1Root = PoisListPage;
+  private tab2Root = PoisMapPage;
+  private mySelectedIndex: number;
+  private ine: string;
 
   constructor(
-    public navCtrl: NavController, private navParams: NavParams, private openData: OpenData) {
-    this.ine = navParams.get('ine');
-    console.log('-------constructor - PoisPage: ' + this.ine);
-  }
-
-  ionViewDidLoad() {
-    //this.openData.carregaPunts(this.ine);
-    //this.temaActual = this.openData.puntsInfo[0]['tema'];
-    //console.log(this.openData.puntsInfo[0]);
+    public navParams: NavParams,
+    public paramsData: ParamsData
+  ) {
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
+    this.ine = navParams.data.ine || '';
+    paramsData.params = {'ine' : this.ine};
   }
 
 }

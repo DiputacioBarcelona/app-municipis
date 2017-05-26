@@ -13,9 +13,11 @@ import { UserData } from './user-data';
 export class OpenData {
   private dataMunicipi: any;
 	private dataActivities: any;
+	private dataPois: any;
 	private comboMunicipis: any;
 	private comboCategories: any;
 	private datasetsActe: any;
+	private datasetsPunt: any;
 	private excludedDatasetsNames: any;
 
   /* This is the base url of the open data's API  */
@@ -132,6 +134,30 @@ export class OpenData {
 		return this.dataActivities;
 	}
 
+	getPois(queryText: string, pagIni: number, pagFi: number, 
+								relPunt: string, themes: any, excludedDatasetsNames: any) {
+		
+    let orderBy: any = [{ "fieldName":"adreca_nom","order":"asc"}];
+		this.excludedDatasetsNames = excludedDatasetsNames;
+		return this.getDataAPI('punt', orderBy, queryText, pagIni, pagFi, relPunt, 
+																			'', '', themes, false)
+        .map(this.processDataPois, this);
+  }
+
+	private processDataPois(data: any) : any {
+		this.dataPois = [];
+		data.datasets.forEach((dataset: any) => {
+			if (this.excludedDatasetsNames.indexOf(dataset.machinename) === -1) {        
+				dataset.elements.forEach((activity: any) => {
+					activity.dataset = {"nom": dataset.nom, "machinename": dataset.machinename};				
+					this.dataPois.push(activity);
+				});
+      }
+		});
+		this.dataPois.entitats = data.entitats;
+		return this.dataPois;
+	}
+
 	getMuncipisCombo(){
 		if (this.comboMunicipis) {
       console.log('Observable');
@@ -194,6 +220,25 @@ export class OpenData {
 			this.datasetsActe.push(dataset);
 		});
 		return this.datasetsActe;
+	}
+
+	getDatasetsPunt(){
+		if (this.datasetsPunt) {
+      console.log('Observable');
+      return Observable.of(this.datasetsPunt);
+    } else {			
+			return this.getDataAPI('punt', [], '', 1, 2, '','', '', [], false)
+        .map(this.processDatasetsPunt, this);
+    }
+	}
+
+	private processDatasetsPunt(data: any) : any{
+		this.datasetsPunt = []		
+		data.datasets.forEach((data: any) => {
+			let dataset = {"nom": data.nom, "machinename" :data.machinename};				
+			this.datasetsPunt.push(dataset);
+		});
+		return this.datasetsPunt;
 	}
 
   private getDataAPI(datasetName: string, orderBy: any = [], queryText: string = '', 

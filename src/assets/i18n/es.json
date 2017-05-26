@@ -58,7 +58,25 @@
 
     "FR": "Vi",
 
-    "SA": "Sa"
+    "SA": "Sa",
+
+    "TAB_TITLE_LIST": "Lista",
+
+    "TAB_TITLE_MAP": "Mapa",
+
+    "PLACEHOLDER_SEARCH": "Buscar",
+
+    "LOADING_MESSAGE": "Espere por favor ...",
+
+    "DONE": "Filtra",
+
+    "TOWN": "Municipio",
+
+    "CATEGORIES": "Ámbitos temáticos",
+
+    "DATASETS": "Fuentes de datos",
+
+    "RESET_ALL_FILTERS": "Restablecer todos los filtros"
   },
 
   "MUNICIPI-DETAIL": {
@@ -70,28 +88,18 @@
 
     "PROVINCE": "Provincia",
 
-    "TOWN": "Municipio",
-
     "ADDRESS": "Ayuntamiento",
 
     "CONTACT": "Contacto"
   },
 
   "POIS": {
-    "THEME": "Temática",
-
-    "LIST": "Lista",
-
-    "MAP": "Mapa",
-
-    "TOWN": "Municipio"
+    "NO_POIS_FOUND": "No se han encontrado puntos de interés"
   },
 
   "MUNICIPIS" : {
 
     "PLACEHOLDER_SEARCH": "Nombre del municipio...",
-
-    "LOADING_MESSAGE": "Espere por favor ...",
 
     "ALL": "Todos",
     
@@ -122,27 +130,11 @@
 
   "ACTIVITIES": {
 
-    "TAB_TITLE_LIST": "Lista",
-
-    "TAB_TITLE_MAP": "Mapa",
-
-    "PLACEHOLDER_SEARCH": "Buscar",
-
     "NO_ACTIVITIES_FOUND": "No se han encontrado actividades",
-
-    "CANCEL": "Cancelar",
-
-    "DONE": "Filtra",
 
     "INI_DATE": "Empiezan antes de",
 
     "FI_DATE": "Terminan antes de ",
-
-    "CATEGORIES": "Ámbitos temáticos",
-
-    "DATASETS": "Fuentes de datos",
-
-    "RESET_ALL_FILTERS": "Restablecer todos los filtros",
 
     "INFORMATION": "Información",
 

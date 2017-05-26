@@ -1,22 +1,66 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
-/*
-  Generated class for the PoisFilter page.
+import { OpenData } from '../../providers/open-data';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-pois-filter',
   templateUrl: 'pois-filter.html'
 })
+
 export class PoisFilterPage {
+  private municipis: any = [];
+  private selectedIne: string;
+  private categories: any = [];
+  private selectedCat: string;
+  private datasets: Array<{nom: string, machinename: string, isChecked: boolean}> = [];
+  private excludedDatasetsNames: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public viewCtrl: ViewController, 
+    public navParams: NavParams,
+    public openData: OpenData,
+  ) {
+    this.selectedIne = navParams.data.ine || '';
+    this.selectedCat = navParams.data.category || '';
+    this.excludedDatasetsNames = this.navParams.data.excludedDatasetsNames || [];
+    this.openData.getMuncipisCombo().subscribe((data: any) => {
+      this.municipis = data;
+    });
+    this.openData.getDibaCategoriesCombo().subscribe((data: any) => {
+      this.categories = data;
+    });
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PoisFilterPage');
+    this.openData.getDatasetsPunt().subscribe((data: any) => {
+      data.forEach(dataset => {
+        this.datasets.push({
+          nom: dataset.nom,
+          machinename: dataset.machinename,
+          isChecked: (this.excludedDatasetsNames.indexOf(dataset.machinename) === -1)
+        });
+      }); 
+    });
+  }
+
+  applyFilters() {
+    this.excludedDatasetsNames = this.datasets.filter(c => !c.isChecked).map(c => c.machinename);
+    this.dismiss({
+      ine: this.selectedIne,
+      category: this.selectedCat,
+      excludedDatasetsNames: this.excludedDatasetsNames
+    });
+  }
+
+  dismiss(data?: any) {
+    this.viewCtrl.dismiss(data);
+  }
+
+  resetFilters() {
+    this.datasets.forEach(dataset => {
+      dataset.isChecked = true;
+    });
+    this.selectedIne = '';
+    this.selectedCat = '';
   }
 
 }
