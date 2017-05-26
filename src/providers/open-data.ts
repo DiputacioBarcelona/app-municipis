@@ -147,7 +147,7 @@ export class OpenData {
 	private processDataPois(data: any) : any {
 		this.dataPois = [];
 		data.datasets.forEach((dataset: any) => {
-			if (this.excludedDatasetsNames.indexOf(dataset.machinename) === -1) {        
+			if (this.excludedDatasetsNames.indexOf(dataset.machinename) === -1 && dataset.machinename != 'parcsequipaments_es') {
 				dataset.elements.forEach((activity: any) => {
 					activity.dataset = {"nom": dataset.nom, "machinename": dataset.machinename};				
 					this.dataPois.push(activity);
@@ -235,8 +235,10 @@ export class OpenData {
 	private processDatasetsPunt(data: any) : any{
 		this.datasetsPunt = []		
 		data.datasets.forEach((data: any) => {
-			let dataset = {"nom": data.nom, "machinename" :data.machinename};				
-			this.datasetsPunt.push(dataset);
+			if (data.machinename != 'parcsequipaments_es') {
+				let dataset = {"nom": data.nom, "machinename" :data.machinename};				
+				this.datasetsPunt.push(dataset);
+      }
 		});
 		return this.datasetsPunt;
 	}

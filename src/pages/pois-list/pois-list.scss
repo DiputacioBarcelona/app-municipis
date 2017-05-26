@@ -1,9 +1,9 @@
 $categories: (
- actesparcs: color($colors, primary),
- actesmuseus: #8E8D93,
- escenari: #FE4C52,
- actesbiblioteques_ca: #FD8B2D,
- actesturisme_ca: #FED035
+ biblioteques:#FED035,
+ espaisescenics: #FD8B2D,
+ museus: #FE4C52,
+ puntesports: #8E8D93,
+ parcsequipaments_ca:  color($colors, primary)
 );
 
 @function auxiliary-categories() {
