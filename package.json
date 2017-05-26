@@ -36,6 +36,7 @@
         "cordova-plugin-statusbar": "~2.2.0",
         "cordova-plugin-whitelist": "~1.3.0",
         "cordova-sqlite-storage": "~2.0.2",
+        "intl": "^1.2.5",
         "ionic-angular": "2.2.0",
         "ionic-native": "2.9.0",
         "ionic-plugin-keyboard": "~2.2.1",
