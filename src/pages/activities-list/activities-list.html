@@ -25,7 +25,8 @@
 
     <ion-item *ngFor="let activity of data" [hidden]="activity.hide" 
         [attr.dataset]="activity.dataset.machinename"        
-        (click)="goToActivityDetail(activity)">
+        (click)="goToActivityDetail(activity)"
+         text-wrap>
       <h3>{{ activity.titol }}</h3>
       <p>
         {{activity.data_inici | dateFormat}} &mdash;

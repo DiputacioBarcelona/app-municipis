@@ -42,7 +42,7 @@
 				</ion-label>
 			</ion-item-divider>
 
-			<ion-item-sliding *ngFor="let municipi of comarca.municipis" #slidingItem [hidden]="municipi.hide">
+			<ion-item-sliding *ngFor="let municipi of comarca.municipis" #slidingItem [hidden]="municipi.hide" text-wrap>
 
 				<button ion-item (click)="goToMunicipiDetail(municipi)">
 					<ion-thumbnail item-left>
