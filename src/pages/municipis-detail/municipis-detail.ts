@@ -112,4 +112,16 @@ export class MunicipisDetailPage {
   openMap() {
     console.log("Open map");
   }
+
+  openMail(email) {
+    window.open(`mailto:${email}`, '_system', 'location=yes');
+  }
+
+  openTel(telf) {
+    window.open(`telf:${telf}`, '_system', 'location=yes');
+  }
+
+  openLink(link) {
+    window.open(`${link}`, '_system', 'location=yes');
+  }
 }

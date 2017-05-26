@@ -9,19 +9,17 @@
   <ion-card>
 
     <ion-item>      
-      <h2>{{ activity.titol }}</h2>
-      <p>
-        {{ activity.data_inici }}<br>
-        {{ activity.data_fi }}<br>
-        {{ activity.rel_municipis.municipi_nom }}<br>
-        {{ activity.rel_temes.tema_nom }} <br>
-      </p>
+      <h1>{{ activity.titol }}</h1>
+      <p>{{ activity.data_inici }}</p>
+      <p>{{ activity.data_fi }}</p>
+      <p *ngIf="activity.rel_municipis">{{ activity.rel_municipis.municipi_nom }}</p>
+      <p>{{ activity.rel_temes.tema_nom }}</p>
     </ion-item>
     
     <img *ngIf="activity.imatge.length > 0" src="{{ activity.imatge['0'] }}" />
     
     <ion-card-content>
-      <h2>{{'ACTIVITIES.INFORMATION' | translate}}:</h2>
+      <h2><b>{{'ACTIVITIES.INFORMATION' | translate}}</b></h2>
       <div [innerHTML]="activity.descripcio">
       </div>
       <p *ngIf="activity.organitzadors"><b>{{'ACTIVITIES.OBSERVATIONS' | translate }}:</b></p>
@@ -38,24 +36,39 @@
       <p *ngIf="activity.public && activity.public.length"><b>{{'ACTIVITIES.PUBLIC' | translate }}:</b> {{arrayToString(activity.public)}}</p>
       <p *ngIf="activity.tipus && activity.tipus.length"><b>{{'ACTIVITIES.CLASSIFICATION' | translate }}:</b> {{arrayToString(activity.tipus)}}</p>
       <p *ngIf="activity.acte_url">
-        <button ion-button icon-left clear small (click)="openInfo()">
+        <button ion-button icon-left clear small (click)="openLink(activity.acte_url)">
           <ion-icon name="information-circle"></ion-icon>
-          <div><b>{{ 'ACTIVITIES.MORE_INFORMATION' | translate }}:</b></div>
+          <div><b>{{ 'ACTIVITIES.MORE_INFORMATION' | translate }}</b></div>
         </button>
       </p>
 
-      <h2>{{ 'ACTIVITIES.CONTACT' | translate }}</h2>
+      <h2><b>{{ 'ACTIVITIES.CONTACT' | translate }}</b></h2>
       <p *ngIf="activity.grup_adreca.adreca_nom">{{ activity.grup_adreca.adreca_nom }}</p>
       <p *ngIf="activity.grup_adreca.adreca">{{ activity.grup_adreca.adreca }}</p>
       <p *ngIf="activity.grup_adreca.codi_postal">{{ activity.grup_adreca.codi_postal }}</p>
       <p *ngIf="activity.grup_adreca.municipi_nom">{{ activity.grup_adreca.municipi_nom }}</p>
-      <p *ngIf="activity.url_general"><b>Web:</b> <a href="#" data-ng-click="openLink(activity.url_general)">{{activity.url_general}}</a></p>
-      <p *ngIf="activity.email[0]"><b>Email:</b> <a href="#" data-ng-click="openMail(activity.email[0])">{{activity.email[0]}}</a></p>
-      <p *ngIf="activity.telefon_contacte[0]"><b>{{'ACTIVITIES.TELEPHONE' | translate}}:</b> <a href="#" data-ng-click="openTel(activity.telefon_contacte[0])">{{activity.telefon_contacte[0]}}</a></p>
+      <p *ngIf="activity.url_general">
+        <button ion-button icon-left clear small (click)="openLink(activity.url_general)">
+          <ion-icon name="open"></ion-icon>
+          <div class="button-text-transform">{{activity.url_general}}</div>
+        </button>
+      </p>
+      <p *ngIf="activity.email[0]">
+        <button ion-button icon-left clear small (click)="openMail(activity.email[0])">
+          <ion-icon name="at"></ion-icon>
+          <div class="button-text-transform">{{activity.email[0]}}</div>
+        </button>
+      </p>
+      <p *ngIf="activity.telefon_contacte[0]">
+        <button ion-button icon-left clear small (click)="openTel(activity.telefon_contacte[0])">
+          <ion-icon name="call"></ion-icon>
+          <div>{{activity.telefon_contacte[0]}}</div>
+        </button>
+      </p>
       <p *ngIf="activity.grup_adreca.localitzacio">
         <button ion-button icon-left clear small (click)="openMap()">
           <ion-icon name="navigate"></ion-icon>
-          <div><b>{{ 'ACTIVITIES.COORDS' | translate }}:</b> {{ activity.grup_adreca.localitzacio }}</div>
+          <div> {{ activity.grup_adreca.localitzacio }}</div>
         </button>
       </p>
     </ion-card-content>

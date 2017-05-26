@@ -12,8 +12,6 @@ export class ActivitiesDetailPage {
     public navCtrl: NavController, 
     public navParams: NavParams) {
       this.activity = this.navParams.data.activity;
-      console.log('alla va');
-      console.log(this.activity.imatge);
   }
 
   share(socialNet: string, fab: FabContainer) {
@@ -25,27 +23,22 @@ export class ActivitiesDetailPage {
     console.log("Open map");
   }
 
-  openInfo() {
-    console.log("Open info");
-  }
-
   arrayToString(text: any){
       return text.join(", ");
   };
 
-  /*$scope.openLink = function (link) {
-      $window.open(link, '_system', 'location=yes');
-      // return false;
-    };
+  openMail(email) {
+    window.open(`mailto:${email}`, '_system', 'location=yes');
+  }
 
-    $scope.openMail = function (link) {
-      $window.open('mailto:'+link, '_system', 'location=yes');
-      return false;
-    };
+  openTel(telf) {
+    window.open(`telf:${telf}`, '_system', 'location=yes');
+  }
 
-    $scope.openTel = function (link) {
-      $window.open('tel:'+link, '_system', 'location=yes');
-      return false;
-    };*/
+  openLink(link) {
+    console.log('openLink: ' + link);
+    console.log(link);
+    window.open(`${link}`, '_system', 'location=yes');
+  }
 
 }
