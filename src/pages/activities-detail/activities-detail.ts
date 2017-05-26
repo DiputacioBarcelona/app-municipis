@@ -25,6 +25,10 @@ export class ActivitiesDetailPage {
     console.log("Open map");
   }
 
+  openInfo() {
+    console.log("Open info");
+  }
+
   arrayToString(text: any){
       return text.join(", ");
   };

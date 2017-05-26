@@ -170,7 +170,17 @@
 
     "CONTACT": "Contacto",
 
-    "COORDS": "Cordenadas"
+    "COORDS": "Cordenadas",
+
+    "SCHEDULE_OBSERVATIONS": "Obervaciones de horario",
+
+    "DURATION": "Durada",
+
+    "DAYS": "Días",
+
+    "CAPACITY": "Aforo",
+
+    "MORE_INFORMATION": "Más información"
   }
 
 }

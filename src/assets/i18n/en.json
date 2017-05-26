@@ -170,7 +170,17 @@
 
     "CONTACT": "Contact",
 
-    "COORDS": "Coords"
+    "COORDS": "Coords",
+
+    "SCHEDULE_OBSERVATIONS": "Schedule observations",
+
+    "DURATION": "Duration",
+
+    "DAYS": "Days",
+
+    "CAPACITY": "Capacity",
+
+    "MORE_INFORMATION": "More information"
   }
 
 }

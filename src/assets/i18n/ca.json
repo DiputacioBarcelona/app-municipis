@@ -169,7 +169,17 @@
 
     "CONTACT": "Contacte",
 
-    "COORDS": "Coordenades"
+    "COORDS": "Coordenades",
+
+    "SCHEDULE_OBSERVATIONS": "Obervacions d'horari",
+
+    "DURATION": "Durada",
+
+    "DAYS": "Dies",
+
+    "CAPACITY": "Aforament",
+
+    "MORE_INFORMATION": "Més informació"
   }
 
 }

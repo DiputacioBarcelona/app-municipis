@@ -25,12 +25,24 @@
       <div [innerHTML]="activity.descripcio">
       </div>
       <p ng-if="activity.organitzadors"><b>{{'ACTIVITIES.OBSERVATIONS' | translate }}:</b></p>
+      
       <div ng-if="activity.organitzadors" [innerHTML]="activity.observacions">
       </div>
+      <p ng-if="activity.observacions_horari"><b>{{'ACTIVITIES.SCHEDULE_OBSERVATIONS' | translate }}:</b> {{activity.observacions_horari}}</p>
       <p ng-if="activity.organitzadors"><b>{{'ACTIVITIES.ORGANIZERS' | translate }}:</b> {{activity.organitzadors}}</p>
+      <p ng-if="activity.preu"><b>{{'ACTIVITIES.PRICE' | translate }}:</b> {{activity.preu}}</p>
+      <p ng-if="activity.durada"><b>{{'ACTIVITIES.DURATION' | translate }}:</b> {{activity.durada}}</p>
+      <p ng-if="activity.dies"><b>{{'ACTIVITIES.DAYS' | translate }}:</b> {{activity.dies}}</p>
+      <p ng-if="activity.aforament"><b>{{'ACTIVITIES.CAPACITY' | translate }}:</b> {{activity.aforament}}</p>
+
       <p ng-if="activity.public && activity.public.length"><b>{{'ACTIVITIES.PUBLIC' | translate }}:</b> {{arrayToString(activity.public)}}</p>
       <p ng-if="activity.tipus && activity.tipus.length"><b>{{'ACTIVITIES.CLASSIFICATION' | translate }}:</b> {{arrayToString(activity.tipus)}}</p>
-      <p ng-if="activity.preu"><b>{{'ACTIVITIES.PRICE' | translate }}:</b> {{activity.preu}}</p>
+      <p ng-if="activity.acte_url">
+        <button ion-button icon-left clear small (click)="openInfo()">
+          <ion-icon name="information-circle"></ion-icon>
+          <div><b>{{ 'ACTIVITIES.MORE_INFORMATION' | translate }}:</b></div>
+        </button>
+      </p>
 
       <h2>{{ 'ACTIVITIES.CONTACT' | translate }}</h2>
       <p ng-if="activity.grup_adreca.adreca_nom">{{ activity.grup_adreca.adreca_nom }}</p>
