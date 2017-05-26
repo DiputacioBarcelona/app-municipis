@@ -38,11 +38,11 @@
       <p *ngIf="activity.acte_url">
         <button ion-button icon-left clear small (click)="openLink(activity.acte_url)">
           <ion-icon name="information-circle"></ion-icon>
-          <div><b>{{ 'ACTIVITIES.MORE_INFORMATION' | translate }}</b></div>
+          <div><b>{{ 'APP.MORE_INFORMATION' | translate }}</b></div>
         </button>
       </p>
 
-      <h2><b>{{ 'ACTIVITIES.CONTACT' | translate }}</b></h2>
+      <h2><b>{{ 'APP.CONTACT' | translate }}</b></h2>
       <p *ngIf="activity.grup_adreca.adreca_nom">{{ activity.grup_adreca.adreca_nom }}</p>
       <p *ngIf="activity.grup_adreca.adreca">{{ activity.grup_adreca.adreca }}</p>
       <p *ngIf="activity.grup_adreca.codi_postal">{{ activity.grup_adreca.codi_postal }}</p>

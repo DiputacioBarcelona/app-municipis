@@ -78,7 +78,12 @@
 
     "DATASETS": "Fuentes de datos",
 
-    "RESET_ALL_FILTERS": "Restablecer todos los filtros"
+    "RESET_ALL_FILTERS": "Restablecer todos los filtros",
+
+    "CONTACT": "Contacto",
+
+    "MORE_INFORMATION": "Más información"
+
   },
 
   "MUNICIPI-DETAIL": {
@@ -90,13 +95,16 @@
 
     "PROVINCE": "Provincia",
 
-    "ADDRESS": "Ayuntamiento",
-
-    "CONTACT": "Contacto"
+    "ADDRESS": "Ayuntamiento"
+    
   },
 
   "POIS": {
-    "NO_POIS_FOUND": "No se han encontrado puntos de interés"
+    "NO_POIS_FOUND": "No se han encontrado puntos de interés",
+
+    "DIRECTOR": "Director",
+
+    "SCHEDULE": "Horarios"
   },
 
   "MUNICIPIS" : {
@@ -150,17 +158,13 @@
 
     "PRICE": "Precio",
 
-    "CONTACT": "Contacto",
-
     "SCHEDULE_OBSERVATIONS": "Obervaciones de horario",
 
     "DURATION": "Durada",
 
     "DAYS": "Días",
 
-    "CAPACITY": "Aforo",
-
-    "MORE_INFORMATION": "Más información"
+    "CAPACITY": "Aforo"
   }
 
 }

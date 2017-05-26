@@ -8,45 +8,32 @@
 <ion-content fullscreen>
   <ion-card>
 
-    <!--<ion-item text-wrap>      
-      <h1>{{ poi.titol }}</h1>
-      <p>{{ poi.data_inici | dateFormat }}</p>
-      <p>{{ poi.data_fi | dateFormat }}</p>
+    <ion-item text-wrap>      
+      <h1>{{ poi.adreca_nom }}</h1>
       <p *ngIf="poi.rel_municipis">{{ poi.rel_municipis.municipi_nom }}</p>
       <p>{{ poi.rel_temes.tema_nom }}</p>
-    </ion-item>-->
+    </ion-item>
     
-    <!--<img *ngIf="poi.imatge.length > 0" src="{{ poi.imatge['0'] }}" />-->
+    <img *ngIf="poi.imatge.length > 0" src="{{ poi.imatge['0'] }}" />
     
-    <!--<ion-card-content>
+    <ion-card-content>
       <h2><b>{{'ACTIVITIES.INFORMATION' | translate}}</b></h2>
       <div [innerHTML]="poi.descripcio">
       </div>
-      <p *ngIf="poi.organitzadors"><b>{{'ACTIVITIES.OBSERVATIONS' | translate }}:</b></p>
-      
-      <div *ngIf="poi.organitzadors" [innerHTML]="poi.observacions">
-      </div>
-      <p *ngIf="poi.observacions_horari"><b>{{'ACTIVITIES.SCHEDULE_OBSERVATIONS' | translate }}:</b> {{poi.observacions_horari}}</p>
-      <p *ngIf="poi.organitzadors"><b>{{'ACTIVITIES.ORGANIZERS' | translate }}:</b> {{poi.organitzadors}}</p>
-      <p *ngIf="poi.preu"><b>{{'ACTIVITIES.PRICE' | translate }}:</b> {{poi.preu}}</p>
-      <p *ngIf="poi.durada"><b>{{'ACTIVITIES.DURATION' | translate }}:</b> {{poi.durada}}</p>
-      <p *ngIf="poi.dies"><b>{{'ACTIVITIES.DAYS' | translate }}:</b> {{poi.dies}}</p>
-      <p *ngIf="poi.aforament"><b>{{'ACTIVITIES.CAPACITY' | translate }}:</b> {{poi.aforament}}</p>
-
-      <p *ngIf="poi.public && poi.public.length"><b>{{'ACTIVITIES.PUBLIC' | translate }}:</b> {{arrayToString(poi.public)}}</p>
-      <p *ngIf="poi.tipus && poi.tipus.length"><b>{{'ACTIVITIES.CLASSIFICATION' | translate }}:</b> {{arrayToString(poi.tipus)}}</p>
-      <p *ngIf="poi.acte_url">
-        <button ion-button icon-left clear small (click)="openLink(poi.acte_url)">
+      <p *ngIf="poi.horaris">
+        <b>{{ 'POIS.SCHEDULE' | translate }}</b>
+      </p>
+      <div *ngIf="poi.horaris" [innerHTML]="poi.horaris"></div>
+      <p *ngIf="poi.director"><b>{{'POIS.DIRECTOR' | translate }}:</b> {{poi.director}}</p>
+      <p *ngIf="poi.url_relacionades[0]">
+        <button ion-button icon-left clear small (click)="openLink(poi.url_relacionades[0])">
           <ion-icon name="information-circle"></ion-icon>
-          <div><b>{{ 'ACTIVITIES.MORE_INFORMATION' | translate }}</b></div>
+          <div><b>{{ 'APP.MORE_INFORMATION' | translate }}</b></div>
         </button>
       </p>
 
-      <h2><b>{{ 'ACTIVITIES.CONTACT' | translate }}</b></h2>
-      <p *ngIf="poi.grup_adreca.adreca_nom">{{ poi.grup_adreca.adreca_nom }}</p>
-      <p *ngIf="poi.grup_adreca.adreca">{{ poi.grup_adreca.adreca }}</p>
-      <p *ngIf="poi.grup_adreca.codi_postal">{{ poi.grup_adreca.codi_postal }}</p>
-      <p *ngIf="poi.grup_adreca.municipi_nom">{{ poi.grup_adreca.municipi_nom }}</p>
+      <h2><b>{{ 'APP.CONTACT' | translate }}</b></h2>
+      <p *ngIf="poi.grup_adreca.adreca_completa">{{ poi.grup_adreca.adreca_completa }}</p>
       <p *ngIf="poi.url_general">
         <button ion-button icon-left clear small (click)="openLink(poi.url_general)">
           <ion-icon name="open"></ion-icon>
@@ -65,13 +52,13 @@
           <div class="button-text-transform">{{poi.telefon_contacte[0]}}</div>
         </button>
       </p>
-      <p *ngIf="poi.grup_adreca.localitzacio">
+      <p *ngIf="poi.localitzacio">
         <button ion-button icon-left clear small (click)="openMap()">
           <ion-icon name="navigate"></ion-icon>
-          <div class="button-text-transform"> {{ poi.grup_adreca.localitzacio }}</div>
+          <div class="button-text-transform"> {{ poi.localitzacio }}</div>
         </button>
       </p>
-    </ion-card-content>-->
+    </ion-card-content>
 
   </ion-card>
 

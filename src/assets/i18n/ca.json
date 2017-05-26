@@ -82,7 +82,11 @@
 
     "DATASETS": "Fons de dades",
 
-    "RESET_ALL_FILTERS": "Restablir tots els filtres"
+    "RESET_ALL_FILTERS": "Restablir tots els filtres",
+
+    "CONTACT": "Contacte", 
+
+    "MORE_INFORMATION": "Més informació"
   },
 
   "MUNICIPI-DETAIL": {
@@ -94,13 +98,16 @@
 
     "PROVINCE": "Província",
 
-    "ADDRESS": "Ajuntament",
-
-    "CONTACT": "Contacte"
+    "ADDRESS": "Ajuntament"
+    
   },
 
   "POIS": {
-    "NO_POIS_FOUND": "No s'han trobat punts d'interès"
+    "NO_POIS_FOUND": "No s'han trobat punts d'interès",
+
+    "DIRECTOR": "Director",
+
+    "SCHEDULE": "Horaris"
   },
 
   "MUNICIPIS": {
@@ -147,9 +154,7 @@
 
     "CLASSIFICATION": "Classificació",
 
-    "PRICE": "Preu",
-
-    "CONTACT": "Contacte",    
+    "PRICE": "Preu",   
 
     "SCHEDULE_OBSERVATIONS": "Obervacions d'horari",
 
@@ -157,9 +162,7 @@
 
     "DAYS": "Dies",
 
-    "CAPACITY": "Aforament",
-
-    "MORE_INFORMATION": "Més informació"
+    "CAPACITY": "Aforament"
   }
 
 }

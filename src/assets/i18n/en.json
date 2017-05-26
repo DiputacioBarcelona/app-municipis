@@ -78,7 +78,11 @@
 
     "DATASETS": "Data Sources",
 
-    "RESET_ALL_FILTERS": "Reset All Filters"
+    "RESET_ALL_FILTERS": "Reset All Filters",
+
+    "CONTACT": "Contact",
+
+    "MORE_INFORMATION": "More information"
   },
 
   "MUNICIPI-DETAIL": {
@@ -90,13 +94,16 @@
 
     "PROVINCE": "Province",
 
-    "ADDRESS": "Council",
-
-    "CONTACT": "Contact"
+    "ADDRESS": "Council"
+    
   },
 
   "POIS": {
-    "NO_POIS_FOUND": "No points of interest found"
+    "NO_POIS_FOUND": "No points of interest found",
+
+    "DIRECTOR": "Director",
+
+    "SCHEDULE": "Schedule"
   },
 
   "MUNICIPIS" : {
@@ -150,17 +157,13 @@
 
     "PRICE": "Price",
 
-    "CONTACT": "Contact",
-
     "SCHEDULE_OBSERVATIONS": "Schedule observations",
 
     "DURATION": "Duration",
 
     "DAYS": "Days",
 
-    "CAPACITY": "Capacity",
-
-    "MORE_INFORMATION": "More information"
+    "CAPACITY": "Capacity"
   }
 
 }
