@@ -64,12 +64,12 @@ export class ActivitiesMapPage {
 	}
 
   loadMap() {
-    // create a new map by passing HTMLElement
-    let element: HTMLElement = document.getElementById('map');
-
-    this.map = this.googleMaps.create(element);
+    
+    // create LatLng object
+    let location: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
  
-    /*this.map = new GoogleMap('map', {
+    // create a new map by passing HTMLElement
+    this.map = new GoogleMap('map', {
       'backgroundColor': 'white',
       'controls': {
         'compass': true,
@@ -89,7 +89,7 @@ export class ActivitiesMapPage {
         'zoom': 15,
         'bearing': 50
       }
-    });*/
+    });
 
     /*this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
         console.log('Map is ready!');
@@ -104,8 +104,7 @@ export class ActivitiesMapPage {
       }
     );
 
-    // create LatLng object
-    let location: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
+    
 
     // create CameraPosition
     let position: CameraPosition = {
