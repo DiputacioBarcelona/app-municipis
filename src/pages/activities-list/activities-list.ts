@@ -40,6 +40,7 @@ export class ActivitiesListPage {
     public translate: TranslateService
   ) {
     this.ine = paramsData.params.ine;
+    this.iniDate = this.convertDate(new Date());
   }
 
   ionViewDidLoad() {
@@ -123,5 +124,17 @@ export class ActivitiesListPage {
       }
     });
   }
+
+  private  convertDate(date: Date) {
+    var yyyy = date.getFullYear().toString();
+    var mm = (date.getMonth()+1).toString();
+    var dd  = date.getDate().toString();
+
+    var mmChars = mm.split('');
+    var ddChars = dd.split('');
+
+    return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+  }
+
 
 }
