@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, ModalController, Platform, Events } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker/*, GoogleMapsAnimation, CameraPosition*/ } from '@ionic-native/google-maps';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -20,9 +20,7 @@ export class ActivitiesMapPage {
   private lastIne = '';
   private queryText = '';
   private lastQueryText = '';
-	private data: any = [];
   private shownData: any = [];
-  private total: number;
   private iniDate: string;
   private fiDate: string;
   private category: string;
@@ -43,9 +41,6 @@ export class ActivitiesMapPage {
     private googleMaps: GoogleMaps
   ) {
     this.ine = paramsData.params.ine;
-    /*platform.ready().then(() => {
-            this.loadMap();
-    });*/
   }
 
   // Load map only after view is initialized
@@ -64,35 +59,46 @@ export class ActivitiesMapPage {
 	}
 
   loadMap() {
-    
+    // create a new map by passing HTMLElement
+    let mapElement: HTMLElement = document.getElementById('map');
+
     // create LatLng object
     let location: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
- 
-    // create a new map by passing HTMLElement
-    this.map = new GoogleMap('map', {
-      'backgroundColor': 'white',
-      'controls': {
-        'compass': true,
-        'myLocationButton': true,
-        'indoorPicker': true,
-        'zoom': true
-      },
-      'gestures': {
-        'scroll': true,
-        'tilt': true,
-        'rotate': true,
-        'zoom': true
-      },
-      'camera': {
-        'latLng': location,
-        'tilt': 30,
-        'zoom': 15,
-        'bearing': 50
-      }
-    });
 
-    /*this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-        console.log('Map is ready!');
+    let mapOptions = {
+        'backgroundColor': 'white',
+        'controls': {
+          'compass': true,
+          'myLocationButton': true,
+          'indoorPicker': true,
+          'zoom': true
+        },
+        'gestures': {
+          'scroll': true,
+          'tilt': true,
+          'rotate': true,
+          'zoom': true
+        },
+        'camera': {
+          'latLng': location,
+          'tilt': 30,
+          'zoom': 15,
+          'bearing': 50
+        }
+    };
+ 
+    this.map = new GoogleMap(mapElement, mapOptions);
+
+    /*this.map = new google.maps.Map(mapElement, mapOptions);*/
+
+    /*google.maps.event.addListenerOnce(this.map, 'idle', () => {
+ 
+        this.updateMap();
+ 
+        google.maps.event.addListener(this.map, 'dragend', () => {
+            this.updateMap();
+        });
+ 
     });*/
 
     // listen to MAP_READY event
@@ -101,43 +107,66 @@ export class ActivitiesMapPage {
       () => {
         console.log('Map is ready!');
         // Now you can add elements to the map like the marker
+        this.updateMap();
       }
     );
 
-    
+    /*this.map.one(GoogleMapsEvent.MY_LOCATION_CHANGE).then(
+      () => {
+        console.log('My location Change!');
+        
+        this.updateMap();
+      }
+    );*/
 
-    // create CameraPosition
-    let position: CameraPosition = {
-      target: location,
-      zoom: 18,
-      tilt: 30
-    };
+    this.map.one(GoogleMapsEvent.CAMERA_CHANGE).then(
+      () => {
+        console.log('Camera Change!');
+        
+        /*this.updateMap();*/
+      }
+    );
 
-    // move the map's camera to position
-    this.map.moveCamera(position);
+    this.map.one(GoogleMapsEvent.MY_LOCATION_BUTTON_CLICK).then(
+      () => {
+        console.log('My button click!');
+        
+       /* this.updateMap();*/
+      }
+    );
 
-    // create new marker
-    let markerOptions: MarkerOptions = {
-      position: location,
-      title: 'Ionic'
-    };
+  }
 
-    const marker: any = this.map.addMarker(markerOptions)
-      .then((marker: Marker) => {
-          marker.showInfoWindow();
-        });
- 
+  private getColor(dataset:string){
+    if(dataset == 'actesparcs'){
+      return '#891536';
+    } else if(dataset == 'actesmuseus'){
+      return '#8E8D93';
+    } else if(dataset == 'escenari'){
+      return '#FE4C52';
+    } else if(dataset == 'actesbiblioteques_ca'){
+      return '#FD8B2D';
+    } else if(dataset == 'actesturisme_ca'){
+      return '#FED035';
+    }
   }
 
   updateMap() {
 
-    /*return new Promise(resolve => {
+    return new Promise(resolve => {
       let msg = 'Espereu siusplau...';
       this.translate.get('APP.LOADING_MESSAGE').subscribe((res: string) => {
           msg = res;
       });
+      
+     /* let center = this.map.getCenter(),
+        bounds = this.map.getBounds(),
+        zoom = this.map.getZoom();*/
 
-      let location = new LatLng(41.5777099,1.6122413); //Igualada
+/*      let location = this.map.getCameraPosition();
+      this.map.clear();*/
+
+      console.log(location);
 
       let loading = this.loadingCtrl.create({ content: msg });
       loading.present();
@@ -145,23 +174,33 @@ export class ActivitiesMapPage {
       this.openData.getActivities(this.queryText, 1 , 2, 
                                   this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames)
       .subscribe((data: any) => {
-        for(let elem of data) {
-          this.data.push(elem);
+        
+        for(let activity of data) {
+          /*this.data.push(elem);*/
+          let coords: string = activity.grup_adreca.localitzacio;
+          if(coords){
+            let lat: number = +coords.split(',')[0];
+            let lng: number = +coords.split(',')[1];
+            let location: LatLng = new LatLng(lat,lng);
 
-          // create new marker
-          let markerOptions: MarkerOptions = {
-            position: location,
-            title: 'Ionic'
-          };
+            let markerOptions: MarkerOptions = {
+              position: location,              
+              title: activity.titol,
+              snippet: [activity.rel_municipis.municipi_nom, activity.rel_temes.tema_nom].join("\n"),
+              icon: this.getColor(activity.dataset.machinename),
+              infoClick: this.goToActivityDetail
+            };
 
-          const marker: any = this.map.addMarker(markerOptions)
-            .then((marker: Marker) => {
+            const marker: any = this.map.addMarker(markerOptions)
+              .then((marker: Marker) => {
                 marker.showInfoWindow();
-          });
-
+                marker.set('activity', activity);
+                /*marker.setTitle("Teste");*/
+            });
+            
+          }
+          
         }
-        this.shownData = this.data.length;
-        this.total = data.entitats;
         this.lastQueryText = this.queryText;
         this.lastIne = this.ine;
         this.lastCategory = this.category;
@@ -170,8 +209,15 @@ export class ActivitiesMapPage {
         resolve(true);
       });
             
-    });*/
+    });
   }
+
+  goToActivityDetail(marker: any) {
+    marker.hideInfoWindow();
+    this.navCtrl.push(ActivitiesDetailPage, {
+      activity: marker.get('activity')
+    });
+	}
 
   presentFilter() {
     this.map.setClickable(false);
