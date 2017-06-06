@@ -111,21 +111,11 @@ export class ActivitiesMapPage {
       }
     );
 
-    /*this.map.one(GoogleMapsEvent.MY_LOCATION_CHANGE).then(
-      () => {
-        console.log('My location Change!');
-        
-        this.updateMap();
-      }
-    );*/
-
-    this.map.one(GoogleMapsEvent.CAMERA_CHANGE).then(
-      () => {
+    this.map.on(GoogleMapsEvent.CAMERA_CHANGE).subscribe((data: any) => {
         console.log('Camera Change!');
-        
-        /*this.updateMap();*/
-      }
-    );
+        console.log(data);
+        this.updateMap();
+    });
 
     this.map.one(GoogleMapsEvent.MY_LOCATION_BUTTON_CLICK).then(
       () => {
@@ -194,7 +184,7 @@ export class ActivitiesMapPage {
             const marker: any = this.map.addMarker(markerOptions)
               .then((marker: Marker) => {
                 marker.showInfoWindow();
-                marker.set('activity', activity);
+                marker.set('activity', 'test');
                 /*marker.setTitle("Teste");*/
             });
             
