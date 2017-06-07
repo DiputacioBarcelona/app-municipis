@@ -41,6 +41,7 @@ export class ActivitiesMapPage {
     private googleMaps: GoogleMaps
   ) {
     this.ine = paramsData.params.ine;
+    this.iniDate = this.convertDate(new Date());
   }
 
   ngAfterViewInit() {
@@ -123,8 +124,10 @@ export class ActivitiesMapPage {
         this.markers = [];
       }
 
-      this.openData.getActivities(this.queryText, 1 , 2, 
-                                  this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames)
+      let coords : string = '41.34220,2.2678';
+
+      this.openData.getActivities(this.queryText, 1 , 10, 
+                                  this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames, coords)
       .subscribe((data: any) => {
         
         for(let activity of data) {
@@ -194,7 +197,6 @@ export class ActivitiesMapPage {
   }
 
   private markerExists(acte_id: any){
- 
     let exists = false;
  
     this.markers.forEach((id) => {
@@ -204,7 +206,17 @@ export class ActivitiesMapPage {
     });
  
     return exists;
- 
+  }
+
+  private  convertDate(date: Date) {
+    var yyyy = date.getFullYear().toString();
+    var mm = (date.getMonth()+1).toString();
+    var dd  = date.getDate().toString();
+
+    var mmChars = mm.split('');
+    var ddChars = dd.split('');
+
+    return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
   }
 
 }

@@ -111,12 +111,12 @@ export class OpenData {
 
 	getActivities(queryText: string, pagIni: number, pagFi: number, 
 								relPunt: string, iniDate: string, fiDate: string, 
-								themes: any, excludedDatasetsNames: any) {
+								themes: any, excludedDatasetsNames: any, coords: any = '') {
 		
     let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
 		this.excludedDatasetsNames = excludedDatasetsNames;
 		return this.getDataAPI('acte', orderBy, queryText, pagIni, pagFi, relPunt, 
-																			iniDate, fiDate, themes, false)
+																			iniDate, fiDate, themes, false, coords)
         .map(this.processDataActivities, this);
   }
 
@@ -247,7 +247,7 @@ export class OpenData {
 											pagIni: number = 0, pagFi: number = 0, 
 											relPunt: string = '', iniDate: string = '', 
 											fiDate: string = '', themes: any = [],
-											dataset: boolean = true): any {
+											dataset: boolean = true, coords: string = ''): any {
 
     let strOrderBy: string = '';
 		if (orderBy.length) {
@@ -290,13 +290,18 @@ export class OpenData {
 			strThemes += themes[themes.length - 1] + '/';
 		}
 
+		let strCoords: string = '';
+		if (coords.length) {
+      strCoords = 'geord-camp/localitzacio/geord-cord/' + coords + '/';
+		}
+
 		let strData = 'dataset/'
 		if(!dataset) {
 			strData = 'tipus/'
 		}
 
 		let url : string  = this.BASEURL + strData + datasetName + '/format/JSON/' + strOrderBy + 
-												strQueryText + strPag + strRelPunt + strIniDate + strFiDate + strThemes + 'token/' + this.TOKEN;
+												strQueryText + strPag + strRelPunt + strIniDate + strFiDate + strThemes + strCoords + 'token/' + this.TOKEN;
     console.log('URL: ' + url);
     
     let elements = this.http.get(url)
