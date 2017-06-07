@@ -8,6 +8,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -91,6 +92,7 @@ export function createTranslateLoader(http: Http) {
     StatusBar,
     SplashScreen,
     GoogleMaps,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

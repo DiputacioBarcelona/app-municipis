@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, Platform, Events } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker/*, GoogleMapsAnimation, CameraPosition*/ } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -38,7 +39,8 @@ export class ActivitiesMapPage {
     public translate: TranslateService,
     public platform: Platform,
     public events: Events,
-    private googleMaps: GoogleMaps
+    private googleMaps: GoogleMaps,
+    private geolocation: Geolocation
   ) {
     this.ine = paramsData.params.ine;
     this.iniDate = this.convertDate(new Date());
@@ -61,34 +63,39 @@ export class ActivitiesMapPage {
   private loadMap() {
     let mapElement: HTMLElement = document.getElementById('map');
 
-    let center: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
+    this.geolocation.getCurrentPosition().then((resp) => {
+      let center: LatLng = new LatLng(resp.coords.latitude,resp.coords.longitude); 
 
-    let mapOptions = {
-        'backgroundColor': 'white',
-        'controls': {
-          'compass': true,
-          'myLocationButton': true,
-          'indoorPicker': true,
-          'zoom': true
-        },
-        'gestures': {
-          'scroll': true,
-          'tilt': true,
-          'rotate': true,
-          'zoom': true
-        },
-        'camera': {
-          'latLng': center,
-          'tilt': 30,
-          'zoom': 15,
-          'bearing': 50
-        }
-    };
- 
-    this.map = new GoogleMap(mapElement, mapOptions);
+      let mapOptions = {
+          'backgroundColor': 'white',
+          'controls': {
+            'compass': true,
+            'myLocationButton': true,
+            'indoorPicker': true,
+            'zoom': true
+          },
+          'gestures': {
+            'scroll': true,
+            'tilt': true,
+            'rotate': true,
+            'zoom': true
+          },
+          'camera': {
+            'latLng': center,
+            'tilt': 30,
+            'zoom': 10,
+            'bearing': 50
+          }
+      };
+  
+      this.map = new GoogleMap(mapElement, mapOptions);
 
-    this.map.on(GoogleMapsEvent.CAMERA_CHANGE).subscribe((data: any) => {             
-        this.updateMap();
+      this.map.on(GoogleMapsEvent.CAMERA_CHANGE).subscribe((data: any) => {             
+          this.updateMap();
+      });
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
     });
 
   }
