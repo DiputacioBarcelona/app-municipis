@@ -28,6 +28,7 @@ export class ActivitiesMapPage {
   private excludedDatasetsNames: any = [];
   private lastExcludedDatasetsNames: any = [];
   private map: GoogleMap;
+  private markers: any = [];
 
   constructor(
     public navCtrl: NavController,    
@@ -54,16 +55,12 @@ export class ActivitiesMapPage {
     this.events.subscribe('menu:closed', () => {
       this.map.setClickable(true);
     });
-
-    this.events.subscribe('marker:onInfoClick', () => {
-      console.log('event!! ---- marker:onInfoClick');
-    });
 	}
 
-  loadMap() {
+  private loadMap() {
     let mapElement: HTMLElement = document.getElementById('map');
 
-    let location: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
+    let center: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
 
     let mapOptions = {
         'backgroundColor': 'white',
@@ -80,7 +77,7 @@ export class ActivitiesMapPage {
           'zoom': true
         },
         'camera': {
-          'latLng': location,
+          'latLng': center,
           'tilt': 30,
           'zoom': 15,
           'bearing': 50
@@ -109,7 +106,7 @@ export class ActivitiesMapPage {
     }
   }
 
-  updateMap() {
+  private updateMap() {
 
     return new Promise(resolve => {
       
@@ -120,38 +117,47 @@ export class ActivitiesMapPage {
 /*      let location = this.map.getCameraPosition();
       this.map.clear();*/
 
+      if (this.lastQueryText != this.queryText || this.lastIne != this.ine 
+          || this.lastCategory != this.category  || this.lastExcludedDatasetsNames != this.excludedDatasetsNames) {
+        this.map.clear();
+        this.markers = [];
+      }
+
       this.openData.getActivities(this.queryText, 1 , 2, 
                                   this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames)
       .subscribe((data: any) => {
         
         for(let activity of data) {
-          /*this.data.push(elem);*/
-          let coords: string = activity.grup_adreca.localitzacio;
-          if(coords){
-            let lat: number = +coords.split(',')[0];
-            let lng: number = +coords.split(',')[1];
-            let location: LatLng = new LatLng(lat,lng);
+          if(!this.markerExists(activity.acte_id)){
 
-            let markerOptions: MarkerOptions = {
-              position: location,              
-              title: activity.titol,
-              snippet: [activity.rel_municipis.municipi_nom, activity.rel_temes.tema_nom].join("\n"),
-              icon: this.getColor(activity.dataset.machinename)
-            };
+            let coords: string = activity.grup_adreca.localitzacio;
+            if(coords){
+              let lat: number = +coords.split(',')[0];
+              let lng: number = +coords.split(',')[1];
+              let location: LatLng = new LatLng(lat,lng);
 
-            const marker: any = this.map.addMarker(markerOptions)
-              .then((marker: Marker) => {
-                marker.set('activity', activity);
-                marker.addEventListener(GoogleMapsEvent.INFO_CLICK).subscribe((data) => {
-                      this.navCtrl.push(ActivitiesDetailPage, {
-                        activity: activity
-                      });
-                    }
-                );
-            });
-            
+              let markerOptions: MarkerOptions = {
+                position: location,              
+                title: activity.titol,
+                snippet: [activity.rel_municipis.municipi_nom, activity.rel_temes.tema_nom].join("\n"),
+                icon: this.getColor(activity.dataset.machinename)
+              };
+
+              const marker: any = this.map.addMarker(markerOptions)
+                .then((marker: Marker) => {
+                  marker.set('activity', activity);
+                  marker.addEventListener(GoogleMapsEvent.INFO_CLICK).subscribe((data) => {
+                        this.navCtrl.push(ActivitiesDetailPage, {
+                          activity: activity
+                        });
+                      }
+                  );
+              });
+
+              this.markers.push(activity.acte_id);
+              
+            }
           }
-          
         }
         this.lastQueryText = this.queryText;
         this.lastIne = this.ine;
@@ -163,7 +169,7 @@ export class ActivitiesMapPage {
     });
   }
 
-  presentFilter() {
+  private presentFilter() {
     this.map.setClickable(false);
     let modal = this.modalCtrl.create(ActivitiesFilterPage, {
       ine: this.ine,
@@ -185,6 +191,20 @@ export class ActivitiesMapPage {
         this.updateMap();
       }
     });
+  }
+
+  private markerExists(acte_id: any){
+ 
+    let exists = false;
+ 
+    this.markers.forEach((id) => {
+        if(id === acte_id){
+            exists = true;
+        }
+    });
+ 
+    return exists;
+ 
   }
 
 }
