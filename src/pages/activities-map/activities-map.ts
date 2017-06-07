@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController, Platform, Events } from 'ionic-angular';
+import { NavController, ModalController, Platform, Events } from 'ionic-angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker/*, GoogleMapsAnimation, CameraPosition*/ } from '@ionic-native/google-maps';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
@@ -30,8 +30,7 @@ export class ActivitiesMapPage {
   private map: GoogleMap;
 
   constructor(
-    public navCtrl: NavController,
-    public loadingCtrl: LoadingController, 
+    public navCtrl: NavController,    
     public modalCtrl: ModalController,
     public paramsData: ParamsData,
     public openData: OpenData,
@@ -43,7 +42,6 @@ export class ActivitiesMapPage {
     this.ine = paramsData.params.ine;
   }
 
-  // Load map only after view is initialized
   ngAfterViewInit() {
     this.loadMap();
   }
@@ -56,13 +54,15 @@ export class ActivitiesMapPage {
     this.events.subscribe('menu:closed', () => {
       this.map.setClickable(true);
     });
+
+    this.events.subscribe('marker:onInfoClick', () => {
+      console.log('event!! ---- marker:onInfoClick');
+    });
 	}
 
   loadMap() {
-    // create a new map by passing HTMLElement
     let mapElement: HTMLElement = document.getElementById('map');
 
-    // create LatLng object
     let location: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
 
     let mapOptions = {
@@ -89,41 +89,9 @@ export class ActivitiesMapPage {
  
     this.map = new GoogleMap(mapElement, mapOptions);
 
-    /*this.map = new google.maps.Map(mapElement, mapOptions);*/
-
-    /*google.maps.event.addListenerOnce(this.map, 'idle', () => {
- 
-        this.updateMap();
- 
-        google.maps.event.addListener(this.map, 'dragend', () => {
-            this.updateMap();
-        });
- 
-    });*/
-
-    // listen to MAP_READY event
-    // You must wait for this event to fire before adding something to the map or modifying it in anyway
-    this.map.one(GoogleMapsEvent.MAP_READY).then(
-      () => {
-        console.log('Map is ready!');
-        // Now you can add elements to the map like the marker
-        this.updateMap();
-      }
-    );
-
-    this.map.on(GoogleMapsEvent.CAMERA_CHANGE).subscribe((data: any) => {
-        console.log('Camera Change!');
-        console.log(data);
+    this.map.on(GoogleMapsEvent.CAMERA_CHANGE).subscribe((data: any) => {             
         this.updateMap();
     });
-
-    this.map.one(GoogleMapsEvent.MY_LOCATION_BUTTON_CLICK).then(
-      () => {
-        console.log('My button click!');
-        
-       /* this.updateMap();*/
-      }
-    );
 
   }
 
@@ -144,10 +112,6 @@ export class ActivitiesMapPage {
   updateMap() {
 
     return new Promise(resolve => {
-      let msg = 'Espereu siusplau...';
-      this.translate.get('APP.LOADING_MESSAGE').subscribe((res: string) => {
-          msg = res;
-      });
       
      /* let center = this.map.getCenter(),
         bounds = this.map.getBounds(),
@@ -155,11 +119,6 @@ export class ActivitiesMapPage {
 
 /*      let location = this.map.getCameraPosition();
       this.map.clear();*/
-
-      console.log(location);
-
-      let loading = this.loadingCtrl.create({ content: msg });
-      loading.present();
 
       this.openData.getActivities(this.queryText, 1 , 2, 
                                   this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames)
@@ -177,15 +136,18 @@ export class ActivitiesMapPage {
               position: location,              
               title: activity.titol,
               snippet: [activity.rel_municipis.municipi_nom, activity.rel_temes.tema_nom].join("\n"),
-              icon: this.getColor(activity.dataset.machinename),
-              infoClick: this.goToActivityDetail
+              icon: this.getColor(activity.dataset.machinename)
             };
 
             const marker: any = this.map.addMarker(markerOptions)
               .then((marker: Marker) => {
-                marker.showInfoWindow();
-                marker.set('activity', 'test');
-                /*marker.setTitle("Teste");*/
+                marker.set('activity', activity);
+                marker.addEventListener(GoogleMapsEvent.INFO_CLICK).subscribe((data) => {
+                      this.navCtrl.push(ActivitiesDetailPage, {
+                        activity: activity
+                      });
+                    }
+                );
             });
             
           }
@@ -194,20 +156,12 @@ export class ActivitiesMapPage {
         this.lastQueryText = this.queryText;
         this.lastIne = this.ine;
         this.lastCategory = this.category;
-        this.lastExcludedDatasetsNames =  this.excludedDatasetsNames;
-        loading.dismiss();
+        this.lastExcludedDatasetsNames =  this.excludedDatasetsNames;        
         resolve(true);
       });
             
     });
   }
-
-  goToActivityDetail(marker: any) {
-    marker.hideInfoWindow();
-    this.navCtrl.push(ActivitiesDetailPage, {
-      activity: marker.get('activity')
-    });
-	}
 
   presentFilter() {
     this.map.setClickable(false);
