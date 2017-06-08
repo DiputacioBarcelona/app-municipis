@@ -29,8 +29,7 @@
          text-wrap>
       <h3>{{ activity.titol }}</h3>
       <p>
-        {{activity.data_inici | dateFormat}} &mdash;
-        {{activity.data_fi | dateFormat}}            
+        {{ activity.data_inici | dateFormat:activity.data_fi }}            
       </p>
       <p>
         {{activity.rel_municipis.municipi_nom}}

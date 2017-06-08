@@ -1,6 +1,3 @@
-import 'intl';
-import 'intl/locale-data/jsonp/en';
-
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular'

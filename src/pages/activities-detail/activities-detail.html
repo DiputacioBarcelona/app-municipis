@@ -10,8 +10,7 @@
 
     <ion-item text-wrap>      
       <h1>{{ activity.titol }}</h1>
-      <p>{{ activity.data_inici | dateFormat }}</p>
-      <p>{{ activity.data_fi | dateFormat }}</p>
+      <p>{{ activity.data_inici | dateFormat:activity.data_fi }}</p>
       <p *ngIf="activity.rel_municipis">{{ activity.rel_municipis.municipi_nom }}</p>
       <p>{{ activity.rel_temes.tema_nom }}</p>
     </ion-item>
