@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, Platform, Events } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker, CameraPosition } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
@@ -62,42 +62,57 @@ export class ActivitiesMapPage {
 
   private loadMap() {
     let mapElement: HTMLElement = document.getElementById('map');
-
-    this.geolocation.getCurrentPosition().then((resp) => {
-      let center: LatLng = new LatLng(resp.coords.latitude,resp.coords.longitude); 
-
-      let mapOptions = {
-          'backgroundColor': 'white',
-          'controls': {
-            'compass': true,
-            'myLocationButton': true,
-            'indoorPicker': true,
-            'zoom': true
-          },
-          'gestures': {
-            'scroll': true,
-            'tilt': true,
-            'rotate': true,
-            'zoom': true
-          },
-          'camera': {
-            'latLng': center,
-            'tilt': 30,
-            'zoom': 10,
-            'bearing': 50
-          }
+    let center: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
+    let mapOptions = {
+        'backgroundColor': 'white',
+        'controls': {
+          'compass': true,
+          'myLocationButton': true,
+          'indoorPicker': true,
+          'zoom': true // Only for Android
+        },
+        'gestures': {
+          'scroll': true,
+          'tilt': true,
+          'rotate': true,
+          'zoom': true
+        },
+        'camera': {
+          'latLng': center,
+          'tilt': 30,
+          'zoom': 9,
+          'bearing': 50
+        }
       };
   
       this.map = new GoogleMap(mapElement, mapOptions);
 
+      this.map.one(GoogleMapsEvent.MAP_READY).then(
+        () => {
+          console.log('Map is ready!');
+          
+          this.geolocation.getCurrentPosition().then((resp) => {
+            let center: LatLng = new LatLng(resp.coords.latitude,resp.coords.longitude);
+            this.map.setCenter(center);
+
+          }).catch((error) => {
+            console.log('Error getting location', error);
+          });
+        }
+      );
+
       this.map.on(GoogleMapsEvent.CAMERA_CHANGE).subscribe((data: any) => {             
-          this.updateMap();
+        this.map.getCameraPosition().then(cameraPosition => {
+          let target = JSON.stringify(cameraPosition.target);
+          let temp = JSON.parse(target);
+          let currentLatitude = temp.lat;
+          let currentLongitude = temp.lng;      
+          
+          let coords: string = currentLatitude+','+currentLongitude;
+
+          this.updateMap(coords);
+        }) 
       });
-
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-
   }
 
   private getColor(dataset:string){
@@ -114,68 +129,55 @@ export class ActivitiesMapPage {
     }
   }
 
-  private updateMap() {
+  private updateMap(center: string) {
 
     return new Promise(resolve => {
-      
-     /* let center = this.map.getCenter(),
-        bounds = this.map.getBounds(),
-        zoom = this.map.getZoom();*/
-
-/*      let location = this.map.getCameraPosition();
-      this.map.clear();*/
 
       if (this.lastQueryText != this.queryText || this.lastIne != this.ine 
           || this.lastCategory != this.category  || this.lastExcludedDatasetsNames != this.excludedDatasetsNames) {
         this.map.clear();
         this.markers = [];
       }
-
-      let coords : string = '41.34220,2.2678';
-
+      
       this.openData.getActivities(this.queryText, 1 , 10, 
-                                  this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames, coords)
-      .subscribe((data: any) => {
-        
-        for(let activity of data) {
-          if(!this.markerExists(activity.acte_id)){
+                                    this.ine, this.iniDate, this.fiDate, this.category, this.excludedDatasetsNames, center)
+        .subscribe((data: any) => {
+          for(let activity of data) {
+            if(!this.markerExists(activity.acte_id)){
+              let coords: string = activity.grup_adreca.localitzacio;
+              if(coords){
+                let lat: number = +coords.split(',')[0];
+                let lng: number = +coords.split(',')[1];
+                let location: LatLng = new LatLng(lat,lng);
 
-            let coords: string = activity.grup_adreca.localitzacio;
-            if(coords){
-              let lat: number = +coords.split(',')[0];
-              let lng: number = +coords.split(',')[1];
-              let location: LatLng = new LatLng(lat,lng);
+                let markerOptions: MarkerOptions = {
+                  position: location,              
+                  title: activity.titol,
+                  snippet: [activity.rel_municipis.municipi_nom, activity.rel_temes.tema_nom].join("\n"),
+                  icon: this.getColor(activity.dataset.machinename)
+                };
 
-              let markerOptions: MarkerOptions = {
-                position: location,              
-                title: activity.titol,
-                snippet: [activity.rel_municipis.municipi_nom, activity.rel_temes.tema_nom].join("\n"),
-                icon: this.getColor(activity.dataset.machinename)
-              };
-
-              const marker: any = this.map.addMarker(markerOptions)
-                .then((marker: Marker) => {
-                  marker.set('activity', activity);
-                  marker.addEventListener(GoogleMapsEvent.INFO_CLICK).subscribe((data) => {
-                        this.navCtrl.push(ActivitiesDetailPage, {
-                          activity: activity
-                        });
-                      }
-                  );
-              });
-
-              this.markers.push(activity.acte_id);
-              
+                const marker: any = this.map.addMarker(markerOptions)
+                  .then((marker: Marker) => {
+                    marker.set('activity', activity);
+                    marker.addEventListener(GoogleMapsEvent.INFO_CLICK).subscribe((data) => {
+                          this.navCtrl.push(ActivitiesDetailPage, {
+                            activity: activity
+                          });
+                        }
+                    );
+                });
+                this.markers.push(activity.acte_id);
+              }
             }
           }
-        }
-        this.lastQueryText = this.queryText;
-        this.lastIne = this.ine;
-        this.lastCategory = this.category;
-        this.lastExcludedDatasetsNames =  this.excludedDatasetsNames;        
-        resolve(true);
+          alert(this.markers.length);
+          this.lastQueryText = this.queryText;
+          this.lastIne = this.ine;
+          this.lastCategory = this.category;
+          this.lastExcludedDatasetsNames =  this.excludedDatasetsNames;        
+          resolve(true);
       });
-            
     });
   }
 
@@ -198,7 +200,17 @@ export class ActivitiesMapPage {
         this.fiDate = data.fiDate;
         this.category = data.category;
         this.excludedDatasetsNames = data.excludedDatasetsNames;
-        this.updateMap();
+       
+        this.map.getCameraPosition().then(cameraPosition => {
+          let target = JSON.stringify(cameraPosition.target);
+          let temp = JSON.parse(target);
+          let currentLatitude = temp.lat;
+          let currentLongitude = temp.lng;      
+          
+          let coords: string = currentLatitude+','+currentLongitude;
+
+          this.updateMap(coords);
+        })
       }
     });
   }
