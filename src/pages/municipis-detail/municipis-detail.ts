@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, Events, FabContainer } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -25,7 +26,8 @@ export class MunicipisDetailPage {
     public userData: UserData,
     public translate: TranslateService, 
     public events: Events,
-    public socialSharing: SocialSharing
+    public socialSharing: SocialSharing,
+    public launchNavigator: LaunchNavigator
   ) {
       this.municipi = this.navParams.data.municipi;
   }
@@ -128,7 +130,27 @@ export class MunicipisDetailPage {
   }
 
   openMap() {
-    console.log("Open map");
+    this.launchNavigator.isAppAvailable(this.launchNavigator.APP.GOOGLE_MAPS).then((isAvailable) => {
+      var app;
+      if (isAvailable) {
+          app = this.launchNavigator.APP.GOOGLE_MAPS;
+      } else {
+          console.warn("Google Maps not available - falling back to user selection");
+          app = this.launchNavigator.APP.USER_SELECT;
+      }
+
+      let options: LaunchNavigatorOptions = {
+        app: app
+      };
+
+      this.launchNavigator.navigate(this.municipi.grup_ajuntament.localitzacio, options)
+        .then(
+          success => console.log('Launched navigator'),
+          error => console.log('Error launching navigator', error)
+        );
+    }).catch((error) => {
+      console.log('Error launching navigator', error);
+    });
   }
 
   openMail(email) {
