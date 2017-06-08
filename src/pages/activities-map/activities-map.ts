@@ -21,7 +21,6 @@ export class ActivitiesMapPage {
   private lastIne = '';
   private queryText = '';
   private lastQueryText = '';
-  private shownData: any = [];
   private iniDate: string;
   private fiDate: string;
   private category: string;
@@ -171,7 +170,7 @@ export class ActivitiesMapPage {
               }
             }
           }
-          alert(this.markers.length);
+          /*alert(this.markers.length);*/
           this.lastQueryText = this.queryText;
           this.lastIne = this.ine;
           this.lastCategory = this.category;

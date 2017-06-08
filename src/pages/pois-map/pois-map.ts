@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ModalController, Platform, Events } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from '@ionic-native/google-maps';
+import { NavController, ModalController, Platform, Events } from 'ionic-angular';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerOptions, Marker, CameraPosition } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -20,33 +21,27 @@ export class PoisMapPage {
   private lastIne = '';
   private queryText = '';
   private lastQueryText = '';
-	private data: any = [];
-  private shownData: any = [];
-  private total: number;
   private category: string;
   private lastCategory = '';
   private excludedDatasetsNames: any = [];
   private lastExcludedDatasetsNames: any = [];
   private map: GoogleMap;
+  private markers: any = [];
 
   constructor(
-    public navCtrl: NavController,
-    public loadingCtrl: LoadingController, 
+    public navCtrl: NavController,    
     public modalCtrl: ModalController,
     public paramsData: ParamsData,
     public openData: OpenData,
     public translate: TranslateService,
     public platform: Platform,
     public events: Events,
-    private googleMaps: GoogleMaps
+    private googleMaps: GoogleMaps,
+    private geolocation: Geolocation
   ) {
     this.ine = paramsData.params.ine;
-    /*platform.ready().then(() => {
-            this.loadMap();
-    });*/
   }
 
-  // Load map only after view is initialized
   ngAfterViewInit() {
     this.loadMap();
   }
@@ -61,77 +56,128 @@ export class PoisMapPage {
     });
 	}
 
-  loadMap() {
-    // create a new map by passing HTMLElement
-    let element: HTMLElement = document.getElementById('map');
+  private loadMap() {
+    let mapElement: HTMLElement = document.getElementById('map');
+    let center: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
+    let mapOptions = {
+        'backgroundColor': 'white',
+        'controls': {
+          'compass': true,
+          'myLocationButton': true,
+          'indoorPicker': true,
+          'zoom': true // Only for Android
+        },
+        'gestures': {
+          'scroll': true,
+          'tilt': true,
+          'rotate': true,
+          'zoom': true
+        },
+        'camera': {
+          'latLng': center,
+          'tilt': 30,
+          'zoom': 9,
+          'bearing': 50
+        }
+      };
+  
+      this.map = new GoogleMap(mapElement, mapOptions);
 
-    this.map = this.googleMaps.create(element);
- 
-    /*this.map = new GoogleMap('map', {
-      'backgroundColor': 'white',
-      'controls': {
-        'compass': true,
-        'myLocationButton': true,
-        'indoorPicker': true,
-        'zoom': true
-      },
-      'gestures': {
-        'scroll': true,
-        'tilt': true,
-        'rotate': true,
-        'zoom': true
-      },
-      'camera': {
-        'latLng': location,
-        'tilt': 30,
-        'zoom': 15,
-        'bearing': 50
-      }
-    });*/
+      this.map.one(GoogleMapsEvent.MAP_READY).then(
+        () => {
+          console.log('Map is ready!');
+          
+          this.geolocation.getCurrentPosition().then((resp) => {
+            let center: LatLng = new LatLng(resp.coords.latitude,resp.coords.longitude);
+            this.map.setCenter(center);
 
-    /*this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-        console.log('Map is ready!');
-    });*/
+          }).catch((error) => {
+            console.log('Error getting location', error);
+          });
+        }
+      );
 
-    // listen to MAP_READY event
-    // You must wait for this event to fire before adding something to the map or modifying it in anyway
-    this.map.one(GoogleMapsEvent.MAP_READY).then(
-      () => {
-        console.log('Map is ready!');
-        // Now you can add elements to the map like the marker
-      }
-    );
+      this.map.on(GoogleMapsEvent.CAMERA_CHANGE).subscribe((data: any) => {             
+        this.map.getCameraPosition().then(cameraPosition => {
+          let target = JSON.stringify(cameraPosition.target);
+          let temp = JSON.parse(target);
+          let currentLatitude = temp.lat;
+          let currentLongitude = temp.lng;      
+          
+          let coords: string = currentLatitude+','+currentLongitude;
 
-    // create LatLng object
-    let location: LatLng = new LatLng(41.5777099,1.6122413); //Igualada
-
-    // create CameraPosition
-    let position: CameraPosition = {
-      target: location,
-      zoom: 18,
-      tilt: 30
-    };
-
-    // move the map's camera to position
-    this.map.moveCamera(position);
-
-    // create new marker
-    let markerOptions: MarkerOptions = {
-      position: location,
-      title: 'Ionic'
-    };
-
-    const marker: any = this.map.addMarker(markerOptions)
-      .then((marker: Marker) => {
-          marker.showInfoWindow();
-        });
- 
+          this.updateMap(coords);
+        }) 
+      });
   }
 
-  updateMap() {
+  private getColor(dataset:string){
+    if(dataset == 'parcsequipaments_ca'){
+      return '#891536';
+    } else if(dataset == 'puntesports'){
+      return '#8E8D93';
+    } else if(dataset == 'museus'){
+      return '#FE4C52';
+    } else if(dataset == 'espaisescenics'){
+      return '#FD8B2D';
+    } else if(dataset == 'biblioteques'){
+      return '#FED035';
+    }
   }
 
-  presentFilter() {
+  private updateMap(center: string) {
+
+    return new Promise(resolve => {
+
+      if (this.lastQueryText != this.queryText || this.lastIne != this.ine 
+          || this.lastCategory != this.category  || this.lastExcludedDatasetsNames != this.excludedDatasetsNames) {
+        this.map.clear();
+        this.markers = [];
+      }
+      
+      this.openData.getPois(this.queryText, 1 , 10, 
+                                    this.ine, this.category, this.excludedDatasetsNames, center)
+        .subscribe((data: any) => {
+          for(let poi of data) {
+            if(!this.markerExists(poi.punt_id)){
+              let coords: string = poi.localitzacio;
+              if(coords){
+                let lat: number = +coords.split(',')[0];
+                let lng: number = +coords.split(',')[1];
+                let location: LatLng = new LatLng(lat,lng);
+
+                let markerOptions: MarkerOptions = {
+                  position: location,              
+                  title: poi.adreca_nom,
+                  snippet: [poi.rel_municipis.municipi_nom, poi.rel_temes.tema_nom].join("\n"),
+                  icon: this.getColor(poi.dataset.machinename)
+                };
+
+                const marker: any = this.map.addMarker(markerOptions)
+                  .then((marker: Marker) => {
+                    marker.set('poi', poi);
+                    marker.addEventListener(GoogleMapsEvent.INFO_CLICK).subscribe((data) => {
+                          this.navCtrl.push(PoisDetailPage, {
+                            poi: poi
+                          });
+                        }
+                    );
+                });
+                this.markers.push(poi.punt_id);
+              }
+            }
+          }
+          /*alert(this.markers.length);*/
+          this.lastQueryText = this.queryText;
+          this.lastIne = this.ine;
+          this.lastCategory = this.category;
+          this.lastExcludedDatasetsNames =  this.excludedDatasetsNames;        
+          resolve(true);
+      });
+    });
+  }
+
+  private presentFilter() {
     this.map.setClickable(false);
     let modal = this.modalCtrl.create(PoisFilterPage, {
       ine: this.ine,
@@ -146,9 +192,31 @@ export class PoisMapPage {
         this.ine = data.ine;
         this.category = data.category;
         this.excludedDatasetsNames = data.excludedDatasetsNames;
-        this.updateMap();
+       
+        this.map.getCameraPosition().then(cameraPosition => {
+          let target = JSON.stringify(cameraPosition.target);
+          let temp = JSON.parse(target);
+          let currentLatitude = temp.lat;
+          let currentLongitude = temp.lng;      
+          
+          let coords: string = currentLatitude+','+currentLongitude;
+
+          this.updateMap(coords);
+        })
       }
     });
+  }
+
+  private markerExists(punt_id: any){
+    let exists = false;
+ 
+    this.markers.forEach((id) => {
+        if(id === punt_id){
+            exists = true;
+        }
+    });
+ 
+    return exists;
   }
 
 }

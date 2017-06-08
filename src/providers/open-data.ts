@@ -111,9 +111,13 @@ export class OpenData {
 
 	getActivities(queryText: string, pagIni: number, pagFi: number, 
 								relPunt: string, iniDate: string, fiDate: string, 
-								themes: any, excludedDatasetsNames: any, coords: any = '') {
+								themes: any, excludedDatasetsNames: any, coords: string = '') {
 		
-    let orderBy: any = [{ "fieldName":"data_inici","order":"asc"}];
+		let orderBy: any = [];		
+		if (coords.length == 0) {
+			console.log('ORDENA OK!');
+      orderBy = [{ "fieldName":"data_inici","order":"asc"}];
+		}
 		this.excludedDatasetsNames = excludedDatasetsNames;
 		return this.getDataAPI('acte', orderBy, queryText, pagIni, pagFi, relPunt, 
 																			iniDate, fiDate, themes, false, coords)
@@ -135,12 +139,15 @@ export class OpenData {
 	}
 
 	getPois(queryText: string, pagIni: number, pagFi: number, 
-								relPunt: string, themes: any, excludedDatasetsNames: any) {
+								relPunt: string, themes: any, excludedDatasetsNames: any, coords: string = '') {
 		
-    let orderBy: any = [{ "fieldName":"adreca_nom","order":"asc"}];
+		let orderBy: any = [];
+		if (coords.length == 0) {
+      orderBy = [{ "fieldName":"adreca_nom","order":"asc"}];
+		}
 		this.excludedDatasetsNames = excludedDatasetsNames;
 		return this.getDataAPI('punt', orderBy, queryText, pagIni, pagFi, relPunt, 
-																			'', '', themes, false)
+																			'', '', themes, false, coords)
         .map(this.processDataPois, this);
   }
 
