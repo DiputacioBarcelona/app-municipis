@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, Events, FabContainer } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { TranslateService } from 'ng2-translate/ng2-translate'
 
@@ -21,9 +22,10 @@ export class MunicipisDetailPage {
     public alertCtrl: AlertController,
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public userData: UserData, 
+    public userData: UserData,
     public translate: TranslateService, 
-    public events: Events
+    public events: Events,
+    public socialSharing: SocialSharing
   ) {
       this.municipi = this.navParams.data.municipi;
   }
@@ -106,7 +108,22 @@ export class MunicipisDetailPage {
   }
 
   share(socialNet: string, fab: FabContainer) {
-    console.log("Sharing in" + socialNet);
+    if(socialNet == 'Twitter') {
+      this.socialSharing.shareViaTwitter(this.municipi.municipi_nom, 
+                                        this.municipi.municipi_vista, 
+                                        this.municipi.grup_ajuntament.url_general);
+    } else if(socialNet == 'Facebook') {
+      this.socialSharing.shareViaFacebook(this.municipi.municipi_nom, 
+                                        this.municipi.municipi_vista, 
+                                        this.municipi.grup_ajuntament.url_general);
+    } else if(socialNet == 'Whatsapp') {
+      this.socialSharing.shareViaWhatsApp(this.municipi.municipi_nom, 
+                                        this.municipi.municipi_vista, 
+                                        this.municipi.grup_ajuntament.url_general);
+    } else if(socialNet == 'Mail') {
+      this.socialSharing.shareViaEmail(this.municipi.grup_ajuntament.adreca, this.municipi.municipi_nom, 
+                                      [''],[''],[''],[this.municipi.municipi_vista]);
+    }
     fab.close();
   }
 

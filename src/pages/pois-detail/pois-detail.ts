@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, FabContainer } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-pois-detail',
@@ -10,13 +11,33 @@ export class PoisDetailPage {
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams
+    public navParams: NavParams,
+    public socialSharing: SocialSharing
   ) {
       this.poi = this.navParams.data.poi;
   }
 
   share(socialNet: string, fab: FabContainer) {
-    console.log("Sharing in" + socialNet);
+    let imatge = '';
+    if (this.poi.imatge.length > 0){
+      imatge = this.poi.imatge['0'];
+    }
+    if(socialNet == 'Twitter') {
+      this.socialSharing.shareViaTwitter(this.poi.adreca_nom, 
+                                        imatge, 
+                                        this.poi.url_general);
+    } else if(socialNet == 'Facebook') {
+      this.socialSharing.shareViaFacebook(this.poi.adreca_nom, 
+                                        imatge, 
+                                        this.poi.url_general);
+    } else if(socialNet == 'Whatsapp') {
+      this.socialSharing.shareViaWhatsApp(this.poi.adreca_nom, 
+                                        imatge, 
+                                        this.poi.url_general);
+    } else if(socialNet == 'Mail') {
+      this.socialSharing.shareViaEmail(this.poi.descripcio, this.poi.adreca_nom,
+                                      [''],[''],[''],[imatge]);
+    }
     fab.close();
   }
 
