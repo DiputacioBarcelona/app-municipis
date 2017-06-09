@@ -1,11 +1,6 @@
 # Diba+Municipis Application
 
-This is purely a example of use of Diputació de Barcelona's Open Data API.
-
-
-## Important!
-**There is not an actual Ionic Conference at this time.** This project is just to show off Ionic 2 components in a real-world application. Please go through the steps in [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/master/.github/CONTRIBUTING.md) before submitting an issue.
-
+This a example of use of Diputació de Barcelona's Open Data API.
 
 ## Table of Contents
  - [Getting Started](#getting-started)
@@ -17,8 +12,7 @@ This is purely a example of use of Diputació de Barcelona's Open Data API.
 
 ## Getting Started
 
-* Clone this repository: `git clone https://github.com/driftyco/ionic-conference-app.git`.
-* Want to use TypeScript? Both the `master` branch and the `typescript` branch now use TypeScript.
+* Clone this repository: `git clone https://cescd6@bitbucket.org/cescd6/municipis.git`.
 * Run `npm install` from the project root.
 * Install the ionic CLI (`npm install -g ionic`)
 * Run `ionic serve` in a terminal from the project root.

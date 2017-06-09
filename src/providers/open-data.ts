@@ -8,7 +8,6 @@ import { TranslateService } from 'ng2-translate/ng2-translate'
 
 import { UserData } from './user-data';
 
-//TODO: REMOVE console.log
 @Injectable()
 export class OpenData {
   private dataMunicipi: any;
@@ -55,7 +54,7 @@ export class OpenData {
 
   private loadMunicipis(): any {     
     if (this.dataMunicipi) {
-      console.log('Observable');
+      //console.log('Observable');
       return Observable.of(this.dataMunicipi);
     } else {
 			let orderBy: any = [{ "fieldName":"comarca_nom","order":"asc"},
@@ -115,7 +114,6 @@ export class OpenData {
 		
 		let orderBy: any = [];		
 		if (coords.length == 0) {
-			console.log('ORDENA OK!');
       orderBy = [{ "fieldName":"data_inici","order":"asc"}];
 		}
 		this.excludedDatasetsNames = excludedDatasetsNames;
@@ -167,7 +165,7 @@ export class OpenData {
 
 	getMuncipisCombo(){
 		if (this.comboMunicipis) {
-      console.log('Observable');
+      //console.log('Observable');
       return Observable.of(this.comboMunicipis);
     } else {
 			let orderBy: any = [{"fieldName":"municipi_transliterat","order":"asc"}];
@@ -192,7 +190,7 @@ export class OpenData {
 
 	getDibaCategoriesCombo(){
 		if (this.comboCategories) {
-      console.log('Observable');
+      //console.log('Observable');
       return Observable.of(this.comboCategories);
     } else {
 			let orderBy: any = [{"fieldName":"tema_nom","order":"asc"}];
@@ -212,7 +210,7 @@ export class OpenData {
 
 	getDatasetsActe(){
 		if (this.datasetsActe) {
-      console.log('Observable');
+      //console.log('Observable');
       return Observable.of(this.datasetsActe);
     } else {			
 			return this.getDataAPI('acte', [], '', 1, 2, '','', '', [], false)
@@ -231,7 +229,7 @@ export class OpenData {
 
 	getDatasetsPunt(){
 		if (this.datasetsPunt) {
-      console.log('Observable');
+      //console.log('Observable');
       return Observable.of(this.datasetsPunt);
     } else {			
 			return this.getDataAPI('punt', [], '', 1, 2, '','', '', [], false)
@@ -309,7 +307,7 @@ export class OpenData {
 
 		let url : string  = this.BASEURL + strData + datasetName + '/format/JSON/' + strOrderBy + 
 												strQueryText + strPag + strRelPunt + strIniDate + strFiDate + strThemes + strCoords + 'token/' + this.TOKEN;
-    console.log('URL: ' + url);
+    //console.log('URL: ' + url);
     
     let elements = this.http.get(url)
       .map(res => res.json())
