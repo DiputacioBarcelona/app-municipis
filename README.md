@@ -49,7 +49,7 @@ See [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/mast
 
 ## App Preview
 
-All app preview screenshots were taken by running `ionic serve --lab`.
+All app preview screenshots were taken by running `ionic serve --lab`. Except for the map view, because it is a native component of Ionic
 
 - [Municipis Page](https://bitbucket.org/cescd6/municipis/src/c6fe6c9b33f857b06ba7fa207af6b9af593f47f1/src/pages/municipis/municipis.html?at=master&fileviewer=file-view-default)
 
