@@ -51,17 +51,17 @@ See [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/mast
 
 All app preview screenshots were taken by running `ionic serve --lab`.
 
-- [Municipis Page](https://cescd6@bitbucket.org/cescd6/municipis/src/pages/schedule/schedule.html)
+- [Municipis Page](https://bitbucket.org/cescd6/municipis/src/c6fe6c9b33f857b06ba7fa207af6b9af593f47f1/src/pages/municipis/municipis.html?at=master&fileviewer=file-view-default)
 
   <img src="resources/screenshots/MunicipisPage.png" alt="Schedule">
 
 
-- [Activities Page](https://cescd6@bitbucket.org/cescd6/municipis/src/pages/about/about.html)
+- [Activities Page](https://bitbucket.org/cescd6/municipis/src/c6fe6c9b33f857b06ba7fa207af6b9af593f47f1/src/pages/activities-list/activities-list.html?at=master&fileviewer=file-view-default)
 
-  <img src="resources/screenshots/ActivitiesPage.png" alt="Schedule">
+  <img src="resources/screenshots/ActivitiesListPage.png" alt="Schedule">
 
 
-- To see more images of the app, check out the [screenshots directory](https://github.com/driftyco/ionic-conference-app/tree/master/resources/screenshots)!
+- To see more images of the app, check out the [screenshots directory](https://bitbucket.org/cescd6/municipis/src/c6fe6c9b33f857b06ba7fa207af6b9af593f47f1/resources/screenshots/?at=master)!
 
 
 ## File Structure of App
