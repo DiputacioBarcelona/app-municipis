@@ -22,7 +22,7 @@ This a example of use of Diputació de Barcelona's Open Data API.
 
 
 ## Contributing
-See [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/master/.github/CONTRIBUTING.md)
+See [CONTRIBUTING.md](https://bitbucket.org/cescd6/municipis/src/master/.github/CONTRIBUTING.md?at=master&fileviewer=file-view-default)
 
 
 ## Use Cases
@@ -51,17 +51,17 @@ See [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/mast
 
 All app preview screenshots were taken by running `ionic serve --lab`. Except for the map view, because it is a native component of Ionic
 
-- [Municipis Page](https://bitbucket.org/cescd6/municipis/src/b998eae6ff811b6a0f2e6db5436ddf8648542506/resources/screenshots/MunicipisPage.png?at=master&fileviewer=file-view-default)
+- [Municipis Page](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots/MunicipisPage.png?fileviewer=file-view-default)
 
   <img src="resources/screenshots/MunicipisPage.png" alt="Schedule">
 
 
-- [Activities Page](https://bitbucket.org/cescd6/municipis/src/b998eae6ff811b6a0f2e6db5436ddf8648542506/resources/screenshots/ActivitiesListPage.png?at=master&fileviewer=file-view-default)
+- [Activities Page](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots/ActivitiesListPage.png?fileviewer=file-view-default)
 
   <img src="resources/screenshots/ActivitiesListPage.png" alt="Schedule">
 
 
-- To see more images of the app, check out the [screenshots directory](https://bitbucket.org/cescd6/municipis/src/9206ff2ed0566659c6303f0ec434a1ccac54d1ec/resources/screenshots/?at=master)!
+- To see more images of the app, check out the [screenshots directory](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots)!
 
 
 ## File Structure of App
