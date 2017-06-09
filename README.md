@@ -61,7 +61,7 @@ All app preview screenshots were taken by running `ionic serve --lab`. Except fo
   <img src="resources/screenshots/ActivitiesListPage.png" alt="Schedule">
 
 
-- To see more images of the app, check out the [screenshots directory](https://bitbucket.org/cescd6/municipis/src/c6fe6c9b33f857b06ba7fa207af6b9af593f47f1/resources/screenshots/?at=master)!
+- To see more images of the app, check out the [screenshots directory](https://bitbucket.org/cescd6/municipis/src/9206ff2ed0566659c6303f0ec434a1ccac54d1ec/resources/screenshots/?at=master)!
 
 
 ## File Structure of App
