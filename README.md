@@ -51,12 +51,12 @@ See [CONTRIBUTING.md](https://bitbucket.org/cescd6/municipis/src/master/.github/
 
 All app preview screenshots were taken by running `ionic serve --lab`. Except for the map view, because it is a native component of Ionic
 
-- [Municipis Page](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots/MunicipisPage.png?fileviewer=file-view-default)
+- [Municipis Page](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots/MunicipisPage.html)
 
   <img src="resources/screenshots/MunicipisPage.png" alt="Schedule">
 
 
-- [Activities Page](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots/ActivitiesListPage.png?fileviewer=file-view-default)
+- [Activities Page](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots/ActivitiesListPage.html)
 
   <img src="resources/screenshots/ActivitiesListPage.png" alt="Schedule">
 
