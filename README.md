@@ -51,12 +51,12 @@ See [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/mast
 
 All app preview screenshots were taken by running `ionic serve --lab`. Except for the map view, because it is a native component of Ionic
 
-- [Municipis Page](https://bitbucket.org/cescd6/municipis/src/c6fe6c9b33f857b06ba7fa207af6b9af593f47f1/src/pages/municipis/municipis.html?at=master&fileviewer=file-view-default)
+- [Municipis Page](https://bitbucket.org/cescd6/municipis/src/b998eae6ff811b6a0f2e6db5436ddf8648542506/resources/screenshots/MunicipisPage.png?at=master&fileviewer=file-view-default)
 
   <img src="resources/screenshots/MunicipisPage.png" alt="Schedule">
 
 
-- [Activities Page](https://bitbucket.org/cescd6/municipis/src/c6fe6c9b33f857b06ba7fa207af6b9af593f47f1/src/pages/activities-list/activities-list.html?at=master&fileviewer=file-view-default)
+- [Activities Page](https://bitbucket.org/cescd6/municipis/src/b998eae6ff811b6a0f2e6db5436ddf8648542506/resources/screenshots/ActivitiesListPage.png?at=master&fileviewer=file-view-default)
 
   <img src="resources/screenshots/ActivitiesListPage.png" alt="Schedule">
 
