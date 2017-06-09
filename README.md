@@ -22,7 +22,7 @@ This a example of use of Diputació de Barcelona's Open Data API.
 
 
 ## Contributing
-See [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/master/.github/CONTRIBUTING.md) :tada::+1:
+See [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/master/.github/CONTRIBUTING.md)
 
 
 ## Use Cases
@@ -49,16 +49,16 @@ See [CONTRIBUTING.md](https://github.com/driftyco/ionic-conference-app/blob/mast
 
 ## App Preview
 
-All app preview screenshots were taken by running `ionic serve --lab` on a retina display.
+All app preview screenshots were taken by running `ionic serve --lab`.
 
-- [Schedule Page](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.html)
+- [Municipis Page](https://cescd6@bitbucket.org/cescd6/municipis/src/pages/schedule/schedule.html)
 
-  <img src="resources/screenshots/SchedulePage.png" alt="Schedule">
+  <img src="resources/screenshots/MunicipisPage.png" alt="Schedule">
 
 
-- [About Page](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/about/about.html)
+- [Activities Page](https://cescd6@bitbucket.org/cescd6/municipis/src/pages/about/about.html)
 
-  <img src="resources/screenshots/AboutPage.png" alt="Schedule">
+  <img src="resources/screenshots/ActivitiesPage.png" alt="Schedule">
 
 
 - To see more images of the app, check out the [screenshots directory](https://github.com/driftyco/ionic-conference-app/tree/master/resources/screenshots)!
@@ -67,128 +67,141 @@ All app preview screenshots were taken by running `ionic serve --lab` on a retin
 ## File Structure of App
 
 ```
-ionic-conference-app/
-├-- .github/                            * GitHub files
-│   ├── CONTRIBUTING.md                 * Documentation on contributing to this repo
-│   └── ISSUE_TEMPLATE.md               * Template used to populate issues in this repo
+municipis/
+├-- .github/                                    * GitHub files
+│   ├── CONTRIBUTING.md                         * Documentation on contributing to this repo
+│   └── ISSUE_TEMPLATE.md                       * Template used to populate issues in this repo
 |
 |-- resources/
+|    |-- android/                               * Resources for android platform
+|    |    └── icon
+|    |    |   └── ...
+|    |    ├── splash
+|    |    |   └── ...
+|    |    └── icon.png
+|    |
+|    |-- ios/                                   * Resources for ios platform
+|    |    └── icon
+|    |    |   └── ...
+|    |    ├── splash
+|    |    |   └── ...
+|    |    └── icon.png
+|    |
+|    |-- screenshots/                           * Screenshots
+|    |        └── ...
+|    |
+|    └── splash.png
 |
 |-- src/
 |    |-- app/
 |    |    ├── app.component.ts
-|    |    └── app.module.ts
-|    |    └── app.template.html
+|    |    ├── app.html
+|    |    ├── app.module.ts
+|    |    ├── app.scss
 |    |    └── main.ts
 |    |
 |    |-- assets/
-|    |    ├── data/
-|    |    |    └── data.json
+|    |    ├── i18n/                             * Internationalization (i18n)
+|    |    |    ├── ca.json                      * Català
+|    |    |    ├── en.json                      * English
+|    |    |    └── es.json                      * Español
 |    |    |
-|    |    ├── fonts/
-|    |    |     ├── ionicons.eot
-|    |    |     └── ionicons.svg
-|    |    |     └── ionicons.ttf
-|    |    |     └── ionicons.woff
-|    |    |     └── ionicons.woff2
+|    |    ├── icon/
+|    |    |     └── favicon.ico
 |    |    |
-|    |    ├── img/
+|    |    └── img/
+|    |          ├── appicon.png
+|    |          └── appicon.svg
 |    |
-|    |-- pages/                          * Contains all of our pages
-│    │    ├── about/                     * About tab page
-│    │    │    ├── about.html            * AboutPage template
-│    │    │    └── about.ts              * AboutPage code
-│    │    │    └── about.scss            * AboutPage stylesheet
+|    |-- pages/                                 * Contains all of our pages
 │    │    │
-│    │    ├── account/                   * Account page
-│    │    │    ├── account.html          * AccountPage template
-│    │    │    └── account.ts            * AccountPage code
-│    │    │    └── account.scss          * AccountPage stylesheet
+│    │    ├── activities/                       * Activities page
+│    │    │    ├── activities.html              * ActivitiesPage template
+│    │    │    ├── activities.scss              * ActivitiesPage code
+│    │    │    └── activities.ts                * ActivitiesPage stylesheet
 │    │    │
-│    │    │── login/                     * Login page
-│    │    │    ├── login.html            * LoginPage template
-│    │    │    └── login.ts              * LoginPage code
-│    │    │    └── login.scss            * LoginPage stylesheet
+│    │    ├── activities-detail/                * Activities-detail page
+│    │    │    ├── activities-detail.html       * ActivitiesDetailPage template
+│    │    │    ├── activities-detail.scss       * ActivitiesDetailPage code
+│    │    │    └── activities-detail.ts         * ActivitiesDetailPage stylesheet
 │    │    │
-│    │    │── map/                       * Map tab page
-│    │    │    ├── map.html              * MapPage template
-│    │    │    └── map.ts                * MapPage code
-│    │    │    └── map.scss              * MapPage stylesheet
+│    │    ├── activities-filter/                * Activities-filter page
+│    │    │    ├── activities-filter.html       * ActivitiesFilterPage template
+│    │    │    ├── activities-filter.scss       * ActivitiesFilterPage code
+│    │    │    └── activities-filter.ts         * ActivitiesFilterPage stylesheet
 │    │    │
-│    │    │── schedule/                  * Schedule tab page
-│    │    │    ├── schedule.html         * SchedulePage template
-│    │    │    └── schedule.ts           * SchedulePage code
-│    │    │    └── schedule.scss         * SchedulePage stylesheet
+│    │    ├── activities-list/                  * Activities-list page
+│    │    │    ├── activities-list.html         * ActivitiesListPage template
+│    │    │    ├── activities-list.scss         * ActivitiesListPage code
+│    │    │    └── activities-list.ts           * ActivitiesListPage stylesheet
 │    │    │
-│    │    │── schedule-filter/            * Schedule Filter page
-│    │    │    ├── schedule-filter.html   * ScheduleFilterPage template
-│    │    │    └── schedule-filter.ts     * ScheduleFilterPage code
-│    │    │    └── schedule-filter.scss   * ScheduleFilterPage stylesheet
+│    │    ├── activities-map/                   * Activities-map page
+│    │    │    ├── activities-map.html          * ActivitiesMapPage template
+│    │    │    ├── activities-map.scss          * ActivitiesMapPage code
+│    │    │    └── activities-map.ts            * ActivitiesMapPage stylesheet
 │    │    │
-│    │    │── session-detail/            * Session Detail page
-│    │    │    ├── session-detail.html   * SessionDetailPage template
-│    │    │    └── session-detail.ts     * SessionDetailPage code
+│    │    ├── municipis/                        * Municipis page
+│    │    │    ├── municipis.html               * MunicipisPage template
+│    │    │    ├── municipis.scss               * MunicipisPage code
+│    │    │    └── municipis.ts                 * MunicipisPage stylesheet
 │    │    │
-│    │    │── signup/                    * Signup page
-│    │    │    ├── signup.html           * SignupPage template
-│    │    │    └── signup.ts             * SignupPage code
+│    │    ├── municipis-detail/                 * Municipis-detail page
+│    │    │    ├── activities-detail.html       * MunicipisDetailPage template
+│    │    │    ├── activities-detail.scss       * MunicipisDetailPage code
+│    │    │    └── activities-detail.ts         * MunicipisDetailPage stylesheet
 │    │    │
-│    │    │── speaker-detail/            * Speaker Detail page
-│    │    │    ├── speaker-detail.html   * SpeakerDetailPage template
-│    │    │    └── speaker-detail.ts     * SpeakerDetailPage code
-│    │    │    └── speaker-detail.scss   * SpeakerDetailPage stylesheet
+│    │    ├── pois/                             * Pois page
+│    │    │    ├── pois.html                    * PoisPage template
+│    │    │    ├── pois.scss                    * PoisPage code
+│    │    │    └── pois.ts                      * PoisPage stylesheet
 │    │    │
-│    │    │── speaker-list/              * Speakers tab page
-│    │    │    ├── speaker-list.html     * SpeakerListPage template
-│    │    │    └── speaker-list.ts       * SpeakerListPage code
-│    │    │    └── speaker-list.scss     * SpeakerListPage stylesheet
-|    |    |
-│    │    │── support/                   * Support page
-│    │    │    ├── support.html          * SupportPage template
-│    │    │    └── support.ts            * SupportPage code
-│    │    │    └── support.scss          * SupportPage stylesheet
+│    │    ├── pois-detail/                      * Pois-detail page
+│    │    │    ├── pois-detail.html             * PoisDetailPage template
+│    │    │    ├── pois-detail.scss             * PoisDetailPage code
+│    │    │    └── pois-detail.ts               * PoisDetailPage stylesheet
 │    │    │
-│    │    │── tabs/                      * Tabs page
-│    │    │    ├── tabs.html             * TabsPage template
-│    │    │    └── tabs.ts               * TabsPage code
+│    │    ├── pois-filter/                      * Pois-filter page
+│    │    │    ├── pois-filter.html             * PoisFilterPage template
+│    │    │    ├── pois-filter.scss             * PoisFilterPage code
+│    │    │    └── pois-filter.ts               * PoisFilterPage stylesheet
 │    │    │
-│    │    └── tutorial/                  * Tutorial Intro page
-│    │         ├── tutorial.html         * TutorialPage template
-│    │         └── tutorial.ts           * TutorialPage code
-│    │         └── tutorial.scss         * TutorialPage stylesheet
+│    │    ├── pois-list/                        * Pois-list page
+│    │    │    ├── pois-list.html               * PoisListPage template
+│    │    │    ├── pois-list.scss               * PoisListPage code
+│    │    │    └── pois-list.ts                 * PoisListPage stylesheet
+│    │    │
+│    │    └── pois-map/                         * Pois-map page
+│    │         ├── pois-map.html                * PoisMapPage template
+│    │         ├── pois-map.scss                * PoisMapPage code
+│    │         └── pois-map.ts                  * PoisMapPage stylesheet
+│    │  
+│    ├── pipes/                                 * Contains all of our pipes
+│    │     └── date-format.ts                   * UserData code
+│    │
+│    ├── providers/                             * Contains all Injectables
+│    │     ├── open-data.ts                     * OpenData code
+│    │     ├── params-data.ts                   * ParamsData code
+│    │     └── user-data.ts                     * UserData code
+│    │
+│    ├── theme/                                 * App theme files
+|    |     └── variables.scss                   * App Shared Sass Variables
 |    |
-│    ├── providers/                      * Contains all Injectables
-│    │     ├── conference-data.ts        * ConferenceData code
-│    │     └── user-data.ts              * UserData code
-│    ├── theme/                          * App theme files
-|    |     ├── variables.scss            * App Shared Sass Variables
-|    |
-|    |-- index.html
+|    |-- declarations.d.ts                       
+|    |-- index.html                              
+|    |-- manifest.json                           
+|    └── service-working.js                     
 |
 |-- www/
-|    ├── assets/
-|    |    ├── data/
-|    |    |    └── data.json
-|    |    |
-|    |    ├── fonts/
-|    |    |     ├── ionicons.eot
-|    |    |     └── ionicons.svg
-|    |    |     └── ionicons.ttf
-|    |    |     └── ionicons.woff
-|    |    |     └── ionicons.woff2
-|    |    |
-|    |    ├── img/
-|    |
-|    └── build/
-|    └── index.html
+|    └── .gitignore                             * git ignore file
 |
-├── .editorconfig                       * Defines coding styles between editors
-├── .gitignore                          * Example git ignore file
-├── LICENSE                             * Apache License
-├── README.md                           * This file
-├── config.xml                          * Cordova configuration file
-├── ionic.config.json                   * Ionic configuration file
-├── package.json                        * Defines our JavaScript dependencies
-├── tsconfig.json                       * Defines the root files and the compiler options
-├── tslint.json                         * Defines the rules for the TypeScript linter
+├── .editorconfig                               * Defines coding styles between editors
+├── .gitignore                                  * git ignore file
+├── .io-config.json                             
+├── LICENSE                                     * Apache License
+├── README.md                                   * This file
+├── config.xml                                  * Cordova configuration file
+├── ionic.config.json                           * Ionic configuration file
+├── package.json                                * Defines our JavaScript dependencies
+├── tsconfig.json                               * Defines the root files and the compiler options
+└── tslint.json                                 * Defines the rules for the TypeScript linter
 ```
