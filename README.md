@@ -27,24 +27,32 @@ See [CONTRIBUTING.md](https://bitbucket.org/cescd6/municipis/src/master/.github/
 
 ## Use Cases
 
-* Action Sheet - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/speaker-list/speaker-list.html) | [code](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/speaker-list/speaker-list.ts) ]
-* Alert - [ [code](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.ts) ]
-* Cards - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/speaker-list/speaker-list.html) ]
-* Datetime - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/about/about.html) ]
-* Grid - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/login/login.html) ]
-* Inputs - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/login/login.html) ]
-* Items (Sliding) - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.html) | [code](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.ts) ]
-* Menu - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/app/app.template.html) |
-[code](https://github.com/driftyco/ionic-conference-app/blob/master/src/app/app.component.ts) ]
-* Modal - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule-filter/schedule-filter.html) | [code](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.ts) ]
-* Searchbar - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.html) | [code](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.ts) ]
-* Segment - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.html) | [code](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.ts) ]
-* Slides - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/tutorial/tutorial.html) |
-* Sticky headers - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.html) ]
-* Tabs - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/tabs/tabs.html) | [code](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/tabs/tabs.ts) ]
-* Toggle - [ [template](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule-filter/schedule-filter.html) ]
-[code](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/tutorial/tutorial.ts) ]
-* Using Angular HTTP for JSON - [ [code](https://github.com/driftyco/ionic-conference-app/blob/master/src/providers/conference-data.ts) | [usage](https://github.com/driftyco/ionic-conference-app/blob/master/src/pages/schedule/schedule.ts) ]
+* Menu - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/app/app.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/app/app.component.ts) ]
+* Municipis - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/municipis/municipis.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/municipis/municipis.ts) ]
+* Municipis Detail - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/municipis-detail/municipis-detail.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/municipis-detail/municipis-detail.ts) ]
+* Activities - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities/activities.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities/activities.ts) ]
+* Activities Detail - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-detail/activities-detail.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-detail/activities-detail.ts) ]
+* Activities List - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-list/activities-list.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-list/activities-list.ts) ]
+* Activities Map - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-map/activities-map.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-map/activities-map.ts) ]
+* Activities Filter - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-filter/activities-filter.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-filter/activities-filter.ts) ]
+* Pois - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois/pois.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois/pois.ts) ]
+* Pois Detail - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-detail/pois-detail.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-detail/pois-detail.ts) ]
+* Pois List - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-list/pois-list.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-list/pois-list.ts) ]
+* Pois Map - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-map/pois-map.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-map/pois-map.ts) ]
+* Pois Filter - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-filter/pois-filter.html) |
+[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-filter/pois-filter.ts) ]
 
 
 ## App Preview
