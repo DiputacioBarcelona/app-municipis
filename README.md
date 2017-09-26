@@ -12,7 +12,7 @@ This a example of use of Diputació de Barcelona's Open Data API.
 
 ## Getting Started
 
-* Clone this repository: `git clone https://cescd6@bitbucket.org/cescd6/municipis.git`.
+* Clone this repository: `git clone https://github.com/diputacioBCN/app-municipis.git`.
 * Run `npm install` from the project root.
 * Install the ionic CLI (`npm install -g ionic`)
 * Run `ionic serve` in a terminal from the project root.
@@ -22,54 +22,54 @@ This a example of use of Diputació de Barcelona's Open Data API.
 
 
 ## Contributing
-See [CONTRIBUTING.md](https://bitbucket.org/cescd6/municipis/src/master/.github/CONTRIBUTING.md?at=master&fileviewer=file-view-default)
+See [CONTRIBUTING.md](https://github.com/diputacioBCN/app-municipis/src/master/.github/CONTRIBUTING.md?at=master&fileviewer=file-view-default)
 
 
 ## Use Cases
 
-* Menu - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/app/app.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/app/app.component.ts) ]
-* Municipis - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/municipis/municipis.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/municipis/municipis.ts) ]
-* Municipis Detail - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/municipis-detail/municipis-detail.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/municipis-detail/municipis-detail.ts) ]
-* Activities - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities/activities.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities/activities.ts) ]
-* Activities Detail - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-detail/activities-detail.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-detail/activities-detail.ts) ]
-* Activities List - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-list/activities-list.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-list/activities-list.ts) ]
-* Activities Map - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-map/activities-map.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-map/activities-map.ts) ]
-* Activities Filter - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-filter/activities-filter.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/activities-filter/activities-filter.ts) ]
-* Pois - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois/pois.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois/pois.ts) ]
-* Pois Detail - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-detail/pois-detail.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-detail/pois-detail.ts) ]
-* Pois List - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-list/pois-list.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-list/pois-list.ts) ]
-* Pois Map - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-map/pois-map.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-map/pois-map.ts) ]
-* Pois Filter - [ [template](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-filter/pois-filter.html) |
-[code](https://bitbucket.org/cescd6/municipis/src/master/src/pages/pois-filter/pois-filter.ts) ]
+* Menu - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/app/app.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/app/app.component.ts) ]
+* Municipis - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/municipis/municipis.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/municipis/municipis.ts) ]
+* Municipis Detail - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/municipis-detail/municipis-detail.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/municipis-detail/municipis-detail.ts) ]
+* Activities - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities/activities.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities/activities.ts) ]
+* Activities Detail - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities-detail/activities-detail.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities-detail/activities-detail.ts) ]
+* Activities List - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities-list/activities-list.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities-list/activities-list.ts) ]
+* Activities Map - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities-map/activities-map.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities-map/activities-map.ts) ]
+* Activities Filter - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities-filter/activities-filter.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/activities-filter/activities-filter.ts) ]
+* Pois - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois/pois.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois/pois.ts) ]
+* Pois Detail - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois-detail/pois-detail.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois-detail/pois-detail.ts) ]
+* Pois List - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois-list/pois-list.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois-list/pois-list.ts) ]
+* Pois Map - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois-map/pois-map.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois-map/pois-map.ts) ]
+* Pois Filter - [ [template](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois-filter/pois-filter.html) |
+[code](https://github.com/diputacioBCN/app-municipis/src/master/src/pages/pois-filter/pois-filter.ts) ]
 
 
 ## App Preview
 
 All app preview screenshots were taken by running `ionic serve --lab`. Except for the map view, because it is a native component of Ionic
 
-- [Municipis Page](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots/MunicipisPage.png?at=master&fileviewer=file-view-default)
+- [Municipis Page](https://github.com/diputacioBCN/app-municipis/src/master/resources/screenshots/MunicipisPage.png?at=master&fileviewer=file-view-default)
 
   <img src="resources/screenshots/MunicipisPage.png" alt="Schedule">
 
 
-- [Activities Page](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots/ActivitiesListPage.png?at=master&fileviewer=file-view-default)
+- [Activities Page](https://github.com/diputacioBCN/app-municipis/src/master/resources/screenshots/ActivitiesListPage.png?at=master&fileviewer=file-view-default)
 
   <img src="resources/screenshots/ActivitiesListPage.png" alt="Schedule">
 
 
-- To see more images of the app, check out the [screenshots directory](https://bitbucket.org/cescd6/municipis/src/master/resources/screenshots)!
+- To see more images of the app, check out the [screenshots directory](https://github.com/diputacioBCN/app-municipis/src/master/resources/screenshots)!
 
 
 ## File Structure of App

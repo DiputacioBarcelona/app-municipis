@@ -21,7 +21,7 @@ Before submitting an issue, please go through [the list below](#before-submittin
 
 #### Before Submitting an Issue
 
-* Make sure you get the latest version of the code and run through the [Getting Started](https://cescd6@bitbucket.org/cescd6/municipis#getting-started) steps to see if this resolves your issue.
+* Make sure you get the latest version of the code and run through the [Getting Started](https://github.com/diputacioBCN/app-municipis#getting-started) steps to see if this resolves your issue.
 
 #### Submitting the Issue
 
